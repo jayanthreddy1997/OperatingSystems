@@ -34,6 +34,16 @@ Token getToken() {
     return t;
 }
 
+void test_tokenizer() {
+    Token t;
+    t = getToken();
+    while (t.token != NULL) {
+        cout << "Token: " << t.line_no << ":" << t.start_pos << " : " << t.token << endl;
+        t = getToken();
+    }
+    cout << "Final Spot in File : line=" << t.line_no << " offset=" << t.start_pos << endl;
+}
+
 int main(int argc, char* argv[]) {
     if(argc<=1) {
         cout << "Usage: linker input_file" << endl;
@@ -42,12 +52,5 @@ int main(int argc, char* argv[]) {
     string input_filename = argv[1];
     g_input_file.open(input_filename);
 
-    Token t;
-    t = getToken();
-    while (t.token != NULL) {
-        cout << "Token: " << t.line_no << ":" << t.start_pos << " : " << t.token << endl;
-        t = getToken();
-    }
-    cout << "Final Spot in File : line=" << t.line_no << " offset=" << t.start_pos << endl;
     return 0;
 }
