@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -8,7 +9,8 @@ char *g_curr_ptr;
 string g_curr_line;
 int g_line_no=0;
 int g_final_offset;
-
+vector<pair<string, int> > symbolTable; // Symbol modeled as a pair, variable name and its absolute address
+vector<pair<int, int> > memoryMap;
 
 // STEP-1: Tokenizer
 struct Token {
@@ -53,7 +55,14 @@ enum AddressMode { I, A, R, E };
 
 int readInt() {
     Token t = getToken();
-    return atoi(t.token); // TODO: add error handling
+//    int intToken;
+//    try {
+//        intToken = atoi(t.token);
+//    } catch (invalid_argument const &ex) {
+//
+//    }
+//    return intToken;
+    return (t.token==NULL) ? NULL : atoi(t.token); // TODO: add error handling
 }
 
 string readSymbol() {
@@ -118,7 +127,75 @@ void test_tokens() {
 
 
 // STEP-3: Parser
+void buildSymbolTable() {
+    int moduleBaseAddress = 0;
+    int defCount;
+    int useCount;
+    int codeCount;
+    while(!g_input_file.eof()) { // TODO: check condition
+        defCount = readInt();
+        for(int i=0; i<defCount; i++) {
+            pair<string, int> newSymbol(readSymbol(), readInt()+moduleBaseAddress);
+            symbolTable.push_back(newSymbol);
+        }
+        useCount = readInt();
+        for(int i=0; i<useCount; i++) {
+            readSymbol();
+        }
+        codeCount = readInt();
+        for(int i=0; i<codeCount; i++) {
+            readIAER();
+            readInt();
+            moduleBaseAddress += 1;
+        }
+    }
+}
 
+int getSymbolAddress(string symbol) {
+    for (auto s: symbolTable) {
+        if (s.first == symbol) {
+            return s.second;
+        }
+    }
+    return -1;
+}
+
+void buildMemoryMap() {
+    int addr = 0;
+    int defCount;
+    int useCount;
+    int codeCount;
+    while(!g_input_file.eof()) { // TODO: check condition
+        defCount = readInt();
+        for(int i=0; i<defCount; i++) {
+            readSymbol();
+            readInt();
+        }
+        useCount = readInt();
+        for(int i=0; i<useCount; i++) {
+            readSymbol();
+        }
+        codeCount = readInt();
+        for(int i=0; i<codeCount; i++) {
+            AddressMode addrMode = readIAER();
+            int op = readInt();
+            int opcode = op / 1000;
+            int operand = op % 1000;
+
+            if (addrMode == I) {
+                pair<int, int> p(addr, op);
+                memoryMap.push_back(p);
+            } else if (addrMode == A) {
+
+            } else if (addrMode == R) {
+
+            } else if (addrMode == E) {
+
+            }
+            addr += 1;
+        }
+    }
+}
 
 
 int main(int argc, char* argv[]) {
@@ -129,7 +206,21 @@ int main(int argc, char* argv[]) {
     string input_filename = argv[1];
     g_input_file.open(input_filename);
 
+    // PASS 1
+    buildSymbolTable();
+    cout << "Symbol Table" << endl;
+    for(auto s: symbolTable) {
+        cout << s.first << "=" << s.second << endl;
+    }
 
+    // PASS 2
+//    buildMemoryMap(); // DONT DO THIS, PRINT ON THE FLY, SINCE ERROR MESSAGES ALSO NEEDED!
+//    cout << "\nMemory Map" << endl;
+//    for (auto m: memoryMap) {
+//        string memoryLoc = to_string(m.first);
+//        memoryLoc.insert(0, 3-memoryLoc.size(), '0');
+//        cout <<  memoryLoc << ": " << m.second << endl;
+//    }
 
     g_input_file.close();
     return 0;
