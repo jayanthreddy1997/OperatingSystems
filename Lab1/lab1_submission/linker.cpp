@@ -10,7 +10,7 @@ string g_curr_line;
 int g_line_no=0;
 int g_final_offset;
 vector<pair<string, int> > symbolTable; // Symbol modeled as a pair, variable name and its absolute address
-vector<pair<int, int> > memoryMap;
+
 
 // STEP-1: Tokenizer
 struct Token {
@@ -162,18 +162,22 @@ int getSymbolAddress(string symbol) {
 
 void buildMemoryMap() {
     int addr = 0;
+    int moduleBaseAddr = 0;
     int defCount;
     int useCount;
     int codeCount;
+
     while(!g_input_file.eof()) { // TODO: check condition
+        moduleBaseAddr = addr;
         defCount = readInt();
         for(int i=0; i<defCount; i++) {
             readSymbol();
             readInt();
         }
         useCount = readInt();
+        vector<string> useList;
         for(int i=0; i<useCount; i++) {
-            readSymbol();
+            useList.push_back(readSymbol());
         }
         codeCount = readInt();
         for(int i=0; i<codeCount; i++) {
@@ -183,14 +187,17 @@ void buildMemoryMap() {
             int operand = op % 1000;
 
             if (addrMode == I) {
-                pair<int, int> p(addr, op);
-                memoryMap.push_back(p);
+                printf("%03d: %04d\n", addr, op);
             } else if (addrMode == A) {
-
+                printf("%03d: %04d\n", addr, op);
             } else if (addrMode == R) {
-
+                int newOperand = moduleBaseAddr + operand;
+                int newOp = opcode * 1000 + newOperand;
+                printf("%03d: %04d\n", addr, newOp);
             } else if (addrMode == E) {
-
+                int newOperand = getSymbolAddress(useList[operand]);
+                int newOp = opcode * 1000 + newOperand;
+                printf("%03d: %04d\n", addr, newOp);
             }
             addr += 1;
         }
@@ -214,14 +221,16 @@ int main(int argc, char* argv[]) {
     }
 
     // PASS 2
-//    buildMemoryMap(); // DONT DO THIS, PRINT ON THE FLY, SINCE ERROR MESSAGES ALSO NEEDED!
-//    cout << "\nMemory Map" << endl;
-//    for (auto m: memoryMap) {
-//        string memoryLoc = to_string(m.first);
-//        memoryLoc.insert(0, 3-memoryLoc.size(), '0');
-//        cout <<  memoryLoc << ": " << m.second << endl;
-//    }
+    if (g_input_file.is_open()) {
+        g_input_file.close();
+    }
+    g_input_file.open(input_filename);
 
-    g_input_file.close();
+    cout << endl << "Memory Map" << endl;
+    buildMemoryMap();
+
+    if (g_input_file.is_open()) {
+        g_input_file.close();
+    }
     return 0;
 }
