@@ -17,6 +17,7 @@ struct Token {
     char* token;
     int line_no;
     int start_pos;
+    bool tokenFound;
 };
 
 Token getToken() {
@@ -34,7 +35,8 @@ Token getToken() {
     Token t;
     t.token = g_curr_ptr;
     t.line_no = g_line_no;
-    t.start_pos = (g_curr_ptr==NULL) ? (g_final_offset + 2) : (g_curr_ptr - g_curr_line.c_str() + 1);
+    t.start_pos = (g_curr_ptr==NULL) ? (g_final_offset + 1) : (g_curr_ptr - g_curr_line.c_str() + 1);
+    t.tokenFound = g_curr_ptr!=NULL;
     return t;
 }
 
@@ -53,6 +55,19 @@ void test_tokenizer() {
 // STEP-2: Basic token functions
 enum AddressMode { I, A, R, E };
 
+void __parseerror(int errcode, int line_no, int offset) {
+    static char* errstr[] = {
+            "NUM_EXPECTED", // Number expect, anything >= 2^30 is not a number either
+            "SYM_EXPECTED", // Symbol Expected
+            "ADDR_EXPECTED", // Addressing Expected which is A/E/I/R
+            "SYM_TOO_LONG", // Symbol Name is too long
+            "TOO_MANY_DEF_IN_MODULE", // > 16
+            "TOO_MANY_USE_IN_MODULE", // > 16
+            "TOO_MANY_INSTR", // total num_instr exceeds memory size (512)
+    };
+    printf("Parse Error line %d offset %d: %s\n", line_no, offset, errstr[errcode]);
+}
+
 int readInt() {
     Token t = getToken();
 //    int intToken;
@@ -66,12 +81,34 @@ int readInt() {
 }
 
 string readSymbol() {
-    return getToken().token;
+    Token t = getToken();
+    char* tokenText = t.token;
+    int i = 0;
+    if (!isalpha(tokenText[i])) {
+        __parseerror(1, t.line_no, t.start_pos);
+        exit(0);
+    }
+    i+=1;
+    while(tokenText[i]) {
+        if (!isalnum(tokenText[i])) {
+            __parseerror(1, t.line_no, t.start_pos);
+            exit(0);
+        }
+        i += 1;
+    }
+    if (i>16) {
+        __parseerror(3, t.line_no, t.start_pos);
+    }
+    return tokenText;
 }
 
 AddressMode readIAER() {
-    // TODO: add error handling
-    char* token = getToken().token;
+    Token t = getToken();
+    if (!t.tokenFound) {
+        __parseerror(2, t.line_no, t.start_pos);
+        exit(0);
+    }
+    char* token = t.token;
     switch(token[0]) {
         case 'I':
             return I;
@@ -84,18 +121,6 @@ AddressMode readIAER() {
     }
 }
 
-bool isdigit() {
-    // TODO
-    return true;
-}
-bool isalpha() {
-    // TODO
-    return true;
-}
-bool isalnum() {
-    // TODO
-    return true;
-}
 
 void test_tokens() {
     // test readInt, readSymbol and readIAER function using input-1/2
