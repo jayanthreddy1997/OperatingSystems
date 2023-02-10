@@ -68,20 +68,42 @@ void __parseerror(int errcode, int line_no, int offset) {
     printf("Parse Error line %d offset %d: %s\n", line_no, offset, errstr[errcode]);
 }
 
-int readInt() {
+struct IntToken {
+    int token;
+    bool tokenFound;
+};
+IntToken readInt(bool strict=true) {
     Token t = getToken();
-//    int intToken;
-//    try {
-//        intToken = atoi(t.token);
-//    } catch (invalid_argument const &ex) {
-//
-//    }
-//    return intToken;
-    return (t.token==NULL) ? NULL : atoi(t.token); // TODO: add error handling
+    IntToken result;
+    char* tokenText = t.token;
+    if (!t.tokenFound) {
+        if (strict) {
+            __parseerror(0, t.line_no, t.start_pos);
+            exit(0);
+        } else {
+            result.tokenFound = false;
+            return result;
+        }
+    }
+    int i = 0;
+    while(tokenText[i]) {
+        if (!isdigit(tokenText[i])) {
+            __parseerror(0, t.line_no, t.start_pos);
+            exit(0);
+        }
+        i += 1;
+    }
+    result.token = atoi(tokenText);
+    result.tokenFound = true;
+    return result;
 }
 
 string readSymbol() {
     Token t = getToken();
+    if (!t.tokenFound) {
+        __parseerror(1, t.line_no, t.start_pos);
+        exit(0);
+    }
     char* tokenText = t.token;
     int i = 0;
     if (!isalpha(tokenText[i])) {
@@ -122,52 +144,28 @@ AddressMode readIAER() {
 }
 
 
-void test_tokens() {
-    // test readInt, readSymbol and readIAER function using input-1/2
-    if (g_input_file.is_open()) {
-        g_input_file.close();
-    }
-    g_input_file.open("lab1_assign/input-2");
-    // Definition List
-    assert(readInt()==1);
-    assert(readSymbol()=="xy");
-    assert(readInt()==2);
-    // Use list
-    assert(readInt()==2);
-    assert(readSymbol()=="z");
-    assert(readSymbol()=="xy");
-    // Program text
-    assert(readInt()==5);
-    assert(readIAER()==R);
-    assert(readInt()==1004);
-    assert(readIAER()==I);
-    assert(readInt()==5678);
-    assert(readIAER()==E);
-    assert(readInt()==2000);
-    assert(readIAER()==R);
-    assert(readInt()==8002);
-    assert(readIAER()==E);
-    assert(readInt()==7001);
-}
-
-
 // STEP-3: Parser
 void buildSymbolTable() {
     int moduleBaseAddress = 0;
     int defCount;
     int useCount;
     int codeCount;
-    while(!g_input_file.eof()) { // TODO: check condition
-        defCount = readInt();
+    while(!g_input_file.eof()) {
+        IntToken intToken = readInt(false);
+        if (!intToken.tokenFound) {
+            break;
+        }
+        defCount = intToken.token;
+
         for(int i=0; i<defCount; i++) {
-            pair<string, int> newSymbol(readSymbol(), readInt()+moduleBaseAddress);
+            pair<string, int> newSymbol(readSymbol(), readInt().token+moduleBaseAddress);
             symbolTable.push_back(newSymbol);
         }
-        useCount = readInt();
+        useCount = readInt().token;
         for(int i=0; i<useCount; i++) {
             readSymbol();
         }
-        codeCount = readInt();
+        codeCount = readInt().token;
         for(int i=0; i<codeCount; i++) {
             readIAER();
             readInt();
@@ -194,20 +192,24 @@ void buildMemoryMap() {
 
     while(!g_input_file.eof()) { // TODO: check condition
         moduleBaseAddr = addr;
-        defCount = readInt();
+        IntToken intToken = readInt(false);
+        if (!intToken.tokenFound) {
+            break;
+        }
+        defCount = intToken.token;
         for(int i=0; i<defCount; i++) {
             readSymbol();
             readInt();
         }
-        useCount = readInt();
+        useCount = readInt().token;
         vector<string> useList;
         for(int i=0; i<useCount; i++) {
             useList.push_back(readSymbol());
         }
-        codeCount = readInt();
+        codeCount = readInt().token;
         for(int i=0; i<codeCount; i++) {
             AddressMode addrMode = readIAER();
-            int op = readInt();
+            int op = readInt().token;
             int opcode = op / 1000;
             int operand = op % 1000;
 
