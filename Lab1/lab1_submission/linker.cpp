@@ -70,11 +70,15 @@ void __parseerror(int errcode, int line_no, int offset) {
 
 struct IntToken {
     int token;
+    int line_no;
+    int start_pos;
     bool tokenFound;
 };
 IntToken readInt(bool strict=true) {
     Token t = getToken();
     IntToken result;
+    result.line_no = t.line_no;
+    result.start_pos = t.start_pos;
     char* tokenText = t.token;
     if (!t.tokenFound) {
         if (strict) {
@@ -131,7 +135,7 @@ AddressMode readIAER() {
         exit(0);
     }
     char* token = t.token;
-    switch(token[0]) {
+    switch(token[0]) { // TODO: add error handling for other tokens
         case 'I':
             return I;
         case 'A':
@@ -156,15 +160,20 @@ void buildSymbolTable() {
             break;
         }
         defCount = intToken.token;
-
+        if (defCount > 16) {
+            __parseerror(4, intToken.line_no, intToken.start_pos);
+            exit(0);
+        }
         for(int i=0; i<defCount; i++) {
             pair<string, int> newSymbol(readSymbol(), readInt().token+moduleBaseAddress);
             symbolTable.push_back(newSymbol);
         }
+
         useCount = readInt().token;
         for(int i=0; i<useCount; i++) {
             readSymbol();
         }
+
         codeCount = readInt().token;
         for(int i=0; i<codeCount; i++) {
             readIAER();
