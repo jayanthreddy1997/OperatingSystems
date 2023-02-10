@@ -155,13 +155,13 @@ void buildSymbolTable() {
     int useCount;
     int codeCount;
     while(!g_input_file.eof()) {
-        IntToken intToken = readInt(false);
-        if (!intToken.tokenFound) {
+        IntToken defCountToken = readInt(false);
+        if (!defCountToken.tokenFound) {
             break;
         }
-        defCount = intToken.token;
+        defCount = defCountToken.token;
         if (defCount > 16) {
-            __parseerror(4, intToken.line_no, intToken.start_pos);
+            __parseerror(4, defCountToken.line_no, defCountToken.start_pos);
             exit(0);
         }
         for(int i=0; i<defCount; i++) {
@@ -169,7 +169,13 @@ void buildSymbolTable() {
             symbolTable.push_back(newSymbol);
         }
 
-        useCount = readInt().token;
+        IntToken useCountToken = readInt();
+        useCount = useCountToken.token;
+        if (useCount > 16) {
+            __parseerror(5, useCountToken.line_no, useCountToken.start_pos);
+            exit(0);
+        }
+
         for(int i=0; i<useCount; i++) {
             readSymbol();
         }
