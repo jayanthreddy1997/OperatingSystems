@@ -154,6 +154,7 @@ void buildSymbolTable() {
     int defCount;
     int useCount;
     int codeCount;
+    int totalInstrCount = 0;
     while(!g_input_file.eof()) {
         IntToken defCountToken = readInt(false);
         if (!defCountToken.tokenFound) {
@@ -180,7 +181,13 @@ void buildSymbolTable() {
             readSymbol();
         }
 
-        codeCount = readInt().token;
+        IntToken codeCountToken = readInt();
+        codeCount = codeCountToken.token;
+        totalInstrCount += codeCount;
+        if (totalInstrCount > 512) {
+            __parseerror(6, codeCountToken.line_no, codeCountToken.start_pos);
+            exit(0);
+        }
         for(int i=0; i<codeCount; i++) {
             readIAER();
             readInt();
