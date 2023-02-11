@@ -1,1 +1,13 @@
-Parse Error line 1 offset 8: NUM_EXPECTED
+Warning: Module 1: xy redefined and ignored
+Symbol Table
+xy=2 Error: This variable is multiple times defined; first value used
+
+Memory Map
+000: 5002
+001: 5000
+002: 5000
+003: 5000
+004: 5000
+Warning: Module 1: z appeared in the uselist but was not actually used
+
+
