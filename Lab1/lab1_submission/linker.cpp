@@ -274,7 +274,13 @@ void buildMemoryMap() {
             int operand = op % 1000;
 
             if (addrMode == I) {
-                printf("%03d: %04d\n", addr, op);
+                if (op>=10000) {
+                    printf("%03d: 9999 Error: Illegal immediate value; treated as 9999\n", addr);
+                } else {
+                    printf("%03d: %04d\n", addr, op);
+                }
+            } else if (opcode>=10) {
+                printf("%03d: 9999 Error: Illegal opcode; treated as 9999\n", addr);
             } else if (addrMode == A) {
                 if(operand >= 512) {
                     printf("%03d: %04d Error: Absolute address exceeds machine size; zero used\n", addr, opcode*1000);
