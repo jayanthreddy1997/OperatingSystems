@@ -226,8 +226,15 @@ void buildSymbolTable() {
         for(int i=0; i<codeCount; i++) {
             readIAER();
             readInt();
-            moduleBaseAddress += 1;
         }
+
+        for (auto s: symbolTable) {
+            if (s->moduleNo == moduleCount && (s->addr - moduleBaseAddress) >= codeCount) {
+                printf("Warning: Module %d: %s too big %d (max=%d) assume zero relative\n", moduleCount, s->symbol.c_str(), (s->addr - moduleBaseAddress), codeCount-1);
+                s->addr = moduleBaseAddress;
+            }
+        }
+        moduleBaseAddress += codeCount;
     }
 }
 
