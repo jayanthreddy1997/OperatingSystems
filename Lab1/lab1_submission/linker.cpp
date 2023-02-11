@@ -32,7 +32,8 @@ struct Token {
 
 Token getToken() {
     if (!g_input_file.is_open()) {
-        throw runtime_error("No open file to get token from!");
+        cout << "No open file to get token from!";
+        exit(-1);
     }
     char delimiters[] = " \t\n";
     g_curr_ptr = strtok(NULL, delimiters);
