@@ -32,7 +32,7 @@ struct Token {
 
 Token getToken() {
     if (!g_input_file.is_open()) {
-        cout << "No open file to get token from!";
+        cout << "No open file to get token from!" << endl;
         exit(-1);
     }
     char delimiters[] = " \t\n";
@@ -40,13 +40,16 @@ Token getToken() {
     while (g_curr_ptr==NULL && getline(g_input_file, g_curr_line)) {
         g_curr_ptr = strtok((char*)g_curr_line.c_str(), delimiters);
         g_final_offset = g_curr_line.size();
+        if (!g_input_file.eof()) {
+            g_final_offset += 1;
+        }
         g_line_no += 1;
     }
 
     Token t;
     t.token = g_curr_ptr;
     t.line_no = g_line_no;
-    t.start_pos = (g_curr_ptr==NULL) ? (g_final_offset + 1) : (g_curr_ptr - g_curr_line.c_str() + 1);
+    t.start_pos = (g_curr_ptr==NULL) ? g_final_offset : (g_curr_ptr - g_curr_line.c_str() + 1);
     t.tokenFound = g_curr_ptr!=NULL;
     return t;
 }
