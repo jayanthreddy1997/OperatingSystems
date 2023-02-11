@@ -284,17 +284,21 @@ void buildMemoryMap() {
                     printf("%03d: %04d\n", addr, newOp);
                 }
             } else if (addrMode == E) {
-                Symbol* s = getSymbol(useList[operand]);
-                if (s->symbolExists) {
-                    s->used = true;
-                    int newOperand = s->addr;
-                    int newOp = opcode * 1000 + newOperand;
-                    printf("%03d: %04d\n", addr, newOp);
+                if (operand >= useList.size()) {
+                    printf("%03d: %04d Error: External address exceeds length of uselist; treated as immediate\n", addr, op);
                 } else {
-                    int newOp = opcode * 1000;
-                    printf("%03d: %04d Error: %s is not defined; zero used\n", addr, newOp, useList[operand].c_str());
+                    Symbol *s = getSymbol(useList[operand]);
+                    if (s->symbolExists) {
+                        s->used = true;
+                        int newOperand = s->addr;
+                        int newOp = opcode * 1000 + newOperand;
+                        printf("%03d: %04d\n", addr, newOp);
+                    } else {
+                        int newOp = opcode * 1000;
+                        printf("%03d: %04d Error: %s is not defined; zero used\n", addr, newOp,
+                               useList[operand].c_str());
+                    }
                 }
-
             }
             addr += 1;
         }
