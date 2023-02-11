@@ -144,7 +144,7 @@ AddressMode readIAER() {
         exit(0);
     }
     char* token = t.token;
-    switch(token[0]) { // TODO: add error handling for other tokens
+    switch(token[0]) {
         case 'I':
             return I;
         case 'A':
