@@ -153,6 +153,9 @@ AddressMode readIAER() {
             return R;
         case 'E':
             return E;
+        default:
+            __parseerror(2, t.line_no, t.start_pos);
+            exit(0);
     }
 }
 
