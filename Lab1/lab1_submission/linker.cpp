@@ -9,7 +9,14 @@ char *g_curr_ptr;
 string g_curr_line;
 int g_line_no=0;
 int g_final_offset;
-vector<pair<string, int> > symbolTable; // Symbol modeled as a pair, variable name and its absolute address
+
+struct Symbol {
+    string symbol;
+    int addr;
+    bool multipleDefinition = false;
+    bool symbolExists = true;
+};
+vector<Symbol*> symbolTable;
 
 
 // STEP-1: Tokenizer
@@ -149,13 +156,26 @@ AddressMode readIAER() {
 
 
 // STEP-3: Parser
+Symbol* getSymbol(string symbol) {
+    for (auto s: symbolTable) {
+        if (s->symbol == symbol) {
+            return s;
+        }
+    }
+    Symbol s;
+    s.symbolExists = false;
+    return &s;
+}
+
 void buildSymbolTable() {
     int moduleBaseAddress = 0;
     int defCount;
     int useCount;
     int codeCount;
     int totalInstrCount = 0;
+    int moduleCount = 0;
     while(!g_input_file.eof()) {
+        moduleCount += 1;
         IntToken defCountToken = readInt(false);
         if (!defCountToken.tokenFound) {
             break;
@@ -166,8 +186,20 @@ void buildSymbolTable() {
             exit(0);
         }
         for(int i=0; i<defCount; i++) {
-            pair<string, int> newSymbol(readSymbol(), readInt().token+moduleBaseAddress);
-            symbolTable.push_back(newSymbol);
+            string symbol = readSymbol();
+            Symbol* existingSymbol;
+            existingSymbol = getSymbol(symbol);
+            if (existingSymbol->symbolExists) {
+                existingSymbol->multipleDefinition = true;
+                printf("Warning: Module %d: %s redefined and ignored\n", moduleCount, symbol.c_str());
+                readInt();
+            } else {
+                Symbol* newSymbol = (Symbol*) malloc(sizeof (struct Symbol));
+                newSymbol->symbol = symbol;
+                newSymbol->addr =  readInt().token + moduleBaseAddress;
+                newSymbol->symbolExists = true;
+                symbolTable.push_back(newSymbol);
+            }
         }
 
         IntToken useCountToken = readInt();
@@ -196,15 +228,6 @@ void buildSymbolTable() {
     }
 }
 
-int getSymbolAddress(string symbol) {
-    for (auto s: symbolTable) {
-        if (s.first == symbol) {
-            return s.second;
-        }
-    }
-    return -1;
-}
-
 void buildMemoryMap() {
     int addr = 0;
     int moduleBaseAddr = 0;
@@ -212,7 +235,7 @@ void buildMemoryMap() {
     int useCount;
     int codeCount;
 
-    while(!g_input_file.eof()) { // TODO: check condition
+    while(!g_input_file.eof()) {
         moduleBaseAddr = addr;
         IntToken intToken = readInt(false);
         if (!intToken.tokenFound) {
@@ -238,13 +261,17 @@ void buildMemoryMap() {
             if (addrMode == I) {
                 printf("%03d: %04d\n", addr, op);
             } else if (addrMode == A) {
-                printf("%03d: %04d\n", addr, op);
+                if(operand >= 512) {
+                    printf("%03d: %04d Error: Absolute address exceeds machine size; zero used\n", addr, opcode*1000);
+                } else {
+                    printf("%03d: %04d\n", addr, op);
+                }
             } else if (addrMode == R) {
                 int newOperand = moduleBaseAddr + operand;
                 int newOp = opcode * 1000 + newOperand;
                 printf("%03d: %04d\n", addr, newOp);
             } else if (addrMode == E) {
-                int newOperand = getSymbolAddress(useList[operand]);
+                int newOperand = getSymbol(useList[operand])->addr; // TODO: error handling if not found
                 int newOp = opcode * 1000 + newOperand;
                 printf("%03d: %04d\n", addr, newOp);
             }
@@ -265,8 +292,13 @@ int main(int argc, char* argv[]) {
     // PASS 1
     buildSymbolTable();
     cout << "Symbol Table" << endl;
-    for(auto s: symbolTable) {
-        cout << s.first << "=" << s.second << endl;
+    for(int i=0; i<symbolTable.size(); i++) {
+        Symbol* s = symbolTable.at(i);
+        if (s->multipleDefinition) {
+            cout << s->symbol << "=" << s->addr << " Error: This variable is multiple times defined; first value used" << endl;
+        } else {
+            cout << s->symbol << "=" << s->addr << endl;
+        }
     }
 
     // PASS 2
