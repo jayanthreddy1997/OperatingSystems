@@ -13,8 +13,10 @@ int g_final_offset;
 struct Symbol {
     string symbol;
     int addr;
+    int moduleNo;
     bool multipleDefinition = false;
     bool symbolExists = true;
+    bool used = false;
 };
 vector<Symbol*> symbolTable;
 
@@ -198,6 +200,7 @@ void buildSymbolTable() {
                 newSymbol->symbol = symbol;
                 newSymbol->addr =  readInt().token + moduleBaseAddress;
                 newSymbol->symbolExists = true;
+                newSymbol->moduleNo = moduleCount;
                 symbolTable.push_back(newSymbol);
             }
         }
@@ -246,11 +249,13 @@ void buildMemoryMap() {
             readSymbol();
             readInt();
         }
+
         useCount = readInt().token;
         vector<string> useList;
         for(int i=0; i<useCount; i++) {
             useList.push_back(readSymbol());
         }
+
         codeCount = readInt().token;
         for(int i=0; i<codeCount; i++) {
             AddressMode addrMode = readIAER();
@@ -271,9 +276,18 @@ void buildMemoryMap() {
                 int newOp = opcode * 1000 + newOperand;
                 printf("%03d: %04d\n", addr, newOp);
             } else if (addrMode == E) {
-                int newOperand = getSymbol(useList[operand])->addr; // TODO: error handling if not found
-                int newOp = opcode * 1000 + newOperand;
-                printf("%03d: %04d\n", addr, newOp);
+                Symbol* s = getSymbol(useList[operand]);
+                if (s->symbolExists) {
+                    s->used = true;
+                    int newOperand = s->addr;
+                    int newOp = opcode * 1000 + newOperand;
+                    printf("%03d: %04d\n", addr, newOp);
+                } else {
+                    // Rule 3
+                    int newOp = opcode * 1000;
+                    printf("%03d: %04d Error: %s is not defined; zero used\n", addr, newOp, useList[operand].c_str());
+                }
+
             }
             addr += 1;
         }
@@ -310,6 +324,12 @@ int main(int argc, char* argv[]) {
     cout << endl << "Memory Map" << endl;
     buildMemoryMap();
 
+    for(int i=0; i<symbolTable.size(); i++) {
+        Symbol* s = symbolTable.at(i);
+        if (!s->used) {
+            printf("Warning: Module %d: %s was defined but never used\n", s->moduleNo, (s->symbol).c_str());
+        }
+    }
     if (g_input_file.is_open()) {
         g_input_file.close();
     }
