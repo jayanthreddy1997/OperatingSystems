@@ -237,8 +237,10 @@ void buildMemoryMap() {
     int defCount;
     int useCount;
     int codeCount;
+    int moduleCount = 0;
 
     while(!g_input_file.eof()) {
+        moduleCount += 1;
         moduleBaseAddr = addr;
         IntToken intToken = readInt(false);
         if (!intToken.tokenFound) {
@@ -251,9 +253,10 @@ void buildMemoryMap() {
         }
 
         useCount = readInt().token;
-        vector<string> useList;
+        vector<pair<string, bool> > useList; // pair indicating symbol name and whether it is used
         for(int i=0; i<useCount; i++) {
-            useList.push_back(readSymbol());
+            pair<string, bool> newEntry(readSymbol(), false);
+            useList.push_back(newEntry);
         }
 
         codeCount = readInt().token;
@@ -287,7 +290,8 @@ void buildMemoryMap() {
                 if (operand >= useList.size()) {
                     printf("%03d: %04d Error: External address exceeds length of uselist; treated as immediate\n", addr, op);
                 } else {
-                    Symbol *s = getSymbol(useList[operand]);
+                    Symbol *s = getSymbol(useList[operand].first);
+                    useList[operand].second = true;
                     if (s->symbolExists) {
                         s->used = true;
                         int newOperand = s->addr;
@@ -295,12 +299,16 @@ void buildMemoryMap() {
                         printf("%03d: %04d\n", addr, newOp);
                     } else {
                         int newOp = opcode * 1000;
-                        printf("%03d: %04d Error: %s is not defined; zero used\n", addr, newOp,
-                               useList[operand].c_str());
+                        printf("%03d: %04d Error: %s is not defined; zero used\n", addr, newOp, useList[operand].first.c_str());
                     }
                 }
             }
             addr += 1;
+        }
+        for (auto x: useList) {
+            if (!x.second) {
+                printf("Warning: Module %d: %s appeared in the uselist but was not actually used\n", moduleCount, x.first.c_str());
+            }
         }
     }
 }
