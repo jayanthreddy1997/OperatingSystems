@@ -65,7 +65,7 @@ void test_tokenizer() {
 enum AddressMode { I, A, R, E };
 
 void __parseerror(int errcode, int line_no, int offset) {
-    static char* errstr[] = {
+    static string errstr[] = {
             "NUM_EXPECTED", // Number expect, anything >= 2^30 is not a number either
             "SYM_EXPECTED", // Symbol Expected
             "ADDR_EXPECTED", // Addressing Expected which is A/E/I/R
@@ -74,7 +74,7 @@ void __parseerror(int errcode, int line_no, int offset) {
             "TOO_MANY_USE_IN_MODULE", // > 16
             "TOO_MANY_INSTR", // total num_instr exceeds memory size (512)
     };
-    printf("Parse Error line %d offset %d: %s\n", line_no, offset, errstr[errcode]);
+    printf("Parse Error line %d offset %d: %s\n", line_no, offset, errstr[errcode].c_str());
 }
 
 struct IntToken {
@@ -167,9 +167,9 @@ Symbol* getSymbol(string symbol) {
             return s;
         }
     }
-    Symbol s;
-    s.symbolExists = false;
-    return &s;
+    Symbol* s = (Symbol*) malloc(sizeof (struct Symbol));
+    s->symbolExists = false;
+    return s;
 }
 
 void buildSymbolTable() {
