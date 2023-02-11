@@ -274,7 +274,7 @@ void buildMemoryMap() {
             } else if (addrMode == R) {
                 int newOperand;
                 int newOp;
-                if (operand >= codeCount) { // TODO: test with profs linker if > or >=
+                if (operand >= codeCount) {
                     newOperand = moduleBaseAddr;
                     newOp = opcode * 1000 + newOperand;
                     printf("%03d: %04d Error: Relative address exceeds module size; zero used\n", addr, newOp);
