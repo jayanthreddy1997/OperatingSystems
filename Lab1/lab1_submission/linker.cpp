@@ -272,9 +272,17 @@ void buildMemoryMap() {
                     printf("%03d: %04d\n", addr, op);
                 }
             } else if (addrMode == R) {
-                int newOperand = moduleBaseAddr + operand;
-                int newOp = opcode * 1000 + newOperand;
-                printf("%03d: %04d\n", addr, newOp);
+                int newOperand;
+                int newOp;
+                if (operand >= codeCount) { // TODO: test with profs linker if > or >=
+                    newOperand = moduleBaseAddr;
+                    newOp = opcode * 1000 + newOperand;
+                    printf("%03d: %04d Error: Relative address exceeds module size; zero used\n", addr, newOp);
+                } else {
+                    newOperand = moduleBaseAddr + operand;
+                    newOp = opcode * 1000 + newOperand;
+                    printf("%03d: %04d\n", addr, newOp);
+                }
             } else if (addrMode == E) {
                 Symbol* s = getSymbol(useList[operand]);
                 if (s->symbolExists) {
@@ -283,7 +291,6 @@ void buildMemoryMap() {
                     int newOp = opcode * 1000 + newOperand;
                     printf("%03d: %04d\n", addr, newOp);
                 } else {
-                    // Rule 3
                     int newOp = opcode * 1000;
                     printf("%03d: %04d Error: %s is not defined; zero used\n", addr, newOp, useList[operand].c_str());
                 }
@@ -324,6 +331,7 @@ int main(int argc, char* argv[]) {
     cout << endl << "Memory Map" << endl;
     buildMemoryMap();
 
+    cout << endl;
     for(int i=0; i<symbolTable.size(); i++) {
         Symbol* s = symbolTable.at(i);
         if (!s->used) {
