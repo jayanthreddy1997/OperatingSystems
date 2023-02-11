@@ -8,7 +8,7 @@ LINKER=${*:-../linker}
 
 echo "linker=<$LINKER> outdir=<$OUTDIR>"
 
-INS="`seq 1 20`" 
+INS="`seq 1 37`"
 INPRE="input-"
 OUTPRE="out-"
 
