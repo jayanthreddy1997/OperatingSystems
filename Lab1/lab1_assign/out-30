@@ -1,0 +1,11 @@
+Symbol Table
+xy=0
+
+Memory Map
+000: 2000
+Warning: Module 1: z appeared in the uselist but was not actually used
+Warning: Module 1: xy appeared in the uselist but was not actually used
+Warning: Module 1: z appeared in the uselist but was not actually used
+
+Warning: Module 1: xy was defined but never used
+

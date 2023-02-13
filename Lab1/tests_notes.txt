@@ -1,0 +1,17 @@
+
+
+Tests:
+> Empty file (literally empty) (Even an empty program should have the “Symbol Table” and “Memory Map” line.) - input-22
+> Empty file (one with no tokens, but with delimiters) - input-23
+> A file with consistent input with leading and (or) trailing empty lines - input-24
+> Parse error right at the end of the line - input-25, 26
+> Parse error right at the end of the file - input-27, 28, 38
+> Variable defined multiple times in the same deflist - input-29
+> Variable defined multiple times in the same uselist - input-30
+
+ My test cases
+ >> not IARE ADDR_EXPECTED error - input-21
+ > Tabs (‘\t’) count as one character. - input-31
+ > When a module is not empty, the code count is needed. - input-32
+ > Fail to detect "Error: Relative address exceeds module size; zero used" - input-33, 34, 35
+ > "Warning: Module 3: X31 too big 10 (max=0) assume zero relative". The max is module size. - input-36, 37
