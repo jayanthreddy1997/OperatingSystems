@@ -262,7 +262,7 @@ void buildMemoryMap() {
     int codeCount;
     int moduleCount = 0;
 
-    while(!g_input_file.eof()) {
+    while(true) {
         moduleCount += 1;
         moduleBaseAddr = addr;
         IntToken intToken = readInt(false);
