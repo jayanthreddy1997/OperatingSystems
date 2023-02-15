@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ struct Symbol {
     bool symbolExists = true;
     bool used = false;
 };
-vector<Symbol*> symbolTable;
+vector<Symbol> symbolTable;
 
 
 // STEP-1: Tokenizer
@@ -112,6 +113,10 @@ IntToken readInt(bool strict=true) {
         i += 1;
     }
     result.token = atoi(tokenText);
+    if (result.token == -1 || result.token >= pow(2, 30)) {
+        __parseerror(0, t.line_no, t.start_pos);
+        exit(0);
+    }
     result.tokenFound = true;
     return result;
 }
@@ -149,6 +154,10 @@ AddressMode readIAER() {
         exit(0);
     }
     char* token = t.token;
+    if (strlen(token)>1) {
+        __parseerror(2, t.line_no, t.start_pos);
+        exit(0);
+    }
     switch(token[0]) {
         case 'I':
             return I;
@@ -166,15 +175,15 @@ AddressMode readIAER() {
 
 
 // STEP-3: Parser
-Symbol* getSymbol(string symbol) {
-    for (auto s: symbolTable) {
-        if (s->symbol == symbol) {
+Symbol& getSymbol(string& symbol) {
+    for (Symbol& s: symbolTable) {
+        if (s.symbol == symbol) {
             return s;
         }
     }
-    Symbol* s = (Symbol*) malloc(sizeof (struct Symbol));
+    Symbol* s = new Symbol();
     s->symbolExists = false;
-    return s;
+    return *s;
 }
 
 void buildSymbolTable() {
@@ -184,7 +193,7 @@ void buildSymbolTable() {
     int codeCount;
     int totalInstrCount = 0;
     int moduleCount = 0;
-    while(!g_input_file.eof()) {
+    while(true) {
         moduleCount += 1;
         IntToken defCountToken = readInt(false);
         if (!defCountToken.tokenFound) {
@@ -197,18 +206,17 @@ void buildSymbolTable() {
         }
         for(int i=0; i<defCount; i++) {
             string symbol = readSymbol();
-            Symbol* existingSymbol;
-            existingSymbol = getSymbol(symbol);
-            if (existingSymbol->symbolExists) {
-                existingSymbol->multipleDefinition = true;
+            Symbol& existingSymbol = getSymbol(symbol);
+            if (existingSymbol.symbolExists) {
+                existingSymbol.multipleDefinition = true;
                 printf("Warning: Module %d: %s redefined and ignored\n", moduleCount, symbol.c_str());
                 readInt();
             } else {
-                Symbol* newSymbol = (Symbol*) malloc(sizeof (struct Symbol));
-                newSymbol->symbol = symbol;
-                newSymbol->addr =  readInt().token + moduleBaseAddress;
-                newSymbol->symbolExists = true;
-                newSymbol->moduleNo = moduleCount;
+                Symbol newSymbol = Symbol();
+                newSymbol.symbol = symbol;
+                newSymbol.addr =  readInt().token + moduleBaseAddress;
+                newSymbol.symbolExists = true;
+                newSymbol.moduleNo = moduleCount;
                 symbolTable.push_back(newSymbol);
             }
         }
@@ -236,10 +244,10 @@ void buildSymbolTable() {
             readInt();
         }
 
-        for (auto s: symbolTable) {
-            if (s->moduleNo == moduleCount && (s->addr - moduleBaseAddress) >= codeCount) {
-                printf("Warning: Module %d: %s too big %d (max=%d) assume zero relative\n", moduleCount, s->symbol.c_str(), (s->addr - moduleBaseAddress), codeCount-1);
-                s->addr = moduleBaseAddress;
+        for (Symbol& s: symbolTable) {
+            if (s.moduleNo == moduleCount && (s.addr - moduleBaseAddress) >= codeCount) {
+                printf("Warning: Module %d: %s too big %d (max=%d) assume zero relative\n", moduleCount, s.symbol.c_str(), (s.addr - moduleBaseAddress), codeCount-1);
+                s.addr = moduleBaseAddress;
             }
         }
         moduleBaseAddress += codeCount;
@@ -311,11 +319,11 @@ void buildMemoryMap() {
                 if (operand >= useList.size()) {
                     printf("%03d: %04d Error: External address exceeds length of uselist; treated as immediate\n", addr, op);
                 } else {
-                    Symbol *s = getSymbol(useList[operand].first);
+                    Symbol& s = getSymbol(useList[operand].first);
                     useList[operand].second = true;
-                    if (s->symbolExists) {
-                        s->used = true;
-                        int newOperand = s->addr;
+                    if (s.symbolExists) {
+                        s.used = true;
+                        int newOperand = s.addr;
                         int newOp = opcode * 1000 + newOperand;
                         printf("%03d: %04d\n", addr, newOp);
                     } else {
@@ -337,21 +345,24 @@ void buildMemoryMap() {
 
 int main(int argc, char* argv[]) {
     if(argc<=1) {
-        cout << "Usage: linker input_file" << endl;
+        cout << "Expected argument after options" << endl;
         return 0;
     }
     string input_filename = argv[1];
     g_input_file.open(input_filename);
-
+    if (!g_input_file.is_open()) {
+        printf("Not a valid inputfile <%s>\n", input_filename.c_str());
+        exit(1);
+    }
     // PASS 1
     buildSymbolTable();
     cout << "Symbol Table" << endl;
     for(int i=0; i<symbolTable.size(); i++) {
-        Symbol* s = symbolTable.at(i);
-        if (s->multipleDefinition) {
-            cout << s->symbol << "=" << s->addr << " Error: This variable is multiple times defined; first value used" << endl;
+        Symbol s = symbolTable.at(i);
+        if (s.multipleDefinition) {
+            cout << s.symbol << "=" << s.addr << " Error: This variable is multiple times defined; first value used" << endl;
         } else {
-            cout << s->symbol << "=" << s->addr << endl;
+            cout << s.symbol << "=" << s.addr << endl;
         }
     }
 
@@ -366,9 +377,9 @@ int main(int argc, char* argv[]) {
 
     cout << endl;
     for(int i=0; i<symbolTable.size(); i++) {
-        Symbol* s = symbolTable.at(i);
-        if (!s->used) {
-            printf("Warning: Module %d: %s was defined but never used\n", s->moduleNo, (s->symbol).c_str());
+        Symbol s = symbolTable.at(i);
+        if (!s.used) {
+            printf("Warning: Module %d: %s was defined but never used\n", s.moduleNo, (s.symbol).c_str());
         }
     }
     if (g_input_file.is_open()) {
