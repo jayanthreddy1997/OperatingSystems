@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -112,6 +113,10 @@ IntToken readInt(bool strict=true) {
         i += 1;
     }
     result.token = atoi(tokenText);
+    if (result.token == -1 || result.token >= pow(2, 30)) {
+        __parseerror(0, t.line_no, t.start_pos);
+        exit(0);
+    }
     result.tokenFound = true;
     return result;
 }
@@ -149,6 +154,10 @@ AddressMode readIAER() {
         exit(0);
     }
     char* token = t.token;
+    if (strlen(token)>1) {
+        __parseerror(2, t.line_no, t.start_pos);
+        exit(0);
+    }
     switch(token[0]) {
         case 'I':
             return I;
@@ -336,12 +345,15 @@ void buildMemoryMap() {
 
 int main(int argc, char* argv[]) {
     if(argc<=1) {
-        cout << "Usage: linker input_file" << endl;
+        cout << "Expected argument after options" << endl;
         return 0;
     }
     string input_filename = argv[1];
     g_input_file.open(input_filename);
-
+    if (!g_input_file.is_open()) {
+        printf("Not a valid inputfile <%s>\n", input_filename.c_str());
+        exit(1);
+    }
     // PASS 1
     buildSymbolTable();
     cout << "Symbol Table" << endl;
