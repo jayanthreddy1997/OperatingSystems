@@ -193,7 +193,7 @@ void buildSymbolTable() {
     int codeCount;
     int totalInstrCount = 0;
     int moduleCount = 0;
-    while(!g_input_file.eof()) {
+    while(true) {
         moduleCount += 1;
         IntToken defCountToken = readInt(false);
         if (!defCountToken.tokenFound) {
