@@ -10,6 +10,7 @@ int g_randval_offset = 0;
 vector<int> randvals;
 
 enum State {CREATED, READY, RUNNING, BLOCKED};
+int DEFAULT_MAX_PRIOS = 4;
 
 class Process {
     int pid;
@@ -35,17 +36,25 @@ class DiscreteEventSimulation {
 //    vector<>
 };
 
-int myrandom(int burst) { return 1 + (randvals[g_randval_offset] % burst); }
+int myrandom(int burst) {
+    int next_rand_num = 1 + (randvals[g_randval_offset] % burst);
+    g_randval_offset = (g_randval_offset + 1) % randvals.size();
+    return next_rand_num;
+}
 
 int main() {
     // TODO: Change to take input from cli
     string input_filename = "problem/lab2_assign/input0";
     string randval_input_filename = "problem/lab2_assign/rfile";
+    string scheduler_mode = "F";
 
     ifstream randval_input_file;
     randval_input_file.open(randval_input_filename);
     int rand_num;
-    while(randval_input_file >> rand_num) {
+    int rand_num_count;
+    randval_input_file >> rand_num_count;
+    for(int i=0; i<rand_num_count; i++) {
+        randval_input_file >> rand_num;
         randvals.push_back(rand_num);
     }
 
