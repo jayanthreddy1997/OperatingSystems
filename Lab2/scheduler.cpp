@@ -22,9 +22,11 @@ public:
     int remaining_execution_time;
     int state_start_time;
     int pid;
-    // TODO: some more bookkeeping variables needed
+    int static_priority;
+    int dynamic_priority;
 
-    Process(int pid1, int AT, int TC, int CB, int IO): pid(pid1), arrival_time(AT), total_cpu_time(TC), cpu_burst(CB), io_burst(IO) { }
+    Process(int pid1, int AT, int TC, int CB, int IO, int SP)
+        : pid(pid1), arrival_time(AT), total_cpu_time(TC), cpu_burst(CB), io_burst(IO), static_priority(SP) { }
 
 };
 
@@ -117,7 +119,7 @@ void Simulation(DES* des, Scheduler* scheduler) {
         int timeInPrevState = CURRENT_TIME - proc->state_start_time; // for accounting
         delete evt;
         evt = nullptr; // remove cur event obj and don’t touch anymore
-        cout << proc->pid << endl;
+        cout << proc->pid << " " << proc->static_priority << endl;
 //        switch (transition) {  // encodes where we come from and where we go
 //            case TRANS_TO_READY:
 //                // must come from BLOCKED or CREATED
@@ -153,7 +155,7 @@ void Simulation(DES* des, Scheduler* scheduler) {
 
 int main() {
     // TODO: Change to take input from cli
-    string input_filename = "problem/lab2_assign/input_misc";
+    string input_filename = "problem/lab2_assign/input0";
     string randval_input_filename = "problem/lab2_assign/rfile";
     string scheduler_mode = "F";
 
@@ -182,9 +184,7 @@ int main() {
     Process* p;
     Event* e;
     while (input_file >> arrival_time >> total_cpu_time >> cpu_burst >> io_burst) {
-//        cout << arrival_time << total_cpu_time << cpu_burst << io_burst << endl;
-
-        p = new Process(pid, arrival_time, total_cpu_time, cpu_burst, io_burst);
+        p = new Process(pid, arrival_time, total_cpu_time, cpu_burst, io_burst, myrandom(DEFAULT_MAX_PRIOS));
         e = new Event(arrival_time, p, CREATED, READY, TRANS_TO_READY);
         des.add_event(e);
         pid++;
