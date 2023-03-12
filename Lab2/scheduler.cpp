@@ -88,6 +88,8 @@ public:
 };
 
 class Scheduler {
+    int quantum = 10000;
+
 public:
     virtual bool does_preempt() {
         // returns true for ‘E’ scheds, else false.
@@ -98,6 +100,9 @@ public:
 
     virtual Process* get_next_process() {
         return nullptr;
+    }
+    virtual int get_quantum() {
+        return quantum;
     }
 };
 
@@ -234,8 +239,12 @@ void Simulation(DES* des, Scheduler* sch) {
 
         bool print_verbose = true;
         if (print_verbose) {
-            printf("%d %d %d: %s -> %s",
-                   CURRENT_TIME, proc->pid, timeInPrevState, StateStrings[currentState].c_str(), StateStrings[nextState].c_str());
+            printf("%d %d %d: ", CURRENT_TIME, proc->pid, timeInPrevState);
+            if (transition==TRANS_TO_BLOCK && proc->rem_exec_time == 0) {
+                printf("Done");
+            } else {
+                printf("%s -> %s",StateStrings[currentState].c_str(), StateStrings[nextState].c_str());
+            }
             if (currentState==READY && nextState==RUNNING) {
                 printf(" cb=%d rem=%d prio=%d", proc->current_cpu_burst, proc->rem_exec_time, proc->dynamic_priority);
             }
@@ -260,22 +269,27 @@ void Simulation(DES* des, Scheduler* sch) {
             }
             case TRANS_TO_RUN: {
                 // create event for either preemption or blocking
-                // TODO: Handle preemption
                 int run_time = std::min(proc->rem_exec_time, proc->current_cpu_burst);
-                Event *newEvent = new Event(CURRENT_TIME + run_time, proc, RUNNING, BLOCKED, TRANS_TO_BLOCK);
-                proc->rem_exec_time -= run_time;
+                Event *newEvent;
+                if (sch->get_quantum() < run_time) {
+                    // Create event for preemption
+                    newEvent = new Event(CURRENT_TIME + run_time, proc, RUNNING, READY, TRANS_TO_PREEMPT);
+                    proc->rem_exec_time -= sch->get_quantum();
+                    proc->dynamic_priority = (proc->dynamic_priority>0) ? (proc->dynamic_priority-1) : (proc->static_priority-1);
+                } else {
+                    // Create event for blocking
+                    newEvent = new Event(CURRENT_TIME + run_time, proc, RUNNING, BLOCKED, TRANS_TO_BLOCK);
+                    proc->rem_exec_time -= run_time;
+                }
                 des->add_event(newEvent);
                 break;
             }
             case TRANS_TO_BLOCK: {
                 //create an event for when process becomes READY again
                 if (proc->rem_exec_time == 0) {
-                    if (print_verbose) {
-                        printf(" Done!");
-                    }
                     proc->finish_time = CURRENT_TIME;
                 } else {
-                    int io_burst = myrandom(proc->max_io_burst);
+                    int io_burst = myrandom(proc->max_io_burst); // TODO: check if this should be done here or when creating the TRANS_TO_BLOCK event!!!
                     if (print_verbose) {
                         printf("  ib=%d rem=%d", io_burst, proc->rem_exec_time);
                     }
@@ -298,7 +312,7 @@ void Simulation(DES* des, Scheduler* sch) {
                 CURRENT_RUNNING_PROCESS = sch->get_next_process();
                 if (CURRENT_RUNNING_PROCESS == nullptr)
                     continue;
-                CURRENT_RUNNING_PROCESS->current_cpu_burst = myrandom(CURRENT_RUNNING_PROCESS->max_cpu_burst);
+                CURRENT_RUNNING_PROCESS->current_cpu_burst = std::min(CURRENT_RUNNING_PROCESS->rem_exec_time, myrandom(CURRENT_RUNNING_PROCESS->max_cpu_burst));
                 // create event to make this process runnable for same time.
                 Event* e = new Event(CURRENT_TIME, CURRENT_RUNNING_PROCESS, READY, RUNNING, TRANS_TO_RUN);
                 des->add_event(e);
@@ -309,10 +323,10 @@ void Simulation(DES* des, Scheduler* sch) {
 
 int main() {
     // TODO: Change to take input from cli
-    string input_filename = "problem/lab2_assign/input0";
+    string input_filename = "problem/lab2_assign/input6";
     string randval_input_filename = "problem/lab2_assign/rfile";
     string scheduler_mode = "S";
-    int quantum = 2;
+    int quantum = 5;
 
     ifstream randval_input_file;
     randval_input_file.open(randval_input_filename);
@@ -351,6 +365,7 @@ int main() {
         p = new Process(pid, arrival_time, total_cpu_time, cpu_burst, io_burst, myrandom(DEFAULT_MAX_PRIOS));
         p->rem_exec_time = total_cpu_time;
         p->dynamic_priority = p->static_priority - 1;
+        p->state_start_time = arrival_time;
         e = new Event(arrival_time, p, CREATED, READY, TRANS_TO_READY);
         des.add_event(e);
         processes.push_back(p);
@@ -359,9 +374,17 @@ int main() {
     input_file.close();
 
     Simulation(&des, sch);
-
+    if (scheduler_mode=="F") {
+        cout << "FCFS" << endl;
+    } else if (scheduler_mode=="L") {
+        cout << "LCFS" << endl;
+    } else if (scheduler_mode=="S") {
+        cout << "SRTF" << endl;
+    } else if (scheduler_mode=="R") {
+        cout << "RR" << endl;
+    }
     for (Process* p: processes) {
-        printf("%04d: %4d %4d %4d %1d | %5d %5d %5d %5d\n", p->pid, p->arrival_time, p->max_cpu_burst, p->max_io_burst,
+        printf("%04d: %4d %4d %4d %4d %1d | %5d %5d %5d %5d\n", p->pid, p->arrival_time, p->total_cpu_time, p->max_cpu_burst, p->max_io_burst,
                p->static_priority, p->finish_time, p->finish_time - p->arrival_time, p->io_time, p->cpu_wait_time);
     }
 
