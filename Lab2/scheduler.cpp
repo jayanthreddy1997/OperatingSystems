@@ -177,6 +177,31 @@ public:
     }
 };
 
+class RR_Scheduler: public Scheduler {
+    int quantum;
+    list<Process*> ready_queue;
+
+public:
+    RR_Scheduler(int quantum1): quantum(quantum1){}
+
+    virtual bool does_preempt() {
+        return false;
+    }
+
+    virtual void add_process(Process* p) {
+        ready_queue.push_back(p);
+    }
+
+    virtual Process* get_next_process() {
+        if (ready_queue.empty()) {
+            return nullptr;
+        }
+        Process* p = ready_queue.front();
+        ready_queue.pop_front();
+        return p;
+    }
+};
+
 int myrandom(int burst) {
     int next_rand_num = 1 + (randvals[g_randval_offset] % burst);
     g_randval_offset = (g_randval_offset + 1) % randvals.size();
@@ -218,50 +243,49 @@ void Simulation(DES* des, Scheduler* sch) {
 
         proc->state_start_time = CURRENT_TIME;
         switch (transition) {  // encodes where we come from and where we go
-            case TRANS_TO_READY:
+            case TRANS_TO_READY: {
                 // must come from BLOCKED or CREATED
                 // add to run queue, no event created
                 sch->add_process(proc);
                 CALL_SCHEDULER = true;
                 break;
-            case TRANS_TO_PREEMPT: // similar to TRANS_TO_READY
+            }
+            case TRANS_TO_PREEMPT: {// similar to TRANS_TO_READY
                 // must come from RUNNING (preemption)
                 // add to runqueue (no event is generated)
                 // TODO: Check logic
                 sch->add_process(proc);
                 CALL_SCHEDULER = true;
                 break;
-            case TRANS_TO_RUN:
+            }
+            case TRANS_TO_RUN: {
                 // create event for either preemption or blocking
                 // TODO: Handle preemption
-                Event* newEvent;
-                if (proc->rem_exec_time < proc->current_cpu_burst) { //TODO: cleanup using max
-                    newEvent = new Event(CURRENT_TIME + proc->rem_exec_time, proc, RUNNING, BLOCKED, TRANS_TO_BLOCK);
-                    proc->rem_exec_time = 0;
-                } else {
-                    proc->rem_exec_time -= proc->current_cpu_burst;
-                    newEvent = new Event(CURRENT_TIME+proc->current_cpu_burst, proc, RUNNING, BLOCKED, TRANS_TO_BLOCK);
-                }
+                int run_time = std::min(proc->rem_exec_time, proc->current_cpu_burst);
+                Event *newEvent = new Event(CURRENT_TIME + run_time, proc, RUNNING, BLOCKED, TRANS_TO_BLOCK);
+                proc->rem_exec_time -= run_time;
                 des->add_event(newEvent);
                 break;
-            case TRANS_TO_BLOCK:
+            }
+            case TRANS_TO_BLOCK: {
                 //create an event for when process becomes READY again
                 if (proc->rem_exec_time == 0) {
-                    if(print_verbose) {
+                    if (print_verbose) {
                         printf(" Done!");
                     }
                     proc->finish_time = CURRENT_TIME;
                 } else {
                     int io_burst = myrandom(proc->max_io_burst);
-                    if(print_verbose) {
+                    if (print_verbose) {
                         printf("  ib=%d rem=%d", io_burst, proc->rem_exec_time);
                     }
-                    Event* newEvent = new Event(CURRENT_TIME+io_burst, proc, BLOCKED, READY, TRANS_TO_READY);
+                    Event *newEvent = new Event(CURRENT_TIME + io_burst, proc, BLOCKED, READY, TRANS_TO_READY);
                     des->add_event(newEvent);
                 }
                 CALL_SCHEDULER = true;
                 CURRENT_RUNNING_PROCESS = nullptr;
                 break;
+            }
         }
         if (print_verbose) {
             printf("\n");
@@ -287,9 +311,8 @@ int main() {
     // TODO: Change to take input from cli
     string input_filename = "problem/lab2_assign/input0";
     string randval_input_filename = "problem/lab2_assign/rfile";
-//    string scheduler_mode = "F";
-//    string scheduler_mode = "L";
     string scheduler_mode = "S";
+    int quantum = 2;
 
     ifstream randval_input_file;
     randval_input_file.open(randval_input_filename);
@@ -317,6 +340,8 @@ int main() {
         sch = new LCFS_Scheduler();
     } else if (scheduler_mode=="S") {
         sch = new SRTF_Scheduler();
+    } else if (scheduler_mode=="R") {
+        sch = new RR_Scheduler(quantum);
     }
 
     int pid = 0;
