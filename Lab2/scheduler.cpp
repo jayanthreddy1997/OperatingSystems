@@ -125,6 +125,29 @@ public:
     }
 };
 
+class LCFS_Scheduler: public Scheduler {
+    static const int quantum = 10000;
+    list<Process*> ready_queue;
+
+public:
+    virtual bool does_preempt() {
+        return false;
+    }
+
+    virtual void add_process(Process* p) {
+        ready_queue.push_back(p);
+    }
+
+    virtual Process* get_next_process() {
+        if (ready_queue.empty()) {
+            return nullptr;
+        }
+        Process* p = ready_queue.back();
+        ready_queue.pop_back();
+        return p;
+    }
+};
+
 int myrandom(int burst) {
     int next_rand_num = 1 + (randvals[g_randval_offset] % burst);
     g_randval_offset = (g_randval_offset + 1) % randvals.size();
@@ -235,7 +258,8 @@ int main() {
     // TODO: Change to take input from cli
     string input_filename = "problem/lab2_assign/input0";
     string randval_input_filename = "problem/lab2_assign/rfile";
-    string scheduler_mode = "F";
+//    string scheduler_mode = "F";
+    string scheduler_mode = "L";
 
     ifstream randval_input_file;
     randval_input_file.open(randval_input_filename);
@@ -257,7 +281,12 @@ int main() {
 
     DES des;
     Scheduler* sch;
-    sch = new FCFS_Scheduler();
+    if (scheduler_mode=="F") {
+        sch = new FCFS_Scheduler();
+    } else if (scheduler_mode=="L") {
+        sch = new LCFS_Scheduler();
+    }
+
     int pid = 0;
     Process* p;
     Event* e;
