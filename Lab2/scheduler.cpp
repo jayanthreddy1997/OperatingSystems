@@ -8,7 +8,6 @@ using namespace std;
 
 int g_randval_offset = 0;
 vector<int> randvals;
-int CURRENT_TIME = 0;
 enum State {CREATED, READY, RUNNING, BLOCKED};
 const string StateStrings[] = {"CREATED", "READY", "RUNNG", "BLOCK"};
 enum Transition {TRANS_TO_READY, TRANS_TO_PREEMPT, TRANS_TO_RUN, TRANS_TO_BLOCK};
@@ -88,9 +87,11 @@ public:
 };
 
 class Scheduler {
-    int quantum = 10000;
+    int quantum;
 
 public:
+    Scheduler(int quantum1): quantum(quantum1) {}
+
     virtual bool does_preempt() {
         // returns true for ‘E’ scheds, else false.
         return false;
@@ -107,12 +108,12 @@ public:
 };
 
 class FCFS_Scheduler: public Scheduler {
-    static const int quantum = 10000;
     list<Process*> ready_queue;
 
 public:
+    FCFS_Scheduler(): Scheduler(10000) {}
 
-    virtual bool does_preempt() {
+    virtual bool does_preempt() {  // TODO: remove this if not used
         return false;
     }
 
@@ -131,10 +132,11 @@ public:
 };
 
 class LCFS_Scheduler: public Scheduler {
-    static const int quantum = 10000;
     list<Process*> ready_queue;
 
 public:
+    LCFS_Scheduler(): Scheduler(10000) {}
+
     virtual bool does_preempt() {
         return false;
     }
@@ -154,10 +156,11 @@ public:
 };
 
 class SRTF_Scheduler: public Scheduler {
-    static const int quantum = 10000;
     list<Process*> ready_queue;
 
 public:
+    SRTF_Scheduler(): Scheduler(10000) {}
+
     virtual bool does_preempt() {
         return false;
     }
@@ -183,11 +186,10 @@ public:
 };
 
 class RR_Scheduler: public Scheduler {
-    int quantum;
     list<Process*> ready_queue;
 
 public:
-    RR_Scheduler(int quantum1): quantum(quantum1){}
+    RR_Scheduler(int quantum): Scheduler(quantum){}
 
     virtual bool does_preempt() {
         return false;
@@ -216,9 +218,9 @@ int myrandom(int burst) {
 void Simulation(DES* des, Scheduler* sch) {
 
     Event* evt;
-    bool CALL_SCHEDULER;
+    bool CALL_SCHEDULER = false;
+    int CURRENT_TIME = 0;
     Process* CURRENT_RUNNING_PROCESS = nullptr;
-    CALL_SCHEDULER = false;
 
     while( (evt = des->get_event()) ) {
         Process* proc = evt->process;
@@ -248,6 +250,9 @@ void Simulation(DES* des, Scheduler* sch) {
             if (currentState==READY && nextState==RUNNING) {
                 printf(" cb=%d rem=%d prio=%d", proc->current_cpu_burst, proc->rem_exec_time, proc->dynamic_priority);
             }
+            if (currentState==RUNNING && nextState==READY) {
+                printf("  cb=%d rem=%d prio=%d", proc->current_cpu_burst, proc->rem_exec_time, proc->dynamic_priority);
+            }
         }
 
         proc->state_start_time = CURRENT_TIME;
@@ -265,6 +270,7 @@ void Simulation(DES* des, Scheduler* sch) {
                 // TODO: Check logic
                 sch->add_process(proc);
                 CALL_SCHEDULER = true;
+                CURRENT_RUNNING_PROCESS = nullptr;
                 break;
             }
             case TRANS_TO_RUN: {
@@ -273,13 +279,16 @@ void Simulation(DES* des, Scheduler* sch) {
                 Event *newEvent;
                 if (sch->get_quantum() < run_time) {
                     // Create event for preemption
-                    newEvent = new Event(CURRENT_TIME + run_time, proc, RUNNING, READY, TRANS_TO_PREEMPT);
+                    newEvent = new Event(CURRENT_TIME + sch->get_quantum(), proc, RUNNING, READY, TRANS_TO_PREEMPT);
                     proc->rem_exec_time -= sch->get_quantum();
-                    proc->dynamic_priority = (proc->dynamic_priority>0) ? (proc->dynamic_priority-1) : (proc->static_priority-1);
+                    proc->current_cpu_burst -= sch->get_quantum();
+                    if (sch->does_preempt())
+                        proc->dynamic_priority = (proc->dynamic_priority>0) ? (proc->dynamic_priority-1) : (proc->static_priority-1);
                 } else {
                     // Create event for blocking
                     newEvent = new Event(CURRENT_TIME + run_time, proc, RUNNING, BLOCKED, TRANS_TO_BLOCK);
                     proc->rem_exec_time -= run_time;
+                    proc->current_cpu_burst -= run_time;
                 }
                 des->add_event(newEvent);
                 break;
@@ -312,7 +321,10 @@ void Simulation(DES* des, Scheduler* sch) {
                 CURRENT_RUNNING_PROCESS = sch->get_next_process();
                 if (CURRENT_RUNNING_PROCESS == nullptr)
                     continue;
-                CURRENT_RUNNING_PROCESS->current_cpu_burst = std::min(CURRENT_RUNNING_PROCESS->rem_exec_time, myrandom(CURRENT_RUNNING_PROCESS->max_cpu_burst));
+                if (CURRENT_RUNNING_PROCESS->current_cpu_burst <= 0) {
+                    CURRENT_RUNNING_PROCESS->current_cpu_burst = std::min(CURRENT_RUNNING_PROCESS->rem_exec_time,
+                                                                          myrandom(CURRENT_RUNNING_PROCESS->max_cpu_burst));
+                }
                 // create event to make this process runnable for same time.
                 Event* e = new Event(CURRENT_TIME, CURRENT_RUNNING_PROCESS, READY, RUNNING, TRANS_TO_RUN);
                 des->add_event(e);
@@ -325,7 +337,7 @@ int main() {
     // TODO: Change to take input from cli
     string input_filename = "problem/lab2_assign/input6";
     string randval_input_filename = "problem/lab2_assign/rfile";
-    string scheduler_mode = "S";
+    string scheduler_mode = "R";
     int quantum = 5;
 
     ifstream randval_input_file;
@@ -381,7 +393,7 @@ int main() {
     } else if (scheduler_mode=="S") {
         cout << "SRTF" << endl;
     } else if (scheduler_mode=="R") {
-        cout << "RR" << endl;
+        cout << "RR " << quantum << endl;
     }
     for (Process* p: processes) {
         printf("%04d: %4d %4d %4d %4d %1d | %5d %5d %5d %5d\n", p->pid, p->arrival_time, p->total_cpu_time, p->max_cpu_burst, p->max_io_burst,
