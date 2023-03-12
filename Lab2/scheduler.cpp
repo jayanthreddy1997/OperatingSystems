@@ -10,25 +10,34 @@ int g_randval_offset = 0;
 vector<int> randvals;
 int CURRENT_TIME = 0;
 enum State {CREATED, READY, RUNNING, BLOCKED};
+const string StateStrings[] = {"CREATED", "READY", "RUNNG", "BLOCK"};
 enum Transition {TRANS_TO_READY, TRANS_TO_PREEMPT, TRANS_TO_RUN, TRANS_TO_BLOCK};
 int DEFAULT_MAX_PRIOS = 4;
 
 class Process {
+
+public:
+    int pid;
     int arrival_time;
     int total_cpu_time;
-    int cpu_burst;
-    int io_burst;
-public:
-    int remaining_execution_time;
+    int max_cpu_burst; // Change this to max cpu burst
+    int current_cpu_burst;
+    int max_io_burst;
+    int current_io_burst; // TODO: maybe remove this?
+    int rem_exec_time;
     int state_start_time;
-    int pid;
     int static_priority;
     int dynamic_priority;
 
+    int finish_time;
+    int io_time;
+    int cpu_wait_time;
+
     Process(int pid1, int AT, int TC, int CB, int IO, int SP)
-        : pid(pid1), arrival_time(AT), total_cpu_time(TC), cpu_burst(CB), io_burst(IO), static_priority(SP) { }
+        : pid(pid1), arrival_time(AT), total_cpu_time(TC), max_cpu_burst(CB), max_io_burst(IO), static_priority(SP) { }
 
 };
+vector<Process*> processes;
 
 class Event {
 public:
@@ -79,25 +88,41 @@ public:
 };
 
 class Scheduler {
-    list<Process*> ready_queue;
-    int quantum;
-
 public:
-    void add_process(Process *p) {
-
-    }
-
-    Process* get_next_process() {
-        return nullptr;
-    }
-    bool does_preempt() {
+    virtual bool does_preempt() {
         // returns true for ‘E’ scheds, else false.
         return false;
+    }
+
+    virtual void add_process(Process *p) {}
+
+    virtual Process* get_next_process() {
+        return nullptr;
     }
 };
 
 class FCFS_Scheduler: public Scheduler {
+    static const int quantum = 10000;
+    list<Process*> ready_queue;
 
+public:
+
+    virtual bool does_preempt() {
+        return false;
+    }
+
+    virtual void add_process(Process* p) {
+        ready_queue.push_back(p);
+    }
+
+    virtual Process* get_next_process() {
+        if (ready_queue.empty()) {
+            return nullptr;
+        }
+        Process* p = ready_queue.front();
+        ready_queue.pop_front();
+        return p;
+    }
 };
 
 int myrandom(int burst) {
@@ -106,50 +131,103 @@ int myrandom(int burst) {
     return next_rand_num;
 }
 
-void Simulation(DES* des, Scheduler* scheduler) {
+void Simulation(DES* des, Scheduler* sch) {
 
     Event* evt;
     bool CALL_SCHEDULER;
-    Process* CURRENT_RUNNING_PROCESS;
+    Process* CURRENT_RUNNING_PROCESS = nullptr;
+    CALL_SCHEDULER = false;
+
     while( (evt = des->get_event()) ) {
-        CALL_SCHEDULER = false;
         Process* proc = evt->process;
         CURRENT_TIME = evt->time_stamp;
-        int transition = evt->transition;
+        Transition transition = evt->transition;
+        State currentState = evt->current_state;
+        State nextState = evt->next_state;
         int timeInPrevState = CURRENT_TIME - proc->state_start_time; // for accounting
         delete evt;
-        evt = nullptr; // remove cur event obj and don’t touch anymore
-        cout << proc->pid << " " << proc->static_priority << endl;
-//        switch (transition) {  // encodes where we come from and where we go
-//            case TRANS_TO_READY:
-//                // must come from BLOCKED or CREATED
-//                // add to run queue, no event created
-//                CALL_SCHEDULER = true;
-//                break;
-//            case TRANS_TO_PREEMPT: // similar to TRANS_TO_READY
-//                // must come from RUNNING (preemption)
-//                // add to runqueue (no event is generated)
-//                CALL_SCHEDULER = true;
-//                break;
-//            case TRANS_TO_RUN:
-//                // create event for either preemption or blocking
-//                break;
-//            case TRANS_TO_BLOCK:
-//                //create an event for when process becomes READY again
-//                CALL_SCHEDULER = true;
-//                break;
-//        }
-//        if(CALL_SCHEDULER) {
-//            if (des->get_next_event_timestamp() == CURRENT_TIME)
-//                continue; //process next event from Event queue
-//            CALL_SCHEDULER = false; // reset global flag
-//            if (CURRENT_RUNNING_PROCESS == nullptr) {
-//                CURRENT_RUNNING_PROCESS = scheduler->get_next_process();
-//                if (CURRENT_RUNNING_PROCESS == nullptr)
-//                    continue;
-//                // create event to make this process runnable for same time.
-//            }
-//        }
+        evt = nullptr;
+
+        if (currentState==BLOCKED) {
+            proc->io_time += timeInPrevState;
+        }
+        if (currentState==READY) {
+            proc->cpu_wait_time += timeInPrevState;
+        }
+
+        bool print_verbose = true;
+        if (print_verbose) {
+            printf("%d %d %d: %s -> %s",
+                   CURRENT_TIME, proc->pid, timeInPrevState, StateStrings[currentState].c_str(), StateStrings[nextState].c_str());
+            if (currentState==READY && nextState==RUNNING) {
+                printf(" cb=%d rem=%d prio=%d", proc->current_cpu_burst, proc->rem_exec_time, proc->dynamic_priority);
+            }
+        }
+
+        proc->state_start_time = CURRENT_TIME;
+        switch (transition) {  // encodes where we come from and where we go
+            case TRANS_TO_READY:
+                // must come from BLOCKED or CREATED
+                // add to run queue, no event created
+                sch->add_process(proc);
+                CALL_SCHEDULER = true;
+                break;
+            case TRANS_TO_PREEMPT: // similar to TRANS_TO_READY
+                // must come from RUNNING (preemption)
+                // add to runqueue (no event is generated)
+                // TODO: Check logic
+                sch->add_process(proc);
+                CALL_SCHEDULER = true;
+                break;
+            case TRANS_TO_RUN:
+                // create event for either preemption or blocking
+                // TODO: Handle preemption
+                Event* newEvent;
+                if (proc->rem_exec_time < proc->current_cpu_burst) { //TODO: cleanup using max
+                    newEvent = new Event(CURRENT_TIME + proc->rem_exec_time, proc, RUNNING, BLOCKED, TRANS_TO_BLOCK);
+                    proc->rem_exec_time = 0;
+                } else {
+                    proc->rem_exec_time -= proc->current_cpu_burst;
+                    newEvent = new Event(CURRENT_TIME+proc->current_cpu_burst, proc, RUNNING, BLOCKED, TRANS_TO_BLOCK);
+                }
+                des->add_event(newEvent);
+                break;
+            case TRANS_TO_BLOCK:
+                //create an event for when process becomes READY again
+                if (proc->rem_exec_time == 0) {
+                    if(print_verbose) {
+                        printf(" Done!");
+                    }
+                    proc->finish_time = CURRENT_TIME;
+                } else {
+                    int io_burst = myrandom(proc->max_io_burst);
+                    if(print_verbose) {
+                        printf("  ib=%d rem=%d", io_burst, proc->rem_exec_time);
+                    }
+                    Event* newEvent = new Event(CURRENT_TIME+io_burst, proc, BLOCKED, READY, TRANS_TO_READY);
+                    des->add_event(newEvent);
+                }
+                CALL_SCHEDULER = true;
+                CURRENT_RUNNING_PROCESS = nullptr;
+                break;
+        }
+        if (print_verbose) {
+            printf("\n");
+        }
+        if(CALL_SCHEDULER) {
+            if (des->get_next_event_timestamp() == CURRENT_TIME)
+                continue; //process next event from Event queue
+            CALL_SCHEDULER = false; // reset global flag
+            if (CURRENT_RUNNING_PROCESS == nullptr) {
+                CURRENT_RUNNING_PROCESS = sch->get_next_process();
+                if (CURRENT_RUNNING_PROCESS == nullptr)
+                    continue;
+                CURRENT_RUNNING_PROCESS->current_cpu_burst = myrandom(CURRENT_RUNNING_PROCESS->max_cpu_burst);
+                // create event to make this process runnable for same time.
+                Event* e = new Event(CURRENT_TIME, CURRENT_RUNNING_PROCESS, READY, RUNNING, TRANS_TO_RUN);
+                des->add_event(e);
+            }
+        }
     }
 }
 
@@ -185,12 +263,23 @@ int main() {
     Event* e;
     while (input_file >> arrival_time >> total_cpu_time >> cpu_burst >> io_burst) {
         p = new Process(pid, arrival_time, total_cpu_time, cpu_burst, io_burst, myrandom(DEFAULT_MAX_PRIOS));
+        p->rem_exec_time = total_cpu_time;
+        p->dynamic_priority = p->static_priority - 1;
         e = new Event(arrival_time, p, CREATED, READY, TRANS_TO_READY);
         des.add_event(e);
+        processes.push_back(p);
         pid++;
     }
     input_file.close();
 
     Simulation(&des, sch);
 
+    for (Process* p: processes) {
+        printf("%04d: %4d %4d %4d %1d | %5d %5d %5d %5d\n", p->pid, p->arrival_time, p->max_cpu_burst, p->max_io_burst,
+               p->static_priority, p->finish_time, p->finish_time - p->arrival_time, p->io_time, p->cpu_wait_time);
+    }
+
+    // TODO: summary stats
+//    printf("SUM: %d %.2lf %.2lf %.2lf %.2lf %.2lf",
+//           processes[processes.size()-1]->finish_time);
 }
