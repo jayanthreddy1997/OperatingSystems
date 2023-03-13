@@ -11,6 +11,13 @@ vector<int> randvals;
 enum State {CREATED, READY, RUNNING, BLOCKED};
 const string StateStrings[] = {"CREATED", "READY", "RUNNG", "BLOCK"};
 enum Transition {TRANS_TO_READY, TRANS_TO_PREEMPT, TRANS_TO_RUN, TRANS_TO_BLOCK};
+const string FCFS = "FCFS";
+const string LCFS = "LCFS";
+const string SRTF = "SRTF";
+const string RR = "RR";
+const string PRIO = "PRIO";
+const string PREPRIO = "PREPRIO";
+
 int DEFAULT_MAX_PRIOS = 4;
 
 class Process {
@@ -22,7 +29,6 @@ public:
     int max_cpu_burst; // Change this to max cpu burst
     int current_cpu_burst;
     int max_io_burst;
-    int current_io_burst; // TODO: maybe remove this?
     int rem_exec_time;
     int state_start_time;
     int static_priority;
@@ -97,18 +103,17 @@ public:
         return false;
     }
 
-    virtual bool enable_dyn_prio() {
-        return false;
-    }
-
     virtual void add_process(Process *p) {}
 
     virtual Process* get_next_process() {
         return nullptr;
     }
+
     virtual int get_quantum() {
         return quantum;
     }
+
+    virtual void print_scheduler_name() {}
 };
 
 class FCFS_Scheduler: public Scheduler {
@@ -118,10 +123,6 @@ public:
     FCFS_Scheduler(): Scheduler(10000) {}
 
     virtual bool does_preempt() {  // TODO: remove this if not used
-        return false;
-    }
-
-    virtual bool enable_dyn_prio() {
         return false;
     }
 
@@ -137,6 +138,10 @@ public:
         ready_queue.pop_front();
         return p;
     }
+
+    virtual void print_scheduler_name() {
+        cout << FCFS << endl;
+    }
 };
 
 class LCFS_Scheduler: public Scheduler {
@@ -146,10 +151,6 @@ public:
     LCFS_Scheduler(): Scheduler(10000) {}
 
     virtual bool does_preempt() {
-        return false;
-    }
-
-    virtual bool enable_dyn_prio() {
         return false;
     }
 
@@ -165,6 +166,10 @@ public:
         ready_queue.pop_back();
         return p;
     }
+
+    virtual void print_scheduler_name() {
+        cout << LCFS << endl;
+    }
 };
 
 class SRTF_Scheduler: public Scheduler {
@@ -174,10 +179,6 @@ public:
     SRTF_Scheduler(): Scheduler(10000) {}
 
     virtual bool does_preempt() {
-        return false;
-    }
-
-    virtual bool enable_dyn_prio() {
         return false;
     }
 
@@ -199,6 +200,10 @@ public:
         ready_queue.remove(p);
         return p;
     }
+
+    virtual void print_scheduler_name() {
+        cout << SRTF << endl;
+    }
 };
 
 class RR_Scheduler: public Scheduler {
@@ -208,10 +213,6 @@ public:
     RR_Scheduler(int quantum): Scheduler(quantum){}
 
     virtual bool does_preempt() {
-        return false;
-    }
-
-    virtual bool enable_dyn_prio() {  // TODO: maybe delete this?
         return false;
     }
 
@@ -227,6 +228,10 @@ public:
         Process* p = ready_queue.front();
         ready_queue.pop_front();
         return p;
+    }
+
+    virtual void print_scheduler_name() {
+        cout << RR << " " << get_quantum() << endl;
     }
 };
 
@@ -244,10 +249,6 @@ public:
 
     virtual bool does_preempt() {
         return false;
-    }
-
-    virtual bool enable_dyn_prio() {
-        return true;
     }
 
     virtual void add_process(Process* p) {
@@ -283,6 +284,10 @@ public:
         }
 
         return nullptr; // Both active and expired queue are empty
+    }
+
+    virtual void print_scheduler_name() {
+        cout << PRIO << " " << get_quantum() << endl;
     }
 };
 
@@ -422,7 +427,7 @@ int main() {
     randval_input_file.open(randval_input_filename);
     int rand_num;
     int rand_num_count;
-    randval_input_file >> rand_num_count; // TODO: dyn. allocate randvals of size rand_num_count at once
+    randval_input_file >> rand_num_count;
     for(int i=0; i<rand_num_count; i++) {
         randval_input_file >> rand_num;
         randvals.push_back(rand_num);
@@ -468,24 +473,12 @@ int main() {
     input_file.close();
 
     Simulation(&des, sch);
-    if (scheduler_mode=="F") {
-        cout << "FCFS" << endl;
-    } else if (scheduler_mode=="L") {
-        cout << "LCFS" << endl;
-    } else if (scheduler_mode=="S") {
-        cout << "SRTF" << endl;
-    } else if (scheduler_mode=="R") {
-        cout << "RR " << quantum << endl;
-    } else if (scheduler_mode=="P") {
-        cout << "PRIO " << quantum << endl;
-    } else if (scheduler_mode=="E") {
-        cout << "PREPRIO " << quantum << endl;
-    }
+
+    sch->print_scheduler_name();
     for (Process* p: processes) {
         printf("%04d: %4d %4d %4d %4d %1d | %5d %5d %5d %5d\n", p->pid, p->arrival_time, p->total_cpu_time, p->max_cpu_burst, p->max_io_burst,
                p->static_priority, p->finish_time, p->finish_time - p->arrival_time, p->io_time, p->cpu_wait_time);
     }
-
     // TODO: summary stats
 //    printf("SUM: %d %.2lf %.2lf %.2lf %.2lf %.2lf",
 //           processes[processes.size()-1]->finish_time);
