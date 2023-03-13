@@ -291,6 +291,19 @@ public:
     }
 };
 
+class PREPRIO_Scheduler: public PRIO_Scheduler {
+public:
+    PREPRIO_Scheduler(int quantum, int num_prios): PRIO_Scheduler(quantum, num_prios) {}
+
+    virtual void print_scheduler_name() {
+        cout << PREPRIO << " " << get_quantum() << endl;
+    }
+
+    virtual bool does_preempt() {
+        return true;
+    }
+};
+
 int myrandom(int burst) {
     int next_rand_num = 1 + (randvals[g_randval_offset] % burst);
     g_randval_offset = (g_randval_offset + 1) % randvals.size();
@@ -342,6 +355,20 @@ void Simulation(DES* des, Scheduler* sch) {
             case TRANS_TO_READY: {
                 // must come from BLOCKED or CREATED
                 // add to run queue, no event created
+
+                if (CURRENT_RUNNING_PROCESS!=nullptr && sch->does_preempt() &&
+                    (proc->dynamic_priority > CURRENT_RUNNING_PROCESS->dynamic_priority)) {
+
+                    // PREPRIO preemption scenario
+                    if (print_verbose)
+                        cout << "\n    --> PrioPreempt " <<endl;
+                    int current_proc_time_in_running_state = CURRENT_TIME - CURRENT_RUNNING_PROCESS->state_start_time;
+                    CURRENT_RUNNING_PROCESS->rem_exec_time -= current_proc_time_in_running_state;
+                    CURRENT_RUNNING_PROCESS->current_cpu_burst -= current_proc_time_in_running_state;
+                    Event* newEvent = new Event(CURRENT_TIME, CURRENT_RUNNING_PROCESS, RUNNING, READY, TRANS_TO_PREEMPT);
+                    des->add_event(newEvent);
+                }
+
                 proc->dynamic_priority = proc->static_priority-1;
                 sch->add_process(proc);
                 CALL_SCHEDULER = true;
@@ -363,11 +390,13 @@ void Simulation(DES* des, Scheduler* sch) {
                 if (sch->get_quantum() < run_time) {
                     // Create event for preemption
                     newEvent = new Event(CURRENT_TIME + sch->get_quantum(), proc, RUNNING, READY, TRANS_TO_PREEMPT);
+                    // TODO: Fix below, code assumes no priority based preemption
                     proc->rem_exec_time -= sch->get_quantum();
                     proc->current_cpu_burst -= sch->get_quantum();
                 } else {
                     // Create event for blocking
                     newEvent = new Event(CURRENT_TIME + run_time, proc, RUNNING, BLOCKED, TRANS_TO_BLOCK);
+                    // TODO: Fix below, code assumes no priority based preemption
                     proc->rem_exec_time -= run_time;
                     proc->current_cpu_burst -= run_time;
                 }
@@ -416,10 +445,10 @@ void Simulation(DES* des, Scheduler* sch) {
 
 int main() {
     // TODO: Change to take input from cli
-    string input_filename = "problem/lab2_assign/input6";
+    string input_filename = "problem/lab2_assign/input3";
     string randval_input_filename = "problem/lab2_assign/rfile";
-    string scheduler_mode = "P";
-    int quantum = 2;
+    string scheduler_mode = "E";
+    int quantum = 4;
     int num_prios = DEFAULT_MAX_PRIOS;
 
 
@@ -454,7 +483,7 @@ int main() {
     } else if (scheduler_mode=="P") {
         sch = new PRIO_Scheduler(quantum, num_prios);
     } else if (scheduler_mode=="E") {
-        // TODO
+        sch = new PREPRIO_Scheduler(quantum, num_prios);
     }
 
     int pid = 0;
