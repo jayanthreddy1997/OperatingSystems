@@ -97,6 +97,10 @@ public:
         return false;
     }
 
+    virtual bool enable_dyn_prio() {
+        return false;
+    }
+
     virtual void add_process(Process *p) {}
 
     virtual Process* get_next_process() {
@@ -114,6 +118,10 @@ public:
     FCFS_Scheduler(): Scheduler(10000) {}
 
     virtual bool does_preempt() {  // TODO: remove this if not used
+        return false;
+    }
+
+    virtual bool enable_dyn_prio() {
         return false;
     }
 
@@ -141,6 +149,10 @@ public:
         return false;
     }
 
+    virtual bool enable_dyn_prio() {
+        return false;
+    }
+
     virtual void add_process(Process* p) {
         ready_queue.push_back(p);
     }
@@ -162,6 +174,10 @@ public:
     SRTF_Scheduler(): Scheduler(10000) {}
 
     virtual bool does_preempt() {
+        return false;
+    }
+
+    virtual bool enable_dyn_prio() {
         return false;
     }
 
@@ -195,7 +211,12 @@ public:
         return false;
     }
 
+    virtual bool enable_dyn_prio() {  // TODO: maybe delete this?
+        return false;
+    }
+
     virtual void add_process(Process* p) {
+        p->dynamic_priority = p->static_priority - 1;
         ready_queue.push_back(p);
     }
 
@@ -206,6 +227,62 @@ public:
         Process* p = ready_queue.front();
         ready_queue.pop_front();
         return p;
+    }
+};
+
+class PRIO_Scheduler: public Scheduler {
+    list<Process*> *active_ready_queue;
+    list<Process*> *expired_ready_queue;
+
+    int num_prios;
+
+public:
+    PRIO_Scheduler(int quantum, int num_prios): Scheduler(quantum), num_prios(num_prios) {
+        active_ready_queue = new list<Process*> [num_prios];
+        expired_ready_queue = new list<Process*> [num_prios];
+    }
+
+    virtual bool does_preempt() {
+        return false;
+    }
+
+    virtual bool enable_dyn_prio() {
+        return true;
+    }
+
+    virtual void add_process(Process* p) {
+        if (p->dynamic_priority == -1) {
+            p->dynamic_priority = p->static_priority - 1;
+            expired_ready_queue[p->dynamic_priority].push_back(p);
+        } else {
+            active_ready_queue[p->dynamic_priority].push_back(p);
+        }
+    }
+
+    virtual Process* get_next_process() {
+        for (int i=num_prios-1; i>=0; i--) {
+            if (active_ready_queue[i].empty()) {
+                continue;
+            }
+            Process *p = active_ready_queue[i].front();
+            active_ready_queue[i].pop_front();
+            return p;
+        }
+        // active queue was empty, swap active and expired queues
+        list<Process*> *t;
+        t = active_ready_queue;
+        active_ready_queue = expired_ready_queue;
+        expired_ready_queue = t;
+        for (int i=num_prios-1; i>=0; i--) {
+            if (active_ready_queue[i].empty()) {
+                continue;
+            }
+            Process *p = active_ready_queue[i].front();
+            active_ready_queue[i].pop_front();
+            return p;
+        }
+
+        return nullptr; // Both active and expired queue are empty
     }
 };
 
@@ -260,6 +337,7 @@ void Simulation(DES* des, Scheduler* sch) {
             case TRANS_TO_READY: {
                 // must come from BLOCKED or CREATED
                 // add to run queue, no event created
+                proc->dynamic_priority = proc->static_priority-1;
                 sch->add_process(proc);
                 CALL_SCHEDULER = true;
                 break;
@@ -267,7 +345,7 @@ void Simulation(DES* des, Scheduler* sch) {
             case TRANS_TO_PREEMPT: {// similar to TRANS_TO_READY
                 // must come from RUNNING (preemption)
                 // add to runqueue (no event is generated)
-                // TODO: Check logic
+                proc->dynamic_priority -= 1;
                 sch->add_process(proc);
                 CALL_SCHEDULER = true;
                 CURRENT_RUNNING_PROCESS = nullptr;
@@ -282,8 +360,6 @@ void Simulation(DES* des, Scheduler* sch) {
                     newEvent = new Event(CURRENT_TIME + sch->get_quantum(), proc, RUNNING, READY, TRANS_TO_PREEMPT);
                     proc->rem_exec_time -= sch->get_quantum();
                     proc->current_cpu_burst -= sch->get_quantum();
-                    if (sch->does_preempt())
-                        proc->dynamic_priority = (proc->dynamic_priority>0) ? (proc->dynamic_priority-1) : (proc->static_priority-1);
                 } else {
                     // Create event for blocking
                     newEvent = new Event(CURRENT_TIME + run_time, proc, RUNNING, BLOCKED, TRANS_TO_BLOCK);
@@ -337,8 +413,10 @@ int main() {
     // TODO: Change to take input from cli
     string input_filename = "problem/lab2_assign/input6";
     string randval_input_filename = "problem/lab2_assign/rfile";
-    string scheduler_mode = "R";
-    int quantum = 5;
+    string scheduler_mode = "P";
+    int quantum = 2;
+    int num_prios = DEFAULT_MAX_PRIOS;
+
 
     ifstream randval_input_file;
     randval_input_file.open(randval_input_filename);
@@ -368,13 +446,17 @@ int main() {
         sch = new SRTF_Scheduler();
     } else if (scheduler_mode=="R") {
         sch = new RR_Scheduler(quantum);
+    } else if (scheduler_mode=="P") {
+        sch = new PRIO_Scheduler(quantum, num_prios);
+    } else if (scheduler_mode=="E") {
+        // TODO
     }
 
     int pid = 0;
     Process* p;
     Event* e;
     while (input_file >> arrival_time >> total_cpu_time >> cpu_burst >> io_burst) {
-        p = new Process(pid, arrival_time, total_cpu_time, cpu_burst, io_burst, myrandom(DEFAULT_MAX_PRIOS));
+        p = new Process(pid, arrival_time, total_cpu_time, cpu_burst, io_burst, myrandom(num_prios));
         p->rem_exec_time = total_cpu_time;
         p->dynamic_priority = p->static_priority - 1;
         p->state_start_time = arrival_time;
@@ -394,6 +476,10 @@ int main() {
         cout << "SRTF" << endl;
     } else if (scheduler_mode=="R") {
         cout << "RR " << quantum << endl;
+    } else if (scheduler_mode=="P") {
+        cout << "PRIO " << quantum << endl;
+    } else if (scheduler_mode=="E") {
+        cout << "PREPRIO " << quantum << endl;
     }
     for (Process* p: processes) {
         printf("%04d: %4d %4d %4d %4d %1d | %5d %5d %5d %5d\n", p->pid, p->arrival_time, p->total_cpu_time, p->max_cpu_burst, p->max_io_burst,
