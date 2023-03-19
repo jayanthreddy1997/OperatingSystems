@@ -20,6 +20,11 @@ const string PREPRIO = "PREPRIO";
 
 int DEFAULT_MAX_PRIOS = 4;
 
+// Some metadata variable used for summary stats
+int num_io_procs = 0;
+int io_start_time = 0;
+int io_time = 0;
+
 class Process {
 
 public:
@@ -333,6 +338,12 @@ void Simulation(DES* des, Scheduler* sch) {
         if (currentState==READY) {
             proc->cpu_wait_time += timeInPrevState;
         }
+        if (currentState==BLOCKED && nextState==READY) {
+            num_io_procs -= 1;
+            if (num_io_procs == 0) {
+                io_time += (CURRENT_TIME - io_start_time);
+            }
+        }
 
         bool print_verbose = true;
         if (print_verbose) {
@@ -409,6 +420,10 @@ void Simulation(DES* des, Scheduler* sch) {
                     proc->finish_time = CURRENT_TIME;
                 } else {
                     int io_burst = myrandom(proc->max_io_burst); // TODO: check if this should be done here or when creating the TRANS_TO_BLOCK event!!!
+                    num_io_procs += 1;
+                    if(num_io_procs==1) {
+                        io_start_time = CURRENT_TIME;
+                    }
                     if (print_verbose) {
                         printf("  ib=%d rem=%d", io_burst, proc->rem_exec_time);
                     }
@@ -445,10 +460,10 @@ void Simulation(DES* des, Scheduler* sch) {
 
 int main() {
     // TODO: Change to take input from cli
-    string input_filename = "problem/lab2_assign/input3";
+    string input_filename = "problem/lab2_assign/input6";
     string randval_input_filename = "problem/lab2_assign/rfile";
-    string scheduler_mode = "E";
-    int quantum = 4;
+    string scheduler_mode = "P";
+    int quantum = 2;
     int num_prios = DEFAULT_MAX_PRIOS;
 
 
@@ -504,11 +519,26 @@ int main() {
     Simulation(&des, sch);
 
     sch->print_scheduler_name();
+    int last_event_finishing_time = 0;
+    int cumulative_cpu_time = 0;
+    int cumulative_cpu_wait_time = 0;
+    int cumulative_turnaround_time = 0;
     for (Process* p: processes) {
+        cumulative_cpu_time += p->total_cpu_time;
+        last_event_finishing_time = max(last_event_finishing_time, p->finish_time);
+        cumulative_turnaround_time += p->finish_time - p->arrival_time;
+        cumulative_cpu_wait_time += p->cpu_wait_time;
         printf("%04d: %4d %4d %4d %4d %1d | %5d %5d %5d %5d\n", p->pid, p->arrival_time, p->total_cpu_time, p->max_cpu_burst, p->max_io_burst,
                p->static_priority, p->finish_time, p->finish_time - p->arrival_time, p->io_time, p->cpu_wait_time);
     }
-    // TODO: summary stats
-//    printf("SUM: %d %.2lf %.2lf %.2lf %.2lf %.2lf",
-//           processes[processes.size()-1]->finish_time);
+
+    // Summary stats
+    double cpu_util = ((double)cumulative_cpu_time)*100/((double)last_event_finishing_time);
+    double io_util = ((double)io_time)*100/((double)last_event_finishing_time);
+    double avg_turnaround_time = ((double)cumulative_turnaround_time) / processes.size();
+    double avg_cpu_wait_time = ((double)cumulative_cpu_wait_time) / processes.size();
+    double throughput = ((double)100*processes.size())/((double)last_event_finishing_time);
+    printf("SUM: %d %.2lf %.2lf %.2lf %.2lf %.3lf\n", last_event_finishing_time, cpu_util, io_util, avg_turnaround_time,
+           avg_cpu_wait_time, throughput);
+
 }
