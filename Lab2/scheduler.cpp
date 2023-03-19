@@ -3,6 +3,7 @@
 #include <vector>
 #include <cmath>
 #include <list>
+#include <unistd.h>
 
 using namespace std;
 
@@ -17,7 +18,13 @@ const string SRTF = "SRTF";
 const string RR = "RR";
 const string PRIO = "PRIO";
 const string PREPRIO = "PREPRIO";
+bool print_verbose = false;
+bool print_trace_event_exec = false;
+bool print_event_queue = false;
+bool print_preprio_info = false;
+bool single_step_mode = false;
 
+int DEFAULT_QUANTUM = 10000;
 int DEFAULT_MAX_PRIOS = 4;
 
 // Some metadata variable used for summary stats
@@ -125,7 +132,7 @@ class FCFS_Scheduler: public Scheduler {
     list<Process*> ready_queue;
 
 public:
-    FCFS_Scheduler(): Scheduler(10000) {}
+    FCFS_Scheduler(): Scheduler(DEFAULT_QUANTUM) {}
 
     virtual bool does_preempt() {  // TODO: remove this if not used
         return false;
@@ -153,7 +160,7 @@ class LCFS_Scheduler: public Scheduler {
     list<Process*> ready_queue;
 
 public:
-    LCFS_Scheduler(): Scheduler(10000) {}
+    LCFS_Scheduler(): Scheduler(DEFAULT_QUANTUM) {}
 
     virtual bool does_preempt() {
         return false;
@@ -181,7 +188,7 @@ class SRTF_Scheduler: public Scheduler {
     list<Process*> ready_queue;
 
 public:
-    SRTF_Scheduler(): Scheduler(10000) {}
+    SRTF_Scheduler(): Scheduler(DEFAULT_QUANTUM) {}
 
     virtual bool does_preempt() {
         return false;
@@ -345,7 +352,6 @@ void Simulation(DES* des, Scheduler* sch) {
             }
         }
 
-        bool print_verbose = true;
         if (print_verbose) {
             printf("%d %d %d: ", CURRENT_TIME, proc->pid, timeInPrevState);
             if (transition==TRANS_TO_BLOCK && proc->rem_exec_time == 0) {
@@ -458,14 +464,69 @@ void Simulation(DES* des, Scheduler* sch) {
     }
 }
 
-int main() {
-    // TODO: Change to take input from cli
-    string input_filename = "problem/lab2_assign/input6";
-    string randval_input_filename = "problem/lab2_assign/rfile";
-    string scheduler_mode = "P";
-    int quantum = 2;
+int main(int argc, char **argv) {
+    // Program invocation format: <program> [-v] [-t] [-e] [-p] [-i] [-s<schedspec>] inputfile randfile
+    // where scheduler specification is "–s [ FLS | R<num> | P<num>[:<maxprio>] | E<num>[:<maxprios>] ]"
+
+    int quantum = DEFAULT_QUANTUM;
     int num_prios = DEFAULT_MAX_PRIOS;
 
+    Scheduler* sch;
+    int c;
+    while ((c = getopt(argc, argv, "vtepis:")) != -1) {
+        switch (c) {
+            case 'v':
+                print_verbose = true;
+                break;
+            case 't':
+                print_trace_event_exec = true;
+                break;
+            case 'e':
+                print_event_queue = true;
+                break;
+            case 'p':
+                print_preprio_info = true;
+                break;
+            case 'i':
+                single_step_mode = true;
+                break;
+            case 's':
+                char temp;
+                switch(optarg[0]) {
+                    case 'F':
+                        sch = new FCFS_Scheduler();
+                        break;
+                    case 'L':
+                        sch = new LCFS_Scheduler();
+                        break;
+                    case 'S':
+                        sch = new SRTF_Scheduler();
+                        break;
+                    case 'R':
+                        sscanf(optarg, "%c%d", &temp, &quantum);
+                        sch = new RR_Scheduler(quantum);
+                        break;
+                    case 'P':
+                        sscanf(optarg, "%c%d:%d", &temp, &quantum, &num_prios);
+                        sch = new PRIO_Scheduler(quantum, num_prios);
+                        break;
+                    case 'E':
+                        sscanf(optarg, "%c%d:%d", &temp, &quantum, &num_prios);
+                        sch = new PREPRIO_Scheduler(quantum, num_prios);
+                        break;
+                    default:
+                        cout << "Provide valid scheduler option" << endl;
+                        abort();
+                }
+                break;
+            default:
+                cout << "Please provide valid input" << endl;
+                abort();
+        }
+    }
+    string input_filename = argv[optind];
+    optind += 1;
+    string randval_input_filename = argv[optind];
 
     ifstream randval_input_file;
     randval_input_file.open(randval_input_filename);
@@ -486,21 +547,6 @@ int main() {
     int io_burst;
 
     DES des;
-    Scheduler* sch;
-    if (scheduler_mode=="F") {
-        sch = new FCFS_Scheduler();
-    } else if (scheduler_mode=="L") {
-        sch = new LCFS_Scheduler();
-    } else if (scheduler_mode=="S") {
-        sch = new SRTF_Scheduler();
-    } else if (scheduler_mode=="R") {
-        sch = new RR_Scheduler(quantum);
-    } else if (scheduler_mode=="P") {
-        sch = new PRIO_Scheduler(quantum, num_prios);
-    } else if (scheduler_mode=="E") {
-        sch = new PREPRIO_Scheduler(quantum, num_prios);
-    }
-
     int pid = 0;
     Process* p;
     Event* e;
