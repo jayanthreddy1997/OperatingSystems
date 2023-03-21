@@ -52,7 +52,10 @@ public:
     int cpu_wait_time;
 
     Process(int pid1, int AT, int TC, int CB, int IO, int SP)
-        : pid(pid1), arrival_time(AT), total_cpu_time(TC), max_cpu_burst(CB), max_io_burst(IO), static_priority(SP) { }
+        : pid(pid1), arrival_time(AT), total_cpu_time(TC), max_cpu_burst(CB), max_io_burst(IO), static_priority(SP) {
+        current_cpu_burst = 0;
+        current_io_burst = 0;
+    }
 
 };
 
