@@ -55,6 +55,12 @@ public:
         : pid(pid1), arrival_time(AT), total_cpu_time(TC), max_cpu_burst(CB), max_io_burst(IO), static_priority(SP) {
         current_cpu_burst = 0;
         current_io_burst = 0;
+        rem_exec_time = TC;
+        dynamic_priority = SP - 1;
+        state_start_time = AT;
+        finish_time = -1;
+        io_time = 0;
+        cpu_wait_time = 0;
     }
 
 };
@@ -590,9 +596,7 @@ int main(int argc, char **argv) {
     Event* e;
     while (input_file >> arrival_time >> total_cpu_time >> cpu_burst >> io_burst) {
         p = new Process(pid, arrival_time, total_cpu_time, cpu_burst, io_burst, myrandom(num_prios));
-        p->rem_exec_time = total_cpu_time;
-        p->dynamic_priority = p->static_priority - 1;
-        p->state_start_time = arrival_time;
+
         e = new Event(arrival_time, p, CREATED, READY, TRANS_TO_READY);
         des.add_event(e);
         processes.push_back(p);
