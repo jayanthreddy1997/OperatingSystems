@@ -595,6 +595,10 @@ int main(int argc, char **argv) {
         processes.push_back(p);
         pid++;
     }
+    if (processes.empty()) {
+        cout << "Error input file format line 0" << endl;
+        exit(0);
+    }
     input_file.close();
 
     Simulation(&des, sch);
