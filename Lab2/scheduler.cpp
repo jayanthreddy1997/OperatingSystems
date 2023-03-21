@@ -170,7 +170,7 @@ class FCFS_Scheduler: public Scheduler {
 public:
     FCFS_Scheduler(): Scheduler(DEFAULT_QUANTUM) {}
 
-    virtual bool does_preempt() {  // TODO: remove this if not used
+    virtual bool does_preempt() {
         return false;
     }
 
