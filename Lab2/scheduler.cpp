@@ -173,34 +173,6 @@ public:
     virtual void print_scheduler_name() {}
 };
 
-class FCFS_Scheduler: public Scheduler {
-    list<Process*> ready_queue;
-
-public:
-    FCFS_Scheduler(): Scheduler(DEFAULT_QUANTUM) {}
-
-    virtual bool does_preempt() {
-        return false;
-    }
-
-    virtual void add_process(Process* p) {
-        ready_queue.push_back(p);
-    }
-
-    virtual Process* get_next_process() {
-        if (ready_queue.empty()) {
-            return nullptr;
-        }
-        Process* p = ready_queue.front();
-        ready_queue.pop_front();
-        return p;
-    }
-
-    virtual void print_scheduler_name() {
-        cout << FCFS << endl;
-    }
-};
-
 class LCFS_Scheduler: public Scheduler {
     list<Process*> ready_queue;
 
@@ -291,6 +263,15 @@ public:
 
     virtual void print_scheduler_name() {
         cout << RR << " " << get_quantum() << endl;
+    }
+};
+
+class FCFS_Scheduler: public RR_Scheduler {
+public:
+    FCFS_Scheduler(): RR_Scheduler(DEFAULT_QUANTUM) {}
+
+    virtual void print_scheduler_name() {
+        cout << FCFS << endl;
     }
 };
 
