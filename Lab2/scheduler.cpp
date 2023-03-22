@@ -240,7 +240,15 @@ public:
     }
 
     virtual void add_process(Process* p) {
-        ready_queue.push_back(p);
+        if (ready_queue.empty()) {
+            ready_queue.push_front(p);
+            return;
+        }
+        std::list<Process*>::iterator it = ready_queue.begin();
+        while (it != ready_queue.end() && (*it)->rem_exec_time <= p->rem_exec_time) {
+            it++;
+        }
+        ready_queue.insert(it, p);
     }
 
     virtual Process* get_next_process() {
@@ -248,13 +256,7 @@ public:
             return nullptr;
         }
         Process* p = ready_queue.front();
-        std::list<Process*>::iterator it;
-        for (it = ready_queue.begin(); it != ready_queue.end(); ++it){
-            if ((*it)->rem_exec_time < p->rem_exec_time) {
-                p = *it;
-            }
-        }
-        ready_queue.remove(p);
+        ready_queue.pop_front();
         return p;
     }
 
