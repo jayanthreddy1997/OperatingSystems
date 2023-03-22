@@ -9,6 +9,8 @@ using namespace std;
 
 int g_randval_offset = 0;
 vector<int> randvals;
+
+// Constants
 enum State {CREATED, READY, RUNNING, BLOCKED};
 const string StateStrings[] = {"CREATED", "READY", "RUNNG", "BLOCK"};
 enum Transition {TRANS_TO_READY, TRANS_TO_PREEMPT, TRANS_TO_RUN, TRANS_TO_BLOCK};
@@ -18,16 +20,17 @@ const string SRTF = "SRTF";
 const string RR = "RR";
 const string PRIO = "PRIO";
 const string PREPRIO = "PREPRIO";
+int DEFAULT_QUANTUM = 10000;
+int DEFAULT_MAX_PRIOS = 4;
+
+// Flags
 bool print_verbose = false;
 bool print_trace_event_exec = false;
 bool print_event_queue = false;
 bool print_preprio_info = false;
 bool single_step_mode = false;
 
-int DEFAULT_QUANTUM = 10000;
-int DEFAULT_MAX_PRIOS = 4;
-
-// Some metadata variable used for summary stats
+// Metadata variable used for summary stats
 int num_io_procs = 0;
 int io_start_time = 0;
 int io_time = 0;
@@ -81,6 +84,7 @@ public:
         : time_stamp(time_stamp), process(process), current_state(current_state), next_state(next_state), transition(transition) { }
 };
 
+// Discrete Event Simulation
 class DES {
     list<Event*> event_queue;
 
@@ -173,6 +177,7 @@ public:
     virtual void print_scheduler_name() {}
 };
 
+// Last Come First Serve
 class LCFS_Scheduler: public Scheduler {
     list<Process*> ready_queue;
 
@@ -201,6 +206,7 @@ public:
     }
 };
 
+// Shortest Remaining Time First
 class SRTF_Scheduler: public Scheduler {
     list<Process*> ready_queue;
 
@@ -212,6 +218,7 @@ public:
     }
 
     virtual void add_process(Process* p) {
+        // Iterate to the correct position in read_queue and insert
         if (ready_queue.empty()) {
             ready_queue.push_front(p);
             return;
@@ -237,6 +244,7 @@ public:
     }
 };
 
+// Round Robin
 class RR_Scheduler: public Scheduler {
     list<Process*> ready_queue;
 
@@ -266,6 +274,8 @@ public:
     }
 };
 
+// First Come FIst Serve
+// FCFS is same as a RR scheduler with very large quantum
 class FCFS_Scheduler: public RR_Scheduler {
 public:
     FCFS_Scheduler(): RR_Scheduler(DEFAULT_QUANTUM) {}
@@ -275,6 +285,7 @@ public:
     }
 };
 
+// Priority based scheduling
 class PRIO_Scheduler: public Scheduler {
     list<Process*> *active_ready_queue;
     list<Process*> *expired_ready_queue;
@@ -331,6 +342,7 @@ public:
     }
 };
 
+// Priority based scheduling with preemption
 class PREPRIO_Scheduler: public PRIO_Scheduler {
 public:
     PREPRIO_Scheduler(int quantum, int num_prios): PRIO_Scheduler(quantum, num_prios) {}
@@ -366,14 +378,17 @@ void Simulation(DES* des, Scheduler* sch) {
         evt = nullptr;
 
         if (currentState==BLOCKED) {
+            // Time spent in IO
             proc->io_time += timeInPrevState;
         }
         if (currentState==READY) {
+            // Time spent in ready state waiting for CPU
             proc->cpu_wait_time += timeInPrevState;
         }
         if (currentState==BLOCKED && nextState==READY) {
             num_io_procs -= 1;
             if (num_io_procs == 0) {
+                // accounting for overall IO time
                 io_time += (CURRENT_TIME - io_start_time);
             }
         }
@@ -386,17 +401,22 @@ void Simulation(DES* des, Scheduler* sch) {
                 // add to run queue, no event created
                 proc->dynamic_priority = proc->static_priority-1;
 
+                // PrePrio handling
                 if (CURRENT_RUNNING_PROCESS!=nullptr && sch->does_preempt()) {
+                    // Condition 1: Check if process’s dynamic priority is higher than the currently running processes dynamic priority
                     bool preempt_cond1 = proc->dynamic_priority > CURRENT_RUNNING_PROCESS->dynamic_priority;
+                    // Condition 2: Check if currently running process does not have an event pending for the current time stamp
                     bool preempt_cond2 = !des->check_exists_event(CURRENT_RUNNING_PROCESS->pid, CURRENT_TIME);
 
-                    if (print_preprio_info)
+                    if (print_preprio_info) {
                         printf("    --> PrioPreempt Cond1=%d Cond2=%d (%d) --> %s\n",
-                               preempt_cond1, preempt_cond2, CURRENT_RUNNING_PROCESS->pid, ((preempt_cond1 && preempt_cond2)?"YES":"NO"));
+                               preempt_cond1, preempt_cond2, CURRENT_RUNNING_PROCESS->pid,
+                               ((preempt_cond1 && preempt_cond2) ? "YES" : "NO"));
+                    }
                     if (preempt_cond1 && preempt_cond2) {
                         des->remove_event(CURRENT_RUNNING_PROCESS->pid);
-                        Event *newEvent = new Event(CURRENT_TIME, CURRENT_RUNNING_PROCESS, RUNNING, READY,
-                                                    TRANS_TO_PREEMPT);
+                        Event *newEvent = new Event(CURRENT_TIME, CURRENT_RUNNING_PROCESS,
+                                                    RUNNING, READY,TRANS_TO_PREEMPT);
                         des->add_event(newEvent);
                     }
                 }
@@ -431,13 +451,14 @@ void Simulation(DES* des, Scheduler* sch) {
                 break;
             }
             case TRANS_TO_BLOCK: {
-                //create an event for when process becomes READY again
+                // create an event for when process becomes READY again
                 proc->rem_exec_time -= timeInPrevState;
                 proc->current_cpu_burst -= timeInPrevState;
                 if (proc->rem_exec_time == 0) {
                     // Process completed execution
                     proc->finish_time = CURRENT_TIME;
                 } else {
+                    // Process goes into IO blocking
                     proc->current_io_burst = myrandom(proc->max_io_burst);
                     num_io_procs += 1;
                     if(num_io_procs==1) {
@@ -498,8 +519,9 @@ int main(int argc, char **argv) {
     int quantum = DEFAULT_QUANTUM;
     int num_prios = DEFAULT_MAX_PRIOS;
 
-    Scheduler* sch;
+    Scheduler* sch = nullptr;
     int c;
+    // Parse input flags
     while ((c = getopt(argc, argv, "vtepis:")) != -1) {
         switch (c) {
             case 'v':
@@ -551,10 +573,14 @@ int main(int argc, char **argv) {
                 abort();
         }
     }
+    if (sch == nullptr) {
+        sch = new FCFS_Scheduler();
+    }
     string input_filename = argv[optind];
     optind += 1;
     string randval_input_filename = argv[optind];
 
+    // Read and parse input from files
     ifstream randval_input_file;
     randval_input_file.open(randval_input_filename);
     int rand_num;
@@ -591,6 +617,7 @@ int main(int argc, char **argv) {
     }
     input_file.close();
 
+    // Run simulation
     Simulation(&des, sch);
 
     sch->print_scheduler_name();
@@ -615,5 +642,4 @@ int main(int argc, char **argv) {
     double throughput = ((double)100*processes.size())/((double)last_event_finishing_time);
     printf("SUM: %d %.2lf %.2lf %.2lf %.2lf %.3lf\n", last_event_finishing_time, cpu_util, io_util, avg_turnaround_time,
            avg_cpu_wait_time, throughput);
-
 }
