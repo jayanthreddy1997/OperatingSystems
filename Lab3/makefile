@@ -1,4 +1,4 @@
-linker: memory_manager.cpp
-	g++ -std=c++11 -g memory_manager.cpp -o memory_manager
+linker: mmu.cpp
+	g++ -std=c++11 -g mmu.cpp -o mmu
 clean:
 	rm -f scheduler *~
