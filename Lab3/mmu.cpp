@@ -113,6 +113,15 @@ public:
     }
 };
 
+class Random_Pager: public Pager {
+public:
+    virtual Frame *select_victim_frame() {
+        int next_rand_num = randvals[g_randval_offset] % max_frames;
+        g_randval_offset = (g_randval_offset + 1) % randvals.size();
+        return frame_table + next_rand_num;
+    }
+};
+
 Pager *CURR_PAGER;
 
 Frame *allocate_frame_from_free_list() {
@@ -419,7 +428,7 @@ int main(int argc, char **argv) {
                         CURR_PAGER = new FIFO_Pager();
                         break;
                     case 'r':
-                        CURR_PAGER = new FIFO_Pager(); // TODO: fix
+                        CURR_PAGER = new Random_Pager(); // TODO: fix
                         break;
                     case 'c':
                         CURR_PAGER = new FIFO_Pager(); // TODO: fix
