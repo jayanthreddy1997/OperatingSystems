@@ -496,8 +496,8 @@ int main(int argc, char **argv) {
                    pstat->unmaps, pstat->maps, pstat->ins, pstat->outs,
                    pstat->fins, pstat->fouts, pstat->zeros,
                    pstat->segv, pstat->segprot);
-            printf("TOTALCOST %lu %lu %lu %llu %lu\n",
-                   instructions.size(), ctx_switches, process_exits, cost, sizeof(PTE));
         }
+        printf("TOTALCOST %lu %lu %lu %llu %lu\n",
+               instructions.size(), ctx_switches, process_exits, cost, sizeof(PTE));
     }
 }
