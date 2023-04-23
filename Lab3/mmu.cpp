@@ -12,6 +12,20 @@ vector<int> randvals;
 
 enum PageReplacementAlgo {FIFO, RANDOM, CLOCK, NRU, AGING, WORKING_SET};
 
+// Costs
+unsigned int C_READ_WRITE = 1;
+unsigned int C_CONTEXT_SWITCH = 130;
+unsigned int C_PROCESS_EXIT = 1230;
+unsigned int C_MAPS = 350;
+unsigned int C_UNMAPS = 410;
+unsigned int C_INS = 3200;
+unsigned int C_OUTS = 2750;
+unsigned int C_FINS = 2350;
+unsigned int C_FOUTS = 2800;
+unsigned int C_ZEROS = 150;
+unsigned int C_SEGV = 440;
+unsigned int C_SEGPROT = 410;
+
 struct Options{
     bool O, P, F, S, x, y, f, a;
 };
@@ -57,12 +71,18 @@ public:
     vector<VMA> vma_list;
     PTE page_table[MAX_VPAGES];
 
+
     Process(int pid): pid(pid){}
 };
 
 vector<Process*> processes;
 Process *curr_proc;
 vector<pair<char, int> > instructions;
+
+// Overall stats
+unsigned long long cost = 0.0;
+unsigned long ctx_switches = 0;
+unsigned long process_exits = 0;
 
 class Pager {
 public:
@@ -101,14 +121,17 @@ Frame *get_frame() {
         del_pte->valid = 0;
         if (curr_options.O)
             printf(" UNMAP %d:%d\n", frame->pid, frame->page_id);
+        cost += C_UNMAPS;
         if (del_pte->modified) {
             del_pte->paged_out = 1;
             if (del_pte->file_mapped) {
                 if (curr_options.O)
                     printf(" FOUT\n");
+                cost += C_FOUTS;
             } else {
                 if (curr_options.O)
                     printf(" OUT\n");
+                cost += C_OUTS;
             }
         }
     }
@@ -143,6 +166,7 @@ bool page_fault_handler(int vpage, VMA *vma) {
     if (!vpage_exists) {
         if (curr_options.O)
             printf(" SEGV\n");
+        cost += C_SEGV;
     }
     return vpage_exists;
 }
@@ -160,6 +184,8 @@ void run_simulation() {
         if (operation == 'c') {
             // Here the vpage actually points to proc id
             curr_proc = processes[vpage];
+            cost += C_CONTEXT_SWITCH;
+            ctx_switches += 1;
             continue;
         }
         else if (operation == 'e') {
@@ -174,6 +200,7 @@ void run_simulation() {
                 if (curr_proc->page_table[i].valid) {
                     if (curr_options.O)
                         printf(" UNMAP %d:%d\n", curr_proc->pid, i);
+                    cost += C_UNMAPS;
                     if (curr_proc->page_table[i].file_mapped && curr_proc->page_table[i].modified) {
                         if (curr_options.O)
                             printf(" FOUT\n");
@@ -181,9 +208,12 @@ void run_simulation() {
                     free_pool.push_back(frame_table + curr_proc->page_table[i].page_frame_num);
                 }
             }
+            process_exits += 1;
+            cost += C_PROCESS_EXIT;
             continue;
         }
 
+        cost += C_READ_WRITE;
         PTE *pte = &curr_proc->page_table[vpage];
         if ( ! pte->valid) {
             // this in reality generates the page fault exception and now you execute
@@ -201,14 +231,17 @@ void run_simulation() {
                 if(pte->file_mapped) { //TODO: check if this is right or we need to take vma->file_mapped
                     if (curr_options.O)
                         printf(" FIN\n");
+                    cost += C_FINS;
                 } else {
                     if (curr_options.O)
                         printf(" IN\n");
+                    cost += C_INS;
                 }
             }
             if (!pte->paged_out && !pte->file_mapped) {
                 if (curr_options.O)
                     printf(" ZERO\n");
+                cost += C_ZEROS;
             }
             pte->page_frame_num = new_frame - frame_table;
             pte->valid = 1;
@@ -225,6 +258,7 @@ void run_simulation() {
 
             if (curr_options.O)
                 printf(" MAP %d\n", pte->page_frame_num);
+            cost += C_MAPS;
         }
         // now the page is definitely present
         // check write protection
@@ -232,6 +266,7 @@ void run_simulation() {
         if (pte->write_protect && operation=='w') {
             if (curr_options.O)
                 printf(" SEGPROT\n");
+            cost += C_SEGPROT;
             pte->referenced = 1;
             continue;
         }
@@ -373,13 +408,12 @@ int main(int argc, char **argv) {
     }
 
     if (curr_options.S) {
-        // TODO
 //        printf("PROC[%d]: U=%lu M=%lu I=%lu O=%lu FI=%lu FO=%lu Z=%lu SV=%lu SP=%lu\n",
 //               proc->pid,
 //               pstats->unmaps, pstats->maps, pstats->ins, pstats->outs,
 //               pstats->fins, pstats->fouts, pstats->zeros,
 //               pstats->segv, pstats->segprot);
-//        printf("TOTALCOST %lu %lu %lu %llu %lu\n",
-//               inst_count, ctx_switches, process_exits, cost, sizeof(pte_t));
+        printf("TOTALCOST %lu %lu %lu %llu %lu\n",
+               instructions.size(), ctx_switches, process_exits, cost, sizeof(PTE));
     }
 }
