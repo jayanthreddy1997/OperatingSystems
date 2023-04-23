@@ -166,6 +166,7 @@ bool get_next_instruction(char &operation, int &vpage) {
 bool page_fault_handler(int vpage, VMA **vma) {
     // Check if in VMA, else raise error
     if (curr_proc->page_table[vpage].is_vma_mapped) {
+        *vma = NULL;
         return true;
     }
     bool vpage_exists = false;
@@ -192,9 +193,6 @@ void run_simulation() {
     while (get_next_instruction(operation, vpage)) {
         if (curr_options.O)
             printf("%d: ==> %c %d\n", INSTR_POS, operation, vpage);
-        if (INSTR_POS==14) {
-            int x  = 1;
-        }
         if (operation == 'c') {
             // Here the vpage actually points to proc id
             curr_proc = processes[vpage];
@@ -230,9 +228,6 @@ void run_simulation() {
 
         cost += C_READ_WRITE;
         PTE *pte = &curr_proc->page_table[vpage];
-        if(INSTR_POS==7) {
-            int x = 1;
-        }
         if ( ! pte->valid) {
             // this in reality generates the page fault exception and now you execute
             // verify this is actually a valid page in a vma if not raise error and next inst
@@ -242,11 +237,23 @@ void run_simulation() {
             }
 
             Frame *new_frame = get_frame();
-            // TODO: figure out if/what to do with old frame if it was mapped
-            // see general outline in MM-slides under Lab3 header and writeup below
-            // see whether and how to bring in the content of the access page.
+
+            pte->page_frame_num = new_frame - frame_table;
+            pte->valid = 1;
+            pte->modified = 0;
+            pte->referenced = 0;
+            if (pte->is_vma_mapped==0) {
+                pte->is_vma_mapped = 1;
+                pte->file_mapped = vma->file_mapped;
+                pte->write_protect = vma->write_protected;
+            }
+
+            new_frame->page_id = pte - curr_proc->page_table;
+            new_frame->pid = curr_proc->pid;
+            new_frame->is_mapped = true;
+
             if(pte->paged_out) {
-                if(pte->file_mapped) { //TODO: check if this is right or we need to take vma->file_mapped
+                if(pte->file_mapped) {
                     if (curr_options.O)
                         printf(" FIN\n");
                     cost += C_FINS;
@@ -257,24 +264,19 @@ void run_simulation() {
                     cost += C_INS;
                     pstats[curr_proc->pid]->ins += 1;
                 }
+            } else {
+                if(!pte->file_mapped) {
+                    if (curr_options.O)
+                        printf(" ZERO\n");
+                    cost += C_ZEROS;
+                    pstats[curr_proc->pid]->zeros += 1;
+                } else {
+                    if (curr_options.O)
+                        printf(" FIN\n");
+                    cost += C_FINS;
+                    pstats[curr_proc->pid]->fins += 1;
+                }
             }
-            if (!pte->paged_out && !pte->file_mapped) {
-                if (curr_options.O)
-                    printf(" ZERO\n");
-                cost += C_ZEROS;
-                pstats[curr_proc->pid]->zeros += 1;
-            }
-            pte->page_frame_num = new_frame - frame_table;
-            pte->valid = 1;
-            pte->is_vma_mapped = 1;
-            pte->modified = 0;
-            pte->referenced = 0;
-            pte->file_mapped = vma->file_mapped ;
-            pte->write_protect = vma->write_protected;
-
-            new_frame->page_id = pte - curr_proc->page_table;
-            new_frame->pid = curr_proc->pid;
-            new_frame->is_mapped = true;
 
             if (curr_options.O)
                 printf(" MAP %d\n", pte->page_frame_num);
@@ -461,14 +463,13 @@ int main(int argc, char **argv) {
             for (int j=0; j<MAX_VPAGES; j++) {
                 p = &processes[i]->page_table[j];
                 if (!p->valid) {
-                    if (p->paged_out) {
+                    if (p->paged_out && !p->file_mapped) {
                         printf(" #");
                     } else {
                         printf(" *");
                     }
                 } else {
-                    // TODO: check if it is S if swapped to file!
-                    printf(" %d:%c%c%c", j, p->referenced?'R':'-', p->modified?'M':'-', p->paged_out?'S':'-');
+                    printf(" %d:%c%c%c", j, p->referenced?'R':'-', p->modified?'M':'-', (p->paged_out && !p->file_mapped)?'S':'-');
                 }
             }
             printf("\n");
