@@ -77,7 +77,17 @@ public:
 
 vector<Process*> processes;
 Process *curr_proc;
-vector<pair<char, int> > instructions;
+vector<pair<char, int> > instructions; // TODO: remove this and process instructions as we read them
+
+struct ProcessStats {
+    unsigned long unmaps, maps, ins, outs, fins, fouts, zeros, segv, segprot;
+
+    ProcessStats() {
+        unmaps = maps = ins = outs = fins = fouts = zeros = segv = segprot = 0;
+    }
+};
+vector<ProcessStats*> pstats;
+
 
 // Overall stats
 unsigned long long cost = 0.0;
@@ -122,16 +132,19 @@ Frame *get_frame() {
         if (curr_options.O)
             printf(" UNMAP %d:%d\n", frame->pid, frame->page_id);
         cost += C_UNMAPS;
+        pstats[frame->pid]->unmaps += 1;
         if (del_pte->modified) {
             del_pte->paged_out = 1;
             if (del_pte->file_mapped) {
                 if (curr_options.O)
                     printf(" FOUT\n");
                 cost += C_FOUTS;
+                pstats[frame->pid]->fouts += 1;
             } else {
                 if (curr_options.O)
                     printf(" OUT\n");
                 cost += C_OUTS;
+                pstats[frame->pid]->outs += 1;
             }
         }
     }
@@ -167,6 +180,7 @@ bool page_fault_handler(int vpage, VMA *vma) {
         if (curr_options.O)
             printf(" SEGV\n");
         cost += C_SEGV;
+        pstats[curr_proc->pid]->segv += 1;
     }
     return vpage_exists;
 }
@@ -191,7 +205,6 @@ void run_simulation() {
         else if (operation == 'e') {
             if (curr_options.O)
                 printf("EXIT current process %d", curr_proc->pid);
-            curr_proc = NULL;
             // TODO: remove unnecessary comments
             // Traverse the active process's page table and for each valid entry UNMAP the page and FOUT modified filemapped pages.
             // Note that dirty non-fmapped (anonymous) pages are not written back (OUT) as the process exits.
@@ -201,6 +214,7 @@ void run_simulation() {
                     if (curr_options.O)
                         printf(" UNMAP %d:%d\n", curr_proc->pid, i);
                     cost += C_UNMAPS;
+                    pstats[curr_proc->pid]->unmaps += 1;
                     if (curr_proc->page_table[i].file_mapped && curr_proc->page_table[i].modified) {
                         if (curr_options.O)
                             printf(" FOUT\n");
@@ -210,6 +224,7 @@ void run_simulation() {
             }
             process_exits += 1;
             cost += C_PROCESS_EXIT;
+            curr_proc = NULL;
             continue;
         }
 
@@ -232,16 +247,19 @@ void run_simulation() {
                     if (curr_options.O)
                         printf(" FIN\n");
                     cost += C_FINS;
+                    pstats[curr_proc->pid]->fins += 1;
                 } else {
                     if (curr_options.O)
                         printf(" IN\n");
                     cost += C_INS;
+                    pstats[curr_proc->pid]->ins += 1;
                 }
             }
             if (!pte->paged_out && !pte->file_mapped) {
                 if (curr_options.O)
                     printf(" ZERO\n");
                 cost += C_ZEROS;
+                pstats[curr_proc->pid]->zeros += 1;
             }
             pte->page_frame_num = new_frame - frame_table;
             pte->valid = 1;
@@ -259,6 +277,7 @@ void run_simulation() {
             if (curr_options.O)
                 printf(" MAP %d\n", pte->page_frame_num);
             cost += C_MAPS;
+            pstats[curr_proc->pid]->maps += 1;
         }
         // now the page is definitely present
         // check write protection
@@ -267,6 +286,7 @@ void run_simulation() {
             if (curr_options.O)
                 printf(" SEGPROT\n");
             cost += C_SEGPROT;
+            pstats[curr_proc->pid]->segprot += 1;
             pte->referenced = 1;
             continue;
         }
@@ -324,6 +344,7 @@ void read_input_files(string &infile, string &rfile) {
             p->vma_list.emplace_back(start_vpage, end_vpage, write_protected, file_mapped);
         }
         processes.push_back(p);
+        pstats.push_back(new ProcessStats());
     }
     char cmd;
     int id;
@@ -377,7 +398,7 @@ int main(int argc, char **argv) {
     if (curr_options.P) {
         PTE *p;
         for (int i=0; i<processes.size(); i++) {
-            printf("PT[%d]:", i);
+            printf("PT[%d]:", processes[i]->pid);
             for (int j=0; j<MAX_VPAGES; j++) {
                 p = &processes[i]->page_table[j];
                 if (!p->valid) {
@@ -408,12 +429,15 @@ int main(int argc, char **argv) {
     }
 
     if (curr_options.S) {
-//        printf("PROC[%d]: U=%lu M=%lu I=%lu O=%lu FI=%lu FO=%lu Z=%lu SV=%lu SP=%lu\n",
-//               proc->pid,
-//               pstats->unmaps, pstats->maps, pstats->ins, pstats->outs,
-//               pstats->fins, pstats->fouts, pstats->zeros,
-//               pstats->segv, pstats->segprot);
-        printf("TOTALCOST %lu %lu %lu %llu %lu\n",
-               instructions.size(), ctx_switches, process_exits, cost, sizeof(PTE));
+        for (int i=0; i<processes.size(); i++) {
+            ProcessStats *pstat = pstats[i];
+            printf("PROC[%d]: U=%lu M=%lu I=%lu O=%lu FI=%lu FO=%lu Z=%lu SV=%lu SP=%lu\n",
+                   processes[i]->pid,
+                   pstat->unmaps, pstat->maps, pstat->ins, pstat->outs,
+                   pstat->fins, pstat->fouts, pstat->zeros,
+                   pstat->segv, pstat->segprot);
+            printf("TOTALCOST %lu %lu %lu %llu %lu\n",
+                   instructions.size(), ctx_switches, process_exits, cost, sizeof(PTE));
+        }
     }
 }
