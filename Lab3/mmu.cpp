@@ -163,7 +163,7 @@ bool get_next_instruction(char &operation, int &vpage) {
     }
 }
 
-bool page_fault_handler(int vpage, VMA *vma) {
+bool page_fault_handler(int vpage, VMA **vma) {
     // Check if in VMA, else raise error
     if (curr_proc->page_table[vpage].is_vma_mapped) {
         return true;
@@ -172,7 +172,7 @@ bool page_fault_handler(int vpage, VMA *vma) {
     for (auto &curr_vma: curr_proc->vma_list) {
         if (vpage >= curr_vma.start_vpage && vpage <= curr_vma.end_vpage) {
             vpage_exists = true;
-            vma = &curr_vma;
+            *vma = &curr_vma;
             break;
         }
     }
@@ -230,11 +230,14 @@ void run_simulation() {
 
         cost += C_READ_WRITE;
         PTE *pte = &curr_proc->page_table[vpage];
+        if(INSTR_POS==7) {
+            int x = 1;
+        }
         if ( ! pte->valid) {
             // this in reality generates the page fault exception and now you execute
             // verify this is actually a valid page in a vma if not raise error and next inst
             VMA *vma;
-            if(!page_fault_handler(vpage, vma)) {
+            if(!page_fault_handler(vpage, &vma)) {
                 continue;
             }
 
