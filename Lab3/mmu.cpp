@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <deque>
+#include <unistd.h>
+#include <cctype>
 
 using namespace std;
 
@@ -9,8 +11,6 @@ int max_frames = 128;
 
 int g_randval_offset = 0;
 vector<int> randvals;
-
-enum PageReplacementAlgo {FIFO, RANDOM, CLOCK, NRU, AGING, WORKING_SET};
 
 // Costs
 unsigned int C_READ_WRITE = 1;
@@ -358,31 +358,88 @@ void read_input_files(string &infile, string &rfile) {
 }
 
 int main(int argc, char **argv) {
-    // TODO: change all inputs to cli
-    max_frames = 16;
-    if (max_frames > 128) {
-        throw runtime_error("Number of frames can not be greater than 128\n");
-    }
-    PageReplacementAlgo algo = FIFO;
-    switch(algo) {
-        case FIFO:
-            CURR_PAGER = new FIFO_Pager();
-            break;
-        case RANDOM:
-            break;
-        case CLOCK:
-            break;
-        case NRU:
-            break;
-        case AGING:
-            break;
-        case WORKING_SET:
-            break;
+    int c;
+    // Parse input flags
+    while ((c = getopt(argc, argv, "f:a:o:")) != -1) {
+        switch (c) {
+            case 'f': {
+                sscanf(optarg, "%d", &max_frames);
+                if (max_frames > 128) {
+                    throw runtime_error("Number of frames can not be greater than 128\n");
+                }
+                break;
+            }
+            case 'o': {
+                char *print_opt = optarg;
+                while (*print_opt) {
+                    switch (*print_opt) {
+                        case 'O':
+                            curr_options.O = true;
+                            break;
+                        case 'P':
+                            curr_options.P = true;
+                            break;
+                        case 'F':
+                            curr_options.F = true;
+                            break;
+                        case 'S':
+                            curr_options.S = true;
+                            break;
+                        case 'x':
+                            curr_options.x = true;
+                            break;
+                        case 'y':
+                            curr_options.y = true;
+                            break;
+                        case 'f':
+                            curr_options.f = true;
+                            break;
+                        case 'a':
+                            curr_options.a = true;
+                            break;
+                        default:
+                            cout << "Provide valid options" << endl;
+                            abort();
+                    }
+                    print_opt++;
+                }
+                break;
+            }
+            case 'a': {
+                switch (tolower(optarg[0])) {
+                    case 'f':
+                        CURR_PAGER = new FIFO_Pager();
+                        break;
+                    case 'r':
+                        CURR_PAGER = new FIFO_Pager(); // TODO: fix
+                        break;
+                    case 'c':
+                        CURR_PAGER = new FIFO_Pager(); // TODO: fix
+                        break;
+                    case 'e':
+                        CURR_PAGER = new FIFO_Pager(); // TODO: fix
+                        break;
+                    case 'a':
+                        CURR_PAGER = new FIFO_Pager(); // TODO: fix
+                        break;
+                    case 'w':
+                        CURR_PAGER = new FIFO_Pager(); // TODO: fix
+                        break;
+                    default:
+                        cout << "Provide valid scheduler option" << endl;
+                        abort();
+                }
+                break;
+            }
+            default:
+                cout << "Please provide valid input" << endl;
+                abort();
+        }
     }
 
-    string infile = "problem/in1";
-    string rfile = "problem/rfile";
-    curr_options.O = curr_options.P = curr_options.F = curr_options.S = true;
+    string infile = argv[optind];
+    optind++;
+    string rfile = argv[optind];
 
     read_input_files(infile, rfile);
 
