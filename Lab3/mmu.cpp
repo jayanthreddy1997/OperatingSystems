@@ -12,11 +12,8 @@ vector<int> randvals;
 
 enum PageReplacementAlgo {FIFO, RANDOM, CLOCK, NRU, AGING, WORKING_SET};
 
-struct Options {
+struct Options{
     bool O, P, F, S, x, y, f, a;
-
-    Options(bool O=false, bool P=false, bool F=false, bool S=false, bool x=false, bool y=false, bool f=false, bool a=false):
-    O(O), P(P), F(F), S(S), x(x), y(y), f(f), a(a) {}
 };
 Options curr_options;
 
@@ -329,7 +326,7 @@ int main(int argc, char **argv) {
 
     string infile = "problem/in1";
     string rfile = "problem/rfile";
-    curr_options = new Options(true, true, true, true);
+    curr_options.O = curr_options.P = curr_options.F = curr_options.S = true;
 
     read_input_files(infile, rfile);
 
@@ -342,4 +339,47 @@ int main(int argc, char **argv) {
 
     run_simulation();
 
+    if (curr_options.P) {
+        PTE *p;
+        for (int i=0; i<processes.size(); i++) {
+            printf("PT[%d]:", i);
+            for (int j=0; j<MAX_VPAGES; j++) {
+                p = &processes[i]->page_table[j];
+                if (!p->valid) {
+                    if (p->paged_out) {
+                        printf(" #");
+                    } else {
+                        printf(" *");
+                    }
+                } else {
+                    // TODO: check if it is S if swapped to file!
+                    printf(" %d:%c%c%c", j, p->referenced?'R':'-', p->modified?'M':'-', p->paged_out?'S':'-');
+                }
+            }
+            printf("\n");
+        }
+    }
+
+    if (curr_options.F) {
+        printf("FT:");
+        for (int i=0; i<max_frames; i++) {
+            if(frame_table[i].is_mapped) {
+                printf(" %d:%d", frame_table[i].pid, frame_table[i].page_id);
+            } else {
+                printf(" *");
+            }
+        }
+        printf("\n");
+    }
+
+    if (curr_options.S) {
+        // TODO
+//        printf("PROC[%d]: U=%lu M=%lu I=%lu O=%lu FI=%lu FO=%lu Z=%lu SV=%lu SP=%lu\n",
+//               proc->pid,
+//               pstats->unmaps, pstats->maps, pstats->ins, pstats->outs,
+//               pstats->fins, pstats->fouts, pstats->zeros,
+//               pstats->segv, pstats->segprot);
+//        printf("TOTALCOST %lu %lu %lu %llu %lu\n",
+//               inst_count, ctx_switches, process_exits, cost, sizeof(pte_t));
+    }
 }
