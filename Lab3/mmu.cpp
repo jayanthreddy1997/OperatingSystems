@@ -202,7 +202,7 @@ void run_simulation() {
         }
         else if (operation == 'e') {
             if (curr_options.O)
-                printf("EXIT current process %d", curr_proc->pid);
+                printf("EXIT current process %d\n", curr_proc->pid);
             // TODO: remove unnecessary comments
             // Traverse the active process's page table and for each valid entry UNMAP the page and FOUT modified filemapped pages.
             // Note that dirty non-fmapped (anonymous) pages are not written back (OUT) as the process exits.
@@ -216,9 +216,13 @@ void run_simulation() {
                     if (curr_proc->page_table[i].file_mapped && curr_proc->page_table[i].modified) {
                         if (curr_options.O)
                             printf(" FOUT\n");
+                        cost += C_FOUTS;
+                        pstats[curr_proc->pid]->fouts += 1;
                     }
+                    curr_proc->page_table[i].valid = 0;
                     free_pool.push_back(frame_table + curr_proc->page_table[i].page_frame_num);
                 }
+                curr_proc->page_table[i].paged_out = 0; // TODO: check if correct
             }
             process_exits += 1;
             cost += C_PROCESS_EXIT;
