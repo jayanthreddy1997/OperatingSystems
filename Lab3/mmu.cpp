@@ -267,7 +267,6 @@ void run_simulation() {
             pte->modified = 0;
             pte->referenced = 0;
             pte->file_mapped = vma->file_mapped ;
-            pte->paged_out = false;
             pte->write_protect = vma->write_protected;
 
             new_frame->page_id = pte - curr_proc->page_table;

@@ -440,7 +440,7 @@
  MAP 5
 141: ==> r 26
  UNMAP 1:43
- ZERO
+ IN
  MAP 6
 142: ==> r 21
  UNMAP 1:39
@@ -584,7 +584,7 @@
  MAP 4
 183: ==> r 0
  UNMAP 1:2
- ZERO
+ IN
  MAP 5
 184: ==> w 61
  UNMAP 1:26
@@ -737,7 +737,7 @@
 225: ==> r 5
  UNMAP 0:61
  OUT
- ZERO
+ IN
  MAP 6
 226: ==> c 0
 227: ==> r 51
@@ -751,12 +751,12 @@
  MAP 8
 230: ==> r 18
  UNMAP 0:3
- ZERO
+ IN
  MAP 9
 231: ==> r 42
  UNMAP 0:1
  OUT
- ZERO
+ IN
  MAP 10
 232: ==> r 46
  UNMAP 0:22
@@ -891,12 +891,12 @@
  MAP 6
 267: ==> r 1
  UNMAP 0:51
- ZERO
+ IN
  MAP 7
 268: ==> r 9
 269: ==> r 12
  UNMAP 0:56
- ZERO
+ IN
  MAP 8
 270: ==> r 39
  UNMAP 0:18
@@ -904,7 +904,7 @@
  MAP 9
 271: ==> r 11
  UNMAP 0:42
- ZERO
+ IN
  MAP 10
 272: ==> r 4
  UNMAP 0:46
@@ -918,7 +918,7 @@
 274: ==> w 26
  UNMAP 0:6
  OUT
- ZERO
+ IN
  MAP 13
 275: ==> c 2
 276: ==> r 53
@@ -981,15 +981,15 @@
 290: ==> r 2
  UNMAP 0:20
  OUT
- ZERO
+ IN
  MAP 27
 291: ==> w 5
  UNMAP 1:54
- ZERO
+ IN
  MAP 28
 292: ==> r 38
  UNMAP 1:8
- ZERO
+ IN
  MAP 29
 293: ==> w 6
  UNMAP 1:14
@@ -1135,12 +1135,12 @@
 330: ==> w 4
  UNMAP 2:6
  OUT
- ZERO
+ IN
  MAP 30
 331: ==> r 8
  UNMAP 2:0
  OUT
- ZERO
+ IN
  MAP 31
 332: ==> w 0
  SEGV
@@ -1188,7 +1188,7 @@
 346: ==> r 1
  UNMAP 0:33
  OUT
- ZERO
+ IN
  MAP 9
 347: ==> w 5
 348: ==> r 55
@@ -1212,7 +1212,7 @@
  MAP 13
 353: ==> r 13
  UNMAP 0:1
- ZERO
+ IN
  MAP 14
 354: ==> r 4
  UNMAP 0:31
@@ -1227,7 +1227,7 @@
 356: ==> r 31
  UNMAP 0:10
  OUT
- ZERO
+ IN
  MAP 17
 357: ==> r 37
  UNMAP 0:15
@@ -1304,7 +1304,7 @@
  MAP 1
 375: ==> w 1
  UNMAP 1:22
- ZERO
+ IN
  MAP 2
 376: ==> r 59
  UNMAP 1:10
@@ -1313,7 +1313,7 @@
 377: ==> w 15
  UNMAP 1:24
  OUT
- ZERO
+ IN
  MAP 4
 378: ==> r 29
  UNMAP 1:2
@@ -1330,7 +1330,7 @@
 382: ==> r 0
  UNMAP 1:42
  OUT
- ZERO
+ IN
  MAP 7
 383: ==> r 15
 384: ==> r 13
@@ -1358,7 +1358,7 @@
  MAP 12
 391: ==> r 11
  UNMAP 2:14
- ZERO
+ IN
  MAP 13
 392: ==> r 16
  UNMAP 2:13
@@ -1473,7 +1473,7 @@
 427: ==> r 1
  UNMAP 0:15
  OUT
- ZERO
+ IN
  MAP 4
 428: ==> r 4
  UNMAP 0:29
@@ -1547,11 +1547,11 @@
  MAP 19
 449: ==> r 11
  UNMAP 2:33
- ZERO
+ IN
  MAP 20
 450: ==> r 26
  UNMAP 2:27
- ZERO
+ IN
  MAP 21
 451: ==> w 50
  UNMAP 2:36
@@ -1601,7 +1601,7 @@
 463: ==> r 11
  UNMAP 0:11
  OUT
- ZERO
+ IN
  MAP 0
 464: ==> r 48
  UNMAP 0:19
@@ -1619,11 +1619,11 @@
  MAP 3
 468: ==> r 19
  UNMAP 1:1
- ZERO
+ IN
  MAP 4
 469: ==> r 15
  UNMAP 1:4
- ZERO
+ IN
  MAP 5
 470: ==> w 1
  UNMAP 1:31
@@ -1669,7 +1669,7 @@
 483: ==> w 18
  UNMAP 1:63
  OUT
- ZERO
+ IN
  MAP 14
 484: ==> r 11
  UNMAP 1:34
@@ -1677,7 +1677,7 @@
  MAP 15
 485: ==> w 2
  UNMAP 1:52
- ZERO
+ IN
  MAP 16
 486: ==> r 47
  UNMAP 1:3
@@ -1716,16 +1716,16 @@
  MAP 23
 496: ==> r 1
  UNMAP 1:35
- ZERO
+ IN
  MAP 24
 497: ==> r 4
  UNMAP 1:29
- ZERO
+ IN
  MAP 25
 498: ==> r 11
  UNMAP 2:6
  OUT
- ZERO
+ IN
  MAP 26
 499: ==> w 2
  UNMAP 2:24
@@ -1742,20 +1742,20 @@
  MAP 29
 503: ==> r 5
  UNMAP 2:28
- ZERO
+ IN
  MAP 30
 504: ==> r 8
  UNMAP 2:32
- ZERO
+ IN
  MAP 31
 505: ==> r 17
 506: ==> w 32
  UNMAP 2:11
- ZERO
+ IN
  MAP 0
 507: ==> r 27
  UNMAP 2:48
- ZERO
+ IN
  MAP 1
 508: ==> r 38
  UNMAP 2:12
@@ -1813,7 +1813,7 @@
 526: ==> r 5
  UNMAP 0:19
  OUT
- ZERO
+ IN
  MAP 12
 527: ==> w 1
  UNMAP 0:60
@@ -1822,13 +1822,13 @@
 528: ==> r 15
  UNMAP 0:18
  OUT
- ZERO
+ IN
  MAP 14
 529: ==> r 15
 530: ==> r 5
 531: ==> r 2
  UNMAP 0:11
- ZERO
+ IN
  MAP 15
 532: ==> r 14
  UNMAP 0:2
@@ -1851,7 +1851,7 @@
  MAP 19
 537: ==> r 42
  UNMAP 0:23
- ZERO
+ IN
  MAP 20
 538: ==> w 10
  UNMAP 1:16
@@ -1864,7 +1864,7 @@
  MAP 22
 540: ==> r 31
  UNMAP 1:22
- ZERO
+ IN
  MAP 23
 541: ==> w 15
  UNMAP 1:1
@@ -1951,7 +1951,7 @@
  MAP 8
 566: ==> r 12
  UNMAP 2:6
- ZERO
+ IN
  MAP 9
 567: ==> r 33
  UNMAP 2:41
@@ -1964,12 +1964,12 @@
  MAP 11
 569: ==> r 8
  UNMAP 2:5
- ZERO
+ IN
  MAP 12
 570: ==> r 5
  UNMAP 2:1
  OUT
- ZERO
+ IN
  MAP 13
 571: ==> r 3
 572: ==> r 3
@@ -2008,7 +2008,7 @@
 583: ==> r 2
  UNMAP 0:10
  OUT
- ZERO
+ IN
  MAP 21
 584: ==> r 2
 585: ==> r 22
@@ -2052,7 +2052,7 @@
 594: ==> r 6
  UNMAP 0:53
  OUT
- ZERO
+ IN
  MAP 30
 595: ==> w 8
  UNMAP 0:14
@@ -2061,7 +2061,7 @@
  MAP 31
 596: ==> r 15
  UNMAP 0:32
- ZERO
+ IN
  MAP 0
 597: ==> r 21
  UNMAP 0:18
@@ -2088,7 +2088,7 @@
 603: ==> r 14
  UNMAP 0:8
  OUT
- ZERO
+ IN
  MAP 6
 604: ==> w 0
 605: ==> r 0
@@ -2103,7 +2103,7 @@
  SEGV
 611: ==> r 23
  UNMAP 1:3
- ZERO
+ IN
  MAP 8
 612: ==> r 60
  UNMAP 1:12
@@ -2119,7 +2119,7 @@
  MAP 11
 615: ==> w 0
  UNMAP 1:8
- ZERO
+ IN
  MAP 12
 616: ==> r 29
  UNMAP 1:5
@@ -2133,7 +2133,7 @@
 619: ==> r 6
  UNMAP 1:38
  OUT
- ZERO
+ IN
  MAP 15
 620: ==> r 14
  UNMAP 1:2
@@ -2154,7 +2154,7 @@
  MAP 18
 625: ==> w 56
  UNMAP 2:36
- ZERO
+ IN
  MAP 19
 626: ==> w 14
 627: ==> r 21
@@ -2167,7 +2167,7 @@
  MAP 21
 629: ==> w 32
  UNMAP 2:22
- ZERO
+ IN
  MAP 22
 630: ==> r 33
  UNMAP 2:9
@@ -2180,12 +2180,12 @@
 634: ==> r 8
  UNMAP 2:54
  OUT
- ZERO
+ IN
  MAP 24
 635: ==> r 14
  UNMAP 2:3
  OUT
- ZERO
+ IN
  MAP 25
 636: ==> r 15
  UNMAP 2:4
@@ -2197,7 +2197,7 @@
  MAP 27
 638: ==> r 2
  UNMAP 2:24
- ZERO
+ IN
  MAP 28
 639: ==> w 9
  UNMAP 2:60
@@ -2251,7 +2251,7 @@
  MAP 7
 654: ==> r 35
  UNMAP 0:23
- ZERO
+ IN
  MAP 8
 655: ==> r 11
 656: ==> c 2
@@ -2301,11 +2301,11 @@
 667: ==> r 19
  UNMAP 0:56
  OUT
- ZERO
+ IN
  MAP 19
 668: ==> r 36
  UNMAP 0:21
- ZERO
+ IN
  MAP 20
 669: ==> r 4
  UNMAP 0:5
@@ -2318,7 +2318,7 @@
  MAP 22
 671: ==> r 33
  UNMAP 0:33
- ZERO
+ IN
  MAP 23
 672: ==> r 20
  UNMAP 1:8
@@ -2336,11 +2336,11 @@
 676: ==> r 4
 677: ==> w 43
  UNMAP 1:31
- ZERO
+ IN
  MAP 27
 678: ==> r 1
  UNMAP 1:2
- ZERO
+ IN
  MAP 28
 679: ==> w 21
 680: ==> r 0
@@ -2358,7 +2358,7 @@
  MAP 30
 686: ==> r 11
  UNMAP 1:28
- ZERO
+ IN
  MAP 31
 687: ==> c 0
 688: ==> r 49
@@ -2367,15 +2367,15 @@
  MAP 0
 689: ==> r 27
  UNMAP 1:25
- ZERO
+ IN
  MAP 1
 690: ==> r 16
  UNMAP 1:32
- ZERO
+ IN
  MAP 2
 691: ==> r 28
  UNMAP 1:16
- ZERO
+ IN
  MAP 3
 692: ==> r 35
  UNMAP 1:46
@@ -2401,7 +2401,7 @@
  MAP 7
 699: ==> r 9
  UNMAP 1:35
- ZERO
+ IN
  MAP 8
 700: ==> r 24
  UNMAP 2:0
@@ -2409,7 +2409,7 @@
  MAP 9
 701: ==> r 23
  UNMAP 2:46
- ZERO
+ IN
  MAP 10
 702: ==> w 32
  UNMAP 2:29
@@ -2430,7 +2430,7 @@
 708: ==> r 9
 709: ==> r 20
  UNMAP 2:12
- ZERO
+ IN
  MAP 14
 710: ==> w 4
  UNMAP 2:49
@@ -2457,7 +2457,7 @@
  MAP 19
 717: ==> w 3
  UNMAP 2:36
- ZERO
+ IN
  MAP 20
 718: ==> r 30
  UNMAP 2:4
@@ -2465,22 +2465,22 @@
  MAP 21
 719: ==> r 40
  UNMAP 2:7
- ZERO
+ IN
  MAP 22
 720: ==> r 3
 721: ==> r 12
  UNMAP 2:33
- ZERO
+ IN
  MAP 23
 722: ==> r 4
  UNMAP 2:20
- ZERO
+ IN
  MAP 24
 723: ==> r 30
 724: ==> r 11
  UNMAP 2:8
  OUT
- ZERO
+ IN
  MAP 25
 725: ==> r 51
  UNMAP 2:10
@@ -2490,23 +2490,23 @@
 726: ==> r 8
  UNMAP 2:43
  OUT
- ZERO
+ IN
  MAP 27
 727: ==> r 26
  UNMAP 2:1
- ZERO
+ IN
  MAP 28
 728: ==> r 2
  UNMAP 2:50
- ZERO
+ IN
  MAP 29
 729: ==> r 18
  UNMAP 2:54
- ZERO
+ IN
  MAP 30
 730: ==> w 16
  UNMAP 2:11
- ZERO
+ IN
  MAP 31
 731: ==> r 16
 732: ==> r 2
@@ -2514,20 +2514,20 @@
  SEGV
 734: ==> w 55
  UNMAP 0:49
- ZERO
+ IN
  MAP 0
 735: ==> w 4
 736: ==> r 18
 737: ==> r 14
  UNMAP 0:27
- ZERO
+ IN
  MAP 1
 738: ==> r 22
 739: ==> r 0
  SEGV
 740: ==> w 6
  UNMAP 0:16
- ZERO
+ IN
  MAP 2
 741: ==> w 9
  UNMAP 0:28
@@ -2541,12 +2541,12 @@
 744: ==> r 12
  UNMAP 0:0
  OUT
- ZERO
+ IN
  MAP 5
 745: ==> r 6
  UNMAP 0:43
  OUT
- ZERO
+ IN
  MAP 6
 746: ==> r 24
  UNMAP 0:3
@@ -2572,7 +2572,7 @@
  MAP 11
 752: ==> r 11
  UNMAP 0:5
- ZERO
+ IN
  MAP 12
 753: ==> w 35
  UNMAP 0:12
@@ -2580,12 +2580,12 @@
  MAP 13
 754: ==> w 14
  UNMAP 0:20
- ZERO
+ IN
  MAP 14
 755: ==> w 0
  UNMAP 0:4
  OUT
- ZERO
+ IN
  MAP 15
 756: ==> r 3
  UNMAP 1:21
@@ -2600,7 +2600,7 @@
 759: ==> r 10
 760: ==> r 32
  UNMAP 1:22
- ZERO
+ IN
  MAP 18
 761: ==> r 52
  UNMAP 1:45
@@ -2614,15 +2614,15 @@
 763: ==> c 0
 764: ==> r 6
  UNMAP 1:30
- ZERO
+ IN
  MAP 21
 765: ==> r 10
  UNMAP 1:40
- ZERO
+ IN
  MAP 22
 766: ==> r 9
  UNMAP 1:12
- ZERO
+ IN
  MAP 23
 767: ==> r 30
  UNMAP 1:4
@@ -2631,7 +2631,7 @@
  MAP 24
 768: ==> r 18
  UNMAP 1:11
- ZERO
+ IN
  MAP 25
 769: ==> r 14
  UNMAP 1:51
@@ -2647,7 +2647,7 @@
  MAP 28
 772: ==> r 16
  UNMAP 1:2
- ZERO
+ IN
  MAP 29
 773: ==> r 0
  UNMAP 1:18
@@ -2666,7 +2666,7 @@
 776: ==> r 10
 777: ==> w 11
  UNMAP 1:14
- ZERO
+ IN
  MAP 1
 778: ==> r 32
  UNMAP 1:6
@@ -2682,7 +2682,7 @@
 781: ==> r 11
 782: ==> r 20
  UNMAP 2:53
- ZERO
+ IN
  MAP 4
 783: ==> r 59
  UNMAP 2:12
@@ -2691,7 +2691,7 @@
  MAP 5
 784: ==> r 23
  UNMAP 2:6
- ZERO
+ IN
  MAP 6
 785: ==> r 21
  UNMAP 2:24
@@ -2722,7 +2722,7 @@
 792: ==> w 45
  UNMAP 2:35
  OUT
- ZERO
+ IN
  MAP 13
 793: ==> r 4
  UNMAP 2:14
@@ -2761,19 +2761,19 @@
 803: ==> c 2
 804: ==> w 38
  UNMAP 0:6
- ZERO
+ IN
  MAP 21
 805: ==> w 31
  UNMAP 0:10
- ZERO
+ IN
  MAP 22
 806: ==> r 8
  UNMAP 0:9
- ZERO
+ IN
  MAP 23
 807: ==> r 29
  UNMAP 0:30
- ZERO
+ IN
  MAP 24
 808: ==> r 4
  UNMAP 0:18
@@ -2781,7 +2781,7 @@
  MAP 25
 809: ==> r 6
  UNMAP 0:14
- ZERO
+ IN
  MAP 26
 810: ==> r 20
  UNMAP 0:61
@@ -2797,11 +2797,11 @@
  MAP 29
 813: ==> r 11
  UNMAP 0:0
- ZERO
+ IN
  MAP 30
 814: ==> r 41
  UNMAP 0:35
- ZERO
+ IN
  MAP 31
 815: ==> w 28
  UNMAP 0:13
@@ -2835,28 +2835,28 @@
 824: ==> r 55
 825: ==> r 6
  UNMAP 0:23
- ZERO
+ IN
  MAP 6
 826: ==> r 23
  UNMAP 0:21
- ZERO
+ IN
  MAP 7
 827: ==> r 61
  UNMAP 0:31
- ZERO
+ IN
  MAP 8
 828: ==> r 6
 829: ==> r 33
  UNMAP 0:54
- ZERO
+ IN
  MAP 9
 830: ==> r 3
  UNMAP 1:54
- ZERO
+ IN
  MAP 10
 831: ==> r 0
  UNMAP 1:13
- ZERO
+ IN
  MAP 11
 832: ==> r 56
  UNMAP 1:25
@@ -2878,11 +2878,11 @@
  MAP 14
 837: ==> r 12
  UNMAP 1:9
- ZERO
+ IN
  MAP 15
 838: ==> r 23
  UNMAP 1:24
- ZERO
+ IN
  MAP 16
 839: ==> r 44
  UNMAP 1:6
@@ -2899,14 +2899,14 @@
  MAP 19
 842: ==> w 20
  UNMAP 1:7
- ZERO
+ IN
  MAP 20
 843: ==> r 36
  SEGV
 844: ==> w 26
  UNMAP 2:38
  OUT
- ZERO
+ IN
  MAP 21
 845: ==> r 28
  UNMAP 2:31
@@ -2915,7 +2915,7 @@
  MAP 22
 846: ==> w 6
  UNMAP 2:8
- ZERO
+ IN
  MAP 23
 847: ==> r 0
  SEGV
@@ -2926,12 +2926,12 @@
  MAP 24
 850: ==> r 19
  UNMAP 2:4
- ZERO
+ IN
  MAP 25
 851: ==> w 6
 852: ==> r 18
  UNMAP 2:6
- ZERO
+ IN
  MAP 26
 853: ==> r 19
 854: ==> r 36
@@ -2942,35 +2942,35 @@
  MAP 27
 856: ==> w 11
  UNMAP 2:10
- ZERO
+ IN
  MAP 28
 857: ==> c 2
 858: ==> r 46
  UNMAP 2:23
  OUT
- ZERO
+ IN
  MAP 29
 859: ==> r 19
  UNMAP 2:11
- ZERO
+ IN
  MAP 30
 860: ==> w 27
  UNMAP 2:41
- ZERO
+ IN
  MAP 31
 861: ==> r 18
  UNMAP 2:28
  OUT
- ZERO
+ IN
  MAP 0
 862: ==> r 39
 863: ==> w 29
  UNMAP 2:21
- ZERO
+ IN
  MAP 1
 864: ==> r 10
  UNMAP 2:7
- ZERO
+ IN
  MAP 2
 865: ==> r 17
  UNMAP 2:39
@@ -2988,12 +2988,12 @@
  MAP 5
 868: ==> r 40
  UNMAP 0:6
- ZERO
+ IN
  MAP 6
 869: ==> r 46
 870: ==> w 8
  UNMAP 0:23
- ZERO
+ IN
  MAP 7
 871: ==> r 27
 872: ==> r 24
@@ -3002,7 +3002,7 @@
  MAP 8
 873: ==> r 54
  UNMAP 0:33
- ZERO
+ IN
  MAP 9
 874: ==> r 7
  UNMAP 0:3
@@ -3011,7 +3011,7 @@
 875: ==> r 10
 876: ==> w 1
  UNMAP 0:0
- ZERO
+ IN
  MAP 11
 877: ==> w 22
  UNMAP 0:56
@@ -3027,12 +3027,12 @@
 881: ==> r 56
  UNMAP 1:52
  OUT
- ZERO
+ IN
  MAP 14
 882: ==> w 19
  UNMAP 1:12
  OUT
- ZERO
+ IN
  MAP 15
 883: ==> r 29
  UNMAP 1:23
@@ -3040,26 +3040,26 @@
  MAP 16
 884: ==> w 3
  UNMAP 1:44
- ZERO
+ IN
  MAP 17
 885: ==> r 36
  UNMAP 1:4
- ZERO
+ IN
  MAP 18
 886: ==> r 16
  UNMAP 1:42
  OUT
- ZERO
+ IN
  MAP 19
 887: ==> r 31
  UNMAP 1:20
  OUT
- ZERO
+ IN
  MAP 20
 888: ==> r 28
  UNMAP 1:26
  OUT
- ZERO
+ IN
  MAP 21
 889: ==> w 24
  UNMAP 1:28
@@ -3068,7 +3068,7 @@
 890: ==> r 6
  UNMAP 1:6
  OUT
- ZERO
+ IN
  MAP 23
 891: ==> r 19
 892: ==> r 4
@@ -3095,7 +3095,7 @@
  MAP 28
 898: ==> r 4
  UNMAP 2:46
- ZERO
+ IN
  MAP 29
 899: ==> w 30
  UNMAP 2:19
@@ -3133,7 +3133,7 @@
  MAP 5
 907: ==> w 9
  UNMAP 2:40
- ZERO
+ IN
  MAP 6
 908: ==> w 52
  UNMAP 2:8
@@ -3147,7 +3147,7 @@
  MAP 8
 911: ==> r 18
  UNMAP 2:54
- ZERO
+ IN
  MAP 9
 912: ==> c 2
 913: ==> r 63
@@ -3196,7 +3196,7 @@
 924: ==> c 0
 925: ==> r 23
  UNMAP 0:16
- ZERO
+ IN
  MAP 19
 926: ==> r 15
  UNMAP 0:31
@@ -3207,12 +3207,12 @@
 928: ==> w 15
 929: ==> r 56
  UNMAP 0:28
- ZERO
+ IN
  MAP 21
 930: ==> r 0
  UNMAP 0:24
  OUT
- ZERO
+ IN
  MAP 22
 931: ==> r 8
  UNMAP 0:6
@@ -3220,7 +3220,7 @@
  MAP 23
 932: ==> r 14
  UNMAP 0:4
- ZERO
+ IN
  MAP 24
 933: ==> w 52
  UNMAP 1:1
@@ -3234,7 +3234,7 @@
  SEGV
 936: ==> r 2
  UNMAP 1:7
- ZERO
+ IN
  MAP 27
 937: ==> r 39
  UNMAP 1:17
@@ -3242,7 +3242,7 @@
  MAP 28
 938: ==> r 13
  UNMAP 1:4
- ZERO
+ IN
  MAP 29
 939: ==> r 26
  UNMAP 1:30
@@ -3271,7 +3271,7 @@
 947: ==> w 6
  UNMAP 1:29
  OUT
- ZERO
+ IN
  MAP 2
 948: ==> r 38
  UNMAP 1:22
@@ -3279,7 +3279,7 @@
  MAP 3
 949: ==> r 16
  UNMAP 1:28
- ZERO
+ IN
  MAP 4
 950: ==> w 11
  UNMAP 1:43
@@ -3299,7 +3299,7 @@
 956: ==> r 40
  UNMAP 1:52
  OUT
- ZERO
+ IN
  MAP 7
 957: ==> r 55
  UNMAP 1:38
@@ -3316,7 +3316,7 @@
  MAP 10
 960: ==> w 27
  UNMAP 2:16
- ZERO
+ IN
  MAP 11
 961: ==> r 12
  UNMAP 2:34
@@ -3329,15 +3329,15 @@
  MAP 13
 963: ==> r 19
  UNMAP 2:12
- ZERO
+ IN
  MAP 14
 964: ==> w 1
  UNMAP 2:0
- ZERO
+ IN
  MAP 15
 965: ==> r 8
  UNMAP 2:43
- ZERO
+ IN
  MAP 16
 966: ==> w 0
  SEGV
@@ -3348,17 +3348,17 @@
 968: ==> r 26
 969: ==> r 23
  UNMAP 2:52
- ZERO
+ IN
  MAP 18
 970: ==> r 10
 971: ==> r 24
  UNMAP 0:23
- ZERO
+ IN
  MAP 19
 972: ==> r 14
  UNMAP 0:15
  OUT
- ZERO
+ IN
  MAP 20
 973: ==> r 7
  UNMAP 0:56
@@ -3371,7 +3371,7 @@
  MAP 22
 976: ==> r 2
  UNMAP 0:8
- ZERO
+ IN
  MAP 23
 977: ==> r 21
  UNMAP 0:14
@@ -3381,19 +3381,19 @@
 979: ==> r 2
  UNMAP 0:52
  OUT
- ZERO
+ IN
  MAP 25
 980: ==> r 18
  UNMAP 0:58
- ZERO
+ IN
  MAP 26
 981: ==> w 21
  UNMAP 0:2
- ZERO
+ IN
  MAP 27
 982: ==> r 36
  UNMAP 0:39
- ZERO
+ IN
  MAP 28
 983: ==> w 59
  UNMAP 0:13
@@ -3401,12 +3401,12 @@
  MAP 29
 984: ==> r 13
  UNMAP 0:26
- ZERO
+ IN
  MAP 30
 985: ==> r 40
  UNMAP 0:40
  OUT
- ZERO
+ IN
  MAP 31
 986: ==> w 22
  UNMAP 0:25
@@ -3442,11 +3442,11 @@
  MAP 6
 995: ==> r 15
  UNMAP 1:40
- ZERO
+ IN
  MAP 7
 996: ==> w 11
  UNMAP 1:55
- ZERO
+ IN
  MAP 8
 997: ==> r 2
 998: ==> r 34
@@ -3455,7 +3455,7 @@
  MAP 9
 999: ==> r 12
  UNMAP 1:10
- ZERO
+ IN
  MAP 10
 1000: ==> c 0
 1001: ==> r 6
@@ -3482,7 +3482,7 @@
  MAP 15
 1006: ==> w 10
  UNMAP 1:8
- ZERO
+ IN
  MAP 16
 1007: ==> r 10
 1008: ==> r 34
@@ -3491,7 +3491,7 @@
  MAP 17
 1009: ==> r 32
  UNMAP 1:23
- ZERO
+ IN
  MAP 18
 1010: ==> w 12
  UNMAP 1:24
@@ -3500,7 +3500,7 @@
 1011: ==> r 10
 1012: ==> r 27
  UNMAP 1:14
- ZERO
+ IN
  MAP 20
 1013: ==> r 6
 1014: ==> w 3
@@ -3510,15 +3510,15 @@
 1015: ==> c 1
 1016: ==> r 8
  UNMAP 1:43
- ZERO
+ IN
  MAP 22
 1017: ==> r 12
  UNMAP 1:2
- ZERO
+ IN
  MAP 23
 1018: ==> r 18
  UNMAP 1:21
- ZERO
+ IN
  MAP 24
 1019: ==> w 52
  UNMAP 2:2
@@ -3533,7 +3533,7 @@
 1022: ==> r 50
  UNMAP 2:21
  OUT
- ZERO
+ IN
  MAP 27
 1023: ==> w 54
  UNMAP 2:36
@@ -3546,7 +3546,7 @@
  MAP 29
 1025: ==> r 47
  UNMAP 2:13
- ZERO
+ IN
  MAP 30
 1026: ==> r 15
  UNMAP 2:40
@@ -3565,7 +3565,7 @@
 1032: ==> c 2
 1033: ==> r 6
  UNMAP 2:25
- ZERO
+ IN
  MAP 1
 1034: ==> r 4
  UNMAP 2:58
@@ -3578,26 +3578,26 @@
 1036: ==> r 41
  UNMAP 2:23
  OUT
- ZERO
+ IN
  MAP 4
 1037: ==> r 2
  UNMAP 2:17
  OUT
- ZERO
+ IN
  MAP 5
 1038: ==> r 15
 1039: ==> r 13
  UNMAP 2:7
- ZERO
+ IN
  MAP 6
 1040: ==> r 33
  UNMAP 2:15
- ZERO
+ IN
  MAP 7
 1041: ==> r 18
  UNMAP 2:11
  OUT
- ZERO
+ IN
  MAP 8
 1042: ==> r 49
  UNMAP 2:34
@@ -3623,13 +3623,13 @@
 1048: ==> r 53
 1049: ==> r 22
 1050: ==> r 9
-PT[0]: * 1:R-- * 3:RM- * * * * * * 10:RM- # 12:RM- * * # * * * # * * * * 24:R-- * * 27:R-- * * * * 32:R-- * 34:R-- * * * * * # * * # * * * * # * # * # # * * * * * * * * * *
-PT[1]: * # * # * * # * 8:R-- # * # 12:R-- * * 15:R-- # * 18:R-- * # * * * * # * # * # 30:R-- * * * * * * # # * * 41:R-- * * * 45:R-- * 47:R-- * * 50:R-- * 52:RM- * 54:RM- * * * * * * * * #
-PT[2]: * # 2:R-- * 4:R-- * 6:R-- * 8:R-- 9:R-- * # * 13:R-- # * * # 18:R-- * * # 22:R-- # * * # * # * * # * 33:R-- * # * * # # * 41:R-- * * * * * * * 49:R-- * 51:R-- * 53:RM- * * * * * # * * * *
+PT[0]: # 1:R-S # 3:RMS # * # * # # 10:RMS # 12:RM- # # # # * # # # * # # 24:R-S * * 27:R-S # * * # 32:R-S # 34:R-- * # * * # # * # # * * * * # * # * # # # * # * * * * # * *
+PT[1]: * # # # # # # * 8:R-S # # # 12:R-S * # 15:R-- # * 18:R-S # # # # # # # # # * # 30:R-S * # * * # * # # * # 41:R-S # # # 45:R-S # 47:R-S * # 50:R-S * 52:RMS * 54:RM- # * * * * * * * #
+PT[2]: # # 2:R-S # 4:R-- # 6:R-S * 8:R-S 9:R-S # # # 13:R-S # # * # 18:R-S # * # 22:R-S # * * # # # # * # # 33:R-S # # # * # # # 41:R-S * # * * # * * 49:R-- * 51:R-- * 53:RM- # * * * * # * * * *
 FT: 1:45 2:6 2:4 2:53 2:41 2:2 2:13 2:33 2:18 2:49 2:9 2:22 2:8 2:51 0:1 0:24 0:10 0:34 0:32 0:12 0:27 0:3 1:8 1:12 1:18 1:52 1:41 1:50 1:54 1:30 1:47 1:15
-PROC[0]: U=235 M=243 I=68 O=77 FI=0 FO=0 Z=175 SV=19 SP=0
-TOTALCOST 1051 51 0 1919780 4
-PROC[1]: U=252 M=263 I=67 O=80 FI=0 FO=0 Z=196 SV=16 SP=0
-TOTALCOST 1051 51 0 1919780 4
-PROC[2]: U=263 M=276 I=55 O=68 FI=0 FO=0 Z=221 SV=0 SP=0
-TOTALCOST 1051 51 0 1919780 4
+PROC[0]: U=235 M=243 I=122 O=77 FI=0 FO=0 Z=121 SV=19 SP=0
+TOTALCOST 1051 51 0 2465730 4
+PROC[1]: U=252 M=263 I=132 O=80 FI=0 FO=0 Z=131 SV=16 SP=0
+TOTALCOST 1051 51 0 2465730 4
+PROC[2]: U=263 M=276 I=115 O=68 FI=0 FO=0 Z=161 SV=0 SP=0
+TOTALCOST 1051 51 0 2465730 4
