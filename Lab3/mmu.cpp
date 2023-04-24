@@ -143,13 +143,16 @@ public:
 };
 
 class NRU_Pager: public Pager {
-    int LAST_RESET_INSTR_NUM = 0;
+    int LAST_RESET_INSTR_NUM = -1;
     int hand = 0;
 public:
     virtual Frame *select_victim_frame() {
         PTE *pte;
         int class_index;
         bool reset_referenced = (INSTR_POS - LAST_RESET_INSTR_NUM) >= NRU_RESET_INSTR_LIMIT;
+        if (reset_referenced) {
+            LAST_RESET_INSTR_NUM = INSTR_POS;
+        }
         Frame *candidate_frame, *curr_frame;
         int candidate_frame_class_index = 4;
         for(int i=0; i<max_frames; i++) {
@@ -246,11 +249,53 @@ bool page_fault_handler(int vpage, VMA **vma) {
     return vpage_exists;
 }
 
+void print_frame_table() {
+    printf("FT:");
+    for (int i=0; i<max_frames; i++) {
+        if(frame_table[i].is_mapped) {
+            printf(" %d:%d", frame_table[i].pid, frame_table[i].page_id);
+        } else {
+            printf(" *");
+        }
+    }
+    printf("\n");
+}
+
+void print_page_table(int pid) {
+    PTE *p;
+    printf("PT[%d]:", pid);
+    for (int j=0; j<MAX_VPAGES; j++) {
+        p = &processes[pid]->page_table[j];
+        if (!p->valid) {
+            if (p->paged_out && !p->file_mapped) {
+                printf(" #");
+            } else {
+                printf(" *");
+            }
+        } else {
+            printf(" %d:%c%c%c", j, p->referenced?'R':'-', p->modified?'M':'-', (p->paged_out && !p->file_mapped)?'S':'-');
+        }
+    }
+    printf("\n");
+}
+
+void print_all_page_tables() {
+    for (int i=0; i<processes.size(); i++) {
+        print_page_table(i);
+    }
+}
+
 void run_simulation() {
     char operation;
     int vpage;
 
     while (get_next_instruction(operation, vpage)) {
+        if (curr_options.y)
+            print_all_page_tables();
+        else if (curr_options.x && curr_proc!=NULL)
+            print_page_table(curr_proc->pid);
+        if (curr_options.f)
+            print_frame_table();
         if (curr_options.O)
             printf("%d: ==> %c %d\n", INSTR_POS, operation, vpage);
         if (operation == 'c') {
@@ -521,35 +566,11 @@ int main(int argc, char **argv) {
     run_simulation();
 
     if (curr_options.P) {
-        PTE *p;
-        for (int i=0; i<processes.size(); i++) {
-            printf("PT[%d]:", processes[i]->pid);
-            for (int j=0; j<MAX_VPAGES; j++) {
-                p = &processes[i]->page_table[j];
-                if (!p->valid) {
-                    if (p->paged_out && !p->file_mapped) {
-                        printf(" #");
-                    } else {
-                        printf(" *");
-                    }
-                } else {
-                    printf(" %d:%c%c%c", j, p->referenced?'R':'-', p->modified?'M':'-', (p->paged_out && !p->file_mapped)?'S':'-');
-                }
-            }
-            printf("\n");
-        }
+        print_all_page_tables();
     }
 
     if (curr_options.F) {
-        printf("FT:");
-        for (int i=0; i<max_frames; i++) {
-            if(frame_table[i].is_mapped) {
-                printf(" %d:%d", frame_table[i].pid, frame_table[i].page_id);
-            } else {
-                printf(" *");
-            }
-        }
-        printf("\n");
+        print_frame_table();
     }
 
     if (curr_options.S) {
