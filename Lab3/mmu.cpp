@@ -36,25 +36,25 @@ struct Options{
 Options curr_options;
 
 typedef struct {
-    unsigned int valid: 1;
-    unsigned int referenced: 1;
-    unsigned int modified: 1;
-    unsigned int write_protect: 1;
-    unsigned int paged_out: 1;
-    unsigned int page_frame_num: 7;
+    unsigned int valid: 1=0;
+    unsigned int referenced: 1=0;
+    unsigned int modified: 1=0;
+    unsigned int write_protect: 1=0;
+    unsigned int paged_out: 1=0;
+    unsigned int page_frame_num: 7=0;
 
-    unsigned int is_vma_mapped: 1;
-    unsigned int file_mapped: 1;
+    unsigned int is_vma_mapped: 1=0;
+    unsigned int file_mapped: 1=0;
     // TODO: check is we need to initialize to 0
 } PTE;
 
 // TODO: Optimize storage
 typedef struct {
-    int pid;
-    int page_id;
-    bool is_mapped;
-    unsigned int age;
-    unsigned int last_use_time;
+    int pid=0;
+    int page_id=0;
+    bool is_mapped=0;
+    unsigned int age=0;
+    unsigned int last_use_time=0;
 } Frame;
 
 Frame* frame_table;
