@@ -122,6 +122,24 @@ public:
     }
 };
 
+class Clock_Pager: public Pager {
+    int head;
+public:
+    Clock_Pager() {
+        head = 0;
+    }
+
+    virtual Frame *select_victim_frame() {
+        while(processes[frame_table[head].pid]->page_table[frame_table[head].page_id].referenced != 0) {
+            processes[frame_table[head].pid]->page_table[frame_table[head].page_id].referenced = 0;
+            head = (head + 1)%max_frames;
+        }
+        Frame *f = frame_table + head;
+        head = (head + 1)%max_frames;
+        return f;
+    }
+};
+
 Pager *CURR_PAGER;
 
 Frame *allocate_frame_from_free_list() {
@@ -428,10 +446,10 @@ int main(int argc, char **argv) {
                         CURR_PAGER = new FIFO_Pager();
                         break;
                     case 'r':
-                        CURR_PAGER = new Random_Pager(); // TODO: fix
+                        CURR_PAGER = new Random_Pager();
                         break;
                     case 'c':
-                        CURR_PAGER = new FIFO_Pager(); // TODO: fix
+                        CURR_PAGER = new Clock_Pager();
                         break;
                     case 'e':
                         CURR_PAGER = new FIFO_Pager(); // TODO: fix
