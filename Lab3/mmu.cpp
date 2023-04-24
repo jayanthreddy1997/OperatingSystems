@@ -8,6 +8,8 @@ using namespace std;
 
 const int MAX_VPAGES = 64;
 int max_frames = 128;
+int INSTR_POS = -1;
+int NRU_RESET_INSTR_LIMIT = 50;
 
 int g_randval_offset = 0;
 vector<int> randvals;
@@ -140,6 +142,38 @@ public:
     }
 };
 
+class NRU_Pager: public Pager {
+    int LAST_RESET_INSTR_NUM = 0;
+    int hand = 0;
+public:
+    virtual Frame *select_victim_frame() {
+        PTE *pte;
+        int class_index;
+        bool reset_referenced = (INSTR_POS - LAST_RESET_INSTR_NUM) >= NRU_RESET_INSTR_LIMIT;
+        Frame *candidate_frame, *curr_frame;
+        int candidate_frame_class_index = 4;
+        for(int i=0; i<max_frames; i++) {
+            curr_frame = frame_table + hand;
+            pte = &processes[curr_frame->pid]->page_table[curr_frame->page_id];
+            class_index = 2*pte->referenced + pte->modified;
+
+            if (class_index < candidate_frame_class_index) {
+                candidate_frame = curr_frame;
+                candidate_frame_class_index = class_index;
+            }
+            if (class_index == 0 && !reset_referenced) {
+                break;
+            }
+            if (reset_referenced) {
+                pte->referenced = 0;
+            }
+            hand = (hand + 1) % max_frames;
+        }
+        hand = ((candidate_frame - frame_table) + 1)%max_frames;
+        return candidate_frame;
+    }
+};
+
 Pager *CURR_PAGER;
 
 Frame *allocate_frame_from_free_list() {
@@ -178,7 +212,6 @@ Frame *get_frame() {
     return frame;
 }
 
-int INSTR_POS = -1;
 bool get_next_instruction(char &operation, int &vpage) {
     INSTR_POS += 1;
     if (INSTR_POS >= instructions.size()) {
@@ -452,7 +485,7 @@ int main(int argc, char **argv) {
                         CURR_PAGER = new Clock_Pager();
                         break;
                     case 'e':
-                        CURR_PAGER = new FIFO_Pager(); // TODO: fix
+                        CURR_PAGER = new NRU_Pager();
                         break;
                     case 'a':
                         CURR_PAGER = new FIFO_Pager(); // TODO: fix
