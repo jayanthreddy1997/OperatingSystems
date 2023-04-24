@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <deque>
+#include <vector>
 #include <unistd.h>
 #include <cctype>
 
