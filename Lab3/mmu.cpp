@@ -9,9 +9,9 @@ using namespace std;
 
 const int MAX_VPAGES = 64;
 int max_frames = 128;
-int INSTR_POS = -1;
-int NRU_RESET_INSTR_LIMIT = 50;
-int WORKING_SET_TAU = 49;
+unsigned long int INSTR_POS = -1;
+unsigned long int NRU_RESET_INSTR_LIMIT = 50;
+unsigned int WORKING_SET_TAU = 49;
 
 int g_randval_offset = 0;
 vector<int> randvals;
@@ -30,10 +30,9 @@ unsigned int C_ZEROS = 150;
 unsigned int C_SEGV = 440;
 unsigned int C_SEGPROT = 410;
 
-struct Options{
+struct {
     bool O, P, F, S, x, y, f, a;
-};
-Options curr_options;
+} curr_options;
 
 struct PTE {
     unsigned int valid: 1;
@@ -54,7 +53,7 @@ struct Frame {
     unsigned int page_id: 6;
     unsigned int is_mapped: 1;
     unsigned int age;
-    unsigned int last_use_time=0;
+    unsigned int last_use_time;
 
     Frame(): pid(0), page_id(0), is_mapped(0), age(0), last_use_time(0) {}
 };
@@ -78,7 +77,6 @@ public:
     int pid;
     vector<VMA> vma_list;
     PTE page_table[MAX_VPAGES];
-
 
     Process(int pid): pid(pid){}
 };
@@ -149,15 +147,17 @@ public:
 };
 
 class NRU_Pager: public Pager {
-    int LAST_RESET_INSTR_NUM = -1;
-    int hand = 0;
+    unsigned long int last_reset_intr_num;
+    int hand;
 public:
+    NRU_Pager(): last_reset_intr_num(-1), hand(0) {}
+
     virtual Frame *select_victim_frame() {
         PTE *pte;
         int class_index;
-        bool reset_referenced = (INSTR_POS - LAST_RESET_INSTR_NUM) >= NRU_RESET_INSTR_LIMIT;
+        bool reset_referenced = (INSTR_POS - last_reset_intr_num) >= NRU_RESET_INSTR_LIMIT;
         if (reset_referenced) {
-            LAST_RESET_INSTR_NUM = INSTR_POS;
+            last_reset_intr_num = INSTR_POS;
         }
         Frame *candidate_frame, *curr_frame;
         int candidate_frame_class_index = 4;
@@ -184,8 +184,10 @@ public:
 };
 
 class Aging_Pager: public Pager {
-    int hand = 0;
+    int hand;
 public:
+    Aging_Pager(): hand(0) {}
+
     virtual Frame *select_victim_frame() {
         PTE *pte;
 
@@ -214,8 +216,10 @@ public:
 };
 
 class Working_Set_Pager: public Pager {
-    int hand = 0;
+    int hand;
 public:
+    Working_Set_Pager(): hand(0) {}
+
     virtual Frame *select_victim_frame() {
         PTE *pte;
 
@@ -375,7 +379,7 @@ void run_simulation() {
         if (curr_options.f)
             print_frame_table();
         if (curr_options.O)
-            printf("%d: ==> %c %d\n", INSTR_POS, operation, vpage);
+            printf("%ld: ==> %c %d\n", INSTR_POS, operation, vpage);
         if (operation == 'c') {
             // Here the vpage actually points to proc id
             curr_proc = processes[vpage];
