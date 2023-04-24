@@ -35,27 +35,29 @@ struct Options{
 };
 Options curr_options;
 
-typedef struct {
-    unsigned int valid: 1=0;
-    unsigned int referenced: 1=0;
-    unsigned int modified: 1=0;
-    unsigned int write_protect: 1=0;
-    unsigned int paged_out: 1=0;
-    unsigned int page_frame_num: 7=0;
+struct PTE {
+    unsigned int valid: 1;
+    unsigned int referenced: 1;
+    unsigned int modified: 1;
+    unsigned int write_protect: 1;
+    unsigned int paged_out: 1;
+    unsigned int page_frame_num: 7;
 
-    unsigned int is_vma_mapped: 1=0;
-    unsigned int file_mapped: 1=0;
-    // TODO: check is we need to initialize to 0
-} PTE;
+    unsigned int is_vma_mapped: 1;
+    unsigned int file_mapped: 1;
 
-// TODO: Optimize storage
-typedef struct {
-    int pid=0;
-    int page_id=0;
-    bool is_mapped=0;
-    unsigned int age=0;
+    PTE(): valid(0), referenced(0), modified(0), write_protect(0), paged_out(0), page_frame_num(0), is_vma_mapped(0), file_mapped(0) {}
+};
+
+struct Frame {
+    unsigned int pid;
+    unsigned int page_id: 6;
+    unsigned int is_mapped: 1;
+    unsigned int age;
     unsigned int last_use_time=0;
-} Frame;
+
+    Frame(): pid(0), page_id(0), is_mapped(0), age(0), last_use_time(0) {}
+};
 
 Frame* frame_table;
 deque<Frame*> free_pool;
@@ -83,7 +85,7 @@ public:
 
 vector<Process*> processes;
 Process *curr_proc;
-vector<pair<char, int> > instructions; // TODO: remove this and process instructions as we read them
+vector<pair<char, int> > instructions;
 
 struct ProcessStats {
     unsigned long unmaps, maps, ins, outs, fins, fouts, zeros, segv, segprot;
@@ -384,7 +386,6 @@ void run_simulation() {
         else if (operation == 'e') {
             if (curr_options.O)
                 printf("EXIT current process %d\n", curr_proc->pid);
-            // TODO: remove unnecessary comments
             // Traverse the active process's page table and for each valid entry UNMAP the page and FOUT modified filemapped pages.
             // Note that dirty non-fmapped (anonymous) pages are not written back (OUT) as the process exits.
             // The used frame has to be returned to the free pool.
@@ -403,7 +404,7 @@ void run_simulation() {
                     curr_proc->page_table[i].valid = 0;
                     free_pool.push_back(frame_table + curr_proc->page_table[i].page_frame_num);
                 }
-                curr_proc->page_table[i].paged_out = 0; // TODO: check if correct
+                curr_proc->page_table[i].paged_out = 0;
             }
             process_exits += 1;
             cost += C_PROCESS_EXIT;
@@ -435,7 +436,7 @@ void run_simulation() {
 
             new_frame->page_id = pte - curr_proc->page_table;
             new_frame->pid = curr_proc->pid;
-            new_frame->is_mapped = true;
+            new_frame->is_mapped = 1;
 
             if(pte->paged_out) {
                 if(pte->file_mapped) {
