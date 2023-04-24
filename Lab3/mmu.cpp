@@ -10,6 +10,7 @@ const int MAX_VPAGES = 64;
 int max_frames = 128;
 int INSTR_POS = -1;
 int NRU_RESET_INSTR_LIMIT = 50;
+int WORKING_SET_TAU = 49;
 
 int g_randval_offset = 0;
 vector<int> randvals;
@@ -52,6 +53,7 @@ typedef struct {
     int page_id;
     bool is_mapped;
     unsigned int age;
+    unsigned int last_use_time;
 } Frame;
 
 Frame* frame_table;
@@ -190,7 +192,6 @@ public:
             curr_frame = frame_table + hand;
             pte = &processes[curr_frame->pid]->page_table[curr_frame->page_id];
 
-            // TODO: update age before choosing frame or after?
             curr_frame->age = curr_frame->age >> 1;
             if (pte->referenced) {
                 curr_frame->age = curr_frame->age | 0x80000000;
@@ -204,6 +205,46 @@ public:
 
             hand = (hand + 1) % max_frames;
         }
+        hand = ((candidate_frame - frame_table) + 1)%max_frames;
+        return candidate_frame;
+    }
+};
+
+class Working_Set_Pager: public Pager {
+    int hand = 0;
+public:
+    virtual Frame *select_victim_frame() {
+        PTE *pte;
+
+        Frame *candidate_frame, *curr_frame, *oldest_frame;
+        bool frame_found = false;
+        unsigned int oldest_frame_time_used = 0xffffffff;
+
+        for (int i=0; i<max_frames; i++) {
+            curr_frame = frame_table + hand;
+            pte = &processes[curr_frame->pid]->page_table[curr_frame->page_id];
+
+            if (pte->referenced) {
+                curr_frame->last_use_time = INSTR_POS;
+                pte->referenced = 0;
+            } else {
+                if (
+                        ((INSTR_POS - curr_frame->last_use_time) > WORKING_SET_TAU) && !pte->referenced) {
+                    frame_found = true;
+                    candidate_frame = curr_frame;
+                    break;
+                }
+            }
+            if (curr_frame->last_use_time < oldest_frame_time_used) {
+                oldest_frame_time_used = curr_frame->last_use_time;
+                oldest_frame = curr_frame;
+            }
+            hand = (hand + 1) % max_frames;
+        }
+        if (!frame_found) {
+            candidate_frame = oldest_frame;
+        }
+
         hand = ((candidate_frame - frame_table) + 1)%max_frames;
         return candidate_frame;
     }
@@ -245,6 +286,7 @@ Frame *get_frame() {
         }
     }
     frame->age = 0;
+    frame->last_use_time = INSTR_POS;
     return frame;
 }
 
@@ -569,7 +611,7 @@ int main(int argc, char **argv) {
                         CURR_PAGER = new Aging_Pager();
                         break;
                     case 'w':
-                        CURR_PAGER = new FIFO_Pager(); // TODO: fix
+                        CURR_PAGER = new Working_Set_Pager();
                         break;
                     default:
                         cout << "Provide valid scheduler option" << endl;

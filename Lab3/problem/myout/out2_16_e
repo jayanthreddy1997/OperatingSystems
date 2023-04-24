@@ -50,49 +50,43 @@
  ZERO
  MAP 15
 19: ==> w 29
- UNMAP 0:14
- OUT
- ZERO
- MAP 0
-20: ==> r 22
- UNMAP 0:8
- OUT
- ZERO
- MAP 1
-21: ==> w 61
- UNMAP 0:24
- OUT
- ZERO
- MAP 2
-22: ==> w 4
- UNMAP 0:39
- OUT
- ZERO
- MAP 3
-23: ==> w 13
-24: ==> r 3
-25: ==> w 51
- UNMAP 0:6
- OUT
- ZERO
- MAP 4
-26: ==> r 25
-27: ==> r 36
- UNMAP 0:5
- OUT
- ZERO
- MAP 5
-28: ==> w 4
-29: ==> r 34
  UNMAP 0:31
  ZERO
  MAP 6
-30: ==> r 38
- UNMAP 0:56
+20: ==> r 22
+ UNMAP 0:27
+ ZERO
+ MAP 8
+21: ==> w 61
+ UNMAP 0:11
+ ZERO
+ MAP 10
+22: ==> w 4
+ UNMAP 0:16
+ ZERO
+ MAP 14
+23: ==> w 13
+24: ==> r 3
+25: ==> w 51
+ UNMAP 0:22
+ ZERO
+ MAP 8
+26: ==> r 25
+27: ==> r 36
+ UNMAP 0:3
  OUT
  ZERO
- MAP 7
-PT[0]: * * * 3:RM- 4:RM- # # * # * * 11:R-- * 13:RM- # * 16:R-- * * * 20:RM- * 22:R-- * # 25:RM- * 27:R-- * 29:RM- 30:RM- * * * 34:R-- * 36:R-- * 38:R-- # * * * * * * * * * * * 51:RM- * * * * # * * * * 61:RM- * *
-FT: 0:29 0:22 0:61 0:4 0:51 0:36 0:34 0:38 0:27 0:3 0:11 0:13 0:30 0:20 0:16 0:25
-PROC[0]: U=8 M=24 I=0 O=7 FI=0 FO=0 Z=24 SV=0 SP=0
-TOTALCOST 31 1 0 34690 4
+ MAP 9
+28: ==> w 4
+29: ==> r 34
+ UNMAP 0:36
+ ZERO
+ MAP 9
+30: ==> r 38
+ UNMAP 0:34
+ ZERO
+ MAP 9
+PT[0]: * * * # 4:RM- 5:RM- 6:RM- * 8:RM- * * * * 13:RM- 14:RM- * * * * * 20:RM- * * * 24:RM- 25:RM- * * * 29:RM- 30:RM- * * * * * * * 38:R-- 39:RM- * * * * * * * * * * * 51:RM- * * * * 56:RM- * * * * 61:RM- * *
+FT: 0:14 0:8 0:24 0:39 0:6 0:5 0:29 0:56 0:51 0:38 0:61 0:13 0:30 0:20 0:4 0:25
+PROC[0]: U=8 M=24 I=0 O=1 FI=0 FO=0 Z=24 SV=0 SP=0
+TOTALCOST 31 1 0 18190 4

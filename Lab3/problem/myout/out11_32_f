@@ -102,13 +102,14 @@
  MAP 30
 40: ==> c 2
 41: ==> r 3
- ZERO
+ FIN
  MAP 31
 42: ==> r 8
  UNMAP 0:18
- ZERO
+ FIN
  MAP 0
 43: ==> w 3
+ SEGPROT
 44: ==> r 39
  UNMAP 0:4
  OUT
@@ -121,9 +122,11 @@
  MAP 2
 46: ==> w 20
  UNMAP 0:14
- ZERO
+ FIN
  MAP 3
+ SEGPROT
 47: ==> w 20
+ SEGPROT
 48: ==> r 27
  UNMAP 0:25
  OUT
@@ -131,7 +134,7 @@
  MAP 4
 49: ==> r 22
  UNMAP 0:52
- ZERO
+ FIN
  MAP 5
 50: ==> r 40
  UNMAP 0:54
@@ -158,13 +161,14 @@
  OUT
  ZERO
  MAP 10
+ SEGPROT
 57: ==> r 1
  UNMAP 0:21
  ZERO
  MAP 11
 58: ==> r 45
  UNMAP 0:35
- ZERO
+ FIN
  MAP 12
 59: ==> r 13
  UNMAP 0:0
@@ -173,19 +177,20 @@
 60: ==> r 43
  UNMAP 0:7
  OUT
- ZERO
+ FIN
  MAP 14
 61: ==> r 0
  SEGV
 62: ==> r 56
  UNMAP 0:61
  OUT
- ZERO
+ FIN
  MAP 15
 63: ==> w 5
  UNMAP 1:39
  ZERO
  MAP 16
+ SEGPROT
 64: ==> r 22
  UNMAP 1:19
  ZERO
@@ -250,10 +255,10 @@
  UNMAP 1:26
  ZERO
  MAP 30
+ SEGPROT
 80: ==> r 14
 81: ==> r 2
  UNMAP 2:3
- OUT
  ZERO
  MAP 31
 82: ==> r 29
@@ -270,10 +275,10 @@
  MAP 2
 85: ==> r 41
  UNMAP 2:20
- OUT
  ZERO
  MAP 3
 86: ==> w 14
+ SEGPROT
 87: ==> r 26
  UNMAP 2:27
  ZERO
@@ -306,7 +311,6 @@
  MAP 9
 98: ==> r 8
  UNMAP 3:8
- OUT
  ZERO
  MAP 10
 99: ==> r 15
@@ -331,7 +335,6 @@
  MAP 15
 104: ==> w 10
  UNMAP 3:5
- OUT
  ZERO
  MAP 16
 105: ==> r 19
@@ -401,7 +404,6 @@
 125: ==> c 2
 126: ==> r 59
  UNMAP 0:14
- OUT
  ZERO
  MAP 30
 127: ==> r 29
@@ -410,8 +412,9 @@
  MAP 31
 128: ==> w 11
  UNMAP 0:29
- ZERO
+ FIN
  MAP 0
+ SEGPROT
 129: ==> r 39
  UNMAP 0:7
  OUT
@@ -423,9 +426,10 @@
  MAP 2
 131: ==> r 13
  UNMAP 0:41
- ZERO
+ FIN
  MAP 3
 132: ==> w 11
+ SEGPROT
 133: ==> r 50
  UNMAP 0:26
  ZERO
@@ -433,12 +437,13 @@
 134: ==> r 9
  UNMAP 0:1
  OUT
- ZERO
+ FIN
  MAP 5
 135: ==> w 23
  UNMAP 0:23
  ZERO
  MAP 6
+ SEGPROT
 136: ==> r 49
  UNMAP 0:4
  OUT
@@ -459,7 +464,7 @@
  MAP 10
 141: ==> r 21
  UNMAP 1:15
- ZERO
+ FIN
  MAP 11
 142: ==> w 35
  UNMAP 1:7
@@ -477,13 +482,14 @@
  MAP 14
 147: ==> r 12
  UNMAP 1:41
- ZERO
+ FIN
  MAP 15
 148: ==> w 13
+ SEGPROT
 149: ==> r 17
  UNMAP 1:10
  OUT
- ZERO
+ FIN
  MAP 16
 150: ==> c 3
 151: ==> r 1
@@ -492,7 +498,7 @@
  MAP 17
 152: ==> r 60
  UNMAP 1:11
- ZERO
+ FIN
  MAP 18
 153: ==> r 28
  UNMAP 1:48
@@ -507,12 +513,13 @@
 157: ==> w 58
  UNMAP 1:3
  OUT
- ZERO
+ FIN
  MAP 21
 158: ==> w 21
  UNMAP 1:58
  ZERO
  MAP 22
+ SEGPROT
 159: ==> r 21
 160: ==> r 34
  UNMAP 1:0
@@ -522,6 +529,7 @@
  UNMAP 1:27
  ZERO
  MAP 24
+ SEGPROT
 162: ==> r 21
 163: ==> r 25
  UNMAP 1:28
@@ -532,20 +540,21 @@
 165: ==> w 63
  UNMAP 1:2
  OUT
- ZERO
+ FIN
  MAP 26
 166: ==> r 57
  UNMAP 1:23
- ZERO
+ FIN
  MAP 27
 167: ==> r 1
 168: ==> w 10
  UNMAP 1:37
  ZERO
  MAP 28
+ SEGPROT
 169: ==> r 8
  UNMAP 1:21
- IN
+ ZERO
  MAP 29
 170: ==> r 4
  UNMAP 2:59
@@ -553,27 +562,27 @@
  MAP 30
 171: ==> r 56
  UNMAP 2:29
- ZERO
+ FIN
  MAP 31
 172: ==> r 9
  UNMAP 2:11
- OUT
  ZERO
  MAP 0
 173: ==> w 12
  UNMAP 2:39
  ZERO
  MAP 1
+ SEGPROT
 174: ==> w 3
  UNMAP 2:57
  ZERO
  MAP 2
+ SEGPROT
 175: ==> c 0
 176: ==> r 47
  SEGV
 177: ==> w 55
  UNMAP 2:13
- OUT
  ZERO
  MAP 3
 178: ==> r 13
@@ -586,7 +595,6 @@
  MAP 5
 180: ==> w 22
  UNMAP 2:23
- OUT
  ZERO
  MAP 6
 181: ==> r 49
@@ -651,12 +659,11 @@
 196: ==> r 9
 197: ==> w 10
  UNMAP 3:58
- OUT
+ FOUT
  ZERO
  MAP 21
 198: ==> w 44
  UNMAP 3:21
- OUT
  ZERO
  MAP 22
 199: ==> r 17
@@ -666,7 +673,6 @@
 200: ==> r 25
 201: ==> r 54
  UNMAP 3:16
- OUT
  ZERO
  MAP 24
 202: ==> w 26
@@ -675,7 +681,7 @@
  MAP 25
 203: ==> r 11
  UNMAP 3:63
- OUT
+ FOUT
  ZERO
  MAP 26
 204: ==> r 13
@@ -686,7 +692,6 @@
  MAP 27
 207: ==> r 32
  UNMAP 3:10
- OUT
  IN
  MAP 28
 208: ==> w 39
@@ -707,12 +712,10 @@
  MAP 0
 212: ==> r 29
  UNMAP 3:12
- OUT
  ZERO
  MAP 1
 213: ==> w 20
  UNMAP 3:3
- OUT
  ZERO
  MAP 2
 214: ==> r 27
@@ -748,15 +751,16 @@
 224: ==> w 3
  UNMAP 0:9
  OUT
- IN
+ FIN
  MAP 9
+ SEGPROT
 225: ==> r 29
  UNMAP 0:8
  ZERO
  MAP 10
 226: ==> r 21
  UNMAP 0:41
- ZERO
+ FIN
  MAP 11
 227: ==> r 50
  UNMAP 0:5
@@ -769,20 +773,20 @@
  MAP 13
 229: ==> r 10
  UNMAP 0:52
- ZERO
+ FIN
  MAP 14
 230: ==> r 12
  UNMAP 0:39
- ZERO
+ FIN
  MAP 15
 231: ==> r 15
  UNMAP 0:59
  OUT
- ZERO
+ FIN
  MAP 16
 232: ==> r 8
  UNMAP 0:29
- ZERO
+ FIN
  MAP 17
 233: ==> w 45
  UNMAP 0:43
@@ -794,19 +798,21 @@
  UNMAP 0:18
  ZERO
  MAP 19
+ SEGPROT
 236: ==> w 5
  UNMAP 0:62
- IN
+ ZERO
  MAP 20
+ SEGPROT
 237: ==> r 54
  UNMAP 0:10
  OUT
- ZERO
+ FIN
  MAP 21
 238: ==> r 3
  UNMAP 0:44
  OUT
- IN
+ ZERO
  MAP 22
 239: ==> r 0
  SEGV
@@ -821,29 +827,32 @@
 242: ==> r 63
  UNMAP 0:26
  OUT
- IN
+ FIN
  MAP 25
 243: ==> w 10
  UNMAP 0:11
- IN
+ ZERO
  MAP 26
+ SEGPROT
 244: ==> w 22
  UNMAP 1:6
  ZERO
  MAP 27
+ SEGPROT
 245: ==> r 2
  UNMAP 1:32
  ZERO
  MAP 28
 246: ==> w 13
+ SEGPROT
 247: ==> r 12
  UNMAP 1:39
  OUT
- IN
+ ZERO
  MAP 29
 248: ==> r 40
  UNMAP 1:35
- ZERO
+ FIN
  MAP 30
 249: ==> r 13
 250: ==> r 1
@@ -857,7 +866,7 @@
  MAP 0
 252: ==> r 39
  UNMAP 1:29
- ZERO
+ FIN
  MAP 1
 253: ==> r 15
  UNMAP 1:20
@@ -868,20 +877,22 @@
  UNMAP 1:27
  ZERO
  MAP 3
+ SEGPROT
 255: ==> r 62
  UNMAP 1:2
- ZERO
+ FIN
  MAP 4
 256: ==> w 47
  UNMAP 1:37
  OUT
- ZERO
+ FIN
  MAP 5
 257: ==> r 14
 258: ==> w 20
  UNMAP 1:1
  ZERO
  MAP 6
+ SEGPROT
 259: ==> r 27
  UNMAP 1:51
  ZERO
@@ -895,7 +906,6 @@
 262: ==> c 0
 263: ==> r 13
  UNMAP 2:3
- OUT
  ZERO
  MAP 9
 264: ==> r 3
@@ -942,12 +952,10 @@
 276: ==> c 1
 277: ==> r 45
  UNMAP 3:9
- OUT
  ZERO
  MAP 19
 278: ==> w 4
  UNMAP 3:5
- OUT
  IN
  MAP 20
 279: ==> r 7
@@ -960,7 +968,6 @@
  MAP 22
 281: ==> w 46
  UNMAP 3:13
- OUT
  ZERO
  MAP 23
 282: ==> r 13
@@ -973,12 +980,10 @@
  MAP 25
 284: ==> r 6
  UNMAP 3:10
- OUT
  ZERO
  MAP 26
 285: ==> w 15
  UNMAP 3:22
- OUT
  ZERO
  MAP 27
 286: ==> r 59
@@ -1014,7 +1019,6 @@
  MAP 2
 296: ==> r 51
  UNMAP 3:24
- OUT
  ZERO
  MAP 3
 297: ==> w 30
@@ -1025,12 +1029,11 @@
 299: ==> w 19
 300: ==> r 35
  UNMAP 3:47
- OUT
+ FOUT
  ZERO
  MAP 5
 301: ==> w 14
  UNMAP 3:20
- OUT
  ZERO
  MAP 6
 302: ==> r 2
@@ -1041,24 +1044,25 @@
 304: ==> c 2
 305: ==> r 22
  UNMAP 3:33
- ZERO
+ FIN
  MAP 8
 306: ==> w 5
  UNMAP 0:13
- ZERO
+ FIN
  MAP 9
+ SEGPROT
 307: ==> r 9
  UNMAP 0:3
- ZERO
+ FIN
  MAP 10
 308: ==> r 21
  UNMAP 0:1
- ZERO
+ FIN
  MAP 11
 309: ==> r 1
  UNMAP 0:23
  OUT
- ZERO
+ FIN
  MAP 12
 310: ==> r 39
  UNMAP 0:5
@@ -1072,15 +1076,15 @@
  MAP 14
 312: ==> r 2
  UNMAP 0:7
- ZERO
+ FIN
  MAP 15
 313: ==> r 4
  UNMAP 0:18
- ZERO
+ FIN
  MAP 16
 314: ==> r 3
  UNMAP 0:22
- IN
+ FIN
  MAP 17
 315: ==> r 53
  UNMAP 0:34
@@ -1093,8 +1097,9 @@
 317: ==> w 7
  UNMAP 1:4
  OUT
- ZERO
+ FIN
  MAP 20
+ SEGPROT
 318: ==> r 60
  UNMAP 1:7
  ZERO
@@ -1102,8 +1107,9 @@
 319: ==> w 18
  UNMAP 1:9
  OUT
- ZERO
+ FIN
  MAP 22
+ SEGPROT
 320: ==> w 43
  UNMAP 1:46
  OUT
@@ -1117,11 +1123,11 @@
  SEGV
 323: ==> r 6
  UNMAP 1:8
- ZERO
+ FIN
  MAP 25
 324: ==> r 19
  UNMAP 1:6
- ZERO
+ FIN
  MAP 26
 325: ==> r 48
  UNMAP 1:15
@@ -1130,7 +1136,7 @@
  MAP 27
 326: ==> r 15
  UNMAP 1:59
- ZERO
+ FIN
  MAP 28
 327: ==> r 37
  UNMAP 1:31
@@ -1144,12 +1150,14 @@
  MAP 30
 330: ==> r 1
 331: ==> w 5
+ SEGPROT
 332: ==> c 3
 333: ==> w 13
  UNMAP 1:10
  OUT
- IN
+ ZERO
  MAP 31
+ SEGPROT
 334: ==> r 35
  UNMAP 1:0
  ZERO
@@ -1162,7 +1170,7 @@
  MAP 1
 337: ==> r 10
  UNMAP 1:62
- IN
+ ZERO
  MAP 2
 338: ==> r 29
  UNMAP 1:51
@@ -1175,7 +1183,7 @@
  MAP 4
 340: ==> w 48
  UNMAP 1:35
- ZERO
+ FIN
  MAP 5
 341: ==> r 34
  UNMAP 1:14
@@ -1190,65 +1198,70 @@
  SEGV
 344: ==> r 24
  UNMAP 2:22
- IN
+ ZERO
  MAP 8
 345: ==> w 20
  UNMAP 2:5
- OUT
- IN
+ ZERO
  MAP 9
+ SEGPROT
 346: ==> w 63
  UNMAP 2:9
- IN
+ FIN
  MAP 10
 347: ==> r 3
  UNMAP 2:21
- IN
+ ZERO
  MAP 11
 348: ==> w 6
  UNMAP 2:1
  ZERO
  MAP 12
+ SEGPROT
 349: ==> r 16
  UNMAP 2:39
- IN
+ ZERO
  MAP 13
 350: ==> w 33
  UNMAP 2:32
  ZERO
  MAP 14
+ SEGPROT
 351: ==> r 19
  UNMAP 2:2
  ZERO
  MAP 15
 352: ==> w 22
  UNMAP 2:4
- IN
+ ZERO
  MAP 16
+ SEGPROT
 353: ==> w 56
  UNMAP 2:3
- ZERO
+ FIN
  MAP 17
 354: ==> r 6
 355: ==> r 3
 356: ==> r 48
 357: ==> w 11
+ SEGPROT
 358: ==> w 7
  UNMAP 2:53
  ZERO
  MAP 18
+ SEGPROT
 359: ==> r 19
 360: ==> w 9
  UNMAP 2:46
  OUT
- IN
+ ZERO
  MAP 19
+ SEGPROT
 361: ==> r 36
  SEGV
 362: ==> c 0
 363: ==> r 46
  UNMAP 2:7
- OUT
  ZERO
  MAP 20
 364: ==> r 29
@@ -1258,7 +1271,6 @@
 365: ==> r 29
 366: ==> r 3
  UNMAP 2:18
- OUT
  IN
  MAP 22
 367: ==> r 5
@@ -1268,8 +1280,9 @@
  MAP 23
 368: ==> w 33
  UNMAP 2:35
- ZERO
+ FIN
  MAP 24
+ SEGPROT
 369: ==> r 51
  UNMAP 2:6
  ZERO
@@ -1299,7 +1312,6 @@
  MAP 30
 377: ==> r 36
  UNMAP 3:13
- OUT
  IN
  MAP 31
 378: ==> r 3
@@ -1322,12 +1334,11 @@
  MAP 3
 384: ==> r 13
  UNMAP 3:11
- OUT
  ZERO
  MAP 4
 385: ==> r 1
  UNMAP 3:48
- OUT
+ FOUT
  ZERO
  MAP 5
 386: ==> r 41
@@ -1344,12 +1355,11 @@
  MAP 8
 389: ==> r 35
  UNMAP 3:20
- OUT
  ZERO
  MAP 9
 390: ==> r 24
  UNMAP 3:63
- OUT
+ FOUT
  ZERO
  MAP 10
 391: ==> r 62
@@ -1358,7 +1368,6 @@
  MAP 11
 392: ==> r 0
  UNMAP 3:6
- OUT
  ZERO
  MAP 12
 393: ==> r 13
@@ -1368,7 +1377,6 @@
  MAP 13
 395: ==> r 14
  UNMAP 3:33
- OUT
  IN
  MAP 14
 396: ==> r 2
@@ -1377,23 +1385,20 @@
  MAP 15
 397: ==> w 59
  UNMAP 3:22
- OUT
  ZERO
  MAP 16
 398: ==> r 20
  UNMAP 3:56
- OUT
+ FOUT
  IN
  MAP 17
 399: ==> r 13
 400: ==> w 7
  UNMAP 3:7
- OUT
  ZERO
  MAP 18
 401: ==> r 10
  UNMAP 3:9
- OUT
  IN
  MAP 19
 402: ==> r 31
@@ -1417,7 +1422,6 @@
  MAP 23
 409: ==> r 39
  UNMAP 0:33
- OUT
  ZERO
  MAP 24
 410: ==> r 41
@@ -1432,12 +1436,12 @@
  MAP 26
 413: ==> r 11
  UNMAP 0:2
- IN
+ FIN
  MAP 27
 414: ==> r 4
  UNMAP 0:25
  OUT
- ZERO
+ FIN
  MAP 28
 415: ==> w 25
  UNMAP 0:22
@@ -1446,11 +1450,11 @@
  MAP 29
 416: ==> r 5
  UNMAP 0:9
- IN
+ FIN
  MAP 30
 417: ==> r 13
  UNMAP 0:36
- IN
+ FIN
  MAP 31
 418: ==> r 37
  UNMAP 0:38
@@ -1459,16 +1463,17 @@
 419: ==> r 15
  UNMAP 1:18
  OUT
- ZERO
+ FIN
  MAP 1
 420: ==> w 13
+ SEGPROT
 421: ==> r 12
  UNMAP 1:5
- ZERO
+ FIN
  MAP 2
 422: ==> r 3
  UNMAP 1:25
- IN
+ FIN
  MAP 3
 423: ==> w 24
  SEGV
@@ -1476,9 +1481,11 @@
 425: ==> r 4
 426: ==> w 9
  UNMAP 1:13
- ZERO
+ FIN
  MAP 4
+ SEGPROT
 427: ==> w 4
+ SEGPROT
 428: ==> c 3
 429: ==> r 18
  UNMAP 1:1
@@ -1486,11 +1493,11 @@
  MAP 5
 430: ==> r 24
  UNMAP 1:41
- IN
+ ZERO
  MAP 6
 431: ==> r 3
  UNMAP 1:17
- IN
+ ZERO
  MAP 7
 432: ==> r 24
 433: ==> r 2
@@ -1499,27 +1506,28 @@
  MAP 8
 434: ==> w 57
  UNMAP 1:35
- ZERO
+ FIN
  MAP 9
 435: ==> r 9
  UNMAP 1:24
- IN
+ ZERO
  MAP 10
 436: ==> w 26
  UNMAP 1:62
  ZERO
  MAP 11
+ SEGPROT
 437: ==> r 5
  UNMAP 1:0
- IN
+ ZERO
  MAP 12
 438: ==> w 38
  UNMAP 1:32
- ZERO
+ FIN
  MAP 13
 439: ==> r 16
  UNMAP 1:14
- IN
+ ZERO
  MAP 14
 440: ==> r 0
  SEGV
@@ -1527,14 +1535,16 @@
  UNMAP 1:2
  ZERO
  MAP 15
+ SEGPROT
 442: ==> w 4
  UNMAP 1:59
  OUT
  ZERO
  MAP 16
+ SEGPROT
 443: ==> r 59
  UNMAP 1:20
- ZERO
+ FIN
  MAP 17
 444: ==> c 0
 445: ==> r 17
@@ -1586,7 +1596,6 @@
  MAP 27
 457: ==> r 21
  UNMAP 2:4
- OUT
  IN
  MAP 28
 458: ==> w 30
@@ -1601,7 +1610,6 @@
  MAP 30
 461: ==> r 55
  UNMAP 2:13
- OUT
  IN
  MAP 31
 462: ==> w 11
@@ -1623,7 +1631,6 @@
  MAP 3
 467: ==> r 44
  UNMAP 2:9
- OUT
  ZERO
  MAP 4
 468: ==> r 61
@@ -1644,7 +1651,7 @@
  MAP 8
 472: ==> r 20
  UNMAP 3:57
- OUT
+ FOUT
  IN
  MAP 9
 473: ==> r 29
@@ -1653,7 +1660,6 @@
  MAP 10
 474: ==> r 3
  UNMAP 3:26
- OUT
  IN
  MAP 11
 475: ==> w 18
@@ -1663,7 +1669,7 @@
 476: ==> r 4
 477: ==> w 5
  UNMAP 3:38
- OUT
+ FOUT
  ZERO
  MAP 13
 478: ==> r 8
@@ -1674,12 +1680,10 @@
 480: ==> r 4
 481: ==> r 10
  UNMAP 3:35
- OUT
  IN
  MAP 15
 482: ==> r 54
  UNMAP 3:4
- OUT
  ZERO
  MAP 16
 483: ==> r 13
@@ -1723,17 +1727,18 @@
  MAP 24
 495: ==> r 5
  UNMAP 0:4
- IN
+ FIN
  MAP 25
 496: ==> w 5
+ SEGPROT
 497: ==> r 3
  UNMAP 0:28
- IN
+ FIN
  MAP 26
 498: ==> r 16
  UNMAP 0:5
  OUT
- ZERO
+ FIN
  MAP 27
 499: ==> r 44
  UNMAP 0:21
@@ -1745,16 +1750,16 @@
  MAP 29
 501: ==> r 19
  UNMAP 0:8
- ZERO
+ FIN
  MAP 30
 502: ==> r 13
  UNMAP 0:55
- IN
+ FIN
  MAP 31
 503: ==> r 8
  UNMAP 0:11
  OUT
- ZERO
+ FIN
  MAP 0
 504: ==> w 0
  SEGV
@@ -1764,7 +1769,7 @@
  MAP 1
 506: ==> r 6
  UNMAP 1:43
- ZERO
+ FIN
  MAP 2
 507: ==> r 13
 508: ==> w 42
@@ -1773,17 +1778,17 @@
  MAP 3
 509: ==> r 15
  UNMAP 1:44
- ZERO
+ FIN
  MAP 4
 510: ==> r 13
 511: ==> r 11
  UNMAP 1:61
- IN
+ FIN
  MAP 5
 512: ==> r 3
 513: ==> r 1
  UNMAP 1:6
- ZERO
+ FIN
  MAP 6
 514: ==> r 32
  UNMAP 1:12
@@ -1823,7 +1828,7 @@
 524: ==> c 3
 525: ==> r 7
  UNMAP 1:8
- IN
+ ZERO
  MAP 14
 526: ==> r 32
  UNMAP 1:10
@@ -1831,19 +1836,20 @@
  MAP 15
 527: ==> w 26
  UNMAP 1:54
- IN
+ ZERO
  MAP 16
+ SEGPROT
 528: ==> r 55
  UNMAP 1:13
- ZERO
+ FIN
  MAP 17
 529: ==> r 10
  UNMAP 1:55
- IN
+ ZERO
  MAP 18
 530: ==> r 39
  UNMAP 1:16
- ZERO
+ FIN
  MAP 19
 531: ==> r 17
  UNMAP 1:0
@@ -1855,54 +1861,55 @@
  MAP 21
 533: ==> w 57
  UNMAP 1:37
- IN
+ FIN
  MAP 22
 534: ==> r 60
  UNMAP 1:15
- ZERO
+ FIN
  MAP 23
 535: ==> w 56
  UNMAP 2:30
- IN
+ FIN
  MAP 24
 536: ==> r 36
  SEGV
 537: ==> r 25
  UNMAP 2:5
- OUT
  ZERO
  MAP 25
 538: ==> w 14
  UNMAP 2:3
  ZERO
  MAP 26
+ SEGPROT
 539: ==> r 23
 540: ==> r 58
  UNMAP 2:16
- IN
+ FIN
  MAP 27
 541: ==> w 17
+ SEGPROT
 542: ==> r 27
  UNMAP 2:44
  ZERO
  MAP 28
 543: ==> r 59
  UNMAP 2:27
- ZERO
+ FIN
  MAP 29
 544: ==> r 7
 545: ==> r 3
  UNMAP 2:19
- IN
+ ZERO
  MAP 30
 546: ==> r 20
  UNMAP 2:13
- IN
+ ZERO
  MAP 31
 547: ==> r 7
 548: ==> r 22
  UNMAP 2:8
- IN
+ ZERO
  MAP 0
 549: ==> r 15
  UNMAP 2:48
@@ -1911,7 +1918,7 @@
  MAP 1
 550: ==> r 5
  UNMAP 2:6
- IN
+ ZERO
  MAP 2
 551: ==> c 0
 552: ==> r 55
@@ -1974,7 +1981,6 @@
 567: ==> r 42
 568: ==> w 3
  UNMAP 3:26
- OUT
  IN
  MAP 16
 569: ==> r 25
@@ -1992,7 +1998,6 @@
  MAP 19
 573: ==> r 38
  UNMAP 3:17
- OUT
  ZERO
  MAP 20
 574: ==> r 56
@@ -2001,7 +2006,7 @@
  MAP 21
 575: ==> w 21
  UNMAP 3:57
- OUT
+ FOUT
  ZERO
  MAP 22
 576: ==> r 5
@@ -2010,7 +2015,7 @@
  MAP 23
 577: ==> r 52
  UNMAP 3:56
- OUT
+ FOUT
  ZERO
  MAP 24
 578: ==> r 22
@@ -2019,7 +2024,6 @@
  MAP 25
 579: ==> r 2
  UNMAP 3:14
- OUT
  IN
  MAP 26
 580: ==> w 40
@@ -2055,16 +2059,16 @@
 589: ==> c 2
 590: ==> r 10
  UNMAP 3:5
- ZERO
+ FIN
  MAP 2
 591: ==> r 2
  UNMAP 0:55
- ZERO
+ FIN
  MAP 3
 592: ==> r 8
  UNMAP 0:5
  OUT
- ZERO
+ FIN
  MAP 4
 593: ==> r 25
  UNMAP 0:9
@@ -2082,21 +2086,23 @@
  MAP 7
 596: ==> w 20
  UNMAP 0:54
- IN
+ FIN
  MAP 8
+ SEGPROT
 597: ==> r 35
  UNMAP 0:40
  IN
  MAP 9
 598: ==> r 14
  UNMAP 0:16
- ZERO
+ FIN
  MAP 10
 599: ==> w 22
  UNMAP 0:21
  OUT
- ZERO
+ FIN
  MAP 11
+ SEGPROT
 600: ==> r 63
  UNMAP 0:22
  ZERO
@@ -2104,7 +2110,7 @@
 601: ==> r 10
 602: ==> r 12
  UNMAP 0:32
- ZERO
+ FIN
  MAP 13
 603: ==> r 60
  UNMAP 0:42
@@ -2119,7 +2125,7 @@
 606: ==> r 6
  UNMAP 0:3
  OUT
- IN
+ ZERO
  MAP 16
 607: ==> r 15
  UNMAP 0:25
@@ -2128,34 +2134,37 @@
 608: ==> w 20
  UNMAP 1:58
  OUT
- IN
+ ZERO
  MAP 18
+ SEGPROT
 609: ==> w 20
+ SEGPROT
 610: ==> r 36
  SEGV
 611: ==> r 3
  UNMAP 1:25
  OUT
- IN
+ ZERO
  MAP 19
 612: ==> r 37
  UNMAP 1:38
- ZERO
+ FIN
  MAP 20
 613: ==> w 18
  UNMAP 1:56
  ZERO
  MAP 21
+ SEGPROT
 614: ==> r 5
  UNMAP 1:21
  OUT
- IN
+ ZERO
  MAP 22
 615: ==> r 0
  SEGV
 616: ==> r 10
  UNMAP 1:5
- IN
+ ZERO
  MAP 23
 617: ==> r 19
  UNMAP 1:52
@@ -2163,11 +2172,11 @@
  MAP 24
 618: ==> w 51
  UNMAP 1:22
- ZERO
+ FIN
  MAP 25
 619: ==> r 43
  UNMAP 1:2
- ZERO
+ FIN
  MAP 26
 620: ==> c 0
 621: ==> w 1
@@ -2228,7 +2237,6 @@
  MAP 7
 635: ==> w 26
  UNMAP 2:20
- OUT
  IN
  MAP 8
 636: ==> r 53
@@ -2241,7 +2249,6 @@
  MAP 10
 638: ==> r 0
  UNMAP 2:22
- OUT
  ZERO
  MAP 11
 639: ==> w 6
@@ -2276,7 +2283,6 @@
 649: ==> r 37
 650: ==> r 48
  UNMAP 3:20
- OUT
  ZERO
  MAP 18
 651: ==> w 6
@@ -2289,7 +2295,6 @@
  MAP 20
 653: ==> w 23
  UNMAP 3:18
- OUT
  ZERO
  MAP 21
 654: ==> w 50
@@ -2307,7 +2312,7 @@
  MAP 24
 658: ==> w 22
  UNMAP 3:51
- OUT
+ FOUT
  ZERO
  MAP 25
 659: ==> r 42
@@ -2346,26 +2351,28 @@
 669: ==> r 1
  UNMAP 0:8
  OUT
- ZERO
+ FIN
  MAP 1
 670: ==> w 14
  UNMAP 0:28
  OUT
- ZERO
+ FIN
  MAP 2
+ SEGPROT
 671: ==> r 46
  UNMAP 0:9
  IN
  MAP 3
 672: ==> r 3
  UNMAP 0:3
- IN
+ FIN
  MAP 4
 673: ==> r 1
 674: ==> w 10
  UNMAP 0:49
- ZERO
+ FIN
  MAP 5
+ SEGPROT
 675: ==> r 38
  UNMAP 0:51
  ZERO
@@ -2373,7 +2380,7 @@
 676: ==> r 23
  UNMAP 0:24
  OUT
- IN
+ ZERO
  MAP 7
 677: ==> w 32
  UNMAP 0:26
@@ -2386,18 +2393,21 @@
  MAP 9
 679: ==> w 7
  UNMAP 0:13
- IN
+ FIN
  MAP 10
+ SEGPROT
 680: ==> w 4
  UNMAP 0:0
  OUT
- IN
+ FIN
  MAP 11
+ SEGPROT
 681: ==> w 6
  UNMAP 0:6
  OUT
- ZERO
+ FIN
  MAP 12
+ SEGPROT
 682: ==> r 3
 683: ==> w 46
 684: ==> r 10
@@ -2408,7 +2418,7 @@
  MAP 13
 686: ==> r 16
  UNMAP 0:31
- ZERO
+ FIN
  MAP 14
 687: ==> w 58
  UNMAP 0:18
@@ -2419,23 +2429,24 @@
 689: ==> r 19
  UNMAP 1:24
  OUT
- ZERO
+ FIN
  MAP 16
 690: ==> w 6
+ SEGPROT
 691: ==> c 3
 692: ==> r 37
  UNMAP 1:37
  OUT
- ZERO
+ FIN
  MAP 17
 693: ==> r 49
  UNMAP 1:48
- ZERO
+ FIN
  MAP 18
 694: ==> r 7
  UNMAP 1:6
  OUT
- IN
+ ZERO
  MAP 19
 695: ==> r 19
  UNMAP 1:31
@@ -2444,22 +2455,22 @@
 696: ==> r 42
  UNMAP 1:23
  OUT
- ZERO
+ FIN
  MAP 21
 697: ==> r 7
 698: ==> r 14
  UNMAP 1:50
  OUT
- IN
+ ZERO
  MAP 22
 699: ==> r 3
  UNMAP 1:0
- IN
+ ZERO
  MAP 23
 700: ==> r 13
  UNMAP 1:41
  OUT
- IN
+ ZERO
  MAP 24
 701: ==> r 19
 702: ==> r 19
@@ -2467,30 +2478,32 @@
 704: ==> r 62
  UNMAP 1:22
  OUT
- ZERO
+ FIN
  MAP 25
 705: ==> r 24
  UNMAP 1:42
- IN
+ ZERO
  MAP 26
 706: ==> w 11
  UNMAP 1:14
  OUT
- IN
+ ZERO
  MAP 27
+ SEGPROT
 707: ==> w 2
  UNMAP 1:16
  ZERO
  MAP 28
+ SEGPROT
 708: ==> r 5
  UNMAP 1:1
  OUT
- IN
+ ZERO
  MAP 29
 709: ==> c 0
 710: ==> r 14
  UNMAP 1:34
- IN
+ ZERO
  MAP 30
 711: ==> r 49
  UNMAP 1:12
@@ -2507,7 +2520,6 @@
  MAP 1
 714: ==> w 24
  UNMAP 2:14
- OUT
  IN
  MAP 2
 715: ==> w 49
@@ -2522,7 +2534,6 @@
  MAP 4
 718: ==> r 18
  UNMAP 2:10
- OUT
  ZERO
  MAP 5
 719: ==> r 14
@@ -2546,18 +2557,15 @@
  MAP 9
 725: ==> r 13
  UNMAP 2:7
- OUT
  IN
  MAP 10
 726: ==> r 30
 727: ==> r 5
  UNMAP 2:4
- OUT
  IN
  MAP 11
 728: ==> r 17
  UNMAP 2:6
- OUT
  ZERO
  MAP 12
 729: ==> w 61
@@ -2623,12 +2631,10 @@
  MAP 26
 746: ==> r 58
  UNMAP 3:11
- OUT
  IN
  MAP 27
 747: ==> w 11
  UNMAP 3:2
- OUT
  ZERO
  MAP 28
 748: ==> w 29
@@ -2682,8 +2688,9 @@
 763: ==> c 2
 764: ==> w 14
  UNMAP 0:6
- IN
+ FIN
  MAP 7
+ SEGPROT
 765: ==> r 27
  UNMAP 0:44
  OUT
@@ -2696,15 +2703,17 @@
  MAP 9
 767: ==> w 15
  UNMAP 0:13
- ZERO
+ FIN
  MAP 10
+ SEGPROT
 768: ==> w 8
  UNMAP 0:5
- ZERO
+ FIN
  MAP 11
+ SEGPROT
 769: ==> r 6
  UNMAP 0:17
- IN
+ FIN
  MAP 12
 770: ==> r 61
  UNMAP 0:61
@@ -2713,7 +2722,7 @@
  MAP 13
 771: ==> r 18
  UNMAP 0:25
- IN
+ FIN
  MAP 14
 772: ==> w 35
  UNMAP 0:7
@@ -2721,28 +2730,30 @@
  IN
  MAP 15
 773: ==> w 8
+ SEGPROT
 774: ==> w 23
  UNMAP 0:2
  OUT
- IN
+ ZERO
  MAP 16
+ SEGPROT
 775: ==> r 35
 776: ==> r 4
  UNMAP 0:59
- IN
+ FIN
  MAP 17
 777: ==> r 10
  UNMAP 0:54
- IN
+ FIN
  MAP 18
 778: ==> r 13
  UNMAP 0:0
- IN
+ FIN
  MAP 19
 779: ==> c 3
 780: ==> r 39
  UNMAP 0:60
- ZERO
+ FIN
  MAP 20
 781: ==> r 30
  UNMAP 0:8
@@ -2751,23 +2762,23 @@
  MAP 21
 782: ==> r 38
  UNMAP 1:7
- IN
+ FIN
  MAP 22
 783: ==> r 30
 784: ==> w 53
  UNMAP 1:32
- ZERO
+ FIN
  MAP 23
 785: ==> r 0
  SEGV
 786: ==> r 8
  UNMAP 1:17
- IN
+ ZERO
  MAP 24
 787: ==> r 47
  UNMAP 1:0
  OUT
- IN
+ FIN
  MAP 25
 788: ==> r 8
 789: ==> r 19
@@ -2783,29 +2794,29 @@
 795: ==> r 57
  UNMAP 1:58
  OUT
- IN
+ FIN
  MAP 27
 796: ==> r 26
  UNMAP 1:11
  OUT
- IN
+ ZERO
  MAP 28
 797: ==> r 56
  UNMAP 1:29
  OUT
- IN
+ FIN
  MAP 29
 798: ==> r 11
  UNMAP 1:40
- IN
+ ZERO
  MAP 30
 799: ==> r 6
  UNMAP 1:62
- IN
+ ZERO
  MAP 31
 800: ==> r 54
  UNMAP 1:10
- ZERO
+ FIN
  MAP 0
 801: ==> r 27
  UNMAP 1:14
@@ -2837,7 +2848,6 @@
  MAP 6
 808: ==> r 7
  UNMAP 2:14
- OUT
  IN
  MAP 7
 809: ==> r 5
@@ -2851,12 +2861,10 @@
  MAP 9
 812: ==> w 13
  UNMAP 2:15
- OUT
  IN
  MAP 10
 813: ==> w 41
  UNMAP 2:8
- OUT
  ZERO
  MAP 11
 814: ==> w 3
@@ -2883,7 +2891,6 @@
  MAP 15
 822: ==> w 10
  UNMAP 2:23
- OUT
  IN
  MAP 16
 823: ==> r 31
@@ -2913,7 +2920,7 @@
  MAP 22
 830: ==> r 0
  UNMAP 3:53
- OUT
+ FOUT
  IN
  MAP 23
 831: ==> r 30
@@ -2922,7 +2929,7 @@
  MAP 24
 832: ==> r 40
  UNMAP 3:47
- OUT
+ FOUT
  IN
  MAP 25
 833: ==> w 15
@@ -2962,15 +2969,16 @@
 843: ==> c 2
 844: ==> w 21
  UNMAP 0:21
- ZERO
+ FIN
  MAP 2
+ SEGPROT
 845: ==> r 28
  UNMAP 0:54
  ZERO
  MAP 3
 846: ==> r 8
  UNMAP 0:61
- IN
+ FIN
  MAP 4
 847: ==> r 49
  UNMAP 0:18
@@ -2983,8 +2991,9 @@
  MAP 6
 849: ==> w 2
  UNMAP 0:7
- ZERO
+ FIN
  MAP 7
+ SEGPROT
 850: ==> r 39
  UNMAP 0:5
  ZERO
@@ -3002,7 +3011,7 @@
 853: ==> r 15
  UNMAP 0:41
  OUT
- IN
+ FIN
  MAP 11
 854: ==> r 63
  UNMAP 0:1
@@ -3015,12 +3024,12 @@
  MAP 13
 856: ==> r 13
  UNMAP 1:50
- IN
+ FIN
  MAP 14
 857: ==> r 14
  UNMAP 1:3
  OUT
- IN
+ FIN
  MAP 15
 858: ==> r 39
 859: ==> r 42
@@ -3035,39 +3044,42 @@
 861: ==> c 3
 862: ==> r 7
  UNMAP 1:44
- IN
+ ZERO
  MAP 18
 863: ==> r 16
  UNMAP 1:28
- IN
+ ZERO
  MAP 19
 864: ==> w 16
+ SEGPROT
 865: ==> r 60
  UNMAP 1:6
- ZERO
+ FIN
  MAP 20
 866: ==> w 4
  UNMAP 1:39
- IN
+ ZERO
  MAP 21
+ SEGPROT
 867: ==> r 37
  UNMAP 1:49
  OUT
- ZERO
+ FIN
  MAP 22
 868: ==> w 2
  UNMAP 1:0
- IN
+ ZERO
  MAP 23
+ SEGPROT
 869: ==> r 7
 870: ==> r 16
 871: ==> r 58
  UNMAP 1:30
- IN
+ FIN
  MAP 24
 872: ==> r 20
  UNMAP 1:40
- IN
+ ZERO
  MAP 25
 873: ==> r 1
  UNMAP 1:15
@@ -3076,23 +3088,25 @@
  MAP 26
 874: ==> r 43
  UNMAP 1:54
- ZERO
+ FIN
  MAP 27
 875: ==> w 16
+ SEGPROT
 876: ==> r 35
  UNMAP 1:42
  OUT
- IN
+ ZERO
  MAP 28
 877: ==> w 36
  SEGV
 878: ==> w 21
  UNMAP 1:34
- IN
+ ZERO
  MAP 29
+ SEGPROT
 879: ==> r 46
  UNMAP 1:11
- ZERO
+ FIN
  MAP 30
 880: ==> r 23
  UNMAP 1:26
@@ -3100,7 +3114,7 @@
  MAP 31
 881: ==> w 42
  UNMAP 1:18
- ZERO
+ FIN
  MAP 0
 882: ==> r 58
 883: ==> c 0
@@ -3110,7 +3124,6 @@
  MAP 1
 885: ==> r 38
  UNMAP 2:21
- OUT
  ZERO
  MAP 2
 886: ==> r 20
@@ -3131,7 +3144,6 @@
  MAP 6
 890: ==> r 3
  UNMAP 2:2
- OUT
  IN
  MAP 7
 891: ==> r 21
@@ -3185,7 +3197,6 @@
 905: ==> r 21
 906: ==> r 26
  UNMAP 3:16
- OUT
  IN
  MAP 19
 907: ==> c 1
@@ -3195,7 +3206,6 @@
  MAP 20
 909: ==> r 38
  UNMAP 3:4
- OUT
  ZERO
  MAP 21
 910: ==> r 34
@@ -3204,7 +3214,6 @@
  MAP 22
 911: ==> r 49
  UNMAP 3:2
- OUT
  IN
  MAP 23
 912: ==> w 2
@@ -3231,7 +3240,6 @@
 918: ==> r 60
 919: ==> r 30
  UNMAP 3:21
- OUT
  IN
  MAP 29
 920: ==> r 19
@@ -3245,41 +3253,44 @@
  MAP 31
 923: ==> w 3
  UNMAP 3:42
- OUT
- IN
+ FOUT
+ FIN
  MAP 0
+ SEGPROT
 924: ==> r 14
  UNMAP 0:1
- IN
+ FIN
  MAP 1
 925: ==> w 12
  UNMAP 0:38
- ZERO
+ FIN
  MAP 2
+ SEGPROT
 926: ==> r 19
  UNMAP 0:20
- ZERO
+ FIN
  MAP 3
 927: ==> r 20
  UNMAP 0:6
  OUT
- IN
+ FIN
  MAP 4
 928: ==> r 23
  UNMAP 0:17
- IN
+ ZERO
  MAP 5
 929: ==> w 6
  UNMAP 0:7
- IN
+ FIN
  MAP 6
+ SEGPROT
 930: ==> r 50
  UNMAP 0:3
  ZERO
  MAP 7
 931: ==> r 11
  UNMAP 0:21
- IN
+ FIN
  MAP 8
 932: ==> r 32
  UNMAP 0:37
@@ -3292,7 +3303,7 @@
  MAP 10
 934: ==> r 10
  UNMAP 0:28
- IN
+ FIN
  MAP 11
 935: ==> w 33
  UNMAP 0:53
@@ -3300,34 +3311,37 @@
  MAP 12
 936: ==> w 15
  UNMAP 0:56
- IN
+ FIN
  MAP 13
+ SEGPROT
 937: ==> r 33
 938: ==> r 1
  UNMAP 0:18
- ZERO
+ FIN
  MAP 14
 939: ==> c 3
 940: ==> w 16
  UNMAP 0:29
- IN
+ ZERO
  MAP 15
+ SEGPROT
 941: ==> r 8
  UNMAP 0:59
- IN
+ ZERO
  MAP 16
 942: ==> r 4
  UNMAP 0:13
  OUT
- IN
+ ZERO
  MAP 17
 943: ==> w 26
  UNMAP 0:8
- IN
+ ZERO
  MAP 18
+ SEGPROT
 944: ==> r 12
  UNMAP 0:26
- IN
+ ZERO
  MAP 19
 945: ==> r 34
  UNMAP 1:15
@@ -3335,7 +3349,7 @@
  MAP 20
 946: ==> r 20
  UNMAP 1:38
- IN
+ ZERO
  MAP 21
 947: ==> r 1
  UNMAP 1:34
@@ -3343,8 +3357,9 @@
  MAP 22
 948: ==> w 3
  UNMAP 1:49
- IN
+ ZERO
  MAP 23
+ SEGPROT
 949: ==> r 23
  UNMAP 1:2
  OUT
@@ -3357,16 +3372,17 @@
 951: ==> r 48
  UNMAP 1:53
  OUT
- IN
+ FIN
  MAP 26
 952: ==> r 54
  UNMAP 1:60
- ZERO
+ FIN
  MAP 27
 953: ==> w 6
  UNMAP 1:8
- IN
+ ZERO
  MAP 28
+ SEGPROT
 954: ==> r 0
  SEGV
 955: ==> r 4
@@ -3376,26 +3392,25 @@
  MAP 29
 957: ==> r 21
  UNMAP 1:19
- IN
+ ZERO
  MAP 30
 958: ==> w 5
  UNMAP 2:46
  OUT
- IN
+ ZERO
  MAP 31
+ SEGPROT
 959: ==> r 12
 960: ==> r 39
  UNMAP 2:3
- OUT
- ZERO
+ FIN
  MAP 0
 961: ==> r 7
  UNMAP 2:14
- IN
+ ZERO
  MAP 1
 962: ==> r 19
  UNMAP 2:12
- OUT
  ZERO
  MAP 2
 963: ==> r 8
@@ -3405,7 +3420,7 @@
 966: ==> r 12
 967: ==> r 40
  UNMAP 2:19
- ZERO
+ FIN
  MAP 3
 968: ==> c 0
 969: ==> r 0
@@ -3418,12 +3433,11 @@
  MAP 5
 971: ==> r 31
  UNMAP 2:6
- OUT
  ZERO
  MAP 6
 972: ==> r 33
  UNMAP 2:50
- IN
+ FIN
  MAP 7
 973: ==> r 26
 974: ==> r 9
@@ -3451,7 +3465,6 @@
 980: ==> r 0
 981: ==> r 60
  UNMAP 2:15
- OUT
  ZERO
  MAP 13
 982: ==> r 17
@@ -3460,7 +3473,6 @@
  MAP 14
 983: ==> r 6
  UNMAP 3:16
- OUT
  IN
  MAP 15
 984: ==> w 9
@@ -3476,7 +3488,6 @@
 988: ==> r 1
 989: ==> r 27
  UNMAP 3:26
- OUT
  ZERO
  MAP 18
 990: ==> r 15
@@ -3497,7 +3508,6 @@
  MAP 22
 994: ==> r 6
  UNMAP 3:3
- OUT
  IN
  MAP 23
 995: ==> r 13
@@ -3518,7 +3528,6 @@
  MAP 27
 999: ==> r 9
  UNMAP 3:6
- OUT
  IN
  MAP 28
 1000: ==> r 11
@@ -3531,7 +3540,6 @@
  MAP 30
 1002: ==> r 39
  UNMAP 3:5
- OUT
  IN
  MAP 31
 1003: ==> r 8
@@ -3572,12 +3580,12 @@
 1016: ==> c 2
 1017: ==> r 13
  UNMAP 0:33
- IN
+ FIN
  MAP 7
 1018: ==> r 9
  UNMAP 0:9
  OUT
- IN
+ FIN
  MAP 8
 1019: ==> r 24
  SEGV
@@ -3595,13 +3603,14 @@
 1023: ==> r 17
  UNMAP 0:23
  OUT
- ZERO
+ FIN
  MAP 11
 1024: ==> r 9
 1025: ==> w 5
  UNMAP 0:8
- IN
+ FIN
  MAP 12
+ SEGPROT
 1026: ==> r 29
  UNMAP 0:60
  ZERO
@@ -3618,11 +3627,11 @@
 1030: ==> c 3
 1031: ==> w 52
  UNMAP 0:11
- ZERO
+ FIN
  MAP 16
 1032: ==> r 2
  UNMAP 1:1
- IN
+ ZERO
  MAP 17
 1033: ==> r 2
 1034: ==> r 30
@@ -3633,37 +3642,40 @@
  SEGV
 1036: ==> w 14
  UNMAP 1:15
- IN
+ ZERO
  MAP 19
+ SEGPROT
 1037: ==> r 17
  UNMAP 1:21
- IN
+ ZERO
  MAP 20
 1038: ==> w 18
  UNMAP 1:4
- IN
+ ZERO
  MAP 21
+ SEGPROT
 1039: ==> r 14
 1040: ==> w 14
+ SEGPROT
 1041: ==> r 5
  UNMAP 1:10
  OUT
- IN
+ ZERO
  MAP 22
 1042: ==> r 42
  UNMAP 1:6
- IN
+ FIN
  MAP 23
 1043: ==> r 2
 1044: ==> r 8
  UNMAP 1:13
- IN
+ ZERO
  MAP 24
 1045: ==> r 2
 1046: ==> r 8
 1047: ==> r 13
  UNMAP 1:28
- IN
+ ZERO
  MAP 25
 1048: ==> r 15
  UNMAP 1:14
@@ -3745,7 +3757,6 @@
  MAP 11
 1069: ==> r 0
  UNMAP 2:5
- OUT
  IN
  MAP 12
 1070: ==> r 6
@@ -3764,7 +3775,7 @@
  MAP 15
 1075: ==> r 40
  UNMAP 3:52
- OUT
+ FOUT
  IN
  MAP 16
 1076: ==> r 1
@@ -3780,7 +3791,6 @@
 1080: ==> r 1
 1081: ==> r 32
  UNMAP 3:14
- OUT
  IN
  MAP 19
 1082: ==> r 24
@@ -3789,7 +3799,6 @@
  MAP 20
 1083: ==> w 7
  UNMAP 3:18
- OUT
  IN
  MAP 21
 1084: ==> r 4
@@ -3803,12 +3812,13 @@
 1086: ==> c 2
 1087: ==> w 15
  UNMAP 3:8
- IN
+ FIN
  MAP 24
+ SEGPROT
 1088: ==> r 15
 1089: ==> r 11
  UNMAP 3:13
- IN
+ FIN
  MAP 25
 1090: ==> r 60
  UNMAP 3:15
@@ -3821,14 +3831,15 @@
  MAP 27
 1093: ==> r 4
  UNMAP 0:36
- IN
+ FIN
  MAP 28
 1094: ==> r 4
 1095: ==> w 9
  UNMAP 0:17
  OUT
- IN
+ FIN
  MAP 29
+ SEGPROT
 1096: ==> r 40
  UNMAP 0:16
  ZERO
@@ -3836,7 +3847,7 @@
 1097: ==> r 11
 1098: ==> r 6
  UNMAP 0:40
- IN
+ FIN
  MAP 31
 1099: ==> r 29
  UNMAP 0:37
@@ -3845,13 +3856,14 @@
 1100: ==> r 8
  UNMAP 0:60
  OUT
- IN
+ FIN
  MAP 1
 1101: ==> w 1
  UNMAP 0:58
  OUT
- ZERO
+ FIN
  MAP 2
+ SEGPROT
 1102: ==> r 38
  UNMAP 0:27
  ZERO
@@ -3869,37 +3881,40 @@
 1105: ==> c 3
 1106: ==> w 35
  UNMAP 0:5
- IN
+ ZERO
  MAP 6
+ SEGPROT
 1107: ==> r 8
  UNMAP 0:32
- IN
+ ZERO
  MAP 7
 1108: ==> r 37
  UNMAP 1:6
- ZERO
+ FIN
  MAP 8
 1109: ==> r 17
  UNMAP 1:23
  OUT
- IN
+ ZERO
  MAP 9
 1110: ==> w 23
  UNMAP 1:1
  ZERO
  MAP 10
+ SEGPROT
 1111: ==> r 7
  UNMAP 1:34
- IN
+ ZERO
  MAP 11
 1112: ==> r 2
  UNMAP 1:0
- IN
+ ZERO
  MAP 12
 1113: ==> w 19
  UNMAP 1:53
  ZERO
  MAP 13
+ SEGPROT
 1114: ==> r 1
  UNMAP 1:59
  OUT
@@ -3908,7 +3923,7 @@
 1115: ==> r 7
 1116: ==> r 48
  UNMAP 1:28
- IN
+ FIN
  MAP 15
 1117: ==> r 28
  UNMAP 1:40
@@ -3916,17 +3931,18 @@
  MAP 16
 1118: ==> r 61
  UNMAP 1:55
- ZERO
+ FIN
  MAP 17
 1119: ==> r 19
 1120: ==> r 53
  UNMAP 1:3
- IN
+ FIN
  MAP 18
 1121: ==> w 2
+ SEGPROT
 1122: ==> r 45
  UNMAP 1:32
- ZERO
+ FIN
  MAP 19
 1123: ==> c 0
 1124: ==> r 27
@@ -3949,7 +3965,6 @@
 1128: ==> r 42
 1129: ==> r 2
  UNMAP 2:15
- OUT
  IN
  MAP 24
 1130: ==> r 32
@@ -3970,7 +3985,6 @@
  MAP 28
 1134: ==> r 37
  UNMAP 2:9
- OUT
  ZERO
  MAP 29
 1135: ==> r 25
@@ -3995,7 +4009,6 @@
  MAP 1
 1143: ==> r 16
  UNMAP 2:1
- OUT
  ZERO
  MAP 2
 1144: ==> r 57
@@ -4012,7 +4025,6 @@
  MAP 5
 1147: ==> w 58
  UNMAP 3:35
- OUT
  IN
  MAP 6
 1148: ==> r 21
@@ -4030,7 +4042,6 @@
  MAP 9
 1152: ==> r 15
  UNMAP 3:23
- OUT
  IN
  MAP 10
 1153: ==> w 28
@@ -4039,12 +4050,10 @@
  MAP 11
 1154: ==> r 2
  UNMAP 3:2
- OUT
  IN
  MAP 12
 1155: ==> r 1
  UNMAP 3:19
- OUT
  IN
  MAP 13
 1156: ==> r 10
@@ -4063,12 +4072,13 @@
 1160: ==> c 2
 1161: ==> r 11
  UNMAP 3:61
- IN
+ FIN
  MAP 17
 1162: ==> w 3
  UNMAP 3:53
- IN
+ FIN
  MAP 18
+ SEGPROT
 1163: ==> r 38
  UNMAP 3:45
  ZERO
@@ -4080,11 +4090,11 @@
 1165: ==> r 17
  UNMAP 0:19
  OUT
- ZERO
+ FIN
  MAP 21
 1166: ==> r 4
  UNMAP 0:13
- IN
+ FIN
  MAP 22
 1167: ==> w 40
  UNMAP 0:42
@@ -4093,11 +4103,11 @@
  MAP 23
 1168: ==> r 8
  UNMAP 0:2
- IN
+ FIN
  MAP 24
 1169: ==> r 13
  UNMAP 0:32
- IN
+ FIN
  MAP 25
 1170: ==> r 29
  UNMAP 0:25
@@ -4105,14 +4115,15 @@
  MAP 26
 1171: ==> r 19
  UNMAP 0:24
- ZERO
+ FIN
  MAP 27
 1172: ==> w 38
 1173: ==> w 17
+ SEGPROT
 1174: ==> r 16
  UNMAP 0:0
  OUT
- ZERO
+ FIN
  MAP 28
 1175: ==> r 40
 1176: ==> w 46
@@ -4125,32 +4136,34 @@
  ZERO
  MAP 30
 1178: ==> w 16
+ SEGPROT
 1179: ==> r 9
  UNMAP 0:41
- IN
+ FIN
  MAP 31
 1180: ==> r 4
 1181: ==> c 3
 1182: ==> w 9
  UNMAP 0:7
  OUT
- IN
+ ZERO
  MAP 0
+ SEGPROT
 1183: ==> r 26
  UNMAP 1:24
- IN
+ ZERO
  MAP 1
 1184: ==> r 40
  UNMAP 1:16
- ZERO
+ FIN
  MAP 2
 1185: ==> r 14
  UNMAP 1:57
- IN
+ ZERO
  MAP 3
 1186: ==> r 49
  UNMAP 1:7
- ZERO
+ FIN
  MAP 4
 1187: ==> w 40
 1188: ==> r 28
@@ -4160,13 +4173,15 @@
 1189: ==> w 4
  UNMAP 1:58
  OUT
- IN
+ ZERO
  MAP 6
+ SEGPROT
 1190: ==> r 6
  UNMAP 1:21
- IN
+ ZERO
  MAP 7
 1191: ==> w 6
+ SEGPROT
 1192: ==> r 25
  UNMAP 1:5
  OUT
@@ -4174,52 +4189,52 @@
  MAP 8
 1193: ==> r 52
  UNMAP 1:9
- IN
+ FIN
  MAP 9
 1194: ==> r 41
  UNMAP 1:15
- ZERO
+ FIN
  MAP 10
 1195: ==> r 47
  UNMAP 1:28
  OUT
- IN
+ FIN
  MAP 11
 1196: ==> r 28
 1197: ==> r 55
  UNMAP 1:2
- ZERO
+ FIN
  MAP 12
 1198: ==> w 7
  UNMAP 1:1
- IN
+ ZERO
  MAP 13
+ SEGPROT
 1199: ==> r 63
  UNMAP 1:10
- IN
+ FIN
  MAP 14
 1200: ==> r 39
  UNMAP 1:30
- ZERO
+ FIN
  MAP 15
 1201: ==> r 11
  UNMAP 1:19
  OUT
- IN
+ ZERO
  MAP 16
 1202: ==> r 8
  UNMAP 2:11
- IN
+ ZERO
  MAP 17
 1203: ==> r 13
  UNMAP 2:3
- OUT
- IN
+ ZERO
  MAP 18
 1204: ==> w 51
  UNMAP 2:38
  OUT
- IN
+ FIN
  MAP 19
 1205: ==> r 11
 1206: ==> r 9
@@ -4231,14 +4246,14 @@
  MAP 20
 1210: ==> r 37
  UNMAP 2:17
- OUT
  ZERO
  MAP 21
 1211: ==> r 14
  UNMAP 2:4
- IN
+ ZERO
  MAP 22
 1212: ==> w 14
+ SEGPROT
 1213: ==> r 45
  UNMAP 2:40
  OUT
@@ -4262,7 +4277,6 @@
  MAP 27
 1218: ==> w 1
  UNMAP 2:16
- OUT
  IN
  MAP 28
 1219: ==> w 12
@@ -4283,7 +4297,6 @@
  MAP 31
 1225: ==> r 24
  UNMAP 3:9
- OUT
  IN
  MAP 0
 1226: ==> r 4
@@ -4292,7 +4305,7 @@
  MAP 1
 1227: ==> r 23
  UNMAP 3:40
- OUT
+ FOUT
  IN
  MAP 2
 1228: ==> r 2
@@ -4309,7 +4322,6 @@
  MAP 5
 1231: ==> r 31
  UNMAP 3:4
- OUT
  ZERO
  MAP 6
 1232: ==> r 2
@@ -4319,7 +4331,6 @@
 1236: ==> r 14
 1237: ==> r 58
  UNMAP 3:6
- OUT
  IN
  MAP 7
 1238: ==> c 1
@@ -4345,7 +4356,6 @@
  MAP 12
 1244: ==> r 13
  UNMAP 3:7
- OUT
  ZERO
  MAP 13
 1245: ==> r 6
@@ -4370,7 +4380,7 @@
  MAP 18
 1250: ==> w 3
  UNMAP 3:51
- OUT
+ FOUT
  IN
  MAP 19
 1251: ==> w 48
@@ -4385,7 +4395,6 @@
  MAP 21
 1254: ==> w 41
  UNMAP 0:14
- OUT
  IN
  MAP 22
 1255: ==> r 16
@@ -4413,7 +4422,7 @@
 1264: ==> r 6
  UNMAP 0:29
  OUT
- IN
+ FIN
  MAP 27
 1265: ==> r 56
  UNMAP 0:1
@@ -4437,50 +4446,52 @@
  MAP 31
 1270: ==> r 3
  UNMAP 0:24
- IN
+ FIN
  MAP 0
 1271: ==> r 5
  UNMAP 0:4
- IN
+ FIN
  MAP 1
 1272: ==> r 4
  UNMAP 0:23
- IN
+ FIN
  MAP 2
 1273: ==> w 12
  UNMAP 0:2
- IN
+ FIN
  MAP 3
+ SEGPROT
 1274: ==> c 3
 1275: ==> w 1
  UNMAP 0:53
  ZERO
  MAP 4
+ SEGPROT
 1276: ==> r 13
  UNMAP 0:49
- IN
+ ZERO
  MAP 5
 1277: ==> r 33
  UNMAP 0:31
- IN
+ ZERO
  MAP 6
 1278: ==> r 12
  UNMAP 0:58
- IN
+ ZERO
  MAP 7
 1279: ==> r 5
  UNMAP 1:5
- IN
+ ZERO
  MAP 8
 1280: ==> r 21
  UNMAP 1:10
- IN
+ ZERO
  MAP 9
 1281: ==> r 0
  SEGV
 1282: ==> r 9
  UNMAP 1:9
- IN
+ ZERO
  MAP 10
 1283: ==> r 13
 1284: ==> r 28
@@ -4493,37 +4504,39 @@
 1286: ==> r 33
 1287: ==> r 22
  UNMAP 1:21
- IN
+ ZERO
  MAP 12
 1288: ==> w 15
  UNMAP 1:13
  ZERO
  MAP 13
+ SEGPROT
 1289: ==> r 12
 1290: ==> r 16
  UNMAP 1:6
- IN
+ ZERO
  MAP 14
 1291: ==> r 45
  UNMAP 1:51
- ZERO
+ FIN
  MAP 15
 1292: ==> w 5
+ SEGPROT
 1293: ==> r 13
 1294: ==> r 58
  UNMAP 1:16
- IN
+ FIN
  MAP 16
 1295: ==> r 22
 1296: ==> r 7
  UNMAP 1:24
- IN
+ ZERO
  MAP 17
 1297: ==> r 1
 1298: ==> r 11
  UNMAP 1:8
  OUT
- IN
+ ZERO
  MAP 18
 1299: ==> r 22
 1300: ==> r 1
@@ -4553,7 +4566,7 @@
  MAP 23
 1307: ==> r 14
  UNMAP 1:47
- IN
+ ZERO
  MAP 24
 1308: ==> w 35
  UNMAP 1:29
@@ -4600,12 +4613,10 @@
  MAP 2
 1319: ==> r 28
  UNMAP 2:12
- OUT
  IN
  MAP 3
 1320: ==> w 26
  UNMAP 3:1
- OUT
  IN
  MAP 4
 1321: ==> w 12
@@ -4625,7 +4636,6 @@
  MAP 7
 1326: ==> r 38
  UNMAP 3:5
- OUT
  ZERO
  MAP 8
 1327: ==> r 11
@@ -4646,7 +4656,6 @@
  MAP 12
 1331: ==> w 25
  UNMAP 3:15
- OUT
  IN
  MAP 13
 1332: ==> r 52
@@ -4687,7 +4696,7 @@
  MAP 21
 1342: ==> r 9
  UNMAP 0:5
- IN
+ FIN
  MAP 22
 1343: ==> r 35
  UNMAP 0:52
@@ -4695,36 +4704,39 @@
  MAP 23
 1344: ==> r 6
  UNMAP 0:14
- IN
+ FIN
  MAP 24
 1345: ==> r 18
  UNMAP 0:35
  OUT
- IN
+ FIN
  MAP 25
 1346: ==> w 4
  UNMAP 0:4
- IN
+ FIN
  MAP 26
+ SEGPROT
 1347: ==> r 14
  UNMAP 0:0
  OUT
- IN
+ FIN
  MAP 27
 1348: ==> r 10
  UNMAP 0:44
- IN
+ FIN
  MAP 28
 1349: ==> r 4
 1350: ==> r 13
  UNMAP 0:54
- IN
+ FIN
  MAP 29
 1351: ==> w 22
  UNMAP 0:22
- IN
+ FIN
  MAP 30
+ SEGPROT
 1352: ==> w 10
+ SEGPROT
 1353: ==> w 43
  UNMAP 0:37
  IN
@@ -4763,12 +4775,12 @@
 1365: ==> r 4
  UNMAP 0:12
  OUT
- IN
+ ZERO
  MAP 5
 1366: ==> r 57
  UNMAP 0:11
  OUT
- IN
+ FIN
  MAP 6
 1367: ==> r 32
  UNMAP 1:18
@@ -4777,34 +4789,37 @@
  MAP 7
 1368: ==> w 12
  UNMAP 1:38
- IN
+ ZERO
  MAP 8
+ SEGPROT
 1369: ==> r 34
  UNMAP 1:11
  ZERO
  MAP 9
 1370: ==> r 6
  UNMAP 1:4
- IN
+ ZERO
  MAP 10
 1371: ==> r 10
  UNMAP 1:47
  OUT
- IN
+ ZERO
  MAP 11
 1372: ==> w 9
  UNMAP 1:23
- IN
+ ZERO
  MAP 12
+ SEGPROT
 1373: ==> w 33
  UNMAP 1:25
  OUT
- IN
+ ZERO
  MAP 13
+ SEGPROT
 1374: ==> r 9
 1375: ==> r 15
  UNMAP 1:52
- IN
+ ZERO
  MAP 14
 1376: ==> w 36
  SEGV
@@ -4861,7 +4876,6 @@
 1391: ==> r 4
 1392: ==> w 1
  UNMAP 2:4
- OUT
  IN
  MAP 26
 1393: ==> w 10
@@ -4871,7 +4885,6 @@
  MAP 27
 1395: ==> r 20
  UNMAP 2:10
- OUT
  ZERO
  MAP 28
 1396: ==> r 29
@@ -4880,7 +4893,6 @@
  MAP 29
 1397: ==> w 49
  UNMAP 2:22
- OUT
  IN
  MAP 30
 1398: ==> r 11
@@ -4926,7 +4938,6 @@
  MAP 7
 1411: ==> w 42
  UNMAP 3:12
- OUT
  IN
  MAP 8
 1412: ==> r 16
@@ -4943,12 +4954,10 @@
  MAP 11
 1415: ==> w 19
  UNMAP 3:9
- OUT
  IN
  MAP 12
 1416: ==> r 10
  UNMAP 3:33
- OUT
  IN
  MAP 13
 1417: ==> r 51
@@ -4997,15 +5006,16 @@
 1432: ==> w 20
  UNMAP 0:10
  OUT
- IN
+ FIN
  MAP 22
+ SEGPROT
 1433: ==> r 45
  UNMAP 0:4
  IN
  MAP 23
 1434: ==> r 1
  UNMAP 0:38
- IN
+ FIN
  MAP 24
 1435: ==> r 28
  UNMAP 0:44
@@ -5024,11 +5034,11 @@
  SEGV
 1439: ==> r 4
  UNMAP 0:20
- IN
+ FIN
  MAP 28
 1440: ==> r 8
  UNMAP 0:29
- IN
+ FIN
  MAP 29
 1441: ==> r 27
  UNMAP 0:49
@@ -5043,11 +5053,11 @@
 1444: ==> r 1
 1445: ==> r 5
  UNMAP 0:16
- IN
+ FIN
  MAP 0
 1446: ==> r 9
  UNMAP 0:27
- IN
+ FIN
  MAP 1
 1447: ==> r 29
 1448: ==> w 33
@@ -5057,7 +5067,7 @@
  MAP 2
 1449: ==> r 18
  UNMAP 0:46
- IN
+ FIN
  MAP 3
 1450: ==> w 39
  UNMAP 1:50
@@ -5067,12 +5077,12 @@
 1451: ==> r 14
  UNMAP 1:0
  OUT
- IN
+ FIN
  MAP 5
 1452: ==> r 19
  UNMAP 1:2
  OUT
- ZERO
+ FIN
  MAP 6
 1453: ==> r 20
 1454: ==> r 18
@@ -5084,82 +5094,84 @@
 1457: ==> w 41
  UNMAP 1:42
  OUT
- ZERO
+ FIN
  MAP 8
 1458: ==> r 8
  UNMAP 1:16
- IN
+ ZERO
  MAP 9
 1459: ==> r 6
  UNMAP 1:14
  OUT
- IN
+ ZERO
  MAP 10
 1460: ==> w 12
  UNMAP 1:3
- IN
+ ZERO
  MAP 11
+ SEGPROT
 1461: ==> r 3
  UNMAP 1:19
  OUT
- IN
+ ZERO
  MAP 12
 1462: ==> r 23
  UNMAP 1:10
- IN
+ ZERO
  MAP 13
 1463: ==> r 38
  UNMAP 1:51
- IN
+ FIN
  MAP 14
 1464: ==> r 0
  SEGV
 1465: ==> r 50
  UNMAP 1:17
- ZERO
+ FIN
  MAP 15
 1466: ==> w 5
  UNMAP 1:15
- IN
+ ZERO
  MAP 16
+ SEGPROT
 1467: ==> r 6
 1468: ==> r 22
  UNMAP 1:27
- IN
+ ZERO
  MAP 17
 1469: ==> r 6
 1470: ==> r 1
  UNMAP 1:60
- IN
+ ZERO
  MAP 18
 1471: ==> w 8
+ SEGPROT
 1472: ==> w 44
  UNMAP 1:56
- ZERO
+ FIN
  MAP 19
 1473: ==> r 9
  UNMAP 1:59
  OUT
- IN
+ ZERO
  MAP 20
 1474: ==> r 14
  UNMAP 1:22
- IN
+ ZERO
  MAP 21
 1475: ==> r 2
  UNMAP 2:20
- OUT
- IN
+ ZERO
  MAP 22
 1476: ==> w 36
  SEGV
 1477: ==> r 47
  UNMAP 2:45
- IN
+ FIN
  MAP 23
 1478: ==> r 17
  UNMAP 2:1
- IN
+ ZERO
  MAP 24
 1479: ==> r 38
 1480: ==> c 0
@@ -5233,12 +5245,11 @@
 1501: ==> c 1
 1502: ==> w 5
  UNMAP 3:41
- OUT
+ FOUT
  IN
  MAP 8
 1503: ==> w 25
  UNMAP 3:8
- OUT
  IN
  MAP 9
 1504: ==> r 22
@@ -5247,7 +5258,6 @@
  MAP 10
 1505: ==> r 8
  UNMAP 3:12
- OUT
  IN
  MAP 11
 1506: ==> r 28
@@ -5269,7 +5279,6 @@
  MAP 15
 1511: ==> r 46
  UNMAP 3:5
- OUT
  IN
  MAP 16
 1512: ==> r 40
@@ -5283,7 +5292,7 @@
 1514: ==> r 12
 1515: ==> w 15
  UNMAP 3:44
- OUT
+ FOUT
  IN
  MAP 19
 1516: ==> w 61
@@ -5337,7 +5346,7 @@
 1530: ==> r 22
  UNMAP 0:3
  OUT
- IN
+ FIN
  MAP 30
 1531: ==> r 46
  UNMAP 0:39
@@ -5347,27 +5356,29 @@
 1532: ==> r 3
  UNMAP 0:6
  OUT
- IN
+ FIN
  MAP 0
 1533: ==> r 5
  UNMAP 0:0
- IN
+ FIN
  MAP 1
 1534: ==> r 5
 1535: ==> r 17
  UNMAP 0:16
- IN
+ FIN
  MAP 2
 1536: ==> w 14
  UNMAP 0:48
- IN
+ FIN
  MAP 3
+ SEGPROT
 1537: ==> w 50
  UNMAP 0:27
  OUT
  ZERO
  MAP 4
 1538: ==> w 14
+ SEGPROT
 1539: ==> r 3
 1540: ==> r 49
  UNMAP 0:26
@@ -5376,8 +5387,9 @@
 1541: ==> w 12
  UNMAP 0:34
  OUT
- IN
+ FIN
  MAP 6
+ SEGPROT
 1542: ==> r 41
  UNMAP 0:1
  ZERO
@@ -5393,15 +5405,15 @@
 1546: ==> r 2
  UNMAP 1:25
  OUT
- IN
+ ZERO
  MAP 9
 1547: ==> r 52
  UNMAP 1:22
- IN
+ FIN
  MAP 10
 1548: ==> r 7
  UNMAP 1:8
- IN
+ ZERO
  MAP 11
 1549: ==> r 29
  UNMAP 1:28
@@ -5410,63 +5422,64 @@
 1550: ==> r 8
  UNMAP 1:19
  OUT
- IN
+ ZERO
  MAP 13
 1551: ==> r 58
  UNMAP 1:14
- IN
+ FIN
  MAP 14
 1552: ==> r 29
 1553: ==> w 56
  UNMAP 1:12
- IN
+ FIN
  MAP 15
 1554: ==> r 11
  UNMAP 1:46
- IN
+ ZERO
  MAP 16
 1555: ==> r 33
  UNMAP 1:40
- IN
+ ZERO
  MAP 17
 1556: ==> r 14
  UNMAP 1:57
- IN
+ ZERO
  MAP 18
 1557: ==> r 56
 1558: ==> r 17
  UNMAP 1:15
  OUT
- IN
+ ZERO
  MAP 19
 1559: ==> r 46
  UNMAP 1:61
  OUT
- ZERO
+ FIN
  MAP 20
 1560: ==> r 40
  UNMAP 1:35
- IN
+ FIN
  MAP 21
 1561: ==> w 3
  UNMAP 1:1
- IN
+ ZERO
  MAP 22
+ SEGPROT
 1562: ==> w 0
  SEGV
 1563: ==> r 15
  UNMAP 1:7
  OUT
- IN
+ ZERO
  MAP 23
 1564: ==> r 3
 1565: ==> r 35
  UNMAP 1:42
- IN
+ ZERO
  MAP 24
 1566: ==> r 13
  UNMAP 1:3
- IN
+ ZERO
  MAP 25
 1567: ==> c 0
 1568: ==> r 2
@@ -5486,8 +5499,9 @@
 1571: ==> w 14
  UNMAP 1:6
  OUT
- IN
+ ZERO
  MAP 29
+ SEGPROT
 1572: ==> r 9
  UNMAP 2:22
  IN
@@ -5511,7 +5525,6 @@
 1577: ==> r 29
 1578: ==> r 4
  UNMAP 2:14
- OUT
  IN
  MAP 3
 1579: ==> r 1
@@ -5525,7 +5538,6 @@
  MAP 5
 1581: ==> r 5
  UNMAP 2:12
- OUT
  IN
  MAP 6
 1582: ==> r 20
@@ -5567,7 +5579,7 @@
  MAP 14
 1595: ==> r 0
  UNMAP 3:56
- OUT
+ FOUT
  IN
  MAP 15
 1596: ==> r 3
@@ -5596,7 +5608,6 @@
  MAP 21
 1602: ==> r 21
  UNMAP 3:3
- OUT
  IN
  MAP 22
 1603: ==> r 34
@@ -5627,7 +5638,6 @@
  MAP 28
 1611: ==> r 14
  UNMAP 0:14
- OUT
  IN
  MAP 29
 1612: ==> r 39
@@ -5644,7 +5654,7 @@
 1616: ==> c 2
 1617: ==> r 19
  UNMAP 0:19
- ZERO
+ FIN
  MAP 0
 1618: ==> r 38
  UNMAP 0:6
@@ -5653,17 +5663,19 @@
  MAP 1
 1619: ==> w 13
  UNMAP 0:29
- IN
+ FIN
  MAP 2
+ SEGPROT
 1620: ==> r 0
  SEGV
 1621: ==> w 16
  UNMAP 0:4
- IN
+ FIN
  MAP 3
+ SEGPROT
 1622: ==> r 6
  UNMAP 0:1
- IN
+ FIN
  MAP 4
 1623: ==> r 33
  UNMAP 0:40
@@ -5671,11 +5683,12 @@
  MAP 5
 1624: ==> w 14
  UNMAP 0:5
- IN
+ FIN
  MAP 6
+ SEGPROT
 1625: ==> r 15
  UNMAP 0:20
- IN
+ FIN
  MAP 7
 1626: ==> r 38
 1627: ==> r 0
@@ -5692,25 +5705,26 @@
 1630: ==> c 3
 1631: ==> r 5
  UNMAP 0:7
- IN
+ ZERO
  MAP 10
 1632: ==> r 3
  UNMAP 0:13
  OUT
- IN
+ ZERO
  MAP 11
 1633: ==> r 38
  UNMAP 0:46
- IN
+ FIN
  MAP 12
 1634: ==> w 6
  UNMAP 0:30
- IN
+ ZERO
  MAP 13
+ SEGPROT
 1635: ==> r 4
  UNMAP 1:42
  OUT
- IN
+ ZERO
  MAP 14
 1636: ==> r 28
  UNMAP 1:0
@@ -5719,38 +5733,39 @@
 1637: ==> r 3
 1638: ==> r 10
  UNMAP 1:3
- IN
+ ZERO
  MAP 16
 1639: ==> r 43
  UNMAP 1:15
- ZERO
+ FIN
  MAP 17
 1640: ==> r 24
  UNMAP 1:32
- IN
+ ZERO
  MAP 18
 1641: ==> r 21
  UNMAP 1:44
- IN
+ ZERO
  MAP 19
 1642: ==> r 9
  UNMAP 1:51
- IN
+ ZERO
  MAP 20
 1643: ==> r 6
 1644: ==> r 17
  UNMAP 1:26
  OUT
- IN
+ ZERO
  MAP 21
 1645: ==> r 2
  UNMAP 1:21
- IN
+ ZERO
  MAP 22
 1646: ==> w 1
  UNMAP 1:34
- IN
+ ZERO
  MAP 23
+ SEGPROT
 1647: ==> r 4
 1648: ==> r 27
  UNMAP 1:8
@@ -5758,7 +5773,7 @@
  MAP 24
 1649: ==> w 56
  UNMAP 1:10
- IN
+ FIN
  MAP 25
 1650: ==> c 0
 1651: ==> r 3
@@ -5799,12 +5814,10 @@
 1660: ==> r 8
 1661: ==> w 17
  UNMAP 2:13
- OUT
  IN
  MAP 2
 1662: ==> r 49
  UNMAP 2:16
- OUT
  IN
  MAP 3
 1663: ==> r 8
@@ -5818,7 +5831,6 @@
  MAP 5
 1666: ==> r 41
  UNMAP 2:14
- OUT
  IN
  MAP 6
 1667: ==> r 34
@@ -5851,7 +5863,6 @@
  MAP 12
 1676: ==> r 48
  UNMAP 3:6
- OUT
  ZERO
  MAP 13
 1677: ==> r 46
@@ -5895,7 +5906,6 @@
  MAP 22
 1689: ==> r 53
  UNMAP 3:1
- OUT
  IN
  MAP 23
 1690: ==> r 0
@@ -5904,7 +5914,7 @@
  MAP 24
 1691: ==> w 24
  UNMAP 3:56
- OUT
+ FOUT
  IN
  MAP 25
 1692: ==> w 47
@@ -5923,16 +5933,16 @@
  MAP 28
 1696: ==> r 23
  UNMAP 0:19
- IN
+ ZERO
  MAP 29
 1697: ==> r 20
  UNMAP 0:8
  OUT
- IN
+ FIN
  MAP 30
 1698: ==> r 12
  UNMAP 0:5
- IN
+ FIN
  MAP 31
 1699: ==> r 39
  UNMAP 0:0
@@ -5941,12 +5951,12 @@
 1700: ==> r 3
  UNMAP 0:39
  OUT
- IN
+ FIN
  MAP 1
 1701: ==> r 21
  UNMAP 0:17
  OUT
- IN
+ FIN
  MAP 2
 1702: ==> r 34
  UNMAP 0:49
@@ -5954,13 +5964,14 @@
  MAP 3
 1703: ==> r 9
  UNMAP 0:12
- IN
+ FIN
  MAP 4
 1704: ==> r 12
 1705: ==> w 13
  UNMAP 0:1
- IN
+ FIN
  MAP 5
+ SEGPROT
 1706: ==> r 44
  UNMAP 0:41
  ZERO
@@ -5971,7 +5982,7 @@
  MAP 7
 1708: ==> r 8
  UNMAP 0:20
- IN
+ FIN
  MAP 8
 1709: ==> r 9
 1710: ==> w 36
@@ -5992,56 +6003,62 @@
  MAP 11
 1715: ==> r 11
  UNMAP 0:51
- IN
+ FIN
  MAP 12
 1716: ==> w 6
  UNMAP 0:48
- IN
+ FIN
  MAP 13
+ SEGPROT
 1717: ==> w 10
  UNMAP 0:46
- IN
+ FIN
  MAP 14
+ SEGPROT
 1718: ==> w 2
  UNMAP 1:17
  OUT
- IN
+ FIN
  MAP 15
+ SEGPROT
 1719: ==> c 3
 1720: ==> r 16
  UNMAP 1:55
- IN
+ ZERO
  MAP 16
 1721: ==> r 39
  UNMAP 1:6
- ZERO
+ FIN
  MAP 17
 1722: ==> r 9
  UNMAP 1:18
- IN
+ ZERO
  MAP 18
 1723: ==> r 5
  UNMAP 1:43
  OUT
- IN
+ ZERO
  MAP 19
 1724: ==> w 16
+ SEGPROT
 1725: ==> w 6
  UNMAP 1:2
- IN
+ ZERO
  MAP 20
+ SEGPROT
 1726: ==> r 24
  UNMAP 1:42
- IN
+ ZERO
  MAP 21
 1727: ==> r 57
  UNMAP 1:4
- IN
+ FIN
  MAP 22
 1728: ==> w 21
  UNMAP 1:53
- IN
+ ZERO
  MAP 23
+ SEGPROT
 1729: ==> r 30
  UNMAP 1:0
  ZERO
@@ -6051,28 +6068,28 @@
 1731: ==> r 19
  UNMAP 1:24
  OUT
- IN
+ ZERO
  MAP 25
 1732: ==> r 15
  UNMAP 1:47
  OUT
- IN
+ ZERO
  MAP 26
 1733: ==> r 53
  UNMAP 1:27
- IN
+ FIN
  MAP 27
 1734: ==> r 18
  UNMAP 2:38
- IN
+ ZERO
  MAP 28
 1735: ==> r 38
  UNMAP 2:23
- IN
+ FIN
  MAP 29
 1736: ==> w 59
  UNMAP 2:20
- ZERO
+ FIN
  MAP 30
 1737: ==> r 16
 1738: ==> r 38
@@ -6106,7 +6123,6 @@
  MAP 4
 1749: ==> r 1
  UNMAP 2:13
- OUT
  IN
  MAP 5
 1750: ==> w 47
@@ -6145,22 +6161,18 @@
 1760: ==> r 8
 1761: ==> r 39
  UNMAP 2:6
- OUT
  IN
  MAP 13
 1762: ==> r 6
  UNMAP 2:10
- OUT
  IN
  MAP 14
 1763: ==> w 41
  UNMAP 2:2
- OUT
  IN
  MAP 15
 1764: ==> r 4
  UNMAP 3:16
- OUT
  IN
  MAP 16
 1765: ==> w 13
@@ -6182,7 +6194,6 @@
  MAP 19
 1772: ==> r 18
  UNMAP 3:6
- OUT
  IN
  MAP 20
 1773: ==> r 13
@@ -6195,7 +6206,6 @@
  MAP 22
 1775: ==> w 16
  UNMAP 3:21
- OUT
  IN
  MAP 23
 1776: ==> r 7
@@ -6226,7 +6236,7 @@
  MAP 29
 1784: ==> r 2
  UNMAP 3:59
- OUT
+ FOUT
  IN
  MAP 30
 1785: ==> r 50
@@ -6285,8 +6295,9 @@
  MAP 9
 1802: ==> w 4
  UNMAP 0:54
- IN
+ FIN
  MAP 10
+ SEGPROT
 1803: ==> r 24
  SEGV
 1804: ==> r 25
@@ -6295,7 +6306,7 @@
  MAP 11
 1805: ==> r 14
  UNMAP 0:18
- IN
+ FIN
  MAP 12
 1806: ==> w 37
  UNMAP 0:39
@@ -6308,11 +6319,11 @@
 1808: ==> r 8
  UNMAP 0:41
  OUT
- IN
+ FIN
  MAP 15
 1809: ==> r 15
  UNMAP 0:4
- IN
+ FIN
  MAP 16
 1810: ==> r 57
  UNMAP 1:61
@@ -6322,11 +6333,11 @@
 1811: ==> r 5
  UNMAP 1:5
  OUT
- IN
+ FIN
  MAP 18
 1812: ==> r 13
  UNMAP 1:38
- IN
+ FIN
  MAP 19
 1813: ==> w 28
  UNMAP 1:18
@@ -6336,7 +6347,7 @@
 1815: ==> r 14
 1816: ==> r 2
  UNMAP 1:13
- IN
+ FIN
  MAP 21
 1817: ==> r 55
  UNMAP 1:10
@@ -6346,11 +6357,11 @@
 1818: ==> r 3
  UNMAP 1:16
  OUT
- IN
+ FIN
  MAP 23
 1819: ==> r 20
  UNMAP 1:7
- IN
+ FIN
  MAP 24
 1820: ==> r 8
 1821: ==> w 25
@@ -6374,41 +6385,44 @@
 1829: ==> c 3
 1830: ==> w 1
  UNMAP 1:3
- IN
+ ZERO
  MAP 28
+ SEGPROT
 1831: ==> r 12
  UNMAP 1:11
  OUT
- IN
+ ZERO
  MAP 29
 1832: ==> r 4
  UNMAP 1:2
- IN
+ ZERO
  MAP 30
 1833: ==> w 1
+ SEGPROT
 1834: ==> r 44
  UNMAP 1:50
- IN
+ FIN
  MAP 31
 1835: ==> r 52
  UNMAP 1:27
- IN
+ FIN
  MAP 0
 1836: ==> r 46
  UNMAP 1:31
- ZERO
+ FIN
  MAP 1
 1837: ==> w 7
  UNMAP 1:54
- IN
+ ZERO
  MAP 2
+ SEGPROT
 1838: ==> w 41
  UNMAP 1:8
- IN
+ FIN
  MAP 3
 1839: ==> r 3
  UNMAP 1:30
- IN
+ ZERO
  MAP 4
 1840: ==> r 12
 1841: ==> r 27
@@ -6418,32 +6432,33 @@
 1842: ==> r 52
 1843: ==> r 37
  UNMAP 1:23
- ZERO
+ FIN
  MAP 6
 1844: ==> r 4
 1845: ==> r 15
  UNMAP 2:54
- IN
+ ZERO
  MAP 7
 1846: ==> r 8
  UNMAP 2:26
- IN
+ ZERO
  MAP 8
 1847: ==> w 10
  UNMAP 2:61
- IN
+ ZERO
  MAP 9
+ SEGPROT
 1848: ==> r 21
  UNMAP 2:4
- OUT
- IN
+ ZERO
  MAP 10
 1849: ==> c 0
 1850: ==> w 14
  UNMAP 2:25
  OUT
- IN
+ ZERO
  MAP 11
+ SEGPROT
 1851: ==> w 31
  UNMAP 2:14
  IN
@@ -6520,7 +6535,6 @@
  MAP 27
 1872: ==> w 34
  UNMAP 3:1
- OUT
  ZERO
  MAP 28
 1873: ==> w 1
@@ -6545,13 +6559,12 @@
  MAP 1
 1878: ==> r 3
  UNMAP 3:7
- OUT
  IN
  MAP 2
 1879: ==> r 19
 1880: ==> r 5
  UNMAP 3:41
- OUT
+ FOUT
  IN
  MAP 3
 1881: ==> r 46
@@ -6579,7 +6592,6 @@
 1888: ==> c 2
 1889: ==> r 59
  UNMAP 3:10
- OUT
  ZERO
  MAP 9
 1890: ==> r 31
@@ -6588,7 +6600,6 @@
  MAP 10
 1891: ==> r 40
  UNMAP 0:14
- OUT
  IN
  MAP 11
 1892: ==> r 61
@@ -6598,11 +6609,11 @@
  MAP 12
 1893: ==> r 5
  UNMAP 0:44
- IN
+ FIN
  MAP 13
 1894: ==> r 17
  UNMAP 0:7
- IN
+ FIN
  MAP 14
 1895: ==> r 38
  UNMAP 0:50
@@ -6615,8 +6626,9 @@
  MAP 16
 1897: ==> w 16
  UNMAP 0:3
- IN
+ FIN
  MAP 17
+ SEGPROT
 1898: ==> r 26
 1899: ==> w 44
  UNMAP 0:22
@@ -6624,8 +6636,9 @@
  MAP 18
 1900: ==> w 8
  UNMAP 0:32
- IN
+ FIN
  MAP 19
+ SEGPROT
 1901: ==> r 5
 1902: ==> r 55
  UNMAP 0:19
@@ -6634,16 +6647,16 @@
 1903: ==> r 4
  UNMAP 0:23
  OUT
- IN
+ FIN
  MAP 21
 1904: ==> r 1
  UNMAP 0:45
  OUT
- IN
+ FIN
  MAP 22
 1905: ==> r 3
  UNMAP 0:36
- IN
+ FIN
  MAP 23
 1906: ==> w 33
  UNMAP 0:10
@@ -6656,84 +6669,90 @@
 1910: ==> c 3
 1911: ==> r 39
  UNMAP 1:21
- ZERO
+ FIN
  MAP 25
 1912: ==> r 7
  UNMAP 1:19
- IN
+ ZERO
  MAP 26
 1913: ==> r 37
  UNMAP 1:4
- ZERO
+ FIN
  MAP 27
 1914: ==> r 12
  UNMAP 1:34
  OUT
- IN
+ ZERO
  MAP 28
 1915: ==> r 6
  UNMAP 1:1
  OUT
- IN
+ ZERO
  MAP 29
 1916: ==> r 47
  UNMAP 1:13
- IN
+ FIN
  MAP 30
 1917: ==> r 11
  UNMAP 1:6
- IN
+ ZERO
  MAP 31
 1918: ==> r 10
  UNMAP 1:12
- IN
+ ZERO
  MAP 0
 1919: ==> r 8
  UNMAP 1:61
- IN
+ ZERO
  MAP 1
 1920: ==> w 2
  UNMAP 1:3
- IN
+ ZERO
  MAP 2
+ SEGPROT
 1921: ==> r 49
  UNMAP 1:5
- ZERO
+ FIN
  MAP 3
 1922: ==> w 3
  UNMAP 1:46
- IN
+ ZERO
  MAP 4
+ SEGPROT
 1923: ==> w 38
  UNMAP 1:31
- IN
+ FIN
  MAP 5
 1924: ==> w 2
+ SEGPROT
 1925: ==> w 44
  UNMAP 1:16
- IN
+ FIN
  MAP 6
 1926: ==> w 19
  UNMAP 1:36
  OUT
- IN
+ ZERO
  MAP 7
+ SEGPROT
 1927: ==> r 5
  UNMAP 1:50
- IN
+ ZERO
  MAP 8
 1928: ==> r 14
  UNMAP 2:59
- IN
+ ZERO
  MAP 9
 1929: ==> w 2
+ SEGPROT
 1930: ==> w 21
  UNMAP 2:31
- IN
+ ZERO
  MAP 10
+ SEGPROT
 1931: ==> r 53
  UNMAP 2:40
- IN
+ FIN
  MAP 11
 1932: ==> r 27
  UNMAP 2:61
@@ -6741,6 +6760,7 @@
  MAP 12
 1933: ==> r 21
 1934: ==> w 10
+ SEGPROT
 1935: ==> w 37
 1936: ==> c 0
 1937: ==> r 29
@@ -6762,7 +6782,6 @@
 1941: ==> w 1
 1942: ==> r 17
  UNMAP 2:16
- OUT
  IN
  MAP 17
 1943: ==> r 24
@@ -6773,7 +6792,6 @@
  MAP 18
 1945: ==> r 10
  UNMAP 2:8
- OUT
  IN
  MAP 19
 1946: ==> w 3
@@ -6789,7 +6807,7 @@
 1949: ==> r 3
 1950: ==> r 14
  UNMAP 2:1
- IN
+ ZERO
  MAP 22
 1951: ==> w 0
  UNMAP 2:3
@@ -6812,7 +6830,7 @@
  MAP 26
 1957: ==> r 35
  UNMAP 3:37
- OUT
+ FOUT
  ZERO
  MAP 27
 1958: ==> r 20
@@ -6833,7 +6851,6 @@
  MAP 31
 1962: ==> r 23
  UNMAP 3:10
- OUT
  IN
  MAP 0
 1963: ==> r 11
@@ -6842,7 +6859,6 @@
  MAP 1
 1964: ==> r 50
  UNMAP 3:2
- OUT
  IN
  MAP 2
 1965: ==> r 9
@@ -6851,16 +6867,16 @@
  MAP 3
 1966: ==> r 44
  UNMAP 3:3
- OUT
  ZERO
  MAP 4
 1967: ==> r 5
  UNMAP 3:38
- OUT
+ FOUT
  IN
  MAP 5
 1968: ==> e 1
-EXIT current process 1 UNMAP 1:1
+EXIT current process 1
+ UNMAP 1:1
  UNMAP 1:5
  UNMAP 1:9
  UNMAP 1:11
@@ -6886,24 +6902,28 @@ EXIT current process 1 UNMAP 1:1
  IN
  MAP 1
 1974: ==> w 13
- IN
+ FIN
  MAP 28
+ SEGPROT
 1975: ==> r 14
- IN
+ FIN
  MAP 0
 1976: ==> w 4
- IN
+ FIN
  MAP 30
+ SEGPROT
 1977: ==> r 17
- IN
+ FIN
  MAP 27
 1978: ==> r 6
- IN
+ FIN
  MAP 26
 1979: ==> w 6
+ SEGPROT
 1980: ==> w 11
- IN
+ FIN
  MAP 4
+ SEGPROT
 1981: ==> r 37
  IN
  MAP 29
@@ -6912,26 +6932,25 @@ EXIT current process 1 UNMAP 1:1
  MAP 2
 1983: ==> w 27
  UNMAP 3:44
- OUT
+ FOUT
  ZERO
  MAP 6
 1984: ==> w 3
  UNMAP 3:19
- OUT
- IN
+ FIN
  MAP 7
+ SEGPROT
 1985: ==> r 8
  UNMAP 3:5
- IN
+ FIN
  MAP 8
 1986: ==> r 1
  UNMAP 3:14
- IN
+ FIN
  MAP 9
 1987: ==> r 3
 1988: ==> w 38
  UNMAP 3:21
- OUT
  IN
  MAP 10
 1989: ==> r 31
@@ -6945,29 +6964,29 @@ EXIT current process 1 UNMAP 1:1
 1994: ==> c 3
 1995: ==> r 11
  UNMAP 3:27
- IN
+ ZERO
  MAP 12
 1996: ==> r 43
  UNMAP 0:29
- ZERO
+ FIN
  MAP 13
 1997: ==> r 4
  UNMAP 0:11
- IN
+ ZERO
  MAP 14
 1998: ==> r 11
 1999: ==> r 10
  UNMAP 0:1
  OUT
- IN
+ ZERO
  MAP 15
 2000: ==> r 6
  UNMAP 0:24
- IN
+ ZERO
  MAP 16
 2001: ==> r 18
  UNMAP 0:17
- IN
+ ZERO
  MAP 17
 2002: ==> r 27
  UNMAP 0:3
@@ -6979,7 +6998,7 @@ EXIT current process 1 UNMAP 1:1
 2005: ==> r 6
 2006: ==> r 35
  UNMAP 0:10
- IN
+ ZERO
  MAP 19
 2007: ==> r 30
  UNMAP 0:41
@@ -6987,11 +7006,11 @@ EXIT current process 1 UNMAP 1:1
  MAP 20
 2008: ==> r 24
  UNMAP 0:8
- IN
+ ZERO
  MAP 21
 2009: ==> r 13
  UNMAP 0:14
- IN
+ ZERO
  MAP 22
 2010: ==> r 32
  UNMAP 0:0
@@ -7001,18 +7020,18 @@ EXIT current process 1 UNMAP 1:1
 2011: ==> r 16
  UNMAP 0:5
  OUT
- IN
+ ZERO
  MAP 24
 2012: ==> r 16
 2013: ==> r 7
  UNMAP 0:7
- IN
+ ZERO
  MAP 25
 2014: ==> w 29
  UNMAP 2:6
- OUT
  ZERO
  MAP 26
+ SEGPROT
 2015: ==> c 0
 2016: ==> r 46
  UNMAP 2:17
@@ -7020,7 +7039,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 27
 2017: ==> r 20
  UNMAP 2:13
- OUT
  IN
  MAP 28
 2018: ==> r 39
@@ -7029,8 +7047,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 29
 2019: ==> r 14
  UNMAP 2:4
- OUT
- IN
+ ZERO
  MAP 30
 2020: ==> r 30
  UNMAP 2:47
@@ -7056,7 +7073,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 3
 2026: ==> r 0
  UNMAP 2:11
- OUT
  IN
  MAP 4
 2027: ==> w 1
@@ -7070,7 +7086,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 6
 2029: ==> r 40
  UNMAP 2:3
- OUT
  ZERO
  MAP 7
 2030: ==> r 11
@@ -7099,24 +7114,24 @@ EXIT current process 1 UNMAP 1:1
 2037: ==> c 2
 2038: ==> r 4
  UNMAP 3:43
- IN
+ FIN
  MAP 13
 2039: ==> r 4
 2040: ==> r 21
  UNMAP 3:4
- IN
+ FIN
  MAP 14
 2041: ==> r 9
  UNMAP 3:10
- IN
+ FIN
  MAP 15
 2042: ==> r 17
  UNMAP 3:6
- IN
+ FIN
  MAP 16
 2043: ==> r 5
  UNMAP 3:18
- IN
+ FIN
  MAP 17
 2044: ==> r 33
  UNMAP 3:27
@@ -7127,9 +7142,10 @@ EXIT current process 1 UNMAP 1:1
  ZERO
  MAP 19
 2046: ==> w 5
+ SEGPROT
 2047: ==> r 8
  UNMAP 3:30
- IN
+ FIN
  MAP 20
 2048: ==> r 35
  UNMAP 3:24
@@ -7141,52 +7157,52 @@ EXIT current process 1 UNMAP 1:1
  MAP 22
 2050: ==> r 2
  UNMAP 3:32
- IN
+ FIN
  MAP 23
 2051: ==> r 33
 2052: ==> c 3
 2053: ==> w 53
  UNMAP 3:16
- IN
+ FIN
  MAP 24
 2054: ==> w 3
  UNMAP 3:7
- IN
+ ZERO
  MAP 25
+ SEGPROT
 2055: ==> r 1
  UNMAP 3:29
- OUT
- IN
+ ZERO
  MAP 26
 2056: ==> r 21
  UNMAP 0:46
- IN
+ ZERO
  MAP 27
 2057: ==> r 15
  UNMAP 0:20
  OUT
- IN
+ ZERO
  MAP 28
 2058: ==> r 57
  UNMAP 0:39
- IN
+ FIN
  MAP 29
 2059: ==> r 46
  UNMAP 0:14
- ZERO
+ FIN
  MAP 30
 2060: ==> r 17
  UNMAP 0:30
- IN
+ ZERO
  MAP 31
 2061: ==> r 54
  UNMAP 0:24
- ZERO
+ FIN
  MAP 0
 2062: ==> r 45
  UNMAP 0:2
  OUT
- ZERO
+ FIN
  MAP 1
 2063: ==> r 31
  UNMAP 0:18
@@ -7195,28 +7211,28 @@ EXIT current process 1 UNMAP 1:1
  MAP 2
 2064: ==> r 58
  UNMAP 0:8
- IN
+ FIN
  MAP 3
 2065: ==> w 51
  UNMAP 0:0
- IN
+ FIN
  MAP 4
 2066: ==> r 42
  UNMAP 0:1
  OUT
- IN
+ FIN
  MAP 5
 2067: ==> r 39
  UNMAP 0:16
- ZERO
+ FIN
  MAP 6
 2068: ==> r 8
  UNMAP 0:40
- IN
+ ZERO
  MAP 7
 2069: ==> r 19
  UNMAP 0:11
- IN
+ ZERO
  MAP 8
 2070: ==> r 34
  UNMAP 0:19
@@ -7227,24 +7243,26 @@ EXIT current process 1 UNMAP 1:1
 2073: ==> w 62
  UNMAP 0:9
  OUT
- ZERO
+ FIN
  MAP 10
 2074: ==> r 29
  UNMAP 0:26
- IN
+ ZERO
  MAP 11
 2075: ==> w 1
+ SEGPROT
 2076: ==> r 22
  UNMAP 0:21
- IN
+ ZERO
  MAP 12
 2077: ==> w 24
  UNMAP 2:4
- IN
+ ZERO
  MAP 13
+ SEGPROT
 2078: ==> r 5
  UNMAP 2:21
- IN
+ ZERO
  MAP 14
 2079: ==> c 0
 2080: ==> r 4
@@ -7257,7 +7275,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 16
 2082: ==> r 52
  UNMAP 2:5
- OUT
  ZERO
  MAP 17
 2083: ==> w 1
@@ -7288,17 +7305,15 @@ EXIT current process 1 UNMAP 1:1
  MAP 23
 2090: ==> r 31
  UNMAP 3:53
- OUT
+ FOUT
  IN
  MAP 24
 2091: ==> r 32
  UNMAP 3:3
- OUT
  IN
  MAP 25
 2092: ==> w 9
  UNMAP 3:1
- OUT
  IN
  MAP 26
 2093: ==> r 16
@@ -7311,8 +7326,9 @@ EXIT current process 1 UNMAP 1:1
  MAP 28
 2095: ==> w 14
  UNMAP 3:57
- IN
+ ZERO
  MAP 29
+ SEGPROT
 2096: ==> r 44
  UNMAP 3:46
  IN
@@ -7324,15 +7340,16 @@ EXIT current process 1 UNMAP 1:1
  MAP 31
 2099: ==> w 11
  UNMAP 3:54
- IN
+ FIN
  MAP 0
+ SEGPROT
 2100: ==> r 4
  UNMAP 3:45
- IN
+ FIN
  MAP 1
 2101: ==> r 15
  UNMAP 3:31
- IN
+ FIN
  MAP 2
 2102: ==> r 27
  UNMAP 3:58
@@ -7341,74 +7358,78 @@ EXIT current process 1 UNMAP 1:1
 2103: ==> r 37
 2104: ==> r 32
  UNMAP 3:51
- OUT
+ FOUT
  IN
  MAP 4
 2105: ==> w 11
+ SEGPROT
 2106: ==> r 20
  UNMAP 3:42
- IN
+ FIN
  MAP 5
 2107: ==> r 4
 2108: ==> r 10
  UNMAP 3:39
- IN
+ FIN
  MAP 6
 2109: ==> c 3
 2110: ==> w 1
  UNMAP 3:8
- IN
+ ZERO
  MAP 7
+ SEGPROT
 2111: ==> w 26
  UNMAP 3:19
- IN
+ ZERO
  MAP 8
+ SEGPROT
 2112: ==> r 42
  UNMAP 3:34
- IN
+ FIN
  MAP 9
 2113: ==> r 18
  UNMAP 3:62
- OUT
- IN
+ FOUT
+ ZERO
  MAP 10
 2114: ==> r 9
  UNMAP 3:29
- IN
+ ZERO
  MAP 11
 2115: ==> r 16
  UNMAP 3:22
- IN
+ ZERO
  MAP 12
 2116: ==> r 23
  UNMAP 3:24
- OUT
- IN
+ ZERO
  MAP 13
 2117: ==> r 1
 2118: ==> r 7
  UNMAP 3:5
- IN
+ ZERO
  MAP 14
 2119: ==> r 2
  UNMAP 0:4
- IN
+ ZERO
  MAP 15
 2120: ==> r 43
  UNMAP 0:24
- ZERO
+ FIN
  MAP 16
 2121: ==> w 1
+ SEGPROT
 2122: ==> r 15
  UNMAP 0:52
- IN
+ ZERO
  MAP 17
 2123: ==> r 14
  UNMAP 0:1
  OUT
- IN
+ ZERO
  MAP 18
 2124: ==> w 14
+ SEGPROT
 2125: ==> r 30
  UNMAP 0:5
  ZERO
@@ -7417,11 +7438,11 @@ EXIT current process 1 UNMAP 1:1
 2127: ==> r 49
  UNMAP 0:2
  OUT
- ZERO
+ FIN
  MAP 20
 2128: ==> w 41
  UNMAP 0:20
- IN
+ FIN
  MAP 21
 2129: ==> r 1
 2130: ==> r 43
@@ -7433,17 +7454,20 @@ EXIT current process 1 UNMAP 1:1
 2132: ==> r 2
 2133: ==> w 33
  UNMAP 0:41
- IN
+ ZERO
  MAP 23
+ SEGPROT
 2134: ==> r 53
  UNMAP 0:31
- IN
+ FIN
  MAP 24
 2135: ==> w 1
+ SEGPROT
 2136: ==> w 31
  UNMAP 0:32
  ZERO
  MAP 25
+ SEGPROT
 2137: ==> r 1
 2138: ==> c 0
 2139: ==> r 17
@@ -7461,7 +7485,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 28
 2142: ==> r 41
  UNMAP 0:14
- OUT
  IN
  MAP 29
 2143: ==> r 59
@@ -7474,7 +7497,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 31
 2145: ==> r 35
  UNMAP 2:11
- OUT
  IN
  MAP 0
 2146: ==> w 7
@@ -7491,7 +7513,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 3
 2149: ==> r 14
  UNMAP 2:32
- IN
+ ZERO
  MAP 4
 2150: ==> r 18
  UNMAP 2:20
@@ -7503,14 +7525,12 @@ EXIT current process 1 UNMAP 1:1
  MAP 6
 2152: ==> r 55
  UNMAP 3:1
- OUT
  IN
  MAP 7
 2153: ==> c 2
 2154: ==> r 3
  UNMAP 3:26
- OUT
- IN
+ FIN
  MAP 8
 2155: ==> r 40
  UNMAP 3:42
@@ -7526,7 +7546,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 11
 2158: ==> r 14
  UNMAP 3:16
- IN
+ FIN
  MAP 12
 2159: ==> w 30
  UNMAP 3:23
@@ -7542,21 +7562,22 @@ EXIT current process 1 UNMAP 1:1
  MAP 15
 2162: ==> r 9
  UNMAP 3:43
- IN
+ FIN
  MAP 16
 2163: ==> r 11
  UNMAP 3:15
- IN
+ FIN
  MAP 17
 2164: ==> w 19
  UNMAP 3:14
- OUT
- ZERO
+ FIN
  MAP 18
+ SEGPROT
 2165: ==> w 13
  UNMAP 3:30
- IN
+ FIN
  MAP 19
+ SEGPROT
 2166: ==> r 13
 2167: ==> r 47
  UNMAP 3:49
@@ -7564,8 +7585,8 @@ EXIT current process 1 UNMAP 1:1
  MAP 20
 2168: ==> r 21
  UNMAP 3:41
- OUT
- IN
+ FOUT
+ FIN
  MAP 21
 2169: ==> r 63
  UNMAP 3:34
@@ -7573,7 +7594,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 22
 2170: ==> r 33
  UNMAP 3:33
- OUT
  IN
  MAP 23
 2171: ==> w 34
@@ -7584,9 +7604,9 @@ EXIT current process 1 UNMAP 1:1
 2173: ==> r 3
 2174: ==> w 10
  UNMAP 3:31
- OUT
- IN
+ FIN
  MAP 25
+ SEGPROT
 2175: ==> w 58
  UNMAP 0:17
  IN
@@ -7597,15 +7617,17 @@ EXIT current process 1 UNMAP 1:1
  IN
  MAP 27
 2177: ==> w 21
+ SEGPROT
 2178: ==> r 2
  UNMAP 0:29
  OUT
- IN
+ FIN
  MAP 28
 2179: ==> w 4
  UNMAP 0:41
- IN
+ FIN
  MAP 29
+ SEGPROT
 2180: ==> r 36
  UNMAP 0:59
  IN
@@ -7613,8 +7635,9 @@ EXIT current process 1 UNMAP 1:1
 2181: ==> c 3
 2182: ==> w 5
  UNMAP 0:43
- IN
+ ZERO
  MAP 31
+ SEGPROT
 2183: ==> r 28
  UNMAP 0:35
  ZERO
@@ -7622,15 +7645,16 @@ EXIT current process 1 UNMAP 1:1
 2184: ==> w 29
  UNMAP 0:7
  OUT
- IN
+ ZERO
  MAP 1
+ SEGPROT
 2185: ==> r 40
  UNMAP 0:32
- IN
+ FIN
  MAP 2
 2186: ==> r 3
  UNMAP 0:11
- IN
+ ZERO
  MAP 3
 2187: ==> r 3
 2188: ==> r 0
@@ -7641,50 +7665,54 @@ EXIT current process 1 UNMAP 1:1
  MAP 4
 2190: ==> w 52
  UNMAP 0:18
- IN
+ FIN
  MAP 5
 2191: ==> r 39
  UNMAP 0:31
- ZERO
+ FIN
  MAP 6
 2192: ==> w 9
  UNMAP 0:55
- IN
+ ZERO
  MAP 7
+ SEGPROT
 2193: ==> r 14
  UNMAP 2:3
- IN
+ ZERO
  MAP 8
 2194: ==> r 35
  UNMAP 2:40
- IN
+ ZERO
  MAP 9
 2195: ==> r 25
 2196: ==> r 2
  UNMAP 2:27
- IN
+ ZERO
  MAP 10
 2197: ==> r 4
  UNMAP 2:35
- IN
+ ZERO
  MAP 11
 2198: ==> r 9
 2199: ==> w 1
  UNMAP 2:14
- IN
+ ZERO
  MAP 12
+ SEGPROT
 2200: ==> w 6
  UNMAP 2:30
  OUT
- IN
+ ZERO
  MAP 13
+ SEGPROT
 2201: ==> w 10
  UNMAP 2:26
- IN
+ ZERO
  MAP 14
+ SEGPROT
 2202: ==> r 19
  UNMAP 2:51
- IN
+ ZERO
  MAP 15
 2203: ==> c 0
 2204: ==> w 21
@@ -7697,12 +7725,10 @@ EXIT current process 1 UNMAP 1:1
  MAP 17
 2206: ==> r 59
  UNMAP 2:19
- OUT
  IN
  MAP 18
 2207: ==> w 6
  UNMAP 2:13
- OUT
  IN
  MAP 19
 2208: ==> w 5
@@ -7711,7 +7737,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 20
 2209: ==> w 8
  UNMAP 2:21
- OUT
  IN
  MAP 21
 2210: ==> r 28
@@ -7730,7 +7755,6 @@ EXIT current process 1 UNMAP 1:1
 2213: ==> r 5
 2214: ==> w 31
  UNMAP 2:10
- OUT
  IN
  MAP 25
 2215: ==> w 54
@@ -7750,7 +7774,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 28
 2219: ==> r 10
  UNMAP 2:4
- OUT
  IN
  MAP 29
 2220: ==> w 17
@@ -7762,17 +7785,15 @@ EXIT current process 1 UNMAP 1:1
 2223: ==> c 2
 2224: ==> r 44
  UNMAP 3:5
- OUT
  IN
  MAP 31
 2225: ==> r 21
  UNMAP 3:28
- IN
+ FIN
  MAP 0
 2226: ==> r 1
  UNMAP 3:29
- OUT
- IN
+ FIN
  MAP 1
 2227: ==> r 39
  UNMAP 3:40
@@ -7784,27 +7805,26 @@ EXIT current process 1 UNMAP 1:1
  MAP 3
 2229: ==> r 8
  UNMAP 3:25
- IN
+ FIN
  MAP 4
 2230: ==> r 56
  UNMAP 3:52
- OUT
+ FOUT
  IN
  MAP 5
 2231: ==> r 21
 2232: ==> r 14
  UNMAP 3:39
- IN
+ FIN
  MAP 6
 2233: ==> r 26
  UNMAP 3:9
- OUT
  IN
  MAP 7
 2234: ==> w 33
 2235: ==> r 7
  UNMAP 3:14
- IN
+ FIN
  MAP 8
 2236: ==> r 21
 2237: ==> r 50
@@ -7817,21 +7837,19 @@ EXIT current process 1 UNMAP 1:1
  MAP 10
 2239: ==> r 10
  UNMAP 3:4
- IN
+ FIN
  MAP 11
 2240: ==> r 37
  UNMAP 3:1
- OUT
  IN
  MAP 12
 2241: ==> w 2
  UNMAP 3:6
- OUT
- IN
+ FIN
  MAP 13
+ SEGPROT
 2242: ==> w 59
  UNMAP 3:10
- OUT
  ZERO
  MAP 14
 2243: ==> w 54
@@ -7842,39 +7860,40 @@ EXIT current process 1 UNMAP 1:1
 2245: ==> r 6
  UNMAP 0:21
  OUT
- IN
+ ZERO
  MAP 16
 2246: ==> r 2
  UNMAP 0:16
- IN
+ ZERO
  MAP 17
 2247: ==> r 47
  UNMAP 0:59
- IN
+ FIN
  MAP 18
 2248: ==> r 43
  UNMAP 0:6
  OUT
- ZERO
+ FIN
  MAP 19
 2249: ==> r 13
  UNMAP 0:5
  OUT
- IN
+ ZERO
  MAP 20
 2250: ==> w 0
  SEGV
 2251: ==> r 60
  UNMAP 0:8
  OUT
- ZERO
+ FIN
  MAP 21
 2252: ==> r 0
  SEGV
 2253: ==> w 22
  UNMAP 0:28
- IN
+ ZERO
  MAP 22
+ SEGPROT
 2254: ==> r 28
  UNMAP 0:9
  OUT
@@ -7882,59 +7901,63 @@ EXIT current process 1 UNMAP 1:1
  MAP 23
 2255: ==> w 12
  UNMAP 0:26
- IN
+ ZERO
  MAP 24
+ SEGPROT
 2256: ==> r 35
  UNMAP 0:31
  OUT
- IN
+ ZERO
  MAP 25
 2257: ==> r 9
  UNMAP 0:54
  OUT
- IN
+ ZERO
  MAP 26
 2258: ==> r 6
 2259: ==> r 21
  UNMAP 0:0
  OUT
- IN
+ ZERO
  MAP 27
 2260: ==> w 10
  UNMAP 0:11
- IN
+ ZERO
  MAP 28
+ SEGPROT
 2261: ==> w 7
  UNMAP 0:10
- IN
+ ZERO
  MAP 29
+ SEGPROT
 2262: ==> r 6
 2263: ==> r 5
  UNMAP 0:17
  OUT
- IN
+ ZERO
  MAP 30
 2264: ==> r 14
  UNMAP 2:44
- IN
+ ZERO
  MAP 31
 2265: ==> r 39
  UNMAP 2:21
- ZERO
+ FIN
  MAP 0
 2266: ==> r 0
  SEGV
 2267: ==> w 2
+ SEGPROT
 2268: ==> r 36
  SEGV
 2269: ==> r 1
  UNMAP 2:1
- IN
+ ZERO
  MAP 1
 2270: ==> c 0
 2271: ==> r 14
  UNMAP 2:39
- IN
+ ZERO
  MAP 2
 2272: ==> r 12
  UNMAP 2:33
@@ -7979,7 +8002,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 12
 2282: ==> w 25
  UNMAP 2:2
- OUT
  IN
  MAP 13
 2283: ==> r 0
@@ -8000,7 +8022,6 @@ EXIT current process 1 UNMAP 1:1
 2287: ==> r 2
 2288: ==> r 35
  UNMAP 3:2
- OUT
  IN
  MAP 17
 2289: ==> r 25
@@ -8015,7 +8036,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 19
 2293: ==> r 10
  UNMAP 3:13
- IN
+ FIN
  MAP 20
 2294: ==> r 60
  UNMAP 3:60
@@ -8023,7 +8044,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 21
 2295: ==> r 28
  UNMAP 3:22
- OUT
  IN
  MAP 22
 2296: ==> r 49
@@ -8032,7 +8052,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 23
 2297: ==> r 54
  UNMAP 3:12
- OUT
  IN
  MAP 24
 2298: ==> w 50
@@ -8045,46 +8064,45 @@ EXIT current process 1 UNMAP 1:1
  MAP 26
 2300: ==> r 2
  UNMAP 3:21
- IN
+ FIN
  MAP 27
 2301: ==> r 8
  UNMAP 3:10
- OUT
- IN
+ FIN
  MAP 28
 2302: ==> r 34
  UNMAP 3:7
- OUT
  IN
  MAP 29
 2303: ==> r 24
  SEGV
 2304: ==> r 4
  UNMAP 3:5
- IN
+ FIN
  MAP 30
 2305: ==> r 0
  SEGV
 2306: ==> c 3
 2307: ==> w 5
  UNMAP 3:14
- IN
+ ZERO
  MAP 31
+ SEGPROT
 2308: ==> r 21
  UNMAP 3:39
- IN
+ ZERO
  MAP 0
 2309: ==> r 13
  UNMAP 3:1
- IN
+ ZERO
  MAP 1
 2310: ==> r 24
  UNMAP 0:14
- IN
+ ZERO
  MAP 2
 2311: ==> w 40
  UNMAP 0:12
- IN
+ FIN
  MAP 3
 2312: ==> r 30
  UNMAP 0:58
@@ -8093,48 +8111,50 @@ EXIT current process 1 UNMAP 1:1
 2313: ==> r 3
  UNMAP 0:41
  OUT
- IN
+ ZERO
  MAP 5
 2314: ==> r 0
  SEGV
 2315: ==> r 12
  UNMAP 0:20
- IN
+ ZERO
  MAP 6
 2316: ==> r 10
  UNMAP 0:17
- IN
+ ZERO
  MAP 7
 2317: ==> w 43
  UNMAP 0:59
- ZERO
+ FIN
  MAP 8
 2318: ==> w 24
+ SEGPROT
 2319: ==> r 15
  UNMAP 0:19
  OUT
- IN
+ ZERO
  MAP 9
 2320: ==> w 14
  UNMAP 0:2
- IN
+ ZERO
  MAP 10
+ SEGPROT
 2321: ==> r 63
  UNMAP 0:18
- IN
+ FIN
  MAP 11
 2322: ==> r 56
  UNMAP 0:13
- IN
+ FIN
  MAP 12
 2323: ==> r 7
  UNMAP 0:25
  OUT
- IN
+ ZERO
  MAP 13
 2324: ==> r 37
  UNMAP 0:0
- IN
+ FIN
  MAP 14
 2325: ==> r 28
  UNMAP 0:31
@@ -8149,12 +8169,12 @@ EXIT current process 1 UNMAP 1:1
  MAP 16
 2330: ==> r 47
  UNMAP 0:35
- IN
+ FIN
  MAP 17
 2331: ==> r 7
 2332: ==> r 46
  UNMAP 0:6
- ZERO
+ FIN
  MAP 18
 2333: ==> c 0
 2334: ==> r 18
@@ -8188,7 +8208,7 @@ EXIT current process 1 UNMAP 1:1
 2343: ==> r 14
  UNMAP 2:50
  OUT
- IN
+ ZERO
  MAP 25
 2344: ==> r 39
  UNMAP 2:42
@@ -8205,7 +8225,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 28
 2348: ==> r 5
  UNMAP 2:34
- IN
+ FIN
  MAP 29
 2349: ==> w 33
  UNMAP 2:4
@@ -8213,8 +8233,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 30
 2350: ==> r 12
  UNMAP 3:5
- OUT
- IN
+ FIN
  MAP 31
 2351: ==> r 27
  UNMAP 3:21
@@ -8226,12 +8245,11 @@ EXIT current process 1 UNMAP 1:1
  MAP 1
 2353: ==> r 11
  UNMAP 3:24
- OUT
- IN
+ FIN
  MAP 2
 2354: ==> r 30
  UNMAP 3:40
- OUT
+ FOUT
  IN
  MAP 3
 2355: ==> w 39
@@ -8240,7 +8258,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 4
 2356: ==> r 15
  UNMAP 3:3
- IN
+ FIN
  MAP 5
 2357: ==> r 15
 2358: ==> r 35
@@ -8254,17 +8272,17 @@ EXIT current process 1 UNMAP 1:1
 2360: ==> r 15
 2361: ==> w 1
  UNMAP 3:43
- OUT
- IN
+ FOUT
+ FIN
  MAP 8
+ SEGPROT
 2362: ==> w 31
  UNMAP 3:15
  IN
  MAP 9
 2363: ==> r 21
  UNMAP 3:14
- OUT
- IN
+ FIN
  MAP 10
 2364: ==> w 48
  UNMAP 3:63
@@ -8274,68 +8292,70 @@ EXIT current process 1 UNMAP 1:1
 2366: ==> c 3
 2367: ==> r 31
  UNMAP 3:56
- IN
+ ZERO
  MAP 12
 2368: ==> r 5
  UNMAP 3:7
- IN
+ ZERO
  MAP 13
 2369: ==> w 16
  UNMAP 3:37
- IN
+ ZERO
  MAP 14
+ SEGPROT
 2370: ==> w 24
  UNMAP 3:28
- IN
+ ZERO
  MAP 15
+ SEGPROT
 2371: ==> r 29
  UNMAP 3:27
- IN
+ ZERO
  MAP 16
 2372: ==> r 48
  UNMAP 3:47
- IN
+ FIN
  MAP 17
 2373: ==> r 35
  UNMAP 3:46
- IN
+ ZERO
  MAP 18
 2374: ==> r 0
  SEGV
 2375: ==> r 44
  UNMAP 0:18
  OUT
- IN
+ FIN
  MAP 19
 2376: ==> r 41
  UNMAP 0:16
- IN
+ FIN
  MAP 20
 2377: ==> r 4
  UNMAP 0:32
- IN
+ ZERO
  MAP 21
 2378: ==> r 10
  UNMAP 0:3
- IN
+ ZERO
  MAP 22
 2379: ==> r 9
  UNMAP 0:30
  OUT
- IN
+ ZERO
  MAP 23
 2380: ==> r 1
  UNMAP 0:5
  OUT
- IN
+ ZERO
  MAP 24
 2381: ==> r 8
  UNMAP 0:14
- IN
+ ZERO
  MAP 25
 2382: ==> r 59
  UNMAP 0:39
- IN
+ FIN
  MAP 26
 2383: ==> c 0
 2384: ==> r 4
@@ -8392,7 +8412,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 5
 2398: ==> r 14
  UNMAP 2:35
- IN
+ ZERO
  MAP 6
 2399: ==> r 5
  UNMAP 2:29
@@ -8400,7 +8420,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 7
 2400: ==> r 19
  UNMAP 2:1
- OUT
  IN
  MAP 8
 2401: ==> r 23
@@ -8432,23 +8451,21 @@ EXIT current process 1 UNMAP 1:1
 2410: ==> r 0
 2411: ==> r 36
  UNMAP 3:16
- OUT
  IN
  MAP 14
 2412: ==> r 3
  UNMAP 3:24
- OUT
  IN
  MAP 15
 2413: ==> r 6
 2414: ==> c 2
 2415: ==> r 12
  UNMAP 3:29
- IN
+ FIN
  MAP 16
 2416: ==> r 22
  UNMAP 3:48
- IN
+ FIN
  MAP 17
 2417: ==> r 27
  UNMAP 3:35
@@ -8460,16 +8477,18 @@ EXIT current process 1 UNMAP 1:1
  MAP 19
 2419: ==> w 15
  UNMAP 3:41
- IN
+ FIN
  MAP 20
+ SEGPROT
 2420: ==> r 7
  UNMAP 3:4
- IN
+ FIN
  MAP 21
 2421: ==> w 15
+ SEGPROT
 2422: ==> r 11
  UNMAP 3:10
- IN
+ FIN
  MAP 22
 2423: ==> r 53
  UNMAP 3:9
@@ -8481,23 +8500,24 @@ EXIT current process 1 UNMAP 1:1
  MAP 24
 2425: ==> r 17
  UNMAP 3:8
- IN
+ FIN
  MAP 25
 2426: ==> r 23
  UNMAP 3:59
- IN
+ ZERO
  MAP 26
 2427: ==> r 1
  UNMAP 0:4
- IN
+ FIN
  MAP 27
 2428: ==> r 7
 2429: ==> r 7
 2430: ==> w 21
  UNMAP 0:46
  OUT
- IN
+ FIN
  MAP 28
+ SEGPROT
 2431: ==> r 39
  UNMAP 0:18
  IN
@@ -8509,10 +8529,11 @@ EXIT current process 1 UNMAP 1:1
  IN
  MAP 30
 2434: ==> w 15
+ SEGPROT
 2435: ==> r 6
  UNMAP 0:7
  OUT
- IN
+ FIN
  MAP 31
 2436: ==> c 3
 2437: ==> r 27
@@ -8522,24 +8543,24 @@ EXIT current process 1 UNMAP 1:1
  MAP 0
 2438: ==> r 14
  UNMAP 0:0
- IN
+ ZERO
  MAP 1
 2439: ==> r 4
  UNMAP 0:8
  OUT
- IN
+ ZERO
  MAP 2
 2440: ==> r 9
  UNMAP 0:41
- IN
+ ZERO
  MAP 3
 2441: ==> r 18
  UNMAP 0:6
- IN
+ ZERO
  MAP 4
 2442: ==> r 10
  UNMAP 0:27
- IN
+ ZERO
  MAP 5
 2443: ==> r 25
  UNMAP 0:14
@@ -8547,63 +8568,65 @@ EXIT current process 1 UNMAP 1:1
  MAP 6
 2444: ==> r 48
  UNMAP 0:5
- IN
+ FIN
  MAP 7
 2445: ==> r 23
  UNMAP 0:19
- IN
+ ZERO
  MAP 8
 2446: ==> r 29
  UNMAP 0:23
- IN
+ ZERO
  MAP 9
 2447: ==> r 17
  UNMAP 0:13
- IN
+ ZERO
  MAP 10
 2448: ==> w 7
  UNMAP 0:43
- IN
+ ZERO
  MAP 11
+ SEGPROT
 2449: ==> w 20
  UNMAP 0:9
- IN
+ ZERO
  MAP 12
+ SEGPROT
 2450: ==> r 12
  UNMAP 0:16
- IN
+ ZERO
  MAP 13
 2451: ==> r 8
  UNMAP 0:36
- IN
+ ZERO
  MAP 14
 2452: ==> r 34
  UNMAP 0:3
  ZERO
  MAP 15
 2453: ==> w 8
+ SEGPROT
 2454: ==> r 9
 2455: ==> r 5
  UNMAP 2:12
- IN
+ ZERO
  MAP 16
 2456: ==> r 3
  UNMAP 2:22
- IN
+ ZERO
  MAP 17
 2457: ==> r 3
 2458: ==> r 11
  UNMAP 2:27
- IN
+ ZERO
  MAP 18
 2459: ==> w 37
  UNMAP 2:37
- IN
+ FIN
  MAP 19
 2460: ==> r 46
  UNMAP 2:15
- OUT
- ZERO
+ FIN
  MAP 20
 2461: ==> c 0
 2462: ==> w 21
@@ -8636,7 +8659,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 27
 2469: ==> r 57
  UNMAP 2:21
- OUT
  IN
  MAP 28
 2470: ==> r 11
@@ -8676,20 +8698,21 @@ EXIT current process 1 UNMAP 1:1
 2480: ==> c 2
 2481: ==> r 19
  UNMAP 3:10
- IN
+ FIN
  MAP 5
 2482: ==> r 7
  UNMAP 3:25
- IN
+ FIN
  MAP 6
 2483: ==> r 20
  UNMAP 3:48
- IN
+ FIN
  MAP 7
 2484: ==> w 16
  UNMAP 3:23
- IN
+ FIN
  MAP 8
+ SEGPROT
 2485: ==> r 47
  UNMAP 3:29
  ZERO
@@ -8700,12 +8723,10 @@ EXIT current process 1 UNMAP 1:1
  MAP 10
 2487: ==> r 26
  UNMAP 3:7
- OUT
  IN
  MAP 11
 2488: ==> w 34
  UNMAP 3:20
- OUT
  IN
  MAP 12
 2489: ==> r 49
@@ -8715,24 +8736,24 @@ EXIT current process 1 UNMAP 1:1
 2490: ==> r 34
 2491: ==> r 14
  UNMAP 3:8
- OUT
- IN
+ FIN
  MAP 14
 2492: ==> r 13
  UNMAP 3:34
- IN
+ FIN
  MAP 15
 2493: ==> r 24
  SEGV
 2494: ==> r 6
  UNMAP 3:5
- IN
+ FIN
  MAP 16
 2495: ==> w 7
+ SEGPROT
 2496: ==> r 14
 2497: ==> r 3
  UNMAP 3:3
- IN
+ FIN
  MAP 17
 2498: ==> r 43
  UNMAP 3:11
@@ -8740,75 +8761,80 @@ EXIT current process 1 UNMAP 1:1
  MAP 18
 2499: ==> r 22
  UNMAP 3:37
- OUT
- IN
+ FOUT
+ FIN
  MAP 19
 2500: ==> r 8
  UNMAP 3:46
- IN
+ FIN
  MAP 20
 2501: ==> r 8
 2502: ==> c 3
 2503: ==> r 48
  UNMAP 0:21
  OUT
- IN
+ FIN
  MAP 21
 2504: ==> r 17
  UNMAP 0:12
- IN
+ ZERO
  MAP 22
 2505: ==> w 58
  UNMAP 0:40
- IN
+ FIN
  MAP 23
 2506: ==> r 29
  UNMAP 0:49
- IN
+ ZERO
  MAP 24
 2507: ==> r 21
  UNMAP 0:28
  OUT
- IN
+ ZERO
  MAP 25
 2508: ==> r 1
  UNMAP 0:4
- IN
+ ZERO
  MAP 26
 2509: ==> r 1
 2510: ==> r 8
  UNMAP 0:11
- IN
+ ZERO
  MAP 27
 2511: ==> w 52
  UNMAP 0:57
- IN
+ FIN
  MAP 28
 2512: ==> w 10
  UNMAP 0:29
  OUT
- IN
+ ZERO
  MAP 29
+ SEGPROT
 2513: ==> r 3
  UNMAP 0:18
  OUT
- IN
+ ZERO
  MAP 30
 2514: ==> w 20
  UNMAP 0:1
- IN
+ ZERO
  MAP 31
+ SEGPROT
 2515: ==> w 18
  UNMAP 0:32
  OUT
- IN
+ ZERO
  MAP 0
+ SEGPROT
 2516: ==> w 1
+ SEGPROT
 2517: ==> w 2
  UNMAP 0:31
  OUT
- IN
+ ZERO
  MAP 1
+ SEGPROT
 2518: ==> c 0
 2519: ==> r 63
  UNMAP 0:46
@@ -8828,7 +8854,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 5
 2523: ==> w 45
  UNMAP 2:7
- OUT
  IN
  MAP 6
 2524: ==> r 0
@@ -8837,7 +8862,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 7
 2525: ==> w 1
  UNMAP 2:16
- OUT
  IN
  MAP 8
 2526: ==> r 6
@@ -8875,7 +8899,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 15
 2536: ==> r 18
  UNMAP 2:6
- IN
+ FIN
  MAP 16
 2537: ==> r 58
  UNMAP 2:3
@@ -8883,8 +8907,9 @@ EXIT current process 1 UNMAP 1:1
  MAP 17
 2538: ==> w 9
  UNMAP 2:43
- IN
+ FIN
  MAP 18
+ SEGPROT
 2539: ==> w 28
  UNMAP 2:22
  IN
@@ -8895,7 +8920,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 20
 2541: ==> r 13
  UNMAP 3:48
- IN
+ FIN
  MAP 21
 2542: ==> r 38
  UNMAP 3:17
@@ -8906,21 +8931,21 @@ EXIT current process 1 UNMAP 1:1
  SEGV
 2545: ==> r 10
  UNMAP 3:58
- OUT
- IN
+ FOUT
+ FIN
  MAP 23
 2546: ==> w 15
  UNMAP 3:29
- IN
+ FIN
  MAP 24
+ SEGPROT
 2547: ==> r 19
  UNMAP 3:21
- IN
+ FIN
  MAP 25
 2548: ==> r 21
  UNMAP 3:1
- OUT
- IN
+ FIN
  MAP 26
 2549: ==> r 48
  UNMAP 3:8
@@ -8928,99 +8953,102 @@ EXIT current process 1 UNMAP 1:1
  MAP 27
 2550: ==> w 20
  UNMAP 3:52
- OUT
- IN
+ FOUT
+ FIN
  MAP 28
+ SEGPROT
 2551: ==> r 26
  UNMAP 3:10
- OUT
  IN
  MAP 29
 2552: ==> r 12
  UNMAP 3:3
- IN
+ FIN
  MAP 30
 2553: ==> c 3
 2554: ==> w 27
  UNMAP 3:20
- OUT
  ZERO
  MAP 31
+ SEGPROT
 2555: ==> r 18
 2556: ==> w 16
  UNMAP 3:18
- OUT
- IN
+ ZERO
  MAP 0
+ SEGPROT
 2557: ==> r 13
  UNMAP 3:2
- OUT
- IN
+ ZERO
  MAP 1
 2558: ==> r 48
  UNMAP 0:63
- IN
+ FIN
  MAP 2
 2559: ==> r 13
 2560: ==> w 11
  UNMAP 0:4
- IN
+ ZERO
  MAP 3
+ SEGPROT
 2561: ==> w 6
  UNMAP 0:8
  OUT
- IN
+ ZERO
  MAP 4
+ SEGPROT
 2562: ==> r 14
  UNMAP 0:24
- IN
+ ZERO
  MAP 5
 2563: ==> r 29
  UNMAP 0:45
  OUT
- IN
+ ZERO
  MAP 6
 2564: ==> r 5
  UNMAP 0:0
- IN
+ ZERO
  MAP 7
 2565: ==> w 15
  UNMAP 0:1
  OUT
- IN
+ ZERO
  MAP 8
+ SEGPROT
 2566: ==> r 14
 2567: ==> r 33
  UNMAP 0:6
- IN
+ ZERO
  MAP 9
 2568: ==> r 16
 2569: ==> r 8
  UNMAP 0:26
  OUT
- IN
+ ZERO
  MAP 10
 2570: ==> r 43
  UNMAP 0:10
- IN
+ FIN
  MAP 11
 2571: ==> r 3
  UNMAP 0:42
- IN
+ ZERO
  MAP 12
 2572: ==> r 41
  UNMAP 0:30
- IN
+ FIN
  MAP 13
 2573: ==> r 13
 2574: ==> r 7
  UNMAP 0:36
- IN
+ ZERO
  MAP 14
 2575: ==> w 25
  UNMAP 2:35
  ZERO
  MAP 15
+ SEGPROT
 2576: ==> c 0
 2577: ==> w 40
  UNMAP 2:18
@@ -9034,7 +9062,6 @@ EXIT current process 1 UNMAP 1:1
  SEGV
 2580: ==> r 24
  UNMAP 2:9
- OUT
  IN
  MAP 18
 2581: ==> r 4
@@ -9061,7 +9088,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 23
 2587: ==> r 54
  UNMAP 2:15
- OUT
  IN
  MAP 24
 2588: ==> w 58
@@ -9078,7 +9104,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 27
 2591: ==> r 10
  UNMAP 2:20
- OUT
  IN
  MAP 28
 2592: ==> r 44
@@ -9091,12 +9116,10 @@ EXIT current process 1 UNMAP 1:1
  MAP 30
 2594: ==> r 23
  UNMAP 3:27
- OUT
  IN
  MAP 31
 2595: ==> r 34
  UNMAP 3:16
- OUT
  IN
  MAP 0
 2596: ==> r 35
@@ -9111,14 +9134,12 @@ EXIT current process 1 UNMAP 1:1
 2599: ==> c 2
 2600: ==> r 43
  UNMAP 3:11
- OUT
  IN
  MAP 3
 2601: ==> r 0
  SEGV
 2602: ==> r 37
  UNMAP 3:6
- OUT
  IN
  MAP 4
 2603: ==> r 25
@@ -9127,24 +9148,23 @@ EXIT current process 1 UNMAP 1:1
  MAP 5
 2604: ==> r 4
  UNMAP 3:29
- IN
+ FIN
  MAP 6
 2605: ==> r 2
  UNMAP 3:5
- IN
+ FIN
  MAP 7
 2606: ==> w 34
  UNMAP 3:15
- OUT
  IN
  MAP 8
 2607: ==> r 5
  UNMAP 3:33
- IN
+ FIN
  MAP 9
 2608: ==> r 1
  UNMAP 3:8
- IN
+ FIN
  MAP 10
 2609: ==> r 1
 2610: ==> r 49
@@ -9157,7 +9177,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 12
 2612: ==> r 8
  UNMAP 3:41
- IN
+ FIN
  MAP 13
 2613: ==> r 0
  SEGV
@@ -9167,35 +9187,34 @@ EXIT current process 1 UNMAP 1:1
  MAP 14
 2615: ==> r 13
  UNMAP 3:25
- OUT
- IN
+ FIN
  MAP 15
 2616: ==> r 20
  UNMAP 0:40
  OUT
- IN
+ FIN
  MAP 16
 2617: ==> r 14
  UNMAP 0:5
  OUT
- IN
+ FIN
  MAP 17
 2618: ==> c 3
 2619: ==> r 1
  UNMAP 0:24
- IN
+ ZERO
  MAP 18
 2620: ==> r 31
  UNMAP 0:4
- IN
+ ZERO
  MAP 19
 2621: ==> r 3
  UNMAP 0:31
- IN
+ ZERO
  MAP 20
 2622: ==> r 45
  UNMAP 0:16
- ZERO
+ FIN
  MAP 21
 2623: ==> r 32
  UNMAP 0:13
@@ -9205,44 +9224,47 @@ EXIT current process 1 UNMAP 1:1
 2624: ==> w 11
  UNMAP 0:26
  OUT
- IN
+ ZERO
  MAP 23
+ SEGPROT
 2625: ==> r 53
  UNMAP 0:54
- IN
+ FIN
  MAP 24
 2626: ==> r 55
  UNMAP 0:58
  OUT
- ZERO
+ FIN
  MAP 25
 2627: ==> r 7
  UNMAP 0:11
- IN
+ ZERO
  MAP 26
 2628: ==> r 30
  UNMAP 0:29
  ZERO
  MAP 27
 2629: ==> w 1
+ SEGPROT
 2630: ==> r 40
  UNMAP 0:10
- IN
+ FIN
  MAP 28
 2631: ==> r 42
  UNMAP 0:44
- IN
+ FIN
  MAP 29
 2632: ==> r 58
  UNMAP 0:0
- IN
+ FIN
  MAP 30
 2633: ==> r 56
  UNMAP 0:23
- IN
+ FIN
  MAP 31
 2634: ==> r 42
 2635: ==> w 11
+ SEGPROT
 2636: ==> c 0
 2637: ==> r 16
  UNMAP 0:34
@@ -9271,7 +9293,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 5
 2643: ==> r 33
  UNMAP 2:4
- IN
+ FIN
  MAP 6
 2644: ==> w 54
  UNMAP 2:2
@@ -9324,7 +9346,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 17
 2658: ==> r 1
  UNMAP 3:1
- OUT
  IN
  MAP 18
 2659: ==> c 2
@@ -9334,7 +9355,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 19
 2661: ==> r 13
  UNMAP 3:3
- IN
+ FIN
  MAP 20
 2662: ==> r 31
  UNMAP 3:45
@@ -9344,17 +9365,18 @@ EXIT current process 1 UNMAP 1:1
  SEGV
 2664: ==> w 3
  UNMAP 3:32
- IN
+ FIN
  MAP 22
+ SEGPROT
 2665: ==> r 37
  UNMAP 3:11
- OUT
  IN
  MAP 23
 2666: ==> w 15
  UNMAP 3:53
- IN
+ FIN
  MAP 24
+ SEGPROT
 2667: ==> w 34
  UNMAP 3:55
  IN
@@ -9365,7 +9387,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 26
 2669: ==> r 10
  UNMAP 3:30
- IN
+ FIN
  MAP 27
 2670: ==> r 13
 2671: ==> r 59
@@ -9378,8 +9400,9 @@ EXIT current process 1 UNMAP 1:1
  MAP 29
 2673: ==> w 16
  UNMAP 3:58
- IN
+ FIN
  MAP 30
+ SEGPROT
 2674: ==> r 39
  UNMAP 3:56
  IN
@@ -9387,13 +9410,15 @@ EXIT current process 1 UNMAP 1:1
 2675: ==> w 48
 2676: ==> w 5
  UNMAP 0:16
- IN
+ FIN
  MAP 0
+ SEGPROT
 2677: ==> r 5
 2678: ==> w 1
  UNMAP 0:60
- IN
+ FIN
  MAP 1
+ SEGPROT
 2679: ==> w 28
  UNMAP 0:42
  OUT
@@ -9408,86 +9433,89 @@ EXIT current process 1 UNMAP 1:1
 2682: ==> w 9
  UNMAP 0:39
  OUT
- IN
+ ZERO
  MAP 4
+ SEGPROT
 2683: ==> r 32
  UNMAP 0:41
  ZERO
  MAP 5
 2684: ==> r 4
  UNMAP 0:33
- IN
+ ZERO
  MAP 6
 2685: ==> w 51
  UNMAP 0:54
  OUT
- IN
+ FIN
  MAP 7
 2686: ==> r 9
 2687: ==> r 3
  UNMAP 0:19
- IN
+ ZERO
  MAP 8
 2688: ==> w 61
  UNMAP 0:7
- ZERO
+ FIN
  MAP 9
 2689: ==> w 14
  UNMAP 0:12
- IN
+ ZERO
  MAP 10
+ SEGPROT
 2690: ==> r 30
  UNMAP 0:0
  ZERO
  MAP 11
 2691: ==> r 11
  UNMAP 0:10
- IN
+ ZERO
  MAP 12
 2692: ==> r 20
  UNMAP 0:3
  OUT
- IN
+ ZERO
  MAP 13
 2693: ==> r 27
  UNMAP 0:5
- IN
+ ZERO
  MAP 14
 2694: ==> r 29
  UNMAP 0:59
  OUT
- IN
+ ZERO
  MAP 15
 2695: ==> r 2
  UNMAP 0:32
- IN
+ ZERO
  MAP 16
 2696: ==> w 10
  UNMAP 0:36
  OUT
- IN
+ ZERO
  MAP 17
+ SEGPROT
 2697: ==> r 43
  UNMAP 0:1
- IN
+ FIN
  MAP 18
 2698: ==> r 37
  UNMAP 2:60
- IN
+ FIN
  MAP 19
 2699: ==> r 6
  UNMAP 2:13
- IN
+ ZERO
  MAP 20
 2700: ==> w 18
  UNMAP 2:31
- IN
+ ZERO
  MAP 21
+ SEGPROT
 2701: ==> r 2
 2702: ==> c 0
 2703: ==> r 6
  UNMAP 2:3
- OUT
  IN
  MAP 22
 2704: ==> r 6
@@ -9497,7 +9525,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 23
 2706: ==> r 38
  UNMAP 2:15
- OUT
  ZERO
  MAP 24
 2707: ==> r 61
@@ -9524,7 +9551,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 29
 2712: ==> r 29
  UNMAP 2:16
- OUT
  IN
  MAP 30
 2713: ==> r 1
@@ -9534,12 +9560,10 @@ EXIT current process 1 UNMAP 1:1
  MAP 31
 2715: ==> r 18
  UNMAP 2:5
- OUT
  IN
  MAP 0
 2716: ==> w 3
  UNMAP 2:1
- OUT
  IN
  MAP 1
 2717: ==> r 53
@@ -9553,7 +9577,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 3
 2719: ==> r 26
  UNMAP 3:9
- OUT
  IN
  MAP 4
 2720: ==> r 8
@@ -9568,7 +9591,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 6
 2724: ==> r 9
  UNMAP 3:51
- OUT
+ FOUT
  IN
  MAP 7
 2725: ==> r 43
@@ -9577,12 +9600,11 @@ EXIT current process 1 UNMAP 1:1
  MAP 8
 2726: ==> r 28
  UNMAP 3:61
- OUT
+ FOUT
  IN
  MAP 9
 2727: ==> r 36
  UNMAP 3:14
- OUT
  IN
  MAP 10
 2728: ==> r 20
@@ -9592,28 +9614,27 @@ EXIT current process 1 UNMAP 1:1
 2729: ==> c 2
 2730: ==> r 16
  UNMAP 3:11
- IN
+ FIN
  MAP 12
 2731: ==> r 3
  UNMAP 3:20
- IN
+ FIN
  MAP 13
 2732: ==> r 20
  UNMAP 3:27
- IN
+ FIN
  MAP 14
 2733: ==> r 7
  UNMAP 3:29
- IN
+ FIN
  MAP 15
 2734: ==> r 23
  UNMAP 3:2
- IN
+ ZERO
  MAP 16
 2735: ==> r 1
  UNMAP 3:10
- OUT
- IN
+ FIN
  MAP 17
 2736: ==> r 25
  UNMAP 3:43
@@ -9621,22 +9642,22 @@ EXIT current process 1 UNMAP 1:1
  MAP 18
 2737: ==> w 11
  UNMAP 3:37
- IN
+ FIN
  MAP 19
+ SEGPROT
 2738: ==> r 4
  UNMAP 3:6
- IN
+ FIN
  MAP 20
 2739: ==> r 0
  SEGV
 2740: ==> r 10
  UNMAP 3:18
- OUT
- IN
+ FIN
  MAP 21
 2741: ==> r 12
  UNMAP 0:6
- IN
+ FIN
  MAP 22
 2742: ==> w 61
  UNMAP 0:4
@@ -9657,7 +9678,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 26
 2747: ==> r 2
  UNMAP 0:55
- IN
+ FIN
  MAP 27
 2748: ==> r 43
  UNMAP 0:10
@@ -9669,6 +9690,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 29
 2750: ==> r 29
 2751: ==> w 2
+ SEGPROT
 2752: ==> r 37
  UNMAP 0:29
  OUT
@@ -9677,72 +9699,75 @@ EXIT current process 1 UNMAP 1:1
 2753: ==> r 59
 2754: ==> w 15
  UNMAP 0:49
- IN
+ FIN
  MAP 31
+ SEGPROT
 2755: ==> w 17
  UNMAP 0:18
- IN
+ FIN
  MAP 0
+ SEGPROT
 2756: ==> r 10
 2757: ==> c 3
 2758: ==> r 9
  UNMAP 0:3
  OUT
- IN
+ ZERO
  MAP 1
 2759: ==> r 10
  UNMAP 0:53
- IN
+ ZERO
  MAP 2
 2760: ==> r 57
  UNMAP 0:42
  OUT
- IN
+ FIN
  MAP 3
 2761: ==> w 24
  UNMAP 0:26
- IN
+ ZERO
  MAP 4
+ SEGPROT
 2762: ==> r 33
  UNMAP 0:8
- IN
+ ZERO
  MAP 5
 2763: ==> r 40
  UNMAP 0:11
- IN
+ FIN
  MAP 6
 2764: ==> r 22
  UNMAP 0:9
- IN
+ ZERO
  MAP 7
 2765: ==> r 3
  UNMAP 0:43
- IN
+ ZERO
  MAP 8
 2766: ==> r 39
  UNMAP 0:28
- ZERO
+ FIN
  MAP 9
 2767: ==> r 2
  UNMAP 0:36
- IN
+ ZERO
  MAP 10
 2768: ==> r 42
  UNMAP 0:20
- IN
+ FIN
  MAP 11
 2769: ==> r 2
 2770: ==> w 55
  UNMAP 2:16
- ZERO
+ FIN
  MAP 12
 2771: ==> r 8
  UNMAP 2:3
- IN
+ ZERO
  MAP 13
 2772: ==> r 14
  UNMAP 2:20
- IN
+ ZERO
  MAP 14
 2773: ==> r 10
 2774: ==> r 32
@@ -9751,32 +9776,32 @@ EXIT current process 1 UNMAP 1:1
  MAP 15
 2775: ==> r 11
  UNMAP 2:23
- IN
+ ZERO
  MAP 16
 2776: ==> r 15
  UNMAP 2:1
- IN
+ ZERO
  MAP 17
 2777: ==> w 15
+ SEGPROT
 2778: ==> r 28
  UNMAP 2:25
  ZERO
  MAP 18
 2779: ==> r 13
  UNMAP 2:11
- OUT
- IN
+ ZERO
  MAP 19
 2780: ==> r 13
 2781: ==> r 8
 2782: ==> r 21
  UNMAP 2:4
- IN
+ ZERO
  MAP 20
 2783: ==> r 10
 2784: ==> r 45
  UNMAP 2:10
- ZERO
+ FIN
  MAP 21
 2785: ==> c 0
 2786: ==> r 40
@@ -9805,11 +9830,11 @@ EXIT current process 1 UNMAP 1:1
 2793: ==> w 14
  UNMAP 2:53
  OUT
- IN
+ ZERO
  MAP 26
+ SEGPROT
 2794: ==> r 21
  UNMAP 2:2
- OUT
  IN
  MAP 27
 2795: ==> r 17
@@ -9826,12 +9851,10 @@ EXIT current process 1 UNMAP 1:1
  MAP 30
 2798: ==> r 19
  UNMAP 2:15
- OUT
  IN
  MAP 31
 2799: ==> r 24
  UNMAP 2:17
- OUT
  IN
  MAP 0
 2800: ==> w 9
@@ -9842,7 +9865,7 @@ EXIT current process 1 UNMAP 1:1
 2805: ==> c 2
 2806: ==> r 11
  UNMAP 3:9
- IN
+ FIN
  MAP 1
 2807: ==> w 53
  UNMAP 3:10
@@ -9854,24 +9877,24 @@ EXIT current process 1 UNMAP 1:1
  MAP 3
 2809: ==> w 33
  UNMAP 3:24
- OUT
  IN
  MAP 4
 2810: ==> w 13
  UNMAP 3:33
- IN
+ FIN
  MAP 5
+ SEGPROT
 2811: ==> r 10
  UNMAP 3:40
- IN
+ FIN
  MAP 6
 2812: ==> r 18
  UNMAP 3:22
- IN
+ FIN
  MAP 7
 2813: ==> r 7
  UNMAP 3:3
- IN
+ FIN
  MAP 8
 2814: ==> w 37
  UNMAP 3:39
@@ -9879,7 +9902,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 9
 2815: ==> r 14
  UNMAP 3:2
- IN
+ FIN
  MAP 10
 2816: ==> r 54
  UNMAP 3:42
@@ -9887,7 +9910,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 11
 2817: ==> r 36
  UNMAP 3:55
- OUT
+ FOUT
  IN
  MAP 12
 2818: ==> r 53
@@ -9897,7 +9920,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 13
 2820: ==> r 12
  UNMAP 3:14
- IN
+ FIN
  MAP 14
 2821: ==> r 11
 2822: ==> r 58
@@ -9906,21 +9929,20 @@ EXIT current process 1 UNMAP 1:1
  MAP 15
 2823: ==> r 1
  UNMAP 3:11
- IN
+ FIN
  MAP 16
 2824: ==> r 3
  UNMAP 3:15
- OUT
- IN
+ FIN
  MAP 17
 2825: ==> c 3
 2826: ==> r 18
  UNMAP 3:28
- IN
+ ZERO
  MAP 18
 2827: ==> r 46
  UNMAP 3:13
- ZERO
+ FIN
  MAP 19
 2828: ==> r 30
  UNMAP 3:21
@@ -9928,82 +9950,82 @@ EXIT current process 1 UNMAP 1:1
  MAP 20
 2829: ==> r 51
  UNMAP 3:45
- IN
+ FIN
  MAP 21
 2830: ==> r 53
  UNMAP 0:40
- IN
+ FIN
  MAP 22
 2831: ==> r 49
  UNMAP 0:48
- ZERO
+ FIN
  MAP 23
 2832: ==> r 20
  UNMAP 0:9
  OUT
- IN
+ ZERO
  MAP 24
 2833: ==> r 14
  UNMAP 0:53
- IN
+ ZERO
  MAP 25
 2834: ==> r 8
  UNMAP 0:14
- OUT
- IN
+ ZERO
  MAP 26
 2835: ==> r 7
  UNMAP 0:21
- IN
+ ZERO
  MAP 27
 2836: ==> r 2
  UNMAP 0:17
- IN
+ ZERO
  MAP 28
 2837: ==> r 54
  UNMAP 0:2
  OUT
- ZERO
+ FIN
  MAP 29
 2838: ==> w 10
  UNMAP 0:1
  OUT
- IN
+ ZERO
  MAP 30
+ SEGPROT
 2839: ==> r 41
  UNMAP 0:19
- IN
+ FIN
  MAP 31
 2840: ==> r 10
 2841: ==> r 24
  UNMAP 0:24
- IN
+ ZERO
  MAP 0
 2842: ==> w 38
  UNMAP 2:11
- IN
+ FIN
  MAP 1
 2843: ==> r 17
  UNMAP 2:53
  OUT
- IN
+ ZERO
  MAP 2
 2844: ==> r 26
  UNMAP 2:35
- IN
+ ZERO
  MAP 3
 2845: ==> r 0
  SEGV
 2846: ==> r 62
  UNMAP 2:33
  OUT
- IN
+ FIN
  MAP 4
 2847: ==> w 6
  UNMAP 2:13
- OUT
- IN
+ ZERO
  MAP 5
+ SEGPROT
 2848: ==> r 7
 2849: ==> r 2
 2850: ==> r 10
@@ -10062,7 +10084,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 17
 2866: ==> r 14
  UNMAP 3:18
- IN
+ ZERO
  MAP 18
 2867: ==> r 29
  UNMAP 3:46
@@ -10078,23 +10100,25 @@ EXIT current process 1 UNMAP 1:1
 2871: ==> c 2
 2872: ==> w 21
  UNMAP 3:51
- IN
+ FIN
  MAP 21
+ SEGPROT
 2873: ==> r 18
  UNMAP 3:53
- IN
+ FIN
  MAP 22
 2874: ==> w 2
  UNMAP 3:49
- IN
+ FIN
  MAP 23
+ SEGPROT
 2875: ==> r 38
  UNMAP 3:20
  IN
  MAP 24
 2876: ==> r 10
  UNMAP 3:14
- IN
+ FIN
  MAP 25
 2877: ==> r 56
  UNMAP 3:8
@@ -10102,19 +10126,19 @@ EXIT current process 1 UNMAP 1:1
  MAP 26
 2878: ==> r 11
  UNMAP 3:7
- IN
+ FIN
  MAP 27
 2879: ==> w 4
  UNMAP 3:2
- IN
+ FIN
  MAP 28
+ SEGPROT
 2880: ==> r 49
  UNMAP 3:54
  IN
  MAP 29
 2881: ==> r 63
  UNMAP 3:10
- OUT
  ZERO
  MAP 30
 2882: ==> r 28
@@ -10125,54 +10149,57 @@ EXIT current process 1 UNMAP 1:1
 2884: ==> r 17
 2885: ==> r 47
  UNMAP 3:24
- IN
+ FIN
  MAP 0
 2886: ==> r 59
  UNMAP 3:38
- OUT
- IN
+ FOUT
+ FIN
  MAP 1
 2887: ==> w 17
+ SEGPROT
 2888: ==> w 14
  UNMAP 3:17
- OUT
- IN
+ ZERO
  MAP 2
+ SEGPROT
 2889: ==> r 11
  UNMAP 3:26
- IN
+ ZERO
  MAP 3
 2890: ==> r 6
 2891: ==> w 4
  UNMAP 3:62
- IN
+ ZERO
  MAP 4
+ SEGPROT
 2892: ==> r 8
  UNMAP 3:6
- OUT
- IN
+ ZERO
  MAP 5
 2893: ==> r 5
  UNMAP 0:1
- IN
+ ZERO
  MAP 6
 2894: ==> w 22
  UNMAP 0:59
  OUT
- IN
+ ZERO
  MAP 7
+ SEGPROT
 2895: ==> w 1
  UNMAP 0:0
- IN
+ ZERO
  MAP 8
+ SEGPROT
 2896: ==> r 47
 2897: ==> r 29
  UNMAP 0:22
- IN
+ ZERO
  MAP 9
 2898: ==> r 55
  UNMAP 0:25
- IN
+ FIN
  MAP 10
 2899: ==> c 0
 2900: ==> r 15
@@ -10224,16 +10251,14 @@ EXIT current process 1 UNMAP 1:1
  MAP 20
 2912: ==> r 55
  UNMAP 2:21
- OUT
  IN
  MAP 21
 2913: ==> r 14
  UNMAP 2:18
- IN
+ ZERO
  MAP 22
 2914: ==> r 22
  UNMAP 2:2
- OUT
  IN
  MAP 23
 2915: ==> r 46
@@ -10256,7 +10281,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 27
 2920: ==> r 35
  UNMAP 2:4
- OUT
  IN
  MAP 28
 2921: ==> r 15
@@ -10289,113 +10313,118 @@ EXIT current process 1 UNMAP 1:1
  MAP 1
 2932: ==> r 47
  UNMAP 3:14
- OUT
  ZERO
  MAP 2
 2933: ==> w 19
  UNMAP 3:11
- IN
+ FIN
  MAP 3
+ SEGPROT
 2934: ==> r 25
  UNMAP 3:4
- OUT
  IN
  MAP 4
 2935: ==> w 10
  UNMAP 3:8
- IN
+ FIN
  MAP 5
+ SEGPROT
 2936: ==> w 21
  UNMAP 3:5
- IN
+ FIN
  MAP 6
+ SEGPROT
 2937: ==> r 14
  UNMAP 3:22
- OUT
- IN
+ FIN
  MAP 7
 2938: ==> r 2
  UNMAP 3:1
- OUT
- IN
+ FIN
  MAP 8
 2939: ==> r 13
  UNMAP 3:29
- IN
+ FIN
  MAP 9
 2940: ==> w 6
  UNMAP 3:55
- IN
+ FIN
  MAP 10
+ SEGPROT
 2941: ==> w 1
  UNMAP 0:61
  OUT
- IN
+ FIN
  MAP 11
+ SEGPROT
 2942: ==> r 11
  UNMAP 0:12
- IN
+ FIN
  MAP 12
 2943: ==> r 6
 2944: ==> w 22
  UNMAP 0:32
  OUT
- IN
+ FIN
  MAP 13
+ SEGPROT
 2945: ==> r 24
  SEGV
 2946: ==> c 3
 2947: ==> r 9
  UNMAP 0:5
- IN
+ ZERO
  MAP 14
 2948: ==> w 53
  UNMAP 0:30
- IN
+ FIN
  MAP 15
 2949: ==> r 13
  UNMAP 0:7
- IN
+ ZERO
  MAP 16
 2950: ==> r 48
  UNMAP 0:13
  OUT
- IN
+ FIN
  MAP 17
 2951: ==> r 15
  UNMAP 0:2
- IN
+ ZERO
  MAP 18
 2952: ==> w 31
  UNMAP 0:0
- IN
+ ZERO
  MAP 19
+ SEGPROT
 2953: ==> r 8
  UNMAP 0:11
- IN
+ ZERO
  MAP 20
 2954: ==> r 4
  UNMAP 0:55
- IN
+ ZERO
  MAP 21
 2955: ==> r 2
  UNMAP 0:14
- IN
+ ZERO
  MAP 22
 2956: ==> r 20
  UNMAP 0:22
- IN
+ ZERO
  MAP 23
 2957: ==> w 3
  UNMAP 0:46
- IN
+ ZERO
  MAP 24
+ SEGPROT
 2958: ==> w 9
+ SEGPROT
 2959: ==> r 2
 2960: ==> r 5
  UNMAP 0:10
  OUT
- IN
+ ZERO
  MAP 25
 2961: ==> r 31
 2962: ==> c 0
@@ -10443,7 +10472,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 2
 2976: ==> r 9
  UNMAP 2:19
- OUT
  IN
  MAP 3
 2977: ==> r 12
@@ -10453,12 +10481,10 @@ EXIT current process 1 UNMAP 1:1
 2978: ==> r 10
 2979: ==> r 56
  UNMAP 2:10
- OUT
  ZERO
  MAP 5
 2980: ==> w 27
  UNMAP 2:21
- OUT
  IN
  MAP 6
 2981: ==> r 19
@@ -10475,45 +10501,45 @@ EXIT current process 1 UNMAP 1:1
  ZERO
  MAP 9
 2985: ==> w 6
+ SEGPROT
 2986: ==> r 4
  UNMAP 2:6
- OUT
- IN
+ FIN
  MAP 10
 2987: ==> w 15
  UNMAP 2:1
- OUT
- IN
+ FIN
  MAP 11
+ SEGPROT
 2988: ==> r 1
  UNMAP 2:11
- IN
+ FIN
  MAP 12
 2989: ==> r 1
 2990: ==> r 7
  UNMAP 2:22
- OUT
- IN
+ FIN
  MAP 13
 2991: ==> r 8
  UNMAP 3:9
- OUT
- IN
+ FIN
  MAP 14
 2992: ==> w 16
  UNMAP 3:53
- OUT
- IN
+ FOUT
+ FIN
  MAP 15
+ SEGPROT
 2993: ==> w 8
+ SEGPROT
 2994: ==> r 8
 2995: ==> r 3
  UNMAP 3:13
- IN
+ FIN
  MAP 16
 2996: ==> r 9
  UNMAP 3:48
- IN
+ FIN
  MAP 17
 2997: ==> r 27
  UNMAP 3:15
@@ -10521,12 +10547,12 @@ EXIT current process 1 UNMAP 1:1
  MAP 18
 2998: ==> r 2
  UNMAP 3:31
- OUT
- IN
+ FIN
  MAP 19
 2999: ==> r 0
  SEGV
 3000: ==> w 3
+ SEGPROT
 3001: ==> r 2
 3002: ==> r 2
 3003: ==> r 38
@@ -10536,13 +10562,14 @@ EXIT current process 1 UNMAP 1:1
 3004: ==> r 7
 3005: ==> w 6
  UNMAP 3:4
- IN
+ FIN
  MAP 21
+ SEGPROT
 3006: ==> r 0
  SEGV
 3007: ==> r 12
  UNMAP 3:2
- IN
+ FIN
  MAP 22
 3008: ==> r 15
 3009: ==> r 26
@@ -10552,98 +10579,103 @@ EXIT current process 1 UNMAP 1:1
 3010: ==> c 3
 3011: ==> r 34
  UNMAP 3:3
- OUT
  ZERO
  MAP 24
 3012: ==> w 22
  UNMAP 3:5
- IN
+ ZERO
  MAP 25
+ SEGPROT
 3013: ==> r 18
  UNMAP 0:0
- IN
+ ZERO
  MAP 26
 3014: ==> r 20
  UNMAP 0:20
- IN
+ ZERO
  MAP 27
 3015: ==> w 31
  UNMAP 0:26
- IN
+ ZERO
  MAP 28
+ SEGPROT
 3016: ==> r 48
  UNMAP 0:5
- IN
+ FIN
  MAP 29
 3017: ==> w 24
  UNMAP 0:3
  OUT
- IN
+ ZERO
  MAP 30
+ SEGPROT
 3018: ==> r 63
  UNMAP 0:18
- IN
+ FIN
  MAP 31
 3019: ==> r 55
  UNMAP 0:10
- IN
+ FIN
  MAP 0
 3020: ==> r 12
  UNMAP 0:11
- IN
+ ZERO
  MAP 1
 3021: ==> w 11
  UNMAP 0:4
- IN
+ ZERO
  MAP 2
+ SEGPROT
 3022: ==> w 41
  UNMAP 0:9
- IN
+ FIN
  MAP 3
 3023: ==> w 6
  UNMAP 0:12
- IN
+ ZERO
  MAP 4
+ SEGPROT
 3024: ==> r 7
  UNMAP 0:56
- IN
+ ZERO
  MAP 5
 3025: ==> w 57
  UNMAP 0:27
  OUT
- IN
+ FIN
  MAP 6
 3026: ==> w 3
  UNMAP 0:19
- IN
+ ZERO
  MAP 7
+ SEGPROT
 3027: ==> r 36
  SEGV
 3028: ==> r 5
  UNMAP 2:25
- IN
+ ZERO
  MAP 8
 3029: ==> r 13
  UNMAP 2:47
  OUT
- IN
+ ZERO
  MAP 9
 3030: ==> r 2
  UNMAP 2:4
- IN
+ ZERO
  MAP 10
 3031: ==> r 6
 3032: ==> w 0
  SEGV
 3033: ==> w 3
+ SEGPROT
 3034: ==> r 56
  UNMAP 2:15
- OUT
- IN
+ FIN
  MAP 11
 3035: ==> r 4
  UNMAP 2:1
- IN
+ ZERO
  MAP 12
 3036: ==> c 0
 3037: ==> w 16
@@ -10652,17 +10684,14 @@ EXIT current process 1 UNMAP 1:1
  MAP 13
 3038: ==> r 32
  UNMAP 2:8
- OUT
  IN
  MAP 14
 3039: ==> r 13
  UNMAP 2:16
- OUT
  IN
  MAP 15
 3040: ==> r 18
  UNMAP 2:3
- OUT
  IN
  MAP 16
 3041: ==> r 0
@@ -10684,7 +10713,6 @@ EXIT current process 1 UNMAP 1:1
 3045: ==> r 16
 3046: ==> r 22
  UNMAP 2:6
- OUT
  IN
  MAP 21
 3047: ==> r 40
@@ -10702,9 +10730,9 @@ EXIT current process 1 UNMAP 1:1
  MAP 24
 3051: ==> w 33
  UNMAP 3:22
- OUT
- IN
+ FIN
  MAP 25
+ SEGPROT
 3052: ==> w 27
  UNMAP 3:18
  IN
@@ -10716,8 +10744,7 @@ EXIT current process 1 UNMAP 1:1
 3054: ==> c 2
 3055: ==> r 19
  UNMAP 3:31
- OUT
- IN
+ FIN
  MAP 28
 3056: ==> r 57
  UNMAP 3:48
@@ -10725,18 +10752,18 @@ EXIT current process 1 UNMAP 1:1
  MAP 29
 3057: ==> w 15
  UNMAP 3:24
- OUT
- IN
+ FIN
  MAP 30
+ SEGPROT
 3058: ==> r 4
  UNMAP 3:63
- IN
+ FIN
  MAP 31
 3059: ==> r 24
  SEGV
 3060: ==> r 2
  UNMAP 3:55
- IN
+ FIN
  MAP 0
 3061: ==> r 27
  UNMAP 3:12
@@ -10744,18 +10771,16 @@ EXIT current process 1 UNMAP 1:1
  MAP 1
 3062: ==> r 28
  UNMAP 3:11
- OUT
  IN
  MAP 2
 3063: ==> r 19
 3064: ==> r 36
  UNMAP 3:41
- OUT
+ FOUT
  IN
  MAP 3
 3065: ==> r 50
  UNMAP 3:6
- OUT
  IN
  MAP 4
 3066: ==> r 35
@@ -10764,13 +10789,12 @@ EXIT current process 1 UNMAP 1:1
  MAP 5
 3067: ==> r 3
  UNMAP 3:57
- OUT
- IN
+ FOUT
+ FIN
  MAP 6
 3068: ==> r 10
  UNMAP 3:3
- OUT
- IN
+ FIN
  MAP 7
 3069: ==> r 39
  UNMAP 3:5
@@ -10782,82 +10806,86 @@ EXIT current process 1 UNMAP 1:1
  MAP 9
 3071: ==> r 4
 3072: ==> w 2
+ SEGPROT
 3073: ==> c 3
 3074: ==> r 7
  UNMAP 3:2
- IN
+ ZERO
  MAP 10
 3075: ==> r 35
  UNMAP 3:56
- IN
+ ZERO
  MAP 11
 3076: ==> r 40
  UNMAP 3:4
- IN
+ FIN
  MAP 12
 3077: ==> w 2
  UNMAP 0:16
  OUT
- IN
+ ZERO
  MAP 13
+ SEGPROT
 3078: ==> r 20
  UNMAP 0:32
- IN
+ ZERO
  MAP 14
 3079: ==> r 0
  SEGV
 3080: ==> w 1
  UNMAP 0:13
- IN
+ ZERO
  MAP 15
+ SEGPROT
 3081: ==> r 29
  UNMAP 0:18
- IN
+ ZERO
  MAP 16
 3082: ==> r 53
  UNMAP 0:0
- IN
+ FIN
  MAP 17
 3083: ==> r 22
  UNMAP 0:12
- IN
+ ZERO
  MAP 18
 3084: ==> r 29
 3085: ==> w 16
  UNMAP 0:6
- IN
+ ZERO
  MAP 19
+ SEGPROT
 3086: ==> r 30
  UNMAP 0:49
  ZERO
  MAP 20
 3087: ==> w 19
  UNMAP 0:22
- IN
+ ZERO
  MAP 21
+ SEGPROT
 3088: ==> r 44
  UNMAP 0:40
- IN
+ FIN
  MAP 22
 3089: ==> r 24
  UNMAP 0:29
- IN
+ ZERO
  MAP 23
 3090: ==> r 42
  UNMAP 0:24
- IN
+ FIN
  MAP 24
 3091: ==> r 19
 3092: ==> r 7
 3093: ==> r 5
  UNMAP 0:33
- OUT
- IN
+ ZERO
  MAP 25
 3094: ==> w 45
  UNMAP 0:27
  OUT
- ZERO
+ FIN
  MAP 26
 3095: ==> r 22
 3096: ==> c 0
@@ -10876,7 +10904,6 @@ EXIT current process 1 UNMAP 1:1
 3100: ==> w 9
 3101: ==> w 12
  UNMAP 2:15
- OUT
  IN
  MAP 30
 3102: ==> r 19
@@ -10885,7 +10912,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 31
 3103: ==> r 6
  UNMAP 2:2
- OUT
  IN
  MAP 0
 3104: ==> w 62
@@ -10924,8 +10950,9 @@ EXIT current process 1 UNMAP 1:1
  MAP 8
 3114: ==> w 14
  UNMAP 2:38
- IN
+ ZERO
  MAP 9
+ SEGPROT
 3115: ==> r 28
  UNMAP 3:7
  IN
@@ -10940,7 +10967,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 12
 3118: ==> r 5
  UNMAP 3:2
- OUT
  IN
  MAP 13
 3119: ==> r 23
@@ -10950,7 +10976,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 14
 3121: ==> r 7
  UNMAP 3:1
- OUT
  IN
  MAP 15
 3122: ==> r 4
@@ -10967,20 +10992,18 @@ EXIT current process 1 UNMAP 1:1
  MAP 17
 3128: ==> r 16
  UNMAP 3:22
- IN
+ FIN
  MAP 18
 3129: ==> r 15
  UNMAP 3:16
- OUT
- IN
+ FIN
  MAP 19
 3130: ==> r 5
  UNMAP 3:30
- IN
+ FIN
  MAP 20
 3131: ==> r 47
  UNMAP 3:19
- OUT
  IN
  MAP 21
 3132: ==> w 39
@@ -10989,11 +11012,12 @@ EXIT current process 1 UNMAP 1:1
  MAP 22
 3133: ==> w 8
  UNMAP 3:24
- IN
+ FIN
  MAP 23
+ SEGPROT
 3134: ==> r 2
  UNMAP 3:42
- IN
+ FIN
  MAP 24
 3135: ==> w 0
  SEGV
@@ -11003,81 +11027,82 @@ EXIT current process 1 UNMAP 1:1
  MAP 25
 3137: ==> r 18
  UNMAP 3:45
- OUT
- IN
+ FOUT
+ FIN
  MAP 26
 3138: ==> w 11
  UNMAP 0:8
- IN
+ FIN
  MAP 27
+ SEGPROT
 3139: ==> c 3
 3140: ==> r 29
  UNMAP 0:9
  OUT
- IN
+ ZERO
  MAP 28
 3141: ==> r 16
  UNMAP 0:52
- IN
+ ZERO
  MAP 29
 3142: ==> r 17
  UNMAP 0:12
  OUT
- IN
+ ZERO
  MAP 30
 3143: ==> r 59
  UNMAP 0:19
- IN
+ FIN
  MAP 31
 3144: ==> r 45
  UNMAP 0:6
  OUT
- IN
+ FIN
  MAP 0
 3145: ==> r 61
  UNMAP 0:62
  OUT
- IN
+ FIN
  MAP 1
 3146: ==> r 46
  UNMAP 0:23
  OUT
- ZERO
+ FIN
  MAP 2
 3147: ==> r 58
  UNMAP 0:4
- IN
+ FIN
  MAP 3
 3148: ==> w 18
  UNMAP 0:58
- IN
+ ZERO
  MAP 4
+ SEGPROT
 3149: ==> w 0
  SEGV
 3150: ==> w 59
 3151: ==> w 53
  UNMAP 0:1
- IN
+ FIN
  MAP 5
 3152: ==> r 25
  UNMAP 0:22
- IN
+ ZERO
  MAP 6
 3153: ==> r 31
  UNMAP 0:17
  OUT
- IN
+ ZERO
  MAP 7
 3154: ==> r 17
 3155: ==> r 2
  UNMAP 0:11
  OUT
- IN
+ ZERO
  MAP 8
 3156: ==> r 15
  UNMAP 0:14
- OUT
- IN
+ ZERO
  MAP 9
 3157: ==> c 0
 3158: ==> r 49
@@ -11108,7 +11133,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 14
 3166: ==> r 33
  UNMAP 0:7
- IN
+ FIN
  MAP 15
 3167: ==> r 18
  UNMAP 0:43
@@ -11144,7 +11169,6 @@ EXIT current process 1 UNMAP 1:1
 3174: ==> r 2
 3175: ==> r 20
  UNMAP 2:8
- OUT
  IN
  MAP 23
 3176: ==> w 22
@@ -11158,15 +11182,14 @@ EXIT current process 1 UNMAP 1:1
 3181: ==> r 16
  UNMAP 2:34
  OUT
- IN
+ FIN
  MAP 25
 3182: ==> r 7
  UNMAP 2:18
- IN
+ FIN
  MAP 26
 3183: ==> w 41
  UNMAP 2:11
- OUT
  ZERO
  MAP 27
 3184: ==> r 57
@@ -11179,67 +11202,69 @@ EXIT current process 1 UNMAP 1:1
  MAP 29
 3186: ==> r 22
  UNMAP 3:17
- IN
+ FIN
  MAP 30
 3187: ==> r 0
  SEGV
 3188: ==> w 38
  UNMAP 3:59
- OUT
+ FOUT
  IN
  MAP 31
 3189: ==> r 10
  UNMAP 3:45
- IN
+ FIN
  MAP 0
 3190: ==> w 6
  UNMAP 3:61
- IN
+ FIN
  MAP 1
+ SEGPROT
 3191: ==> w 14
  UNMAP 3:46
- IN
+ FIN
  MAP 2
+ SEGPROT
 3192: ==> r 20
  UNMAP 3:58
- IN
+ FIN
  MAP 3
 3193: ==> r 54
  UNMAP 3:18
- OUT
  IN
  MAP 4
 3194: ==> w 18
  UNMAP 3:53
- OUT
- IN
+ FOUT
+ FIN
  MAP 5
+ SEGPROT
 3195: ==> r 36
  UNMAP 3:25
  IN
  MAP 6
 3196: ==> r 4
  UNMAP 3:31
- IN
+ FIN
  MAP 7
 3197: ==> r 22
 3198: ==> r 3
  UNMAP 3:2
- IN
+ FIN
  MAP 8
 3199: ==> r 21
  UNMAP 3:15
- IN
+ FIN
  MAP 9
 3200: ==> r 46
 3201: ==> r 21
 3202: ==> r 1
  UNMAP 0:49
- IN
+ FIN
  MAP 10
 3203: ==> r 9
  UNMAP 0:41
- IN
+ FIN
  MAP 11
 3204: ==> w 32
  UNMAP 0:37
@@ -11249,16 +11274,16 @@ EXIT current process 1 UNMAP 1:1
 3205: ==> c 3
 3206: ==> r 55
  UNMAP 0:26
- IN
+ FIN
  MAP 13
 3207: ==> r 4
  UNMAP 0:21
  OUT
- IN
+ ZERO
  MAP 14
 3208: ==> r 3
  UNMAP 0:33
- IN
+ ZERO
  MAP 15
 3209: ==> r 0
  SEGV
@@ -11266,61 +11291,63 @@ EXIT current process 1 UNMAP 1:1
  SEGV
 3211: ==> r 35
  UNMAP 0:18
- IN
+ ZERO
  MAP 16
 3212: ==> r 38
  UNMAP 0:2
  OUT
- IN
+ FIN
  MAP 17
 3213: ==> r 42
  UNMAP 0:29
- IN
+ FIN
  MAP 18
 3214: ==> r 4
 3215: ==> r 31
  UNMAP 0:3
- IN
+ ZERO
  MAP 19
 3216: ==> r 4
 3217: ==> r 37
  UNMAP 0:22
  OUT
- IN
+ FIN
  MAP 20
 3218: ==> r 7
  UNMAP 0:5
- IN
+ ZERO
  MAP 21
 3219: ==> r 46
  UNMAP 0:17
- ZERO
+ FIN
  MAP 22
 3220: ==> r 3
 3221: ==> r 40
  UNMAP 0:20
- IN
+ FIN
  MAP 23
 3222: ==> r 1
  UNMAP 0:40
  OUT
- IN
+ ZERO
  MAP 24
 3223: ==> w 4
+ SEGPROT
 3224: ==> r 17
  UNMAP 2:16
- IN
+ ZERO
  MAP 25
 3225: ==> r 4
 3226: ==> r 39
  UNMAP 2:7
- ZERO
+ FIN
  MAP 26
 3227: ==> w 34
  UNMAP 2:41
  OUT
  ZERO
  MAP 27
+ SEGPROT
 3228: ==> c 0
 3229: ==> w 24
  UNMAP 2:57
@@ -11345,12 +11372,10 @@ EXIT current process 1 UNMAP 1:1
  MAP 0
 3234: ==> r 44
  UNMAP 2:6
- OUT
  IN
  MAP 1
 3235: ==> r 16
  UNMAP 2:14
- OUT
  IN
  MAP 2
 3236: ==> w 22
@@ -11363,7 +11388,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 4
 3238: ==> r 60
  UNMAP 2:18
- OUT
  IN
  MAP 5
 3239: ==> r 36
@@ -11410,7 +11434,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 13
 3255: ==> r 62
  UNMAP 3:4
- OUT
  ZERO
  MAP 14
 3256: ==> r 36
@@ -11419,8 +11442,9 @@ EXIT current process 1 UNMAP 1:1
  MAP 15
 3257: ==> w 9
  UNMAP 3:35
- IN
+ FIN
  MAP 16
+ SEGPROT
 3258: ==> r 26
  UNMAP 3:38
  IN
@@ -11431,11 +11455,12 @@ EXIT current process 1 UNMAP 1:1
  MAP 18
 3260: ==> w 21
  UNMAP 3:31
- IN
+ FIN
  MAP 19
+ SEGPROT
 3261: ==> r 2
  UNMAP 3:37
- IN
+ FIN
  MAP 20
 3262: ==> r 60
  UNMAP 3:7
@@ -11443,7 +11468,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 21
 3263: ==> r 4
  UNMAP 3:46
- IN
+ FIN
  MAP 22
 3264: ==> w 49
  UNMAP 3:40
@@ -11451,7 +11476,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 23
 3265: ==> r 14
  UNMAP 3:1
- IN
+ FIN
  MAP 24
 3266: ==> w 27
  UNMAP 3:17
@@ -11459,24 +11484,24 @@ EXIT current process 1 UNMAP 1:1
  MAP 25
 3267: ==> r 1
  UNMAP 3:39
- IN
+ FIN
  MAP 26
 3268: ==> r 8
  UNMAP 3:34
- OUT
- IN
+ FIN
  MAP 27
 3269: ==> w 15
  UNMAP 0:24
  OUT
- IN
+ FIN
  MAP 28
+ SEGPROT
 3270: ==> r 14
 3271: ==> r 4
 3272: ==> r 11
  UNMAP 0:1
  OUT
- IN
+ FIN
  MAP 29
 3273: ==> r 29
  UNMAP 0:17
@@ -11490,11 +11515,12 @@ EXIT current process 1 UNMAP 1:1
 3275: ==> c 3
 3276: ==> w 15
  UNMAP 0:2
- IN
+ ZERO
  MAP 0
+ SEGPROT
 3277: ==> r 1
  UNMAP 0:44
- IN
+ ZERO
  MAP 1
 3278: ==> r 30
  UNMAP 0:16
@@ -11503,86 +11529,89 @@ EXIT current process 1 UNMAP 1:1
 3279: ==> r 9
  UNMAP 0:22
  OUT
- IN
+ ZERO
  MAP 3
 3280: ==> r 25
  UNMAP 0:36
  OUT
- IN
+ ZERO
  MAP 4
 3281: ==> w 0
  SEGV
 3282: ==> r 23
  UNMAP 0:60
- IN
+ ZERO
  MAP 5
 3283: ==> r 27
  UNMAP 0:7
  OUT
- IN
+ ZERO
  MAP 6
 3284: ==> w 24
  UNMAP 0:8
  OUT
- IN
+ ZERO
  MAP 7
+ SEGPROT
 3285: ==> r 8
  UNMAP 0:32
- IN
+ ZERO
  MAP 8
 3286: ==> r 51
  UNMAP 0:3
- IN
+ FIN
  MAP 9
 3287: ==> r 46
  UNMAP 0:52
- ZERO
+ FIN
  MAP 10
 3288: ==> r 0
  SEGV
 3289: ==> r 38
  UNMAP 0:18
- IN
+ FIN
  MAP 11
 3290: ==> w 5
  UNMAP 2:40
  OUT
- IN
+ ZERO
  MAP 12
+ SEGPROT
 3291: ==> r 54
  UNMAP 2:46
- ZERO
+ FIN
  MAP 13
 3292: ==> r 6
  UNMAP 2:62
- IN
+ ZERO
  MAP 14
 3293: ==> w 31
  UNMAP 2:36
- IN
+ ZERO
  MAP 15
+ SEGPROT
 3294: ==> w 31
+ SEGPROT
 3295: ==> w 18
  UNMAP 2:9
- OUT
- IN
+ ZERO
  MAP 16
+ SEGPROT
 3296: ==> r 53
  UNMAP 2:26
- IN
+ FIN
  MAP 17
 3297: ==> r 57
  UNMAP 2:59
- IN
+ FIN
  MAP 18
 3298: ==> r 45
  UNMAP 2:21
- OUT
- IN
+ FIN
  MAP 19
 3299: ==> r 12
  UNMAP 2:2
- IN
+ ZERO
  MAP 20
 3300: ==> c 0
 3301: ==> r 24
@@ -11617,7 +11646,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 27
 3308: ==> r 25
  UNMAP 2:15
- OUT
  IN
  MAP 28
 3309: ==> r 45
@@ -11635,7 +11663,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 31
 3312: ==> r 38
  UNMAP 3:15
- OUT
  ZERO
  MAP 0
 3313: ==> r 7
@@ -11644,7 +11671,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 1
 3314: ==> r 14
  UNMAP 3:30
- IN
+ ZERO
  MAP 2
 3315: ==> w 29
  UNMAP 3:9
@@ -11665,30 +11692,28 @@ EXIT current process 1 UNMAP 1:1
  MAP 6
 3320: ==> w 26
  UNMAP 3:24
- OUT
  IN
  MAP 7
 3321: ==> c 2
 3322: ==> r 6
  UNMAP 3:8
- IN
+ FIN
  MAP 8
 3323: ==> r 11
  UNMAP 3:51
- IN
+ FIN
  MAP 9
 3324: ==> r 6
 3325: ==> r 7
  UNMAP 3:46
- IN
+ FIN
  MAP 10
 3326: ==> r 16
  UNMAP 3:38
- IN
+ FIN
  MAP 11
 3327: ==> r 35
  UNMAP 3:5
- OUT
  IN
  MAP 12
 3328: ==> r 47
@@ -11701,12 +11726,10 @@ EXIT current process 1 UNMAP 1:1
  MAP 14
 3330: ==> r 30
  UNMAP 3:31
- OUT
  IN
  MAP 15
 3331: ==> w 50
  UNMAP 3:18
- OUT
  IN
  MAP 16
 3332: ==> r 36
@@ -11721,107 +11744,113 @@ EXIT current process 1 UNMAP 1:1
 3335: ==> c 3
 3336: ==> w 25
  UNMAP 3:45
- IN
+ ZERO
  MAP 19
+ SEGPROT
 3337: ==> r 3
  UNMAP 3:12
- IN
+ ZERO
  MAP 20
 3338: ==> r 39
  UNMAP 0:24
- ZERO
+ FIN
  MAP 21
 3339: ==> r 2
  UNMAP 0:1
- IN
+ ZERO
  MAP 22
 3340: ==> r 50
  UNMAP 0:3
- ZERO
+ FIN
  MAP 23
 3341: ==> r 13
  UNMAP 0:9
- IN
+ ZERO
  MAP 24
 3342: ==> r 2
 3343: ==> r 14
  UNMAP 0:57
- IN
+ ZERO
  MAP 25
 3344: ==> w 12
  UNMAP 0:21
- IN
+ ZERO
  MAP 26
+ SEGPROT
 3345: ==> r 34
  UNMAP 0:6
- IN
+ ZERO
  MAP 27
 3346: ==> r 14
 3347: ==> r 18
  UNMAP 0:25
- IN
+ ZERO
  MAP 28
 3348: ==> r 11
  UNMAP 0:45
- IN
+ ZERO
  MAP 29
 3349: ==> r 33
  UNMAP 0:51
- IN
+ ZERO
  MAP 30
 3350: ==> r 16
  UNMAP 0:0
  OUT
- IN
+ ZERO
  MAP 31
 3351: ==> r 3
 3352: ==> r 10
  UNMAP 0:38
- IN
+ ZERO
  MAP 0
 3353: ==> r 40
  UNMAP 0:7
- IN
+ FIN
  MAP 1
 3354: ==> r 58
  UNMAP 0:14
- IN
+ FIN
  MAP 2
 3355: ==> w 10
+ SEGPROT
 3356: ==> w 19
  UNMAP 0:29
  OUT
- IN
+ ZERO
  MAP 3
+ SEGPROT
 3357: ==> r 20
  UNMAP 0:59
  OUT
- IN
+ ZERO
  MAP 4
 3358: ==> r 5
  UNMAP 0:22
- IN
+ ZERO
  MAP 5
 3359: ==> w 12
+ SEGPROT
 3360: ==> r 26
  UNMAP 0:5
- IN
+ ZERO
  MAP 6
 3361: ==> r 3
 3362: ==> r 29
  UNMAP 0:26
  OUT
- IN
+ ZERO
  MAP 7
 3363: ==> r 1
  UNMAP 2:6
- IN
+ ZERO
  MAP 8
 3364: ==> r 9
  UNMAP 2:11
- IN
+ ZERO
  MAP 9
 3365: ==> w 5
+ SEGPROT
 3366: ==> c 0
 3367: ==> r 9
  UNMAP 2:7
@@ -11864,7 +11893,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 18
 3377: ==> r 36
  UNMAP 3:25
- OUT
  IN
  MAP 19
 3378: ==> r 40
@@ -11895,8 +11923,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 25
 3386: ==> r 14
  UNMAP 3:12
- OUT
- IN
+ ZERO
  MAP 26
 3387: ==> r 35
  UNMAP 3:34
@@ -11922,12 +11949,11 @@ EXIT current process 1 UNMAP 1:1
  MAP 31
 3394: ==> r 3
  UNMAP 3:10
- OUT
- IN
+ FIN
  MAP 0
 3395: ==> r 8
  UNMAP 3:40
- IN
+ FIN
  MAP 1
 3396: ==> w 32
  UNMAP 3:58
@@ -11935,7 +11961,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 2
 3397: ==> r 55
  UNMAP 3:19
- OUT
  IN
  MAP 3
 3398: ==> r 26
@@ -11944,52 +11969,51 @@ EXIT current process 1 UNMAP 1:1
  MAP 4
 3399: ==> r 11
  UNMAP 3:5
- OUT
- IN
+ FIN
  MAP 5
 3400: ==> r 2
  UNMAP 3:26
- IN
+ FIN
  MAP 6
 3401: ==> r 8
 3402: ==> r 24
  SEGV
 3403: ==> r 7
  UNMAP 3:29
- IN
+ FIN
  MAP 7
 3404: ==> r 17
  UNMAP 3:1
- IN
+ FIN
  MAP 8
 3405: ==> c 3
 3406: ==> r 33
  UNMAP 3:9
- IN
+ ZERO
  MAP 9
 3407: ==> r 12
  UNMAP 0:9
- IN
+ ZERO
  MAP 10
 3408: ==> r 22
  UNMAP 0:43
  OUT
- IN
+ ZERO
  MAP 11
 3409: ==> r 13
  UNMAP 0:27
- IN
+ ZERO
  MAP 12
 3410: ==> r 36
  SEGV
 3411: ==> r 15
  UNMAP 0:19
  OUT
- IN
+ ZERO
  MAP 13
 3412: ==> r 6
  UNMAP 0:1
- IN
+ ZERO
  MAP 14
 3413: ==> r 28
  UNMAP 0:52
@@ -11998,68 +12022,75 @@ EXIT current process 1 UNMAP 1:1
  MAP 15
 3414: ==> r 35
  UNMAP 0:4
- IN
+ ZERO
  MAP 16
 3415: ==> w 27
  UNMAP 0:0
  OUT
- IN
+ ZERO
  MAP 17
+ SEGPROT
 3416: ==> r 0
  SEGV
 3417: ==> w 18
  UNMAP 0:18
- IN
+ ZERO
  MAP 18
+ SEGPROT
 3418: ==> r 16
  UNMAP 0:36
- IN
+ ZERO
  MAP 19
 3419: ==> w 32
  UNMAP 0:40
  ZERO
  MAP 20
+ SEGPROT
 3420: ==> r 12
 3421: ==> r 37
  UNMAP 0:25
- IN
+ FIN
  MAP 21
 3422: ==> r 5
  UNMAP 0:26
  OUT
- IN
+ ZERO
  MAP 22
 3423: ==> r 36
  SEGV
 3424: ==> r 40
  UNMAP 0:57
- IN
+ FIN
  MAP 23
 3425: ==> r 51
  UNMAP 0:6
- IN
+ FIN
  MAP 24
 3426: ==> r 26
  UNMAP 0:39
  OUT
- IN
+ ZERO
  MAP 25
 3427: ==> r 10
  UNMAP 0:14
- IN
+ ZERO
  MAP 26
 3428: ==> w 18
+ SEGPROT
 3429: ==> r 5
 3430: ==> r 52
  UNMAP 0:35
- IN
+ FIN
  MAP 27
 3431: ==> w 18
+ SEGPROT
 3432: ==> w 28
+ SEGPROT
 3433: ==> w 16
+ SEGPROT
 3434: ==> r 45
  UNMAP 0:3
- IN
+ FIN
  MAP 28
 3435: ==> c 0
 3436: ==> r 7
@@ -12123,7 +12154,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 10
 3452: ==> r 12
  UNMAP 3:22
- IN
+ FIN
  MAP 11
 3453: ==> w 36
  UNMAP 3:13
@@ -12140,35 +12171,31 @@ EXIT current process 1 UNMAP 1:1
  MAP 14
 3457: ==> r 5
  UNMAP 3:28
- OUT
- IN
+ FIN
  MAP 15
 3458: ==> w 1
  UNMAP 3:35
- IN
+ FIN
  MAP 16
+ SEGPROT
 3459: ==> r 12
 3460: ==> w 33
  UNMAP 3:27
- OUT
  IN
  MAP 17
 3461: ==> w 37
  UNMAP 3:18
- OUT
  IN
  MAP 18
 3462: ==> r 2
  UNMAP 3:16
- OUT
- IN
+ FIN
  MAP 19
 3463: ==> r 37
 3464: ==> r 1
 3465: ==> r 3
  UNMAP 3:32
- OUT
- IN
+ FIN
  MAP 20
 3466: ==> r 5
 3467: ==> r 53
@@ -12178,11 +12205,11 @@ EXIT current process 1 UNMAP 1:1
 3468: ==> r 37
 3469: ==> r 7
  UNMAP 3:5
- IN
+ FIN
  MAP 22
 3470: ==> r 4
  UNMAP 3:40
- IN
+ FIN
  MAP 23
 3471: ==> r 2
 3472: ==> r 5
@@ -12191,24 +12218,25 @@ EXIT current process 1 UNMAP 1:1
 3474: ==> c 3
 3475: ==> r 12
  UNMAP 3:51
- IN
+ ZERO
  MAP 24
 3476: ==> r 7
  UNMAP 3:26
- IN
+ ZERO
  MAP 25
 3477: ==> r 40
  UNMAP 3:10
- IN
+ FIN
  MAP 26
 3478: ==> w 7
+ SEGPROT
 3479: ==> r 21
  UNMAP 3:52
- IN
+ ZERO
  MAP 27
 3480: ==> r 15
  UNMAP 3:45
- IN
+ ZERO
  MAP 28
 3481: ==> r 30
  UNMAP 0:7
@@ -12217,30 +12245,31 @@ EXIT current process 1 UNMAP 1:1
 3482: ==> r 35
  UNMAP 0:17
  OUT
- IN
+ ZERO
  MAP 30
 3483: ==> r 0
  SEGV
 3484: ==> r 19
  UNMAP 0:0
- IN
+ ZERO
  MAP 31
 3485: ==> r 20
  UNMAP 0:3
- IN
+ ZERO
  MAP 0
 3486: ==> r 44
  UNMAP 0:28
- IN
+ FIN
  MAP 1
 3487: ==> r 5
  UNMAP 0:53
- IN
+ ZERO
  MAP 2
 3488: ==> w 35
+ SEGPROT
 3489: ==> r 49
  UNMAP 0:13
- ZERO
+ FIN
  MAP 3
 3490: ==> c 0
 3491: ==> w 8
@@ -12298,7 +12327,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 15
 3504: ==> r 3
  UNMAP 2:1
- OUT
  IN
  MAP 16
 3505: ==> w 3
@@ -12346,28 +12374,28 @@ EXIT current process 1 UNMAP 1:1
 3521: ==> c 2
 3522: ==> r 1
  UNMAP 3:7
- OUT
- IN
+ FIN
  MAP 25
 3523: ==> w 13
  UNMAP 3:40
- IN
+ FIN
  MAP 26
+ SEGPROT
 3524: ==> r 21
  UNMAP 3:21
- IN
+ FIN
  MAP 27
 3525: ==> r 11
  UNMAP 3:15
- IN
+ FIN
  MAP 28
 3526: ==> w 17
  UNMAP 3:30
- IN
+ FIN
  MAP 29
+ SEGPROT
 3527: ==> r 25
  UNMAP 3:35
- OUT
  IN
  MAP 30
 3528: ==> r 41
@@ -12380,25 +12408,27 @@ EXIT current process 1 UNMAP 1:1
  MAP 0
 3530: ==> r 15
  UNMAP 3:44
- IN
+ FIN
  MAP 1
 3531: ==> r 19
  UNMAP 3:5
- IN
+ FIN
  MAP 2
 3532: ==> w 41
 3533: ==> r 22
  UNMAP 3:49
- IN
+ FIN
  MAP 3
 3534: ==> w 9
  UNMAP 0:7
- IN
+ FIN
  MAP 4
+ SEGPROT
 3535: ==> w 3
  UNMAP 0:41
- IN
+ FIN
  MAP 5
+ SEGPROT
 3536: ==> r 48
  UNMAP 0:25
  OUT
@@ -12410,39 +12440,41 @@ EXIT current process 1 UNMAP 1:1
  MAP 7
 3538: ==> w 8
  UNMAP 0:27
- IN
+ FIN
  MAP 8
+ SEGPROT
 3539: ==> r 4
  UNMAP 0:52
- IN
+ FIN
  MAP 9
 3540: ==> c 3
 3541: ==> r 18
  UNMAP 0:50
- IN
+ ZERO
  MAP 10
 3542: ==> w 51
  UNMAP 0:32
- IN
+ FIN
  MAP 11
 3543: ==> r 14
  UNMAP 0:5
- IN
+ ZERO
  MAP 12
 3544: ==> r 11
  UNMAP 0:35
- IN
+ ZERO
  MAP 13
 3545: ==> r 0
  SEGV
 3546: ==> w 1
  UNMAP 0:10
- IN
+ ZERO
  MAP 14
+ SEGPROT
 3547: ==> r 14
 3548: ==> w 57
  UNMAP 0:17
- IN
+ FIN
  MAP 15
 3549: ==> r 18
 3550: ==> w 51
@@ -12450,57 +12482,58 @@ EXIT current process 1 UNMAP 1:1
 3552: ==> r 4
  UNMAP 0:3
  OUT
- IN
+ ZERO
  MAP 16
 3553: ==> r 4
 3554: ==> r 31
  UNMAP 0:37
- IN
+ ZERO
  MAP 17
 3555: ==> r 8
  UNMAP 0:4
  OUT
- IN
+ ZERO
  MAP 18
 3556: ==> r 33
  UNMAP 0:26
- IN
+ ZERO
  MAP 19
 3557: ==> r 9
  UNMAP 0:40
  OUT
- IN
+ ZERO
  MAP 20
 3558: ==> r 8
 3559: ==> r 45
  UNMAP 0:55
- IN
+ FIN
  MAP 21
 3560: ==> r 9
 3561: ==> w 19
  UNMAP 0:31
- IN
+ ZERO
  MAP 22
+ SEGPROT
 3562: ==> r 1
 3563: ==> w 8
+ SEGPROT
 3564: ==> r 22
  UNMAP 0:1
- IN
+ ZERO
  MAP 23
 3565: ==> r 42
  UNMAP 0:8
- IN
+ FIN
  MAP 24
 3566: ==> r 0
  SEGV
 3567: ==> w 48
  UNMAP 2:1
- IN
+ FIN
  MAP 25
 3568: ==> c 0
 3569: ==> r 1
  UNMAP 2:13
- OUT
  IN
  MAP 26
 3570: ==> r 59
@@ -12513,7 +12546,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 28
 3572: ==> r 2
  UNMAP 2:17
- OUT
  IN
  MAP 29
 3573: ==> r 37
@@ -12547,18 +12579,17 @@ EXIT current process 1 UNMAP 1:1
 3584: ==> r 9
 3585: ==> r 23
  UNMAP 2:22
- IN
+ ZERO
  MAP 3
 3586: ==> r 18
  UNMAP 2:9
- OUT
- IN
+ FIN
  MAP 4
 3587: ==> w 2
  UNMAP 2:3
- OUT
- IN
+ FIN
  MAP 5
+ SEGPROT
 3588: ==> w 0
  SEGV
 3589: ==> r 36
@@ -12571,27 +12602,27 @@ EXIT current process 1 UNMAP 1:1
  MAP 7
 3591: ==> r 15
  UNMAP 2:8
- OUT
- IN
+ FIN
  MAP 8
 3592: ==> w 1
  UNMAP 2:4
- IN
+ FIN
  MAP 9
+ SEGPROT
 3593: ==> w 24
  SEGV
 3594: ==> r 21
  UNMAP 3:18
- IN
+ FIN
  MAP 10
 3595: ==> r 22
  UNMAP 3:51
- OUT
- IN
+ FOUT
+ FIN
  MAP 11
 3596: ==> r 10
  UNMAP 3:14
- IN
+ FIN
  MAP 12
 3597: ==> r 23
 3598: ==> w 43
@@ -12600,67 +12631,68 @@ EXIT current process 1 UNMAP 1:1
  MAP 13
 3599: ==> w 19
  UNMAP 3:1
- OUT
- IN
+ FIN
  MAP 14
+ SEGPROT
 3600: ==> c 3
 3601: ==> r 3
  UNMAP 3:57
- OUT
- IN
+ FOUT
+ ZERO
  MAP 15
 3602: ==> r 43
  UNMAP 3:4
- IN
+ FIN
  MAP 16
 3603: ==> r 36
  SEGV
 3604: ==> w 2
  UNMAP 3:31
- IN
+ ZERO
  MAP 17
+ SEGPROT
 3605: ==> r 24
  UNMAP 3:8
- OUT
- IN
+ ZERO
  MAP 18
 3606: ==> w 56
  UNMAP 3:33
- IN
+ FIN
  MAP 19
 3607: ==> w 10
  UNMAP 3:9
- IN
+ ZERO
  MAP 20
+ SEGPROT
 3608: ==> w 54
  UNMAP 3:45
- ZERO
+ FIN
  MAP 21
 3609: ==> r 20
  UNMAP 3:19
- OUT
- IN
+ ZERO
  MAP 22
 3610: ==> r 40
  UNMAP 3:22
- IN
+ FIN
  MAP 23
 3611: ==> r 31
  UNMAP 3:42
- IN
+ ZERO
  MAP 24
 3612: ==> w 1
  UNMAP 3:48
- OUT
- IN
+ FOUT
+ ZERO
  MAP 25
+ SEGPROT
 3613: ==> r 22
  UNMAP 0:1
- IN
+ ZERO
  MAP 26
 3614: ==> r 9
  UNMAP 0:59
- IN
+ ZERO
  MAP 27
 3615: ==> c 0
 3616: ==> r 15
@@ -12705,8 +12737,7 @@ EXIT current process 1 UNMAP 1:1
 3626: ==> r 2
 3627: ==> r 33
  UNMAP 2:2
- OUT
- IN
+ FIN
  MAP 5
 3628: ==> r 6
  UNMAP 2:36
@@ -12724,7 +12755,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 8
 3632: ==> w 40
  UNMAP 2:1
- OUT
  IN
  MAP 9
 3633: ==> r 1
@@ -12751,20 +12781,19 @@ EXIT current process 1 UNMAP 1:1
  SEGV
 3640: ==> w 44
  UNMAP 2:19
- OUT
  IN
  MAP 14
 3641: ==> w 14
  UNMAP 3:3
- IN
+ FIN
  MAP 15
+ SEGPROT
 3642: ==> w 57
  UNMAP 3:43
  IN
  MAP 16
 3643: ==> r 26
  UNMAP 3:2
- OUT
  IN
  MAP 17
 3644: ==> r 38
@@ -12773,39 +12802,38 @@ EXIT current process 1 UNMAP 1:1
  MAP 18
 3645: ==> w 28
  UNMAP 3:56
- OUT
+ FOUT
  IN
  MAP 19
 3646: ==> r 8
  UNMAP 3:10
- OUT
- IN
+ FIN
  MAP 20
 3647: ==> r 36
  UNMAP 3:54
- OUT
+ FOUT
  IN
  MAP 21
 3648: ==> r 20
  UNMAP 3:20
- IN
+ FIN
  MAP 22
 3649: ==> r 5
  UNMAP 3:40
- IN
+ FIN
  MAP 23
 3650: ==> w 10
  UNMAP 3:31
- IN
+ FIN
  MAP 24
+ SEGPROT
 3651: ==> r 50
  UNMAP 3:1
- OUT
  IN
  MAP 25
 3652: ==> r 4
  UNMAP 3:22
- IN
+ FIN
  MAP 26
 3653: ==> w 43
  UNMAP 3:9
@@ -12819,7 +12847,7 @@ EXIT current process 1 UNMAP 1:1
 3655: ==> r 4
 3656: ==> r 11
  UNMAP 0:25
- IN
+ FIN
  MAP 29
 3657: ==> r 25
  UNMAP 0:53
@@ -12829,8 +12857,9 @@ EXIT current process 1 UNMAP 1:1
 3659: ==> r 11
 3660: ==> w 2
  UNMAP 0:39
- IN
+ FIN
  MAP 31
+ SEGPROT
 3661: ==> w 59
  UNMAP 0:2
  IN
@@ -12842,8 +12871,9 @@ EXIT current process 1 UNMAP 1:1
 3663: ==> w 17
  UNMAP 0:62
  OUT
- IN
+ FIN
  MAP 2
+ SEGPROT
 3664: ==> r 54
  UNMAP 0:49
  OUT
@@ -12853,67 +12883,71 @@ EXIT current process 1 UNMAP 1:1
 3666: ==> c 3
 3667: ==> w 5
  UNMAP 0:16
- IN
+ ZERO
  MAP 4
+ SEGPROT
 3668: ==> r 55
  UNMAP 0:33
- IN
+ FIN
  MAP 5
 3669: ==> r 11
  UNMAP 0:6
- IN
+ ZERO
  MAP 6
 3670: ==> r 55
 3671: ==> w 8
  UNMAP 0:26
- IN
+ ZERO
  MAP 7
+ SEGPROT
 3672: ==> r 4
  UNMAP 0:34
- IN
+ ZERO
  MAP 8
 3673: ==> w 10
  UNMAP 0:40
  OUT
- IN
+ ZERO
  MAP 9
+ SEGPROT
 3674: ==> r 59
  UNMAP 0:1
- IN
+ FIN
  MAP 10
 3675: ==> r 36
  SEGV
 3676: ==> w 27
  UNMAP 0:3
- IN
+ ZERO
  MAP 11
+ SEGPROT
 3677: ==> w 49
  UNMAP 2:52
  OUT
- ZERO
+ FIN
  MAP 12
 3678: ==> w 18
  UNMAP 2:63
- IN
+ ZERO
  MAP 13
+ SEGPROT
 3679: ==> r 16
  UNMAP 2:44
  OUT
- IN
+ ZERO
  MAP 14
 3680: ==> r 24
  UNMAP 2:14
- OUT
- IN
+ ZERO
  MAP 15
 3681: ==> r 62
  UNMAP 2:57
  OUT
- IN
+ FIN
  MAP 16
 3682: ==> w 47
  UNMAP 2:26
- IN
+ FIN
  MAP 17
 3683: ==> c 0
 3684: ==> r 42
@@ -12944,13 +12978,13 @@ EXIT current process 1 UNMAP 1:1
  MAP 23
 3691: ==> w 45
  UNMAP 2:10
- OUT
  IN
  MAP 24
 3692: ==> w 14
  UNMAP 2:50
- IN
+ ZERO
  MAP 25
+ SEGPROT
 3693: ==> r 44
  UNMAP 2:4
  IN
@@ -12977,28 +13011,27 @@ EXIT current process 1 UNMAP 1:1
  SEGV
 3702: ==> r 16
  UNMAP 2:25
- IN
+ FIN
  MAP 30
 3703: ==> r 50
  UNMAP 2:2
- OUT
  IN
  MAP 31
 3704: ==> r 4
  UNMAP 2:59
  OUT
- IN
+ FIN
  MAP 0
 3705: ==> w 18
  UNMAP 2:31
- IN
+ FIN
  MAP 1
+ SEGPROT
 3706: ==> r 0
  SEGV
 3707: ==> r 3
  UNMAP 2:17
- OUT
- IN
+ FIN
  MAP 2
 3708: ==> w 28
  UNMAP 2:54
@@ -13006,7 +13039,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 3
 3709: ==> w 42
  UNMAP 3:5
- OUT
  IN
  MAP 4
 3710: ==> r 48
@@ -13018,9 +13050,9 @@ EXIT current process 1 UNMAP 1:1
  IN
  MAP 6
 3712: ==> w 18
+ SEGPROT
 3713: ==> w 27
  UNMAP 3:8
- OUT
  IN
  MAP 7
 3714: ==> r 35
@@ -13029,7 +13061,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 8
 3715: ==> r 38
  UNMAP 3:10
- OUT
  IN
  MAP 9
 3716: ==> r 55
@@ -13037,149 +13068,153 @@ EXIT current process 1 UNMAP 1:1
  IN
  MAP 10
 3717: ==> w 4
+ SEGPROT
 3718: ==> r 10
  UNMAP 3:27
- OUT
- IN
+ FIN
  MAP 11
 3719: ==> r 31
  UNMAP 3:49
- OUT
+ FOUT
  IN
  MAP 12
 3720: ==> r 0
  SEGV
 3721: ==> r 29
  UNMAP 3:18
- OUT
  IN
  MAP 13
 3722: ==> r 16
 3723: ==> w 1
  UNMAP 3:16
- IN
+ FIN
  MAP 14
+ SEGPROT
 3724: ==> r 21
  UNMAP 3:24
- IN
+ FIN
  MAP 15
 3725: ==> w 6
  UNMAP 3:62
- IN
+ FIN
  MAP 16
+ SEGPROT
 3726: ==> r 8
  UNMAP 3:47
- OUT
- IN
+ FOUT
+ FIN
  MAP 17
 3727: ==> r 7
  UNMAP 0:42
- IN
+ FIN
  MAP 18
 3728: ==> w 1
+ SEGPROT
 3729: ==> c 3
 3730: ==> r 40
  UNMAP 0:29
- IN
+ FIN
  MAP 19
 3731: ==> r 1
  UNMAP 0:5
  OUT
- IN
+ ZERO
  MAP 20
 3732: ==> r 20
  UNMAP 0:7
- IN
+ ZERO
  MAP 21
 3733: ==> w 14
  UNMAP 0:26
  OUT
- IN
+ ZERO
  MAP 22
+ SEGPROT
 3734: ==> w 4
  UNMAP 0:1
- IN
+ ZERO
  MAP 23
+ SEGPROT
 3735: ==> r 26
  UNMAP 0:45
  OUT
- IN
+ ZERO
  MAP 24
 3736: ==> r 18
  UNMAP 0:14
- OUT
- IN
+ ZERO
  MAP 25
 3737: ==> w 9
  UNMAP 0:44
- IN
+ ZERO
  MAP 26
+ SEGPROT
 3738: ==> r 10
  UNMAP 0:4
- IN
+ ZERO
  MAP 27
 3739: ==> r 23
  UNMAP 0:3
  OUT
- IN
+ ZERO
  MAP 28
 3740: ==> r 25
  UNMAP 2:30
- IN
+ ZERO
  MAP 29
 3741: ==> r 28
  UNMAP 2:16
- IN
+ ZERO
  MAP 30
 3742: ==> r 32
  UNMAP 2:50
- IN
+ ZERO
  MAP 31
 3743: ==> w 9
+ SEGPROT
 3744: ==> r 46
  UNMAP 2:4
- OUT
- ZERO
+ FIN
  MAP 0
 3745: ==> r 31
  UNMAP 2:18
- OUT
- IN
+ ZERO
  MAP 1
 3746: ==> r 35
  UNMAP 2:3
- IN
+ ZERO
  MAP 2
 3747: ==> w 59
  UNMAP 2:28
  OUT
- IN
+ FIN
  MAP 3
 3748: ==> r 23
 3749: ==> r 6
  UNMAP 2:42
  OUT
- IN
+ ZERO
  MAP 4
 3750: ==> w 44
  UNMAP 2:48
- IN
+ FIN
  MAP 5
 3751: ==> w 12
  UNMAP 2:53
- IN
+ ZERO
  MAP 6
+ SEGPROT
 3752: ==> r 31
 3753: ==> r 51
  UNMAP 2:27
  OUT
- IN
+ FIN
  MAP 7
 3754: ==> r 31
 3755: ==> r 18
 3756: ==> r 61
  UNMAP 2:35
- IN
+ FIN
  MAP 8
 3757: ==> r 14
 3758: ==> c 0
@@ -13205,7 +13240,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 13
 3764: ==> w 8
  UNMAP 2:1
- OUT
  IN
  MAP 14
 3765: ==> w 4
@@ -13214,7 +13248,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 15
 3766: ==> r 38
  UNMAP 2:6
- OUT
  ZERO
  MAP 16
 3767: ==> r 13
@@ -13231,8 +13264,9 @@ EXIT current process 1 UNMAP 1:1
  MAP 19
 3770: ==> w 33
  UNMAP 3:1
- IN
+ FIN
  MAP 20
+ SEGPROT
 3771: ==> r 8
 3772: ==> r 23
  UNMAP 3:20
@@ -13240,13 +13274,11 @@ EXIT current process 1 UNMAP 1:1
  MAP 21
 3773: ==> r 17
  UNMAP 3:14
- OUT
  IN
  MAP 22
 3774: ==> r 14
  UNMAP 3:4
- OUT
- IN
+ ZERO
  MAP 23
 3775: ==> r 19
  UNMAP 3:26
@@ -13259,7 +13291,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 25
 3778: ==> r 3
  UNMAP 3:9
- OUT
  IN
  MAP 26
 3779: ==> r 29
@@ -13271,6 +13302,7 @@ EXIT current process 1 UNMAP 1:1
  IN
  MAP 28
 3781: ==> w 14
+ SEGPROT
 3782: ==> r 45
 3783: ==> w 11
  UNMAP 3:25
@@ -13279,11 +13311,12 @@ EXIT current process 1 UNMAP 1:1
 3784: ==> c 2
 3785: ==> w 15
  UNMAP 3:28
- IN
+ FIN
  MAP 30
+ SEGPROT
 3786: ==> r 20
  UNMAP 3:32
- IN
+ FIN
  MAP 31
 3787: ==> r 26
  UNMAP 3:46
@@ -13295,25 +13328,26 @@ EXIT current process 1 UNMAP 1:1
  MAP 1
 3789: ==> r 2
  UNMAP 3:35
- IN
+ FIN
  MAP 2
 3790: ==> w 18
  UNMAP 3:59
- OUT
- IN
+ FOUT
+ FIN
  MAP 3
+ SEGPROT
 3791: ==> r 16
  UNMAP 3:6
- IN
+ FIN
  MAP 4
 3792: ==> w 13
  UNMAP 3:44
- OUT
- IN
+ FOUT
+ FIN
  MAP 5
+ SEGPROT
 3793: ==> w 27
  UNMAP 3:12
- OUT
  IN
  MAP 6
 3794: ==> r 61
@@ -13338,17 +13372,18 @@ EXIT current process 1 UNMAP 1:1
 3800: ==> r 11
  UNMAP 0:51
  OUT
- IN
+ FIN
  MAP 11
 3801: ==> r 19
  UNMAP 0:27
- IN
+ FIN
  MAP 12
 3802: ==> w 13
+ SEGPROT
 3803: ==> r 18
 3804: ==> r 6
  UNMAP 0:21
- IN
+ FIN
  MAP 13
 3805: ==> r 54
  UNMAP 0:8
@@ -13364,58 +13399,59 @@ EXIT current process 1 UNMAP 1:1
 3808: ==> c 3
 3809: ==> r 4
  UNMAP 0:38
- IN
+ ZERO
  MAP 16
 3810: ==> r 8
  UNMAP 0:13
- IN
+ ZERO
  MAP 17
 3811: ==> r 7
  UNMAP 0:32
- IN
+ ZERO
  MAP 18
 3812: ==> r 25
  UNMAP 0:2
- IN
+ ZERO
  MAP 19
 3813: ==> w 13
  UNMAP 0:33
- OUT
- IN
+ ZERO
  MAP 20
+ SEGPROT
 3814: ==> r 16
  UNMAP 0:23
- IN
+ ZERO
  MAP 21
 3815: ==> w 4
+ SEGPROT
 3816: ==> r 9
  UNMAP 0:17
- IN
+ ZERO
  MAP 22
 3817: ==> r 3
  UNMAP 0:14
- OUT
- IN
+ ZERO
  MAP 23
 3818: ==> r 44
  UNMAP 0:19
- IN
+ FIN
  MAP 24
 3819: ==> r 29
  UNMAP 0:44
- IN
+ ZERO
  MAP 25
 3820: ==> w 17
  UNMAP 0:3
- IN
+ ZERO
  MAP 26
+ SEGPROT
 3821: ==> r 38
  UNMAP 0:29
- IN
+ FIN
  MAP 27
 3822: ==> r 5
  UNMAP 0:12
- IN
+ ZERO
  MAP 28
 3823: ==> r 29
 3824: ==> r 16
@@ -13427,7 +13463,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 29
 3827: ==> r 2
  UNMAP 2:15
- OUT
  IN
  MAP 30
 3828: ==> r 27
@@ -13436,8 +13471,9 @@ EXIT current process 1 UNMAP 1:1
  MAP 31
 3829: ==> w 33
  UNMAP 2:26
- IN
+ FIN
  MAP 0
+ SEGPROT
 3830: ==> w 15
  SEGV
 3831: ==> r 0
@@ -13450,7 +13486,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 2
 3833: ==> r 4
  UNMAP 2:18
- OUT
  IN
  MAP 3
 3834: ==> r 12
@@ -13459,7 +13494,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 4
 3835: ==> r 42
  UNMAP 2:13
- OUT
  IN
  MAP 5
 3836: ==> r 46
@@ -13510,7 +13544,6 @@ EXIT current process 1 UNMAP 1:1
 3850: ==> r 26
 3851: ==> r 7
  UNMAP 3:4
- OUT
  IN
  MAP 16
 3852: ==> r 8
@@ -13520,16 +13553,15 @@ EXIT current process 1 UNMAP 1:1
 3853: ==> c 2
 3854: ==> r 20
  UNMAP 3:7
- IN
+ FIN
  MAP 18
 3855: ==> r 12
  UNMAP 3:25
- IN
+ FIN
  MAP 19
 3856: ==> r 5
  UNMAP 3:13
- OUT
- IN
+ FIN
  MAP 20
 3857: ==> w 44
  UNMAP 3:16
@@ -13537,13 +13569,14 @@ EXIT current process 1 UNMAP 1:1
  MAP 21
 3858: ==> r 21
  UNMAP 3:9
- IN
+ FIN
  MAP 22
 3859: ==> r 10
  UNMAP 3:3
- IN
+ FIN
  MAP 23
 3860: ==> w 5
+ SEGPROT
 3861: ==> w 63
  UNMAP 3:44
  ZERO
@@ -13554,8 +13587,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 25
 3863: ==> r 11
  UNMAP 3:17
- OUT
- IN
+ FIN
  MAP 26
 3864: ==> r 41
  UNMAP 3:38
@@ -13563,16 +13595,17 @@ EXIT current process 1 UNMAP 1:1
  MAP 27
 3865: ==> r 13
  UNMAP 3:5
- IN
+ FIN
  MAP 28
 3866: ==> w 6
  UNMAP 0:31
  OUT
- IN
+ FIN
  MAP 29
+ SEGPROT
 3867: ==> r 3
  UNMAP 0:2
- IN
+ FIN
  MAP 30
 3868: ==> r 37
  UNMAP 0:27
@@ -13582,63 +13615,65 @@ EXIT current process 1 UNMAP 1:1
 3870: ==> c 3
 3871: ==> w 29
  UNMAP 0:33
- OUT
- IN
+ ZERO
  MAP 0
+ SEGPROT
 3872: ==> r 0
  SEGV
 3873: ==> r 17
  UNMAP 0:0
- IN
+ ZERO
  MAP 1
 3874: ==> r 5
  UNMAP 0:59
- IN
+ ZERO
  MAP 2
 3875: ==> w 50
  UNMAP 0:4
- ZERO
+ FIN
  MAP 3
 3876: ==> r 5
 3877: ==> r 0
  SEGV
 3878: ==> r 27
  UNMAP 0:12
- IN
+ ZERO
  MAP 4
 3879: ==> r 35
  UNMAP 0:42
- IN
+ ZERO
  MAP 5
 3880: ==> w 0
  SEGV
 3881: ==> r 4
  UNMAP 0:46
- IN
+ ZERO
  MAP 6
 3882: ==> w 22
  UNMAP 0:9
- IN
+ ZERO
  MAP 7
+ SEGPROT
 3883: ==> r 62
  UNMAP 0:35
- IN
+ FIN
  MAP 8
 3884: ==> r 18
  UNMAP 0:29
- IN
+ ZERO
  MAP 9
 3885: ==> r 26
  UNMAP 0:23
- IN
+ ZERO
  MAP 10
 3886: ==> w 7
  UNMAP 0:25
- IN
+ ZERO
  MAP 11
+ SEGPROT
 3887: ==> r 15
  UNMAP 0:26
- IN
+ ZERO
  MAP 12
 3888: ==> c 0
 3889: ==> w 51
@@ -13673,7 +13708,6 @@ EXIT current process 1 UNMAP 1:1
  MAP 19
 3897: ==> r 1
  UNMAP 2:5
- OUT
  IN
  MAP 20
 3898: ==> r 5
@@ -13700,15 +13734,16 @@ EXIT current process 1 UNMAP 1:1
 3905: ==> c 2
 3906: ==> w 18
  UNMAP 2:56
- IN
+ FIN
  MAP 25
+ SEGPROT
 3907: ==> r 36
  UNMAP 2:11
  IN
  MAP 26
 3908: ==> r 15
  UNMAP 2:41
- IN
+ FIN
  MAP 27
 3909: ==> r 40
  UNMAP 2:13
@@ -13716,36 +13751,36 @@ EXIT current process 1 UNMAP 1:1
  MAP 28
 3910: ==> w 13
  UNMAP 2:6
- OUT
- IN
+ FIN
  MAP 29
+ SEGPROT
 3911: ==> r 5
  UNMAP 2:3
- IN
+ FIN
  MAP 30
 3912: ==> r 21
  UNMAP 2:37
- IN
+ FIN
  MAP 31
 3913: ==> w 12
  UNMAP 3:29
- OUT
- IN
+ FIN
  MAP 0
+ SEGPROT
 3914: ==> w 53
  UNMAP 3:17
  IN
  MAP 1
 3915: ==> r 2
  UNMAP 3:5
- IN
+ FIN
  MAP 2
 3916: ==> r 13
 3917: ==> r 18
 3918: ==> r 22
  UNMAP 3:50
- OUT
- IN
+ FOUT
+ FIN
  MAP 3
 3919: ==> w 61
  UNMAP 3:27
@@ -13753,7 +13788,7 @@ EXIT current process 1 UNMAP 1:1
  MAP 4
 3920: ==> r 10
  UNMAP 3:35
- IN
+ FIN
  MAP 5
 3921: ==> r 30
  UNMAP 3:4
@@ -13761,12 +13796,11 @@ EXIT current process 1 UNMAP 1:1
  MAP 6
 3922: ==> w 37
  UNMAP 3:22
- OUT
  IN
  MAP 7
 3923: ==> r 16
  UNMAP 3:62
- IN
+ FIN
  MAP 8
 3924: ==> r 32
  UNMAP 3:18
@@ -13775,63 +13809,66 @@ EXIT current process 1 UNMAP 1:1
 3925: ==> c 3
 3926: ==> r 3
  UNMAP 3:26
- IN
+ ZERO
  MAP 10
 3927: ==> r 10
  UNMAP 3:7
- OUT
- IN
+ ZERO
  MAP 11
 3928: ==> r 0
  SEGV
 3929: ==> r 37
  UNMAP 3:15
- IN
+ FIN
  MAP 12
 3930: ==> w 0
  SEGV
 3931: ==> w 48
  UNMAP 0:51
  OUT
- IN
+ FIN
  MAP 13
 3932: ==> r 9
  UNMAP 0:36
  OUT
- IN
+ ZERO
  MAP 14
 3933: ==> r 52
  UNMAP 0:2
- IN
+ FIN
  MAP 15
 3934: ==> w 5
  UNMAP 0:5
- IN
+ ZERO
  MAP 16
+ SEGPROT
 3935: ==> w 33
  UNMAP 0:4
- IN
+ ZERO
  MAP 17
+ SEGPROT
 3936: ==> w 5
+ SEGPROT
 3937: ==> r 22
  UNMAP 0:8
  OUT
- IN
+ ZERO
  MAP 18
 3938: ==> w 56
  UNMAP 0:13
  OUT
- IN
+ FIN
  MAP 19
 3939: ==> r 15
  UNMAP 0:1
- IN
+ ZERO
  MAP 20
 3940: ==> r 36
  SEGV
 3941: ==> r 10
 3942: ==> e 3
-EXIT current process 3 UNMAP 3:3
+EXIT current process 3
+ UNMAP 3:3
  UNMAP 3:5
  UNMAP 3:9
  UNMAP 3:10
@@ -13840,8 +13877,10 @@ EXIT current process 3 UNMAP 3:3
  UNMAP 3:33
  UNMAP 3:37
  UNMAP 3:48
+ FOUT
  UNMAP 3:52
  UNMAP 3:56
+ FOUT
 3943: ==> c 0
 3944: ==> r 26
  IN
@@ -13851,8 +13890,9 @@ EXIT current process 3 UNMAP 3:3
  MAP 16
 3946: ==> r 3
 3947: ==> w 33
- IN
+ FIN
  MAP 14
+ SEGPROT
 3948: ==> r 45
  IN
  MAP 11
@@ -13904,7 +13944,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 24
 3967: ==> r 34
  UNMAP 2:18
- OUT
  IN
  MAP 25
 3968: ==> r 0
@@ -13921,7 +13960,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 28
 3971: ==> r 7
  UNMAP 2:13
- OUT
  IN
  MAP 29
 3972: ==> r 20
@@ -13935,9 +13973,9 @@ EXIT current process 3 UNMAP 3:3
  MAP 31
 3975: ==> w 1
  UNMAP 2:12
- OUT
- IN
+ FIN
  MAP 0
+ SEGPROT
 3976: ==> r 2
 3977: ==> r 43
  UNMAP 2:53
@@ -13951,7 +13989,7 @@ EXIT current process 3 UNMAP 3:3
  MAP 2
 3980: ==> r 3
  UNMAP 2:22
- IN
+ FIN
  MAP 3
 3981: ==> r 10
 3982: ==> w 55
@@ -13974,8 +14012,9 @@ EXIT current process 3 UNMAP 3:3
  MAP 7
 3986: ==> w 17
  UNMAP 2:16
- IN
+ FIN
  MAP 8
+ SEGPROT
 3987: ==> c 0
 3988: ==> r 51
  UNMAP 2:32
@@ -14005,7 +14044,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 13
 3998: ==> r 17
  UNMAP 0:33
- OUT
  IN
  MAP 14
 3999: ==> w 44
@@ -14021,7 +14059,7 @@ EXIT current process 3 UNMAP 3:3
 4003: ==> r 33
  UNMAP 0:39
  OUT
- IN
+ FIN
  MAP 17
 4004: ==> w 4
  UNMAP 0:2
@@ -14037,8 +14075,9 @@ EXIT current process 3 UNMAP 3:3
  SEGV
 4008: ==> w 18
  UNMAP 0:10
- IN
+ FIN
  MAP 20
+ SEGPROT
 4009: ==> r 34
  UNMAP 0:9
  OUT
@@ -14047,30 +14086,32 @@ EXIT current process 3 UNMAP 3:3
 4010: ==> r 17
 4011: ==> w 13
  UNMAP 0:31
- IN
+ FIN
  MAP 22
+ SEGPROT
 4012: ==> r 7
  UNMAP 0:43
- IN
+ FIN
  MAP 23
 4013: ==> w 8
  UNMAP 0:30
  OUT
- IN
+ FIN
  MAP 24
+ SEGPROT
 4014: ==> r 12
  UNMAP 0:34
- IN
+ FIN
  MAP 25
 4015: ==> r 10
  UNMAP 0:0
- IN
+ FIN
  MAP 26
 4016: ==> r 40
 4017: ==> r 4
  UNMAP 0:18
  OUT
- IN
+ FIN
  MAP 27
 4018: ==> c 0
 4019: ==> r 13
@@ -14099,7 +14140,6 @@ EXIT current process 3 UNMAP 3:3
 4030: ==> w 26
 4031: ==> w 7
  UNMAP 2:1
- OUT
  IN
  MAP 0
 4032: ==> w 40
@@ -14125,24 +14165,25 @@ EXIT current process 3 UNMAP 3:3
 4039: ==> w 5
  UNMAP 2:27
  OUT
- IN
+ FIN
  MAP 5
+ SEGPROT
 4040: ==> r 36
  UNMAP 2:40
  IN
  MAP 6
 4041: ==> r 14
  UNMAP 2:54
- IN
+ FIN
  MAP 7
 4042: ==> w 15
  UNMAP 2:17
- OUT
- IN
+ FIN
  MAP 8
+ SEGPROT
 4043: ==> r 3
  UNMAP 0:51
- IN
+ FIN
  MAP 9
 4044: ==> r 3
 4045: ==> r 46
@@ -14153,19 +14194,20 @@ EXIT current process 3 UNMAP 3:3
 4046: ==> r 1
  UNMAP 0:26
  OUT
- IN
+ FIN
  MAP 11
 4047: ==> w 9
  UNMAP 0:37
- IN
+ FIN
  MAP 12
+ SEGPROT
 4048: ==> w 30
  UNMAP 0:1
  IN
  MAP 13
 4049: ==> r 2
  UNMAP 0:17
- IN
+ FIN
  MAP 14
 4050: ==> w 32
  UNMAP 0:44
@@ -14175,7 +14217,7 @@ EXIT current process 3 UNMAP 3:3
 4051: ==> r 11
  UNMAP 0:29
  OUT
- IN
+ FIN
  MAP 16
 4052: ==> r 25
  UNMAP 0:33
@@ -14199,7 +14241,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 19
 4060: ==> r 47
  UNMAP 2:18
- OUT
  IN
  MAP 20
 4061: ==> c 0
@@ -14209,7 +14250,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 21
 4063: ==> r 41
  UNMAP 2:13
- OUT
  IN
  MAP 22
 4064: ==> w 5
@@ -14219,7 +14259,6 @@ EXIT current process 3 UNMAP 3:3
 4065: ==> r 0
 4066: ==> r 38
  UNMAP 2:8
- OUT
  ZERO
  MAP 24
 4067: ==> r 15
@@ -14285,23 +14324,22 @@ EXIT current process 3 UNMAP 3:3
 4084: ==> c 2
 4085: ==> r 8
  UNMAP 2:5
- OUT
- IN
+ FIN
  MAP 5
 4086: ==> r 14
 4087: ==> w 14
+ SEGPROT
 4088: ==> r 23
  UNMAP 2:36
- IN
+ ZERO
  MAP 6
 4089: ==> w 5
  UNMAP 2:14
- OUT
- IN
+ FIN
  MAP 7
+ SEGPROT
 4090: ==> r 34
  UNMAP 2:15
- OUT
  IN
  MAP 8
 4091: ==> r 8
@@ -14312,7 +14350,7 @@ EXIT current process 3 UNMAP 3:3
  MAP 9
 4094: ==> r 10
  UNMAP 2:46
- IN
+ FIN
  MAP 10
 4095: ==> r 45
  UNMAP 2:1
@@ -14320,17 +14358,16 @@ EXIT current process 3 UNMAP 3:3
  MAP 11
 4096: ==> r 15
  UNMAP 2:9
- OUT
- IN
+ FIN
  MAP 12
 4097: ==> r 7
  UNMAP 2:30
  OUT
- IN
+ FIN
  MAP 13
 4098: ==> r 4
  UNMAP 2:2
- IN
+ FIN
  MAP 14
 4099: ==> c 0
 4100: ==> w 11
@@ -14378,9 +14415,10 @@ EXIT current process 3 UNMAP 3:3
 4116: ==> r 6
  UNMAP 0:5
  OUT
- IN
+ FIN
  MAP 23
 4117: ==> w 6
+ SEGPROT
 4118: ==> r 33
  UNMAP 0:38
  IN
@@ -14388,7 +14426,7 @@ EXIT current process 3 UNMAP 3:3
 4119: ==> r 21
  UNMAP 0:11
  OUT
- IN
+ FIN
  MAP 25
 4120: ==> r 29
  UNMAP 0:35
@@ -14403,6 +14441,7 @@ EXIT current process 3 UNMAP 3:3
  IN
  MAP 28
 4123: ==> w 5
+ SEGPROT
 4124: ==> w 57
  UNMAP 0:6
  IN
@@ -14420,16 +14459,18 @@ EXIT current process 3 UNMAP 3:3
  MAP 31
 4129: ==> w 16
  UNMAP 0:10
- IN
+ FIN
  MAP 0
+ SEGPROT
 4130: ==> w 37
  UNMAP 0:36
  IN
  MAP 1
 4131: ==> w 1
  UNMAP 0:19
- IN
+ FIN
  MAP 2
+ SEGPROT
 4132: ==> r 32
  UNMAP 0:55
  IN
@@ -14439,7 +14480,7 @@ EXIT current process 3 UNMAP 3:3
 4135: ==> r 33
  UNMAP 0:48
  OUT
- IN
+ FIN
  MAP 4
 4136: ==> r 3
 4137: ==> r 4
@@ -14454,7 +14495,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 6
 4141: ==> r 8
  UNMAP 2:5
- OUT
  IN
  MAP 7
 4142: ==> r 61
@@ -14510,7 +14550,7 @@ EXIT current process 3 UNMAP 3:3
 4155: ==> c 2
 4156: ==> r 3
  UNMAP 0:0
- IN
+ FIN
  MAP 19
 4157: ==> r 47
  UNMAP 0:3
@@ -14519,20 +14559,20 @@ EXIT current process 3 UNMAP 3:3
 4158: ==> r 8
  UNMAP 0:1
  OUT
- IN
+ FIN
  MAP 21
 4159: ==> w 18
  UNMAP 0:7
- IN
+ FIN
  MAP 22
+ SEGPROT
 4160: ==> r 26
  UNMAP 2:6
- OUT
  IN
  MAP 23
 4161: ==> r 7
  UNMAP 2:33
- IN
+ FIN
  MAP 24
 4162: ==> r 25
  UNMAP 2:21
@@ -14540,8 +14580,9 @@ EXIT current process 3 UNMAP 3:3
  MAP 25
 4163: ==> w 9
  UNMAP 2:29
- IN
+ FIN
  MAP 26
+ SEGPROT
 4164: ==> r 3
 4165: ==> r 34
  UNMAP 2:52
@@ -14560,28 +14601,27 @@ EXIT current process 3 UNMAP 3:3
 4168: ==> r 3
 4169: ==> r 21
  UNMAP 2:59
- IN
+ FIN
  MAP 30
 4170: ==> r 8
 4171: ==> r 1
 4172: ==> r 15
  UNMAP 2:42
- IN
+ FIN
  MAP 31
 4173: ==> w 3
+ SEGPROT
 4174: ==> r 38
  UNMAP 2:16
- OUT
  IN
  MAP 0
 4175: ==> r 6
  UNMAP 2:37
  OUT
- IN
+ FIN
  MAP 1
 4176: ==> r 36
  UNMAP 2:1
- OUT
  IN
  MAP 2
 4177: ==> r 47
@@ -14630,12 +14670,12 @@ EXIT current process 3 UNMAP 3:3
 4194: ==> c 2
 4195: ==> r 10
  UNMAP 0:31
- IN
+ FIN
  MAP 11
 4196: ==> r 2
  UNMAP 0:16
  OUT
- IN
+ FIN
  MAP 12
 4197: ==> w 29
  UNMAP 0:42
@@ -14657,23 +14697,22 @@ EXIT current process 3 UNMAP 3:3
 4204: ==> r 20
  UNMAP 0:19
  OUT
- IN
+ FIN
  MAP 16
 4205: ==> r 36
 4206: ==> r 17
  UNMAP 0:56
- IN
+ FIN
  MAP 17
 4207: ==> r 11
  UNMAP 0:5
- IN
+ FIN
  MAP 18
 4208: ==> r 2
 4209: ==> w 48
 4210: ==> r 16
  UNMAP 2:3
- OUT
- IN
+ FIN
  MAP 19
 4211: ==> r 15
 4212: ==> r 2
@@ -14684,6 +14723,7 @@ EXIT current process 3 UNMAP 3:3
 4214: ==> r 7
 4215: ==> r 25
 4216: ==> w 20
+ SEGPROT
 4217: ==> r 17
 4218: ==> r 41
  UNMAP 2:8
@@ -14693,7 +14733,6 @@ EXIT current process 3 UNMAP 3:3
 4220: ==> r 38
 4221: ==> r 30
  UNMAP 2:18
- OUT
  IN
  MAP 22
 4222: ==> r 2
@@ -14714,7 +14753,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 25
 4228: ==> w 7
  UNMAP 2:9
- OUT
  IN
  MAP 26
 4229: ==> r 31
@@ -14758,7 +14796,7 @@ EXIT current process 3 UNMAP 3:3
  MAP 2
 4243: ==> r 7
  UNMAP 0:13
- IN
+ FIN
  MAP 3
 4244: ==> r 39
  UNMAP 0:20
@@ -14768,8 +14806,9 @@ EXIT current process 3 UNMAP 3:3
 4245: ==> w 4
  UNMAP 0:25
  OUT
- IN
+ FIN
  MAP 5
+ SEGPROT
 4246: ==> r 50
 4247: ==> r 26
  UNMAP 0:1
@@ -14777,7 +14816,7 @@ EXIT current process 3 UNMAP 3:3
  MAP 6
 4248: ==> r 5
  UNMAP 0:3
- IN
+ FIN
  MAP 7
 4249: ==> r 61
  UNMAP 0:4
@@ -14799,29 +14838,29 @@ EXIT current process 3 UNMAP 3:3
  MAP 11
 4253: ==> r 3
  UNMAP 2:2
- IN
+ FIN
  MAP 12
 4254: ==> r 10
  UNMAP 2:29
  OUT
- IN
+ FIN
  MAP 13
 4255: ==> r 26
 4256: ==> w 2
  UNMAP 2:35
  OUT
- IN
+ FIN
  MAP 14
+ SEGPROT
 4257: ==> r 13
  UNMAP 2:28
- IN
+ FIN
  MAP 15
 4258: ==> r 30
 4259: ==> r 5
 4260: ==> r 22
  UNMAP 2:20
- OUT
- IN
+ FIN
  MAP 16
 4261: ==> r 52
  UNMAP 2:17
@@ -14892,7 +14931,7 @@ EXIT current process 3 UNMAP 3:3
 4287: ==> r 16
  UNMAP 0:36
  OUT
- IN
+ FIN
  MAP 29
 4288: ==> r 24
  SEGV
@@ -14903,7 +14942,7 @@ EXIT current process 3 UNMAP 3:3
  MAP 30
 4290: ==> r 9
  UNMAP 0:29
- IN
+ FIN
  MAP 31
 4291: ==> r 9
 4292: ==> r 0
@@ -14915,28 +14954,28 @@ EXIT current process 3 UNMAP 3:3
  MAP 0
 4294: ==> w 18
  UNMAP 0:10
- IN
+ FIN
  MAP 1
+ SEGPROT
 4295: ==> r 3
 4296: ==> r 6
  UNMAP 2:27
- IN
+ FIN
  MAP 2
 4297: ==> r 8
  UNMAP 2:7
- IN
+ FIN
  MAP 3
 4298: ==> r 13
 4299: ==> w 36
 4300: ==> r 14
  UNMAP 2:39
- IN
+ FIN
  MAP 4
 4301: ==> r 0
  SEGV
 4302: ==> w 59
  UNMAP 2:4
- OUT
  IN
  MAP 5
 4303: ==> r 14
@@ -14977,7 +15016,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 13
 4314: ==> w 21
  UNMAP 2:2
- OUT
  IN
  MAP 14
 4315: ==> w 26
@@ -15034,13 +15072,13 @@ EXIT current process 3 UNMAP 3:3
 4336: ==> r 10
  UNMAP 0:35
  OUT
- IN
+ FIN
  MAP 24
 4337: ==> r 37
 4338: ==> r 3
  UNMAP 0:51
  OUT
- IN
+ FIN
  MAP 25
 4339: ==> r 45
 4340: ==> r 58
@@ -15085,7 +15123,6 @@ EXIT current process 3 UNMAP 3:3
 4354: ==> r 19
 4355: ==> r 4
  UNMAP 2:18
- OUT
  IN
  MAP 1
 4356: ==> r 10
@@ -15094,7 +15131,7 @@ EXIT current process 3 UNMAP 3:3
  MAP 2
 4357: ==> r 14
  UNMAP 2:8
- IN
+ ZERO
  MAP 3
 4358: ==> w 7
 4359: ==> r 45
@@ -15107,33 +15144,36 @@ EXIT current process 3 UNMAP 3:3
 4363: ==> w 20
  UNMAP 2:59
  OUT
- IN
+ FIN
  MAP 5
+ SEGPROT
 4364: ==> r 5
  UNMAP 2:62
- IN
+ FIN
  MAP 6
 4365: ==> r 22
  UNMAP 2:26
- IN
+ FIN
  MAP 7
 4366: ==> w 15
  UNMAP 2:45
- IN
+ FIN
  MAP 8
+ SEGPROT
 4367: ==> r 16
  UNMAP 0:28
- IN
+ FIN
  MAP 9
 4368: ==> r 16
 4369: ==> w 9
  UNMAP 0:7
  OUT
- IN
+ FIN
  MAP 10
+ SEGPROT
 4370: ==> r 12
  UNMAP 0:31
- IN
+ FIN
  MAP 11
 4371: ==> r 44
  UNMAP 0:16
@@ -15142,13 +15182,14 @@ EXIT current process 3 UNMAP 3:3
 4372: ==> w 51
 4373: ==> r 13
  UNMAP 0:45
- IN
+ FIN
  MAP 13
 4374: ==> w 17
  UNMAP 0:21
  OUT
- IN
+ FIN
  MAP 14
+ SEGPROT
 4375: ==> w 33
  UNMAP 0:26
  OUT
@@ -15179,7 +15220,7 @@ EXIT current process 3 UNMAP 3:3
 4384: ==> w 51
 4385: ==> r 18
  UNMAP 0:54
- IN
+ FIN
  MAP 20
 4386: ==> r 30
  UNMAP 0:57
@@ -15187,7 +15228,7 @@ EXIT current process 3 UNMAP 3:3
  MAP 21
 4387: ==> r 8
  UNMAP 0:3
- IN
+ FIN
  MAP 22
 4388: ==> r 24
  SEGV
@@ -15254,25 +15295,25 @@ EXIT current process 3 UNMAP 3:3
  MAP 4
 4406: ==> r 33
  UNMAP 2:20
- OUT
- IN
+ FIN
  MAP 5
 4407: ==> c 2
 4408: ==> r 11
  UNMAP 2:5
- IN
+ FIN
  MAP 6
 4409: ==> w 26
 4410: ==> w 15
+ SEGPROT
 4411: ==> r 21
  UNMAP 2:22
- IN
+ FIN
  MAP 7
 4412: ==> w 1
  UNMAP 2:15
- OUT
- IN
+ FIN
  MAP 8
+ SEGPROT
 4413: ==> r 36
  UNMAP 2:16
  IN
@@ -15280,54 +15321,58 @@ EXIT current process 3 UNMAP 3:3
 4414: ==> r 12
 4415: ==> w 51
  UNMAP 2:9
- OUT
  IN
  MAP 10
 4416: ==> r 39
 4417: ==> w 21
+ SEGPROT
 4418: ==> r 17
 4419: ==> r 22
  UNMAP 2:12
- IN
+ FIN
  MAP 11
 4420: ==> r 22
 4421: ==> r 17
 4422: ==> w 17
+ SEGPROT
 4423: ==> r 3
  UNMAP 2:44
- IN
+ FIN
  MAP 12
 4424: ==> w 11
+ SEGPROT
 4425: ==> w 23
  UNMAP 2:13
- IN
+ ZERO
  MAP 13
+ SEGPROT
 4426: ==> w 4
  UNMAP 2:17
- OUT
- IN
+ FIN
  MAP 14
+ SEGPROT
 4427: ==> r 22
 4428: ==> r 16
  UNMAP 2:33
  OUT
- IN
+ FIN
  MAP 15
 4429: ==> r 9
  UNMAP 2:32
- IN
+ FIN
  MAP 16
 4430: ==> w 6
  UNMAP 2:26
  OUT
- IN
+ FIN
  MAP 17
+ SEGPROT
 4431: ==> r 1
 4432: ==> r 1
 4433: ==> r 2
  UNMAP 2:25
  OUT
- IN
+ FIN
  MAP 18
 4434: ==> r 44
  UNMAP 2:39
@@ -15335,15 +15380,15 @@ EXIT current process 3 UNMAP 3:3
  MAP 19
 4435: ==> r 7
  UNMAP 2:18
- IN
+ FIN
  MAP 20
 4436: ==> r 13
  UNMAP 2:30
- IN
+ FIN
  MAP 21
 4437: ==> r 14
  UNMAP 2:8
- IN
+ FIN
  MAP 22
 4438: ==> c 0
 4439: ==> r 19
@@ -15356,7 +15401,7 @@ EXIT current process 3 UNMAP 3:3
 4442: ==> r 14
  UNMAP 0:17
  OUT
- IN
+ ZERO
  MAP 24
 4443: ==> r 44
  UNMAP 0:20
@@ -15417,19 +15462,16 @@ EXIT current process 3 UNMAP 3:3
  MAP 5
 4458: ==> r 42
  UNMAP 2:11
- OUT
  IN
  MAP 6
 4459: ==> r 47
  SEGV
 4460: ==> r 29
  UNMAP 2:21
- OUT
  IN
  MAP 7
 4461: ==> w 17
  UNMAP 2:1
- OUT
  IN
  MAP 8
 4462: ==> r 52
@@ -15457,19 +15499,17 @@ EXIT current process 3 UNMAP 3:3
 4471: ==> r 7
 4472: ==> r 1
  UNMAP 2:23
- OUT
- IN
+ FIN
  MAP 13
 4473: ==> r 5
  UNMAP 2:4
- OUT
- IN
+ FIN
  MAP 14
 4474: ==> r 16
 4475: ==> r 6
 4476: ==> r 11
  UNMAP 2:16
- IN
+ FIN
  MAP 15
 4477: ==> r 30
  UNMAP 2:9
@@ -15477,7 +15517,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 16
 4478: ==> r 53
  UNMAP 2:6
- OUT
  IN
  MAP 17
 4479: ==> w 60
@@ -15486,7 +15525,7 @@ EXIT current process 3 UNMAP 3:3
  MAP 18
 4480: ==> r 23
  UNMAP 2:44
- IN
+ ZERO
  MAP 19
 4481: ==> r 42
  UNMAP 2:7
@@ -15494,7 +15533,7 @@ EXIT current process 3 UNMAP 3:3
  MAP 20
 4482: ==> r 6
  UNMAP 2:13
- IN
+ FIN
  MAP 21
 4483: ==> r 60
 4484: ==> w 61
@@ -15516,21 +15555,23 @@ EXIT current process 3 UNMAP 3:3
  MAP 25
 4489: ==> w 2
  UNMAP 0:49
- IN
+ FIN
  MAP 26
+ SEGPROT
 4490: ==> r 22
  UNMAP 0:50
- IN
+ FIN
  MAP 27
 4491: ==> r 21
  UNMAP 0:36
- IN
+ FIN
  MAP 28
 4492: ==> w 9
  UNMAP 0:5
  OUT
- IN
+ FIN
  MAP 29
+ SEGPROT
 4493: ==> c 0
 4494: ==> r 7
 4495: ==> r 11
@@ -15575,7 +15616,7 @@ EXIT current process 3 UNMAP 3:3
 4509: ==> c 2
 4510: ==> r 7
  UNMAP 0:42
- IN
+ FIN
  MAP 6
 4511: ==> w 37
  UNMAP 0:29
@@ -15590,7 +15631,7 @@ EXIT current process 3 UNMAP 3:3
 4514: ==> r 30
 4515: ==> r 8
  UNMAP 0:52
- IN
+ FIN
  MAP 9
 4516: ==> r 0
  SEGV
@@ -15604,20 +15645,21 @@ EXIT current process 3 UNMAP 3:3
  MAP 11
 4519: ==> r 22
 4520: ==> w 2
+ SEGPROT
 4521: ==> r 14
  UNMAP 2:31
- IN
+ FIN
  MAP 12
 4522: ==> r 11
 4523: ==> r 22
 4524: ==> r 3
  UNMAP 2:1
- IN
+ FIN
  MAP 13
 4525: ==> r 45
 4526: ==> r 10
  UNMAP 2:5
- IN
+ FIN
  MAP 14
 4527: ==> r 45
 4528: ==> r 39
@@ -15632,8 +15674,9 @@ EXIT current process 3 UNMAP 3:3
 4531: ==> r 28
 4532: ==> w 16
  UNMAP 2:53
- IN
+ FIN
  MAP 17
+ SEGPROT
 4533: ==> r 31
  UNMAP 2:60
  OUT
@@ -15677,7 +15720,6 @@ EXIT current process 3 UNMAP 3:3
 4546: ==> r 7
 4547: ==> r 32
  UNMAP 2:2
- OUT
  IN
  MAP 26
 4548: ==> r 6
@@ -15690,7 +15732,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 28
 4550: ==> r 45
  UNMAP 2:9
- OUT
  IN
  MAP 29
 4551: ==> r 12
@@ -15702,7 +15743,7 @@ EXIT current process 3 UNMAP 3:3
 4554: ==> r 14
  UNMAP 0:21
  OUT
- IN
+ ZERO
  MAP 31
 4555: ==> r 16
  UNMAP 0:7
@@ -15733,15 +15774,15 @@ EXIT current process 3 UNMAP 3:3
 4565: ==> c 2
 4566: ==> r 20
  UNMAP 0:19
- IN
+ FIN
  MAP 4
 4567: ==> r 13
  UNMAP 0:0
- IN
+ FIN
  MAP 5
 4568: ==> r 4
  UNMAP 2:7
- IN
+ FIN
  MAP 6
 4569: ==> r 55
  UNMAP 2:37
@@ -15757,6 +15798,7 @@ EXIT current process 3 UNMAP 3:3
  IN
  MAP 9
 4572: ==> w 4
+ SEGPROT
 4573: ==> r 0
  SEGV
 4574: ==> r 26
@@ -15772,16 +15814,18 @@ EXIT current process 3 UNMAP 3:3
 4577: ==> r 10
 4578: ==> r 2
  UNMAP 2:14
- IN
+ FIN
  MAP 12
 4579: ==> w 15
  UNMAP 2:3
- IN
+ FIN
  MAP 13
+ SEGPROT
 4580: ==> w 22
  UNMAP 2:10
- IN
+ FIN
  MAP 14
+ SEGPROT
 4581: ==> r 42
  UNMAP 2:39
  IN
@@ -15789,19 +15833,19 @@ EXIT current process 3 UNMAP 3:3
 4582: ==> r 31
 4583: ==> r 13
 4584: ==> w 16
+ SEGPROT
 4585: ==> r 7
  UNMAP 2:38
- IN
+ FIN
  MAP 16
 4586: ==> r 16
 4587: ==> r 48
  UNMAP 2:16
- OUT
  IN
  MAP 17
 4588: ==> r 17
  UNMAP 2:31
- IN
+ FIN
  MAP 18
 4589: ==> c 0
 4590: ==> w 3
@@ -15895,7 +15939,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 5
 4616: ==> w 21
  UNMAP 2:4
- OUT
  IN
  MAP 6
 4617: ==> r 29
@@ -15906,34 +15949,33 @@ EXIT current process 3 UNMAP 3:3
 4619: ==> c 2
 4620: ==> r 9
  UNMAP 2:27
- IN
+ FIN
  MAP 8
 4621: ==> w 24
  SEGV
 4622: ==> r 14
  UNMAP 2:43
- IN
+ FIN
  MAP 9
 4623: ==> r 23
  UNMAP 2:33
- IN
+ ZERO
  MAP 10
 4624: ==> w 13
  UNMAP 2:34
- IN
+ FIN
  MAP 11
+ SEGPROT
 4625: ==> r 25
  UNMAP 2:2
  IN
  MAP 12
 4626: ==> r 2
  UNMAP 2:15
- OUT
- IN
+ FIN
  MAP 13
 4627: ==> r 54
  UNMAP 2:22
- OUT
  IN
  MAP 14
 4628: ==> r 38
@@ -15942,44 +15984,48 @@ EXIT current process 3 UNMAP 3:3
  MAP 15
 4629: ==> r 22
  UNMAP 2:7
- IN
+ FIN
  MAP 16
 4630: ==> w 20
  UNMAP 2:48
- IN
+ FIN
  MAP 17
+ SEGPROT
 4631: ==> w 19
  UNMAP 2:17
- IN
+ FIN
  MAP 18
+ SEGPROT
 4632: ==> r 18
  UNMAP 0:3
  OUT
- IN
+ FIN
  MAP 19
 4633: ==> w 6
  UNMAP 0:27
- IN
+ FIN
  MAP 20
+ SEGPROT
 4634: ==> r 41
  UNMAP 0:40
  IN
  MAP 21
 4635: ==> r 5
  UNMAP 0:48
- IN
+ FIN
  MAP 22
 4636: ==> r 11
  UNMAP 0:42
  OUT
- IN
+ FIN
  MAP 23
 4637: ==> c 0
 4638: ==> w 33
  UNMAP 0:50
  OUT
- IN
+ FIN
  MAP 24
+ SEGPROT
 4639: ==> r 12
 4640: ==> r 22
  UNMAP 0:24
@@ -16057,6 +16103,7 @@ EXIT current process 3 UNMAP 3:3
  IN
  MAP 7
 4666: ==> w 2
+ SEGPROT
 4667: ==> w 33
  UNMAP 2:9
  IN
@@ -16068,11 +16115,10 @@ EXIT current process 3 UNMAP 3:3
  MAP 9
 4670: ==> r 7
  UNMAP 2:23
- IN
+ FIN
  MAP 10
 4671: ==> r 58
  UNMAP 2:13
- OUT
  IN
  MAP 11
 4672: ==> r 27
@@ -16080,22 +16126,26 @@ EXIT current process 3 UNMAP 3:3
  IN
  MAP 12
 4673: ==> w 7
+ SEGPROT
 4674: ==> w 1
  UNMAP 2:2
- OUT
- IN
+ FIN
  MAP 13
+ SEGPROT
 4675: ==> w 3
  UNMAP 2:54
- IN
+ FIN
  MAP 14
+ SEGPROT
 4676: ==> r 0
  SEGV
 4677: ==> w 5
+ SEGPROT
 4678: ==> w 2
  UNMAP 2:38
- IN
+ FIN
  MAP 15
+ SEGPROT
 4679: ==> c 0
 4680: ==> r 9
  UNMAP 2:22
@@ -16103,12 +16153,10 @@ EXIT current process 3 UNMAP 3:3
  MAP 16
 4681: ==> r 49
  UNMAP 2:20
- OUT
  IN
  MAP 17
 4682: ==> r 12
  UNMAP 2:19
- OUT
  IN
  MAP 18
 4683: ==> r 47
@@ -16120,7 +16168,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 19
 4686: ==> r 18
  UNMAP 2:6
- OUT
  IN
  MAP 20
 4687: ==> w 5
@@ -16131,7 +16178,6 @@ EXIT current process 3 UNMAP 3:3
 4689: ==> w 12
 4690: ==> r 0
  UNMAP 2:5
- OUT
  IN
  MAP 22
 4691: ==> r 21
@@ -16141,7 +16187,6 @@ EXIT current process 3 UNMAP 3:3
 4692: ==> r 13
 4693: ==> r 31
  UNMAP 0:33
- OUT
  IN
  MAP 24
 4694: ==> r 19
@@ -16168,13 +16213,13 @@ EXIT current process 3 UNMAP 3:3
 4700: ==> c 2
 4701: ==> r 10
  UNMAP 0:41
- IN
+ FIN
  MAP 29
 4702: ==> r 24
  SEGV
 4703: ==> r 12
  UNMAP 0:29
- IN
+ FIN
  MAP 30
 4704: ==> r 32
  UNMAP 0:58
@@ -16198,14 +16243,16 @@ EXIT current process 3 UNMAP 3:3
  MAP 2
 4711: ==> w 23
  UNMAP 0:28
- IN
+ ZERO
  MAP 3
+ SEGPROT
 4712: ==> r 10
 4713: ==> w 14
  UNMAP 0:24
  OUT
- IN
+ FIN
  MAP 4
+ SEGPROT
 4714: ==> r 63
  UNMAP 0:8
  IN
@@ -16215,12 +16262,14 @@ EXIT current process 3 UNMAP 3:3
  IN
  MAP 6
 4716: ==> w 12
+ SEGPROT
 4717: ==> r 4
  UNMAP 2:35
  OUT
- IN
+ FIN
  MAP 7
 4718: ==> w 12
+ SEGPROT
 4719: ==> r 29
  UNMAP 2:33
  OUT
@@ -16229,21 +16278,24 @@ EXIT current process 3 UNMAP 3:3
 4720: ==> r 42
 4721: ==> w 8
  UNMAP 2:31
- IN
+ FIN
  MAP 9
+ SEGPROT
 4722: ==> r 7
 4723: ==> w 4
+ SEGPROT
 4724: ==> r 4
 4725: ==> w 7
+ SEGPROT
 4726: ==> w 25
  UNMAP 2:7
- OUT
  IN
  MAP 10
 4727: ==> w 9
  UNMAP 2:58
- IN
+ FIN
  MAP 11
+ SEGPROT
 4728: ==> w 34
  UNMAP 2:27
  IN
@@ -16251,18 +16303,15 @@ EXIT current process 3 UNMAP 3:3
 4729: ==> r 2
 4730: ==> r 55
  UNMAP 2:1
- OUT
  IN
  MAP 13
 4731: ==> c 0
 4732: ==> r 10
  UNMAP 2:3
- OUT
  IN
  MAP 14
 4733: ==> r 43
  UNMAP 2:2
- OUT
  IN
  MAP 15
 4734: ==> r 19
@@ -16307,7 +16356,7 @@ EXIT current process 3 UNMAP 3:3
 4746: ==> r 33
  UNMAP 0:31
  OUT
- IN
+ FIN
  MAP 24
 4747: ==> w 9
  UNMAP 0:19
@@ -16337,7 +16386,6 @@ EXIT current process 3 UNMAP 3:3
 4755: ==> r 58
 4756: ==> w 0
  UNMAP 2:12
- OUT
  IN
  MAP 30
 4757: ==> r 31
@@ -16368,12 +16416,10 @@ EXIT current process 3 UNMAP 3:3
  MAP 2
 4769: ==> r 17
  UNMAP 2:23
- OUT
- IN
+ FIN
  MAP 3
 4770: ==> w 26
  UNMAP 2:14
- OUT
  IN
  MAP 4
 4771: ==> r 38
@@ -16382,13 +16428,12 @@ EXIT current process 3 UNMAP 3:3
  MAP 5
 4772: ==> r 5
  UNMAP 2:45
- IN
+ FIN
  MAP 6
 4773: ==> r 8
 4774: ==> r 11
  UNMAP 2:4
- OUT
- IN
+ FIN
  MAP 7
 4775: ==> r 0
  SEGV
@@ -16398,21 +16443,20 @@ EXIT current process 3 UNMAP 3:3
  MAP 8
 4777: ==> w 6
  UNMAP 2:8
- OUT
- IN
+ FIN
  MAP 9
+ SEGPROT
 4778: ==> r 27
 4779: ==> r 13
  UNMAP 2:25
  OUT
- IN
+ FIN
  MAP 10
 4780: ==> c 0
 4781: ==> r 2
 4782: ==> w 0
 4783: ==> r 26
  UNMAP 2:9
- OUT
  IN
  MAP 11
 4784: ==> r 49
@@ -16461,8 +16505,9 @@ EXIT current process 3 UNMAP 3:3
 4799: ==> r 26
 4800: ==> w 14
  UNMAP 0:8
- IN
+ ZERO
  MAP 20
+ SEGPROT
 4801: ==> r 32
  UNMAP 0:2
  IN
@@ -16471,7 +16516,7 @@ EXIT current process 3 UNMAP 3:3
 4803: ==> r 8
  UNMAP 0:41
  OUT
- IN
+ FIN
  MAP 22
 4804: ==> w 32
  UNMAP 0:61
@@ -16486,11 +16531,11 @@ EXIT current process 3 UNMAP 3:3
 4807: ==> r 14
  UNMAP 0:9
  OUT
- IN
+ FIN
  MAP 25
 4808: ==> r 9
  UNMAP 0:18
- IN
+ FIN
  MAP 26
 4809: ==> r 36
  UNMAP 0:58
@@ -16498,8 +16543,9 @@ EXIT current process 3 UNMAP 3:3
  MAP 27
 4810: ==> w 19
  UNMAP 0:3
- IN
+ FIN
  MAP 28
+ SEGPROT
 4811: ==> r 46
  UNMAP 0:51
  OUT
@@ -16513,8 +16559,9 @@ EXIT current process 3 UNMAP 3:3
 4813: ==> w 10
  UNMAP 0:31
  OUT
- IN
+ FIN
  MAP 31
+ SEGPROT
 4814: ==> r 0
  SEGV
 4815: ==> r 32
@@ -16527,16 +16574,18 @@ EXIT current process 3 UNMAP 3:3
 4819: ==> w 4
  UNMAP 2:27
  OUT
- IN
+ FIN
  MAP 1
+ SEGPROT
 4820: ==> r 40
  UNMAP 2:48
  IN
  MAP 2
 4821: ==> w 21
  UNMAP 2:17
- IN
+ FIN
  MAP 3
+ SEGPROT
 4822: ==> c 0
 4823: ==> r 61
  UNMAP 2:26
@@ -16558,11 +16607,10 @@ EXIT current process 3 UNMAP 3:3
  MAP 7
 4827: ==> r 33
  UNMAP 2:28
- IN
+ FIN
  MAP 8
 4828: ==> r 56
  UNMAP 2:6
- OUT
  ZERO
  MAP 9
 4829: ==> r 14
@@ -16612,7 +16660,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 19
 4842: ==> r 5
  UNMAP 0:14
- OUT
  IN
  MAP 20
 4843: ==> r 26
@@ -16643,16 +16690,16 @@ EXIT current process 3 UNMAP 3:3
  MAP 25
 4852: ==> w 11
  UNMAP 2:9
- IN
+ FIN
  MAP 26
+ SEGPROT
 4853: ==> r 31
  UNMAP 2:36
  IN
  MAP 27
 4854: ==> r 2
  UNMAP 2:19
- OUT
- IN
+ FIN
  MAP 28
 4855: ==> r 32
  UNMAP 2:46
@@ -16666,9 +16713,9 @@ EXIT current process 3 UNMAP 3:3
 4857: ==> c 0
 4858: ==> r 18
 4859: ==> w 33
+ SEGPROT
 4860: ==> r 2
  UNMAP 2:10
- OUT
  IN
  MAP 31
 4861: ==> r 5
@@ -16679,7 +16726,6 @@ EXIT current process 3 UNMAP 3:3
 4863: ==> w 5
 4864: ==> w 10
  UNMAP 2:4
- OUT
  IN
  MAP 1
 4865: ==> r 23
@@ -16690,7 +16736,6 @@ EXIT current process 3 UNMAP 3:3
 4867: ==> r 5
 4868: ==> r 60
  UNMAP 2:21
- OUT
  IN
  MAP 3
 4869: ==> w 12
@@ -16720,7 +16765,6 @@ EXIT current process 3 UNMAP 3:3
 4878: ==> r 23
 4879: ==> r 3
  UNMAP 0:33
- OUT
  IN
  MAP 8
 4880: ==> w 7
@@ -16741,33 +16785,36 @@ EXIT current process 3 UNMAP 3:3
  MAP 11
 4886: ==> r 3
  UNMAP 0:19
- IN
+ FIN
  MAP 12
 4887: ==> w 13
  UNMAP 0:16
  OUT
- IN
+ FIN
  MAP 13
+ SEGPROT
 4888: ==> r 28
  UNMAP 0:34
  IN
  MAP 14
 4889: ==> r 20
  UNMAP 0:41
- IN
+ FIN
  MAP 15
 4890: ==> w 31
 4891: ==> r 13
 4892: ==> r 27
 4893: ==> w 14
  UNMAP 0:9
- IN
+ FIN
  MAP 16
+ SEGPROT
 4894: ==> w 23
  UNMAP 0:39
  OUT
- IN
+ ZERO
  MAP 17
+ SEGPROT
 4895: ==> r 51
 4896: ==> r 37
  UNMAP 0:21
@@ -16780,7 +16827,7 @@ EXIT current process 3 UNMAP 3:3
 4899: ==> r 13
 4900: ==> r 12
  UNMAP 0:8
- IN
+ FIN
  MAP 19
 4901: ==> r 45
  UNMAP 0:5
@@ -16789,7 +16836,7 @@ EXIT current process 3 UNMAP 3:3
  MAP 20
 4902: ==> r 8
  UNMAP 0:26
- IN
+ FIN
  MAP 21
 4903: ==> c 0
 4904: ==> w 51
@@ -16811,7 +16858,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 25
 4908: ==> r 19
  UNMAP 2:11
- OUT
  IN
  MAP 26
 4909: ==> r 49
@@ -16835,7 +16881,7 @@ EXIT current process 3 UNMAP 3:3
  MAP 30
 4915: ==> r 14
  UNMAP 0:2
- IN
+ ZERO
  MAP 31
 4916: ==> r 22
  UNMAP 0:43
@@ -16848,7 +16894,7 @@ EXIT current process 3 UNMAP 3:3
 4921: ==> r 16
  UNMAP 0:10
  OUT
- IN
+ FIN
  MAP 1
 4922: ==> w 37
 4923: ==> r 3
@@ -16858,16 +16904,16 @@ EXIT current process 3 UNMAP 3:3
  MAP 2
 4925: ==> r 5
  UNMAP 0:60
- IN
+ FIN
  MAP 3
 4926: ==> r 6
  UNMAP 0:12
  OUT
- IN
+ FIN
  MAP 4
 4927: ==> r 10
  UNMAP 0:46
- IN
+ FIN
  MAP 5
 4928: ==> r 49
  UNMAP 0:38
@@ -16875,46 +16921,51 @@ EXIT current process 3 UNMAP 3:3
  MAP 6
 4929: ==> r 22
  UNMAP 0:59
- IN
+ FIN
  MAP 7
 4930: ==> w 1
  UNMAP 0:3
  OUT
- IN
+ FIN
  MAP 8
+ SEGPROT
 4931: ==> w 11
  UNMAP 0:7
  OUT
- IN
+ FIN
  MAP 9
+ SEGPROT
 4932: ==> r 11
 4933: ==> r 14
 4934: ==> r 6
 4935: ==> w 12
+ SEGPROT
 4936: ==> r 19
  UNMAP 0:25
- IN
+ FIN
  MAP 10
 4937: ==> w 1
+ SEGPROT
 4938: ==> r 3
 4939: ==> r 23
 4940: ==> w 19
+ SEGPROT
 4941: ==> w 0
  SEGV
 4942: ==> r 15
  UNMAP 2:63
- IN
+ FIN
  MAP 11
 4943: ==> r 7
  UNMAP 2:3
- IN
+ FIN
  MAP 12
 4944: ==> r 19
 4945: ==> w 8
+ SEGPROT
 4946: ==> r 22
 4947: ==> r 43
  UNMAP 2:13
- OUT
  IN
  MAP 13
 4948: ==> w 32
@@ -16923,6 +16974,7 @@ EXIT current process 3 UNMAP 3:3
  MAP 14
 4949: ==> r 10
 4950: ==> w 1
+ SEGPROT
 4951: ==> c 0
 4952: ==> r 23
  UNMAP 2:20
@@ -16930,13 +16982,11 @@ EXIT current process 3 UNMAP 3:3
  MAP 15
 4953: ==> r 4
  UNMAP 2:14
- OUT
  IN
  MAP 16
 4954: ==> w 23
 4955: ==> r 18
  UNMAP 2:23
- OUT
  IN
  MAP 17
 4956: ==> r 39
@@ -16947,7 +16997,6 @@ EXIT current process 3 UNMAP 3:3
 4957: ==> r 18
 4958: ==> r 30
  UNMAP 2:12
- OUT
  IN
  MAP 19
 4959: ==> w 35
@@ -16956,7 +17005,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 20
 4960: ==> r 11
  UNMAP 2:8
- OUT
  IN
  MAP 21
 4961: ==> r 10
@@ -17014,8 +17062,9 @@ EXIT current process 3 UNMAP 3:3
 4976: ==> c 2
 4977: ==> w 13
  UNMAP 2:16
- IN
+ FIN
  MAP 1
+ SEGPROT
 4978: ==> r 55
  UNMAP 2:38
  IN
@@ -17030,39 +17079,39 @@ EXIT current process 3 UNMAP 3:3
  MAP 4
 4981: ==> w 14
  UNMAP 2:10
- IN
+ FIN
  MAP 5
+ SEGPROT
 4982: ==> r 0
  SEGV
 4983: ==> r 5
  UNMAP 2:49
- IN
+ FIN
  MAP 6
 4984: ==> r 0
  SEGV
 4985: ==> w 8
  UNMAP 2:22
- IN
+ FIN
  MAP 7
+ SEGPROT
 4986: ==> r 3
  UNMAP 2:1
- OUT
- IN
+ FIN
  MAP 8
 4987: ==> r 36
  UNMAP 2:11
- OUT
  IN
  MAP 9
 4988: ==> r 29
  UNMAP 2:19
- OUT
  IN
  MAP 10
 4989: ==> w 17
  UNMAP 2:15
- IN
+ FIN
  MAP 11
+ SEGPROT
 4990: ==> r 43
 4991: ==> r 40
  UNMAP 2:7
@@ -17070,7 +17119,7 @@ EXIT current process 3 UNMAP 3:3
  MAP 12
 4992: ==> r 18
  UNMAP 2:43
- IN
+ FIN
  MAP 13
 4993: ==> c 0
 4994: ==> r 15
@@ -17118,7 +17167,7 @@ EXIT current process 3 UNMAP 3:3
 5010: ==> r 12
  UNMAP 0:11
  OUT
- IN
+ FIN
  MAP 21
 5011: ==> r 38
  UNMAP 0:10
@@ -17136,29 +17185,31 @@ EXIT current process 3 UNMAP 3:3
 5014: ==> w 7
  UNMAP 0:13
  OUT
- IN
+ FIN
  MAP 25
+ SEGPROT
 5015: ==> r 2
  UNMAP 0:2
  OUT
- IN
+ FIN
  MAP 26
 5016: ==> r 16
  UNMAP 0:28
- IN
+ FIN
  MAP 27
 5017: ==> r 12
 5018: ==> r 15
  UNMAP 0:21
- IN
+ FIN
  MAP 28
 5019: ==> w 11
  UNMAP 0:3
- IN
+ FIN
  MAP 29
+ SEGPROT
 5020: ==> r 4
  UNMAP 0:25
- IN
+ FIN
  MAP 30
 5021: ==> c 0
 5022: ==> r 2
@@ -17175,12 +17226,11 @@ EXIT current process 3 UNMAP 3:3
 5027: ==> r 8
 5028: ==> r 13
  UNMAP 2:13
- OUT
  IN
  MAP 1
 5029: ==> r 33
  UNMAP 2:55
- IN
+ FIN
  MAP 2
 5030: ==> r 18
  UNMAP 2:52
@@ -17193,7 +17243,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 4
 5033: ==> r 0
  UNMAP 2:14
- OUT
  IN
  MAP 5
 5034: ==> r 0
@@ -17203,7 +17252,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 6
 5036: ==> r 1
  UNMAP 2:8
- OUT
  IN
  MAP 7
 5037: ==> r 5
@@ -17223,7 +17271,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 10
 5043: ==> r 3
  UNMAP 2:17
- OUT
  IN
  MAP 11
 5044: ==> c 2
@@ -17233,11 +17280,11 @@ EXIT current process 3 UNMAP 3:3
  MAP 12
 5046: ==> r 6
  UNMAP 2:18
- IN
+ FIN
  MAP 13
 5047: ==> r 14
  UNMAP 0:8
- IN
+ FIN
  MAP 14
 5048: ==> w 58
  UNMAP 0:46
@@ -17251,7 +17298,7 @@ EXIT current process 3 UNMAP 3:3
  MAP 16
 5050: ==> r 1
  UNMAP 0:4
- IN
+ FIN
  MAP 17
 5051: ==> w 46
 5052: ==> w 43
@@ -17275,11 +17322,13 @@ EXIT current process 3 UNMAP 3:3
  MAP 21
 5057: ==> w 53
 5058: ==> w 7
+ SEGPROT
 5059: ==> r 3
  UNMAP 2:38
- IN
+ FIN
  MAP 22
 5060: ==> w 3
+ SEGPROT
 5061: ==> w 53
 5062: ==> r 29
  UNMAP 2:60
@@ -17289,15 +17338,15 @@ EXIT current process 3 UNMAP 3:3
 5063: ==> r 6
 5064: ==> r 12
  UNMAP 2:31
- IN
+ FIN
  MAP 24
 5065: ==> r 49
  UNMAP 2:7
- OUT
  IN
  MAP 25
 5066: ==> r 46
 5067: ==> w 4
+ SEGPROT
 5068: ==> r 45
 5069: ==> c 0
 5070: ==> r 40
@@ -17320,12 +17369,10 @@ EXIT current process 3 UNMAP 3:3
 5077: ==> r 33
 5078: ==> r 35
  UNMAP 2:11
- OUT
  IN
  MAP 29
 5079: ==> r 21
  UNMAP 2:4
- OUT
  IN
  MAP 30
 5080: ==> r 15
@@ -17335,14 +17382,16 @@ EXIT current process 3 UNMAP 3:3
 5083: ==> r 2
  UNMAP 0:2
  OUT
- IN
+ FIN
  MAP 31
 5084: ==> w 7
  UNMAP 0:48
  OUT
- IN
+ FIN
  MAP 0
+ SEGPROT
 5085: ==> w 1
+ SEGPROT
 5086: ==> w 37
  UNMAP 0:13
  OUT
@@ -17359,12 +17408,12 @@ EXIT current process 3 UNMAP 3:3
  MAP 3
 5090: ==> r 8
  UNMAP 0:9
- IN
+ FIN
  MAP 4
 5091: ==> r 5
  UNMAP 0:0
  OUT
- IN
+ FIN
  MAP 5
 5092: ==> r 29
 5093: ==> r 39
@@ -17376,11 +17425,12 @@ EXIT current process 3 UNMAP 3:3
  SEGV
 5095: ==> w 23
  UNMAP 0:1
- IN
+ ZERO
  MAP 7
+ SEGPROT
 5096: ==> r 11
  UNMAP 0:5
- IN
+ FIN
  MAP 8
 5097: ==> r 32
  UNMAP 0:45
@@ -17389,8 +17439,9 @@ EXIT current process 3 UNMAP 3:3
 5098: ==> r 32
 5099: ==> w 4
  UNMAP 0:10
- IN
+ FIN
  MAP 10
+ SEGPROT
 5100: ==> w 37
 5101: ==> r 56
 5102: ==> r 11
@@ -17401,12 +17452,12 @@ EXIT current process 3 UNMAP 3:3
 5104: ==> r 1
 5105: ==> r 19
  UNMAP 2:45
- IN
+ FIN
  MAP 12
 5106: ==> r 14
 5107: ==> r 13
  UNMAP 2:6
- IN
+ FIN
  MAP 13
 5108: ==> r 54
  UNMAP 2:14
@@ -17428,7 +17479,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 16
 5114: ==> r 27
  UNMAP 2:1
- OUT
  IN
  MAP 17
 5115: ==> w 32
@@ -17453,7 +17503,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 21
 5120: ==> r 10
  UNMAP 2:3
- OUT
  IN
  MAP 22
 5121: ==> w 7
@@ -17502,7 +17551,6 @@ EXIT current process 3 UNMAP 3:3
 5137: ==> r 10
 5138: ==> r 4
  UNMAP 2:7
- OUT
  IN
  MAP 0
 5139: ==> r 5
@@ -17520,24 +17568,23 @@ EXIT current process 3 UNMAP 3:3
  SEGV
 5144: ==> r 6
  UNMAP 2:38
- IN
+ FIN
  MAP 3
 5145: ==> r 3
  UNMAP 2:8
- IN
+ FIN
  MAP 4
 5146: ==> r 18
  UNMAP 2:5
- IN
+ FIN
  MAP 5
 5147: ==> r 22
  UNMAP 2:39
- IN
+ FIN
  MAP 6
 5148: ==> r 8
  UNMAP 2:23
- OUT
- IN
+ FIN
  MAP 7
 5149: ==> r 26
  UNMAP 2:11
@@ -17545,20 +17592,20 @@ EXIT current process 3 UNMAP 3:3
  MAP 8
 5150: ==> r 1
  UNMAP 2:32
- IN
+ FIN
  MAP 9
 5151: ==> r 22
 5152: ==> c 0
 5153: ==> r 38
  UNMAP 2:4
- OUT
  IN
  MAP 10
 5154: ==> r 7
 5155: ==> w 14
  UNMAP 2:50
- IN
+ ZERO
  MAP 11
+ SEGPROT
 5156: ==> r 58
  UNMAP 2:19
  IN
@@ -17615,19 +17662,22 @@ EXIT current process 3 UNMAP 3:3
 5179: ==> r 2
  UNMAP 0:7
  OUT
- IN
+ FIN
  MAP 21
 5180: ==> r 58
  UNMAP 0:10
  IN
  MAP 22
 5181: ==> w 2
+ SEGPROT
 5182: ==> w 22
+ SEGPROT
 5183: ==> w 13
  UNMAP 0:11
  OUT
- IN
+ FIN
  MAP 23
+ SEGPROT
 5184: ==> r 0
  SEGV
 5185: ==> r 24
@@ -17640,32 +17690,34 @@ EXIT current process 3 UNMAP 3:3
 5187: ==> r 11
  UNMAP 0:44
  OUT
- IN
+ FIN
  MAP 25
 5188: ==> r 21
  UNMAP 0:5
  OUT
- IN
+ FIN
  MAP 26
 5189: ==> r 5
  UNMAP 0:6
  OUT
- IN
+ FIN
  MAP 27
 5190: ==> r 20
  UNMAP 0:13
- IN
+ FIN
  MAP 28
 5191: ==> w 6
+ SEGPROT
 5192: ==> r 46
  UNMAP 0:18
  IN
  MAP 29
 5193: ==> w 5
+ SEGPROT
 5194: ==> r 12
  UNMAP 0:12
  OUT
- IN
+ FIN
  MAP 30
 5195: ==> r 39
  UNMAP 0:0
@@ -17674,8 +17726,9 @@ EXIT current process 3 UNMAP 3:3
 5196: ==> r 2
 5197: ==> w 7
  UNMAP 0:4
- IN
+ FIN
  MAP 0
+ SEGPROT
 5198: ==> r 31
  UNMAP 2:33
  IN
@@ -17688,7 +17741,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 2
 5201: ==> r 10
  UNMAP 2:6
- OUT
  IN
  MAP 3
 5202: ==> r 8
@@ -17702,7 +17754,6 @@ EXIT current process 3 UNMAP 3:3
  MAP 5
 5205: ==> w 24
  UNMAP 2:22
- OUT
  IN
  MAP 6
 5206: ==> w 17
@@ -17730,7 +17781,6 @@ EXIT current process 3 UNMAP 3:3
  SEGV
 5216: ==> w 44
  UNMAP 0:14
- OUT
  IN
  MAP 11
 5217: ==> w 7
@@ -17754,18 +17804,19 @@ EXIT current process 3 UNMAP 3:3
  MAP 15
 5222: ==> r 33
  UNMAP 0:25
- IN
+ FIN
  MAP 16
 5223: ==> c 2
 5224: ==> w 6
  UNMAP 0:35
  OUT
- IN
+ FIN
  MAP 17
+ SEGPROT
 5225: ==> r 20
 5226: ==> r 19
  UNMAP 0:20
- IN
+ FIN
  MAP 18
 5227: ==> r 27
  UNMAP 0:30
@@ -17779,8 +17830,7 @@ EXIT current process 3 UNMAP 3:3
 5229: ==> r 2
 5230: ==> r 15
  UNMAP 2:2
- OUT
- IN
+ FIN
  MAP 21
 5231: ==> r 37
  UNMAP 2:58
@@ -17788,47 +17838,42 @@ EXIT current process 3 UNMAP 3:3
  MAP 22
 5232: ==> r 16
  UNMAP 2:13
- OUT
- IN
+ FIN
  MAP 23
 5233: ==> r 27
 5234: ==> r 6
 5235: ==> r 4
  UNMAP 2:54
- IN
+ FIN
  MAP 24
 5236: ==> r 5
 5237: ==> r 12
 5238: ==> r 1
  UNMAP 2:11
- IN
+ FIN
  MAP 25
 5239: ==> r 3
  UNMAP 2:21
- IN
+ FIN
  MAP 26
 5240: ==> c 0
 5241: ==> w 27
 5242: ==> r 10
 5243: ==> r 53
  UNMAP 2:5
- OUT
  IN
  MAP 27
 5244: ==> r 41
  UNMAP 2:20
  IN
  MAP 28
-PT[0]: # 1:R-S 2:R-S # # 5:R-S # 7:RMS 8:R-S # 10:RMS # # # # * 16:R-S 17:RMS # # # 21:RMS # # 24:RMS # # 27:RMS # # # 31:R-S # 33:R-S 34:RMS # # # # # # 41:R-S # # 44:RMS # # * # # # # # 53:R-S # # * # # # # # # #
-PT[1]: # 1:R-S # # # 5:R-S # # # 9:R-S # 11:R-S # * # # # # # # 20:R-S # # 23:R-S 24:RMS # # * # # # # # # # 35:R-- # # * # # # 42:R-S # 44:R-- * # # # 49:R-S 50:R-S * # # * * * * # # * # * *
-PT[2]: * 1:R-S # 3:R-S 4:R-S # 6:RMS 7:RMS # # # # 12:R-S # # 15:R-S 16:R-S # # 19:R-S # # # # * 25:R-S # 27:R-S # # # 31:R-S # # # # # 37:R-S # 39:R-S # # # # # # 46:R-S # # # # # # # # # # # # # # # * #
-PT[3]: * # # 3:R-S # 5:RMS # # # 9:R-S 10:R-S # # # # 15:R-S # # # # # # 22:R-S # # # # # # # * # # 33:RMS # # * 37:R-S # * # # # # # # * # 48:RMS # # # 52:R-S # # # 56:RMS # # # * # # #
+PT[0]: # 1:R-S 2:R-S # # 5:R-S # 7:RMS 8:R-S # 10:RMS # # # * * 16:R-S 17:RMS # # # 21:RMS # # 24:RMS # # 27:RMS # # # 31:R-S # 33:R-- 34:RMS # # # # # # 41:R-S # # 44:RMS # # * # # # # # 53:R-S # # * # # # # # # #
+PT[1]: * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+PT[2]: * 1:R-- * 3:R-- 4:R-- * 6:R-- 7:R-- * * * * 12:R-- * * 15:R-- 16:R-- * * 19:R-- * * * * * 25:R-S # 27:R-S # # # 31:R-S # # # # # 37:R-S # 39:R-S # # # # # # 46:R-S # # # # # # # # # # # # # # # * #
+PT[3]: * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 FT: 2:7 2:31 0:34 0:10 0:8 0:16 0:24 0:17 0:5 0:2 0:7 0:44 0:27 0:21 0:31 0:1 0:33 2:6 2:19 2:27 2:25 2:15 2:37 2:16 2:4 2:1 2:3 0:53 0:41 2:46 2:12 2:39
-PROC[0]: U=1266 M=1283 I=1089 O=419 FI=0 FO=0 Z=194 SV=45 SP=0
-TOTALCOST 5245 243 2 15753440 4
+PROC[0]: U=1266 M=1283 I=1047 O=401 FI=17 FO=0 Z=219 SV=45 SP=19
 PROC[1]: U=403 M=403 I=231 O=113 FI=0 FO=0 Z=172 SV=0 SP=0
-TOTALCOST 5245 243 2 15753440 4
-PROC[2]: U=1192 M=1207 I=1011 O=373 FI=0 FO=0 Z=196 SV=73 SP=0
-TOTALCOST 5245 243 2 15753440 4
-PROC[3]: U=871 M=871 I=647 O=238 FI=0 FO=0 Z=224 SV=55 SP=0
-TOTALCOST 5245 243 2 15753440 4
+PROC[2]: U=1192 M=1207 I=432 O=156 FI=629 FO=0 Z=146 SV=73 SP=242
+PROC[3]: U=871 M=871 I=0 O=0 FI=244 FO=58 Z=627 SV=55 SP=200
+TOTALCOST 5245 243 2 12894700 4

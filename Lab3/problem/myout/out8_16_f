@@ -59,7 +59,7 @@
  MAP 15
 27: ==> r 58
  UNMAP 0:36
- ZERO
+ FIN
  MAP 0
 28: ==> w 29
  UNMAP 0:28
@@ -82,7 +82,7 @@
 32: ==> r 29
 33: ==> r 49
  UNMAP 0:10
- ZERO
+ FIN
  MAP 5
 34: ==> r 1
  UNMAP 0:1
@@ -90,7 +90,7 @@
  MAP 6
 35: ==> r 59
  UNMAP 0:25
- ZERO
+ FIN
  MAP 7
 36: ==> r 3
  UNMAP 0:17
@@ -103,7 +103,7 @@
  MAP 9
 38: ==> r 51
  UNMAP 0:43
- ZERO
+ FIN
  MAP 10
 39: ==> r 15
  UNMAP 0:31
@@ -128,7 +128,7 @@
  MAP 15
 45: ==> r 57
  UNMAP 1:58
- ZERO
+ FIN
  MAP 0
 46: ==> w 9
  UNMAP 1:29
@@ -233,7 +233,7 @@
 77: ==> r 42
  UNMAP 0:40
  OUT
- ZERO
+ FIN
  MAP 6
 78: ==> r 21
  UNMAP 0:12
@@ -272,7 +272,7 @@
 87: ==> r 41
  UNMAP 0:4
  OUT
- ZERO
+ FIN
  MAP 15
 88: ==> c 0
 89: ==> r 0
@@ -372,7 +372,7 @@
 113: ==> w 63
  UNMAP 0:15
  OUT
- ZERO
+ FIN
  MAP 6
 114: ==> r 38
 115: ==> r 2
@@ -395,7 +395,7 @@
  MAP 10
 120: ==> w 45
  UNMAP 0:30
- ZERO
+ FIN
  MAP 11
 121: ==> r 18
  UNMAP 0:6
@@ -452,7 +452,7 @@
  MAP 5
 136: ==> r 1
  UNMAP 1:63
- OUT
+ FOUT
  IN
  MAP 6
 137: ==> r 5
@@ -479,7 +479,7 @@
  MAP 10
 143: ==> r 10
  UNMAP 1:45
- OUT
+ FOUT
  ZERO
  MAP 11
 144: ==> r 15
@@ -523,7 +523,7 @@
  MAP 3
 156: ==> w 45
  UNMAP 0:37
- IN
+ FIN
  MAP 4
 157: ==> r 4
  UNMAP 0:4
@@ -562,7 +562,7 @@
 167: ==> r 47
  UNMAP 0:39
  OUT
- ZERO
+ FIN
  MAP 13
 168: ==> r 11
  UNMAP 0:18
@@ -580,7 +580,7 @@
 171: ==> r 48
  UNMAP 0:2
  OUT
- ZERO
+ FIN
  MAP 1
 172: ==> r 27
  UNMAP 0:0
@@ -593,7 +593,7 @@
  MAP 3
 175: ==> r 37
  UNMAP 1:45
- OUT
+ FOUT
  ZERO
  MAP 4
 176: ==> r 10
@@ -660,7 +660,7 @@
 194: ==> r 10
 195: ==> w 43
  UNMAP 1:27
- ZERO
+ FIN
  MAP 2
 196: ==> w 26
  UNMAP 1:22
@@ -718,9 +718,8 @@
  ZERO
  MAP 15
 PT[0]: # # # * # # # * * # * * * * * # * # # * # * # * * * * * * * * * # * * # * * # # # * * * * * # * * * * * * * * * * * * # * * * *
-PT[1]: # 1:R-S # 3:RM- 4:R-- 5:R-S * 7:R-- 8:R-- # * * * # * 15:R-- # * 18:R-- # 20:R-- * * 23:R-- 24:RMS 25:RMS 26:RMS # * # * 31:R-- * 33:RM- # * * * # # * * * 43:RM- * # * * * * * * * * * * * * * * * * * #
+PT[1]: # 1:R-S # 3:RM- 4:R-- 5:R-S * 7:R-- 8:R-- # * * * # * 15:R-- # * 18:R-- # 20:R-- * * 23:R-- 24:RMS 25:RMS 26:RMS # * # * 31:R-- * 33:RM- # * * * # # * * * 43:RM- * * * * * * * * * * * * * * * * * * * *
 FT: 1:1 1:24 1:43 1:26 1:25 1:7 1:18 1:23 1:5 1:31 1:4 1:20 1:33 1:15 1:3 1:8
 PROC[0]: U=70 M=70 I=12 O=21 FI=0 FO=0 Z=58 SV=0 SP=0
-TOTALCOST 210 10 0 352740 4
-PROC[1]: U=74 M=90 I=17 O=24 FI=0 FO=0 Z=73 SV=0 SP=0
-TOTALCOST 210 10 0 352740 4
+PROC[1]: U=74 M=90 I=16 O=21 FI=13 FO=3 Z=61 SV=0 SP=0
+TOTALCOST 210 10 0 378440 4
