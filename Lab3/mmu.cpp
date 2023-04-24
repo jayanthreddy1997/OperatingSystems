@@ -51,6 +51,7 @@ typedef struct {
     int pid;
     int page_id;
     bool is_mapped;
+    unsigned int age;
 } Frame;
 
 Frame* frame_table;
@@ -177,6 +178,37 @@ public:
     }
 };
 
+class Aging_Pager: public Pager {
+    int hand = 0;
+public:
+    virtual Frame *select_victim_frame() {
+        PTE *pte;
+
+        Frame *candidate_frame, *curr_frame;
+        unsigned int candidate_frame_age = 0xffffffff;
+        for (int i=0; i<max_frames; i++) {
+            curr_frame = frame_table + hand;
+            pte = &processes[curr_frame->pid]->page_table[curr_frame->page_id];
+
+            // TODO: update age before choosing frame or after?
+            curr_frame->age = curr_frame->age >> 1;
+            if (pte->referenced) {
+                curr_frame->age = curr_frame->age | 0x80000000;
+                pte->referenced = 0;
+            }
+
+            if (curr_frame->age < candidate_frame_age) {
+                candidate_frame_age = curr_frame->age;
+                candidate_frame = curr_frame;
+            }
+
+            hand = (hand + 1) % max_frames;
+        }
+        hand = ((candidate_frame - frame_table) + 1)%max_frames;
+        return candidate_frame;
+    }
+};
+
 Pager *CURR_PAGER;
 
 Frame *allocate_frame_from_free_list() {
@@ -212,6 +244,7 @@ Frame *get_frame() {
             }
         }
     }
+    frame->age = 0;
     return frame;
 }
 
@@ -533,7 +566,7 @@ int main(int argc, char **argv) {
                         CURR_PAGER = new NRU_Pager();
                         break;
                     case 'a':
-                        CURR_PAGER = new FIFO_Pager(); // TODO: fix
+                        CURR_PAGER = new Aging_Pager();
                         break;
                     case 'w':
                         CURR_PAGER = new FIFO_Pager(); // TODO: fix
@@ -557,7 +590,7 @@ int main(int argc, char **argv) {
     read_input_files(infile, rfile);
 
     // Initialize Frame Table
-    frame_table = (Frame*) malloc(max_frames * sizeof(Frame));
+    frame_table = (Frame*) calloc(max_frames, sizeof(Frame));
     // Initialize free pool
     for (int i=0; i<max_frames; i++) {
         free_pool.push_back(frame_table + i);
