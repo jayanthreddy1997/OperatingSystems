@@ -15,7 +15,7 @@ USEDIFF=${USEDIFF:-0}    # we are using cmp by default
 DARGS=         # nothing
 DARGS="-q --speed-large-files"  # the big files are killing us --> out of memory / fork refused etc
 
-INPUTS=${INPUTS:-"`seq 1 11`"}
+INPUTS=${INPUTS:-"`seq 1 17`"}
 ALGOS=${ALGOS:-" f  r  c  e  a  w"}
 FRAMES=${FRAMES:-"16 32"}
 

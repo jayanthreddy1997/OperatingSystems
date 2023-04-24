@@ -8,7 +8,7 @@ PROG=$2
 shift 2
 PARGS=${*:--oOPFS}
 
-INPUTS=${INPUTS:-`seq 1 11`}
+INPUTS=${INPUTS:-`seq 1 17`}
 ALGOS=${ALOGS:-"f r c e a w"}
 FRAMES=${FRAMES:-"16 32"}
 
