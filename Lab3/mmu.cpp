@@ -59,7 +59,7 @@ struct Frame {
 };
 
 Frame* frame_table;
-deque<Frame*> free_pool;
+deque<unsigned int> free_pool; // Double ended queue with indices to free frames
 
 struct VMA {
     unsigned int start_vpage: 6;
@@ -262,7 +262,7 @@ Pager *CURR_PAGER;
 Frame *allocate_frame_from_free_list() {
     if (free_pool.empty())
         return NULL;
-    Frame *f = free_pool.front();
+    Frame *f = &frame_table[free_pool.front()];
     free_pool.pop_front();
     return f;
 }
@@ -406,7 +406,7 @@ void run_simulation() {
                         pstats[curr_proc->pid]->fouts += 1;
                     }
                     curr_proc->page_table[i].valid = 0;
-                    free_pool.push_back(frame_table + curr_proc->page_table[i].page_frame_num);
+                    free_pool.push_back(curr_proc->page_table[i].page_frame_num);
                 }
                 curr_proc->page_table[i].paged_out = 0;
             }
@@ -641,7 +641,7 @@ int main(int argc, char **argv) {
     frame_table = (Frame*) calloc(max_frames, sizeof(Frame));
     // Initialize free pool
     for (int i=0; i<max_frames; i++) {
-        free_pool.push_back(frame_table + i);
+        free_pool.push_back(i);
     }
 
     run_simulation();
