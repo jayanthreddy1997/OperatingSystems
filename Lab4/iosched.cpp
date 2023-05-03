@@ -36,21 +36,35 @@ IO_Request *curr_running = nullptr;
 
 class IO_Scheduler {
 public:
-    virtual void add_request(IO_Request *req) = 0;
     virtual IO_Request *get_request() = 0;
 };
 
 class FIFO_IO_Scheduler: public IO_Scheduler {
 public:
-    virtual void add_request(IO_Request *req) {
-        io_queue.push_back(req);
-    }
-
     virtual IO_Request *get_request() {
         if (io_queue.empty())
             return nullptr;
         IO_Request *ret = io_queue.front();
         io_queue.pop_front();
+        track_dir = (ret->track - curr_track)>=0 ? +1 : -1; //TODO: maybe move this out?
+        return ret;
+    }
+};
+
+class SSTF_IO_Scheduler: public IO_Scheduler {
+public:
+    virtual IO_Request *get_request() {
+        IO_Request *ret = nullptr;
+        int curr_seek_time;
+        int min_seek_time = INT_MAX;
+        for(auto req: io_queue) {
+            curr_seek_time = abs(curr_track - req->track);
+            if (curr_seek_time < min_seek_time) {
+                min_seek_time = curr_seek_time;
+                ret = req;
+            }
+        }
+        io_queue.remove(ret);
         track_dir = (ret->track - curr_track)>=0 ? +1 : -1;
         return ret;
     }
@@ -63,7 +77,7 @@ void run_simulation() {
     int curr_waittime = 0;
     while (true) {
         while (i<io_requests.size() && io_requests[i].req_time == curr_time) {
-            SCH->add_request(&io_requests[i]);
+            io_queue.push_back(&io_requests[i]);
             i++;
         }
 
@@ -82,6 +96,8 @@ void run_simulation() {
             max_waittime = max(max_waittime, curr_waittime);
             if (curr_running->track == curr_track) {
                 curr_running->end_time = curr_time;
+                stat_io_util_time += curr_running->end_time - curr_running->start_time;
+                stat_acc_turnaround_time += curr_running->end_time - curr_running->req_time;
                 curr_running = nullptr;
             }
         }
@@ -108,7 +124,7 @@ int main(int argc, char** argv) {
                         break;
                     }
                     case 'S': {
-                        SCH = new FIFO_IO_Scheduler();
+                        SCH = new SSTF_IO_Scheduler();
                         break;
                     }
                     case 'L': {
