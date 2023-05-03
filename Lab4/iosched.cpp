@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <fstream>
 #include <list>
+#include <climits>
 
 using namespace std;
 int curr_time = 0;
