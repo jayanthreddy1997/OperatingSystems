@@ -16,11 +16,11 @@ bool debug_queue_mode = false;
 bool debug_flook_mode = false;
 
 // variables for summary statistics
-int stat_tot_movement = 0;
-int stat_io_util_time = 0;
-int stat_acc_turnaround_time = 0;
-int stat_acc_waittime = 0;
-int max_waittime = 0;
+long stat_tot_movement = 0;
+long stat_io_util_time = 0;
+long stat_acc_turnaround_time = 0;
+long stat_acc_waittime = 0;
+long max_waittime = 0;
 
 struct IO_Request {
     int req_time; // Request arrival time
@@ -201,7 +201,7 @@ void run_simulation() {
             curr_running->start_time = curr_time;
             curr_waittime = curr_time - curr_running->req_time;
             stat_acc_waittime += curr_waittime;
-            max_waittime = max(max_waittime, curr_waittime);
+            max_waittime = max(max_waittime, long(curr_waittime));
             if (curr_running->track == curr_track) {
                 curr_running->end_time = curr_time;
                 stat_io_util_time += curr_running->end_time - curr_running->start_time;
