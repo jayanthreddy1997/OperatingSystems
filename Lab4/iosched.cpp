@@ -283,7 +283,7 @@ int main(int argc, char** argv) {
     int req_track;
     string in;
     while (getline(input_file, in)) {
-        if (in[0] == '#')
+        if (strlen(in.c_str())==0 || in[0] == '#')
             continue;
         sscanf(in.c_str(), "%d %d", &req_time, &req_track);
         io_requests.push_back(IO_Request(req_time, req_track));
