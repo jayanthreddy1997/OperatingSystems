@@ -70,12 +70,46 @@ public:
     }
 };
 
+class LOOK_IO_Scheduler: public IO_Scheduler {
+public:
+    virtual IO_Request *get_request() {
+        IO_Request *ret = nullptr;
+        if (io_queue.empty())
+            return ret;
+
+        int curr_seek_time;
+        int min_seek_time = INT_MAX;
+        for(auto req: io_queue) {
+            if ( (track_dir > 0 && req->track >= curr_track) || (track_dir < 0 && req->track <= curr_track) ) {
+                curr_seek_time = abs(req->track - curr_track);
+                if (curr_seek_time < min_seek_time) {
+                    min_seek_time = curr_seek_time;
+                    ret = req;
+                }
+            }
+        }
+        // If no request was found, flip direction and search
+        if (ret == nullptr) {
+            track_dir = -track_dir;
+            return get_request();
+        }
+
+        io_queue.remove(ret);
+        if (ret->track != curr_track)
+            track_dir = (ret->track - curr_track)>=0 ? +1 : -1;
+        return ret;
+    }
+};
+
 IO_Scheduler *SCH;
 
 void run_simulation() {
     int i = 0;
     int curr_waittime = 0;
     while (true) {
+        if (curr_time==716) {
+            int x=1;
+        }
         while (i<io_requests.size() && io_requests[i].req_time == curr_time) {
             io_queue.push_back(&io_requests[i]);
             i++;
@@ -101,6 +135,7 @@ void run_simulation() {
                 curr_running = nullptr;
             }
         }
+
         if (curr_running == nullptr && i>=io_requests.size())
             break;
 
@@ -128,7 +163,7 @@ int main(int argc, char** argv) {
                         break;
                     }
                     case 'L': {
-                        SCH = new FIFO_IO_Scheduler();
+                        SCH = new LOOK_IO_Scheduler();
                         break;
                     }
                     case 'C': {
