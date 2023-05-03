@@ -116,7 +116,7 @@ public:
 
         int curr_seek_time;
         int min_seek_time = INT_MAX;
-        IO_Request *req_min_track;
+        IO_Request *req_min_track = io_queue->front();
         for(auto req: *io_queue) {
             if ( (track_dir > 0 && req->track >= curr_track)) {
                 curr_seek_time = abs(req->track - curr_track);
