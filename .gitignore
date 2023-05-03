@@ -37,3 +37,6 @@ Lab*/*.dSYM/
 Lab3/problem/refout/LOG.txt
 Lab3/problem/myout/*
 Lab3/problem/temp
+Lab4/tests/myoutput
+Lab4/tests/LOG.txt
+
