@@ -101,15 +101,47 @@ public:
     }
 };
 
+class CLOOK_IO_Scheduler: public IO_Scheduler {
+public:
+    virtual IO_Request *get_request() {
+        track_dir = +1;
+        IO_Request *ret = nullptr;
+        if (io_queue.empty())
+            return ret;
+
+        int curr_seek_time;
+        int min_seek_time = INT_MAX;
+        IO_Request *req_min_track;
+        for(auto req: io_queue) {
+            if ( (track_dir > 0 && req->track >= curr_track)) {
+                curr_seek_time = abs(req->track - curr_track);
+                if (curr_seek_time < min_seek_time) {
+                    min_seek_time = curr_seek_time;
+                    ret = req;
+                }
+            }
+            if(req->track < req_min_track->track) {
+                req_min_track = req;
+            }
+        }
+        // If no request was found, seek back to request with the lowest track num
+        if (ret == nullptr) {
+            ret = req_min_track;
+        }
+
+        io_queue.remove(ret);
+        if (ret->track != curr_track)
+            track_dir = (ret->track - curr_track)>=0 ? +1 : -1;
+        return ret;
+    }
+};
+
 IO_Scheduler *SCH;
 
 void run_simulation() {
     int i = 0;
     int curr_waittime = 0;
     while (true) {
-        if (curr_time==716) {
-            int x=1;
-        }
         while (i<io_requests.size() && io_requests[i].req_time == curr_time) {
             io_queue.push_back(&io_requests[i]);
             i++;
@@ -167,7 +199,7 @@ int main(int argc, char** argv) {
                         break;
                     }
                     case 'C': {
-                        SCH = new FIFO_IO_Scheduler();
+                        SCH = new CLOOK_IO_Scheduler();
                         break;
                     }
                     case 'F': {
