@@ -4,6 +4,7 @@
 #include <fstream>
 #include <list>
 #include <climits>
+#include <cstring>
 
 using namespace std;
 int curr_time = 0;
