@@ -5,7 +5,7 @@
 #include <list>
 
 using namespace std;
-int curr_time = 0; // TODO: should this start from 1?
+int curr_time = 0;
 int curr_track = 0;
 int track_dir = +1; // +1: inc track num, -1: dec track num
 
@@ -31,7 +31,11 @@ struct IO_Request {
 };
 
 vector<IO_Request> io_requests;
-list<IO_Request*> io_queue;
+list<IO_Request*> active_io_queue;
+list<IO_Request*> flook_add_queue;
+
+list<IO_Request*> *io_queue = &active_io_queue; // Pointer to the active IO queue from which scheduler picks request to process
+list<IO_Request*> *add_queue; // Pointer to the queue to which new IO requests are added
 IO_Request *curr_running = nullptr;
 
 class IO_Scheduler {
@@ -42,11 +46,11 @@ public:
 class FIFO_IO_Scheduler: public IO_Scheduler {
 public:
     virtual IO_Request *get_request() {
-        if (io_queue.empty())
+        if (io_queue->empty())
             return nullptr;
-        IO_Request *ret = io_queue.front();
-        io_queue.pop_front();
-        track_dir = (ret->track - curr_track)>=0 ? +1 : -1; //TODO: maybe move this out?
+        IO_Request *ret = io_queue->front();
+        io_queue->pop_front();
+        track_dir = (ret->track - curr_track)>=0 ? +1 : -1;
         return ret;
     }
 };
@@ -57,14 +61,14 @@ public:
         IO_Request *ret = nullptr;
         int curr_seek_time;
         int min_seek_time = INT_MAX;
-        for(auto req: io_queue) {
+        for(auto req: *io_queue) {
             curr_seek_time = abs(curr_track - req->track);
             if (curr_seek_time < min_seek_time) {
                 min_seek_time = curr_seek_time;
                 ret = req;
             }
         }
-        io_queue.remove(ret);
+        io_queue->remove(ret);
         track_dir = (ret->track - curr_track)>=0 ? +1 : -1;
         return ret;
     }
@@ -74,12 +78,12 @@ class LOOK_IO_Scheduler: public IO_Scheduler {
 public:
     virtual IO_Request *get_request() {
         IO_Request *ret = nullptr;
-        if (io_queue.empty())
+        if (io_queue->empty())
             return ret;
 
         int curr_seek_time;
         int min_seek_time = INT_MAX;
-        for(auto req: io_queue) {
+        for(auto req: *io_queue) {
             if ( (track_dir > 0 && req->track >= curr_track) || (track_dir < 0 && req->track <= curr_track) ) {
                 curr_seek_time = abs(req->track - curr_track);
                 if (curr_seek_time < min_seek_time) {
@@ -94,7 +98,7 @@ public:
             return get_request();
         }
 
-        io_queue.remove(ret);
+        io_queue->remove(ret);
         if (ret->track != curr_track)
             track_dir = (ret->track - curr_track)>=0 ? +1 : -1;
         return ret;
@@ -106,13 +110,13 @@ public:
     virtual IO_Request *get_request() {
         track_dir = +1;
         IO_Request *ret = nullptr;
-        if (io_queue.empty())
+        if (io_queue->empty())
             return ret;
 
         int curr_seek_time;
         int min_seek_time = INT_MAX;
         IO_Request *req_min_track;
-        for(auto req: io_queue) {
+        for(auto req: *io_queue) {
             if ( (track_dir > 0 && req->track >= curr_track)) {
                 curr_seek_time = abs(req->track - curr_track);
                 if (curr_seek_time < min_seek_time) {
@@ -129,7 +133,43 @@ public:
             ret = req_min_track;
         }
 
-        io_queue.remove(ret);
+        io_queue->remove(ret);
+        if (ret->track != curr_track)
+            track_dir = (ret->track - curr_track)>=0 ? +1 : -1;
+        return ret;
+    }
+};
+
+class FLOOK_IO_Scheduler: public IO_Scheduler {
+public:
+    virtual IO_Request *get_request() {
+        IO_Request *ret = nullptr;
+        if (io_queue->empty()) {
+            // Swap active IO queue and add queue
+            list<IO_Request*> *temp;
+            temp = add_queue;
+            add_queue = io_queue;
+            io_queue = temp;
+        }
+
+        int curr_seek_time;
+        int min_seek_time = INT_MAX;
+        for(auto req: *io_queue) {
+            if ( (track_dir > 0 && req->track >= curr_track) || (track_dir < 0 && req->track <= curr_track) ) {
+                curr_seek_time = abs(req->track - curr_track);
+                if (curr_seek_time < min_seek_time) {
+                    min_seek_time = curr_seek_time;
+                    ret = req;
+                }
+            }
+        }
+        // If no request was found, flip direction and search
+        if (ret == nullptr) {
+            track_dir = -track_dir;
+            return get_request();
+        }
+
+        io_queue->remove(ret);
         if (ret->track != curr_track)
             track_dir = (ret->track - curr_track)>=0 ? +1 : -1;
         return ret;
@@ -143,7 +183,7 @@ void run_simulation() {
     int curr_waittime = 0;
     while (true) {
         while (i<io_requests.size() && io_requests[i].req_time == curr_time) {
-            io_queue.push_back(&io_requests[i]);
+            (*add_queue).push_back(&io_requests[i]);
             i++;
         }
 
@@ -154,7 +194,7 @@ void run_simulation() {
             curr_running = nullptr;
         }
 
-        while (curr_running == nullptr && !io_queue.empty()) {
+        while (curr_running == nullptr && !(io_queue->empty() && add_queue->empty())) {
             curr_running = SCH->get_request();
             curr_running->start_time = curr_time;
             curr_waittime = curr_time - curr_running->req_time;
@@ -181,6 +221,8 @@ void run_simulation() {
 }
 
 int main(int argc, char** argv) {
+    add_queue = io_queue;
+
     int c;
     while ((c = getopt(argc, argv, "s:vqf")) != -1) {
         switch (c) {
@@ -203,7 +245,8 @@ int main(int argc, char** argv) {
                         break;
                     }
                     case 'F': {
-                        SCH = new FIFO_IO_Scheduler();
+                        SCH = new FLOOK_IO_Scheduler();
+                        add_queue = &flook_add_queue;
                         break;
                     }
                     default: {
