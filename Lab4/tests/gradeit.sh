@@ -13,7 +13,7 @@ LOG=${3:-${DIR2}/LOG.txt}
 DARGS=         # nothing
 DARGS="-q"
 
-INS="`seq 0 9`"
+INS="`seq 0 11`"
 INPRE="inputs/input"
 OUTPRE="out"
 

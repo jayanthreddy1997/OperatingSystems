@@ -16,7 +16,7 @@ SCHED="${PROG} ${*}"
 
 echo "outdir=<$OUTDIR> sched=<$SCHED>"
 
-INS="`seq 0 9`"
+INS="`seq 0 11`"
 INPRE="input"
 OUTPRE="out"
 
